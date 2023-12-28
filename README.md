@@ -84,7 +84,7 @@ If you would like to install from a local folder you will need to follow these s
 - Download zip
 - Unpack zip file
 - Rename folder to your liking
-- Paste the folder in app directory (ex. myApp/barkoder-capacitor(this is the new name of the download plugin folder)
+- Paste the folder in app directory ex. **myApp/barkoder-capacitor** (this is the new name of the download plugin folder)
 - Finally:
 ```bash
 npm install “/your-path/myApp/barkoder-capacitor”
