@@ -1,0 +1,86 @@
+#import <Foundation/Foundation.h>
+#import <Capacitor/Capacitor.h>
+
+// Define the plugin using the CAP_PLUGIN Macro, and
+// each method the plugin supports using the CAP_PLUGIN_METHOD macro.
+CAP_PLUGIN(BarkoderPlugin, "Barkoder",
+           CAP_PLUGIN_METHOD(initialize, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(registerWithLicenceKey, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setZoomFactor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setFlashEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(startCamera, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(startScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(stopScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(pauseScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setLocationLineColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setLocationLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setRoiLineColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setRoiLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setRoiOverlayBackgroundColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setCloseSessionOnResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setImageResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setLocationInImageResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setRegionOfInterest, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setThreadsLimit, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setLocationInPreviewEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setPinchToZoomEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setRegionOfInterestVisible, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setBarkoderResolution, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setBeepOnSuccessEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setVibrateOnSuccessEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(showLogMessages, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setBarcodeTypeLengthRange, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setEncodingCharacterSet, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setDecodingSpeed, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setFormattingType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(configureBarkoder, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setCode11ChecksumType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setMsiChecksumType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setCode39ChecksumType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setBarcodeTypeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setMulticodeCachingEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setMulticodeCachingDuration, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setMaximumResultsCount, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setBarcodeThumbnailOnResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setDuplicatesDelayMs, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setThresholdBetweenDuplicatesScans, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setUpcEanDeblurEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setMisshaped1DEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setEnableVINRestrictions, CAPPluginReturnPromise);
+
+           CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isCloseSessionOnResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isImageResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isLocationInImageResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isLocationInPreviewEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isPinchToZoomEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isRegionOfInterestVisible, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isBeepOnSuccessEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isVibrateOnSuccessEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getVersion, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getLocationLineColorHex, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getRoiLineColorHex, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getRoiOverlayBackgroundColorHex, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getMaxZoomFactor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getLocationLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getRoiLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getRegionOfInterest, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getBarcodeTypeLengthRange, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getMsiChecksumType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getCode39ChecksumType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getCode11ChecksumType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getEncodingCharacterSet, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getDecodingSpeed, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getFormattingType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getThreadsLimit, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getMaximumResultsCount, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getDuplicatesDelayMs, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isBarcodeTypeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getMulticodeCachingEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getMulticodeCachingDuration, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isUpcEanDeblurEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isMisshaped1DEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isBarcodeThumbnailOnResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getThresholdBetweenDuplicatesScans, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isVINRestrictionsEnabled, CAPPluginReturnPromise);
+)

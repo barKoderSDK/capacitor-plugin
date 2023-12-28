@@ -1,0 +1,1 @@
+{"version":3,"file":"web.js","sourceRoot":"","sources":["../../src/web.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,SAAS,EAAE,MAAM,iBAAiB,CAAC;AAE5C,MAAM,OAAO,WAAY,SAAQ,SAAS;CAEzC","sourcesContent":["import { WebPlugin } from '@capacitor/core';\n\nexport class BarkoderWeb extends WebPlugin {\n\n}\n"]}

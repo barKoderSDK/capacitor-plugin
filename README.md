@@ -1,2 +1,1174 @@
-# capacitor-plugin
-Capacitor plugin for the barKoder barcode scanning SDK
+# barKoder Barcode Scanner SDK plugin for Capacitor
+## Enterprise-grade barcode scanner SDK plugin for all Capacitor apps
+
+The barKoder Barcode Scanner SDK Capacitor plugin grants an easy to use solution with a great and completely customizable interface that can be instantly integrated in both iOS and Android apps.
+
+The [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk) will fully transform the user's smartphones and tablets that deploy your Enterprise and Consumer apps into rugged barcode scanning devices without the need to procure and maintain expensive and sluggish hardware devices that have a very short life span.
+
+Even though the barKoder barcode scanner SDK is a relatively new product, it is already more advanced than other competitor API's. Its robust barcode reading engine can be used to read the content of the most widely used barcodes with lightning fast speed and unprecedented recognition rate:
+
+1D - [Codabar](https://barkoder.com/barcode-types/codaba), [Code 11](https://barkoder.com/barcode-types/code-11), [Code 25](https://barkoder.com/barcode-types/code-25), [Code 39](https://barkoder.com/barcode-types/code-39), [Code 93](https://barkoder.com/barcode-types/code-93), [Code 128](https://barkoder.com/barcode-types/code-128), [EAN-8](https://barkoder.com/barcode-types/ean-upc-code), [EAN-13](https://barkoder.com/barcode-types/ean-upc-code), [Interleaved 2 of 5](https://barkoder.com/barcode-types/code-25), [ITF-14](https://barkoder.com/barcode-types/code-25), [MSI Plessey](https://barkoder.com/barcode-types/msi-plessey), [Pharmacode](https://barkoder.com/barcode-types/code-32), [Telepen](https://barkoder.com/barcode-types/telepen), [UPC-A](https://barkoder.com/barcode-types/ean-upc-code) & [UPC-E](https://barkoder.com/barcode-types/ean-upc-code)
+2D - [Aztec Code](https://barkoder.com/barcode-types/aztec), [Aztec Compact](https://barkoder.com/barcode-types/aztec), [Data Matrix](https://barkoder.com/barcode-types/data-matrix), [PDF417](https://barkoder.com/barcode-types/pdf417), [Micro PDF417](https://barkoder.com/barcode-types/pdf417), [QR Code](https://barkoder.com/barcode-types/qr-code) & [Micro QR Code](https://barkoder.com/barcode-types/qr-code)
+
+The [barKoder SDK](https://barkoder.com/) features multiple algorithms that handle a wide variety of barcode scanning scenarios with unprecedented performance in terms of speed and success rate: 
+* [DPM Mode](https://barkoder.com/dpm-barcode-scanner-sdk) - Specially designed scanning template for decoding Data Matrix barcodes engraved using any Direct Part Marking (DPM) technique;
+* [MatrixSight](https://barkoder.com/matrixsight) - Proprietary algorithm that can successfully scan QR Codes or Data Matrix barcodes even when they are missing their finder, timing and/or alignment patterns, even part of the data elements;
+* [Segment Decoding](https://barkoder.com/segment-decoding) - The advanced barcode localization techniques implemented into the barKoder SDK grants an ability to recognize 1D barcodes that have significant deformations along their Z axis, getting especially handy when trying to recognize barcodes found on test tubes, bottles and other surfaces with rounded, curved, hollowed or otherwise irregular shapes;
+* [VIN Barcode Scanning Mode](https://barkoder.com/vin-scanning-mode) - The most advanced VIN barcode scanning mode on the market, utilizing all the special algorithms of the barKoder SDK leading to the ultimate scanning experience of any kind of barcodes used for embedding Vehicle Identification Numbers, including Code 39, Code 128, QR Code and Data Matrix;
+* [DeBlur Mode](https://barkoder.com/deblur-mode) - Whether there's lens, motion or focus blur present in EAN or UPC barcodes, the barKoder DeBlur Mode alleviates it fully and doesn't allow the scanning experience to suffer;
+* [PDF417-LineSight](https://barkoder.com/pdf417-linesight) - The robust PDF417 barcode scanner SDK that is offered by barKoder can detect even the most severely damaged PDF417 codes, including missing their start and stop patterns, stop row indicators or even entire data columns, making it the sublime choice for apps that need to reliably scan US or Canadian driver's licenses, South African vehicle license discs or driver's licenses, as well as various types of ID's such as Military, Argentinian, Colombian or South African Smart ID Cards.
+
+You can check out our free demo app Barcode Scanner by barKoder available both via [Apple App Store](https://apps.apple.com/us/app/barkoder-scanner/id6443715409?uo=2) & [Google Play Store](https://play.google.com/store/apps/details?id=com.barkoder.demoscanner).
+
+## Documentation
+
+You can find full documentation about the barKoder Barcode Reader SDK here: https://docs.barkoder.com/en/capacitor-installation
+
+## Trial License
+
+If you run the barKoder Barcode Scanner SDK without a valid trial or production license, all results upon successful barcode scans will be partially masked by asterisks (*). You can get a trial license simply by [registering on the barKoder Portal](https://barkoder.com/register) and utilizing the self-service for [Evaluation License Generation](https://barkoder.com/spr/new)! Each trial license will be good for an initial duration of 30 days and can be deployed to up to 25 devices. For any custom requirements, contact our sales team via sales@barkoder.com
+
+Note that a trial license is only supposed to be utilized in a development or staging environment. If you decide to publish a trial license along with your app to the App Store, Play Store or any public store we won't be held accountable for any potential consequences. 
+
+## Free Developer Support
+
+Our support is completely free for integration or testing purposes and granted through the [barKoder Portal](https://barkoder.com/login). After registering and logging into your account, you only need to submit a [Support Issue](https://barkoder.com/issues) form. Alternatively, you can contact us by email via support@barkoder.com.
+
+## Requirements
+
+Capacitor is a cross-platform app runtime that makes it easy to build web apps that run natively on iOS, Android and the web. To get started with building apps using Capacitor, you'll need to meet certain requirements:
+
+1. **Node.js and npm:**
+   - Ensure you have Node.js installed on your machine. Capacitor requires Node.js version 10 or later.
+   - npm (Node Package Manager) is also required. It usually comes with Node.js.
+2. **Text Editor or IDE:**
+   - Choose a text editor or an integrated development environment (IDE) for coding. Popular choices include Visual Studio Code, Atom, or any other editor of your preference.
+3. **Git:**
+   - Capacitor projects are often managed with Git, so having Git installed on your machine is recommended.
+4. **Command Line Interface (CLI):**
+   - Capacitor commands are executed via the command line. Make sure you have a command line interface (CLI) installed and accessible on your system.
+5. **Mobile Development SDKs:**
+   - To build and run apps on specific platforms, you'll need the corresponding SDKs:
+     - For iOS development: Xcode (available on macOS)
+     - For Android development: Android Studio
+Capacitor project. Here are the basic steps:
+1. **Install Capacitor:**
+   ```bash
+   npm install -g @capacitor/cli
+   ```
+3. **Add Platforms:**
+   ```bash
+   npx cap add ios
+   npx cap add android
+   ```
+4. **Open IDE and Start Coding:**
+   - Open your chosen IDE or text editor and start building your app using web technologies.
+5. **Build and Run:**
+   - Use Capacitor commands to build and run your app on different platforms.
+   ```bash
+   npx cap open ios
+   npx cap open android
+   ```
+These steps provide a basic overview, and the Capacitor documentation may have been updated since our last knowledge update. It's always a good idea to refer to the official Capacitor documentation for the latest and most accurate information: [Capacitor Documentation](https://capacitorjs.com/docs).
+
+## Install
+
+```bash
+npm install barkoder-capacitor
+npx cap sync
+```
+
+## API
+
+<docgen-index>
+
+* [`initialize(...)`](#initialize)
+* [`registerWithLicenseKey(...)`](#registerwithlicensekey)
+* [`setZoomFactor(...)`](#setzoomfactor)
+* [`setFlashEnabled(...)`](#setflashenabled)
+* [`startCamera()`](#startcamera)
+* [`startScanning()`](#startscanning)
+* [`stopScanning()`](#stopscanning)
+* [`pauseScanning()`](#pausescanning)
+* [`setLocationLineColor(...)`](#setlocationlinecolor)
+* [`setLocationLineWidth(...)`](#setlocationlinewidth)
+* [`setRoiLineColor(...)`](#setroilinecolor)
+* [`setRoiLineWidth(...)`](#setroilinewidth)
+* [`setRoiOverlayBackgroundColor(...)`](#setroioverlaybackgroundcolor)
+* [`setCloseSessionOnResultEnabled(...)`](#setclosesessiononresultenabled)
+* [`setImageResultEnabled(...)`](#setimageresultenabled)
+* [`setLocationInImageResultEnabled(...)`](#setlocationinimageresultenabled)
+* [`setRegionOfInterest(...)`](#setregionofinterest)
+* [`setThreadsLimit(...)`](#setthreadslimit)
+* [`setLocationInPreviewEnabled(...)`](#setlocationinpreviewenabled)
+* [`setPinchToZoomEnabled(...)`](#setpinchtozoomenabled)
+* [`setRegionOfInterestVisible(...)`](#setregionofinterestvisible)
+* [`setBarkoderResolution(...)`](#setbarkoderresolution)
+* [`setBeepOnSuccessEnabled(...)`](#setbeeponsuccessenabled)
+* [`setVibrateOnSuccessEnabled(...)`](#setvibrateonsuccessenabled)
+* [`showLogMessages(...)`](#showlogmessages)
+* [`setBarcodeTypeLengthRange(...)`](#setbarcodetypelengthrange)
+* [`setEncodingCharacterSet(...)`](#setencodingcharacterset)
+* [`setDecodingSpeed(...)`](#setdecodingspeed)
+* [`setFormattingType(...)`](#setformattingtype)
+* [`setCode11ChecksumType(...)`](#setcode11checksumtype)
+* [`setMsiChecksumType(...)`](#setmsichecksumtype)
+* [`setCode39ChecksumType(...)`](#setcode39checksumtype)
+* [`setBarcodeTypeEnabled(...)`](#setbarcodetypeenabled)
+* [`setMulticodeCachingEnabled(...)`](#setmulticodecachingenabled)
+* [`setMulticodeCachingDuration(...)`](#setmulticodecachingduration)
+* [`setMaximumResultsCount(...)`](#setmaximumresultscount)
+* [`setBarcodeThumbnailOnResultEnabled(...)`](#setbarcodethumbnailonresultenabled)
+* [`setDuplicatesDelayMs(...)`](#setduplicatesdelayms)
+* [`setThresholdBetweenDuplicatesScans(...)`](#setthresholdbetweenduplicatesscans)
+* [`setUpcEanDeblurEnabled(...)`](#setupceandeblurenabled)
+* [`setMisshaped1DEnabled(...)`](#setmisshaped1denabled)
+* [`setEnableVINRestrictions(...)`](#setenablevinrestrictions)
+* [`isFlashAvailable()`](#isflashavailable)
+* [`isCloseSessionOnResultEnabled()`](#isclosesessiononresultenabled)
+* [`isImageResultEnabled()`](#isimageresultenabled)
+* [`isLocationInImageResultEnabled()`](#islocationinimageresultenabled)
+* [`isLocationInPreviewEnabled()`](#islocationinpreviewenabled)
+* [`isPinchToZoomEnabled()`](#ispinchtozoomenabled)
+* [`isRegionOfInterestVisible()`](#isregionofinterestvisible)
+* [`isBeepOnSuccessEnabled()`](#isbeeponsuccessenabled)
+* [`isVibrateOnSuccessEnabled()`](#isvibrateonsuccessenabled)
+* [`getVersion()`](#getversion)
+* [`getLocationLineColorHex()`](#getlocationlinecolorhex)
+* [`getRoiLineColorHex()`](#getroilinecolorhex)
+* [`getRoiOverlayBackgroundColorHex()`](#getroioverlaybackgroundcolorhex)
+* [`getMaxZoomFactor()`](#getmaxzoomfactor)
+* [`getLocationLineWidth()`](#getlocationlinewidth)
+* [`getRoiLineWidth()`](#getroilinewidth)
+* [`getRegionOfInterest()`](#getregionofinterest)
+* [`getBarcodeTypeLengthRange(...)`](#getbarcodetypelengthrange)
+* [`getMsiChecksumType()`](#getmsichecksumtype)
+* [`getCode39ChecksumType()`](#getcode39checksumtype)
+* [`getCode11ChecksumType()`](#getcode11checksumtype)
+* [`getEncodingCharacterSet()`](#getencodingcharacterset)
+* [`getDecodingSpeed()`](#getdecodingspeed)
+* [`getFormattingType()`](#getformattingtype)
+* [`getThreadsLimit()`](#getthreadslimit)
+* [`getMaximumResultsCount()`](#getmaximumresultscount)
+* [`getDuplicatesDelayMs()`](#getduplicatesdelayms)
+* [`isBarcodeTypeEnabled(...)`](#isbarcodetypeenabled)
+* [`getMulticodeCachingEnabled()`](#getmulticodecachingenabled)
+* [`getMulticodeCachingDuration()`](#getmulticodecachingduration)
+* [`isUpcEanDeblurEnabled()`](#isupceandeblurenabled)
+* [`isMisshaped1DEnabled()`](#ismisshaped1denabled)
+* [`isBarcodeThumbnailOnResultEnabled()`](#isbarcodethumbnailonresultenabled)
+* [`getThresholdBetweenDuplicatesScans()`](#getthresholdbetweenduplicatesscans)
+* [`isVINRestrictionsEnabled()`](#isvinrestrictionsenabled)
+
+</docgen-index>
+
+<docgen-api>
+<!--Update the source file JSDoc comments and rerun docgen to update the docs below-->
+
+### initialize(...)
+
+```typescript
+initialize(options: { width: number; height: number; x: number; y: number; }) => Promise<any>
+```
+
+| Param         | Type                                                                  |
+| ------------- | --------------------------------------------------------------------- |
+| **`options`** | <code>{ width: number; height: number; x: number; y: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### registerWithLicenseKey(...)
+
+```typescript
+registerWithLicenseKey(options: { licenseKey: string; }) => Promise<any>
+```
+
+| Param         | Type                                 |
+| ------------- | ------------------------------------ |
+| **`options`** | <code>{ licenseKey: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setZoomFactor(...)
+
+```typescript
+setZoomFactor(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setFlashEnabled(...)
+
+```typescript
+setFlashEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### startCamera()
+
+```typescript
+startCamera() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### startScanning()
+
+```typescript
+startScanning() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### stopScanning()
+
+```typescript
+stopScanning() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### pauseScanning()
+
+```typescript
+pauseScanning() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setLocationLineColor(...)
+
+```typescript
+setLocationLineColor(options: { value: string; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setLocationLineWidth(...)
+
+```typescript
+setLocationLineWidth(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setRoiLineColor(...)
+
+```typescript
+setRoiLineColor(options: { value: string; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setRoiLineWidth(...)
+
+```typescript
+setRoiLineWidth(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setRoiOverlayBackgroundColor(...)
+
+```typescript
+setRoiOverlayBackgroundColor(options: { value: string; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setCloseSessionOnResultEnabled(...)
+
+```typescript
+setCloseSessionOnResultEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setImageResultEnabled(...)
+
+```typescript
+setImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setLocationInImageResultEnabled(...)
+
+```typescript
+setLocationInImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setRegionOfInterest(...)
+
+```typescript
+setRegionOfInterest(options: { left: number; top: number; width: number; height: number; }) => Promise<any>
+```
+
+| Param         | Type                                                                       |
+| ------------- | -------------------------------------------------------------------------- |
+| **`options`** | <code>{ left: number; top: number; width: number; height: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setThreadsLimit(...)
+
+```typescript
+setThreadsLimit(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setLocationInPreviewEnabled(...)
+
+```typescript
+setLocationInPreviewEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setPinchToZoomEnabled(...)
+
+```typescript
+setPinchToZoomEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setRegionOfInterestVisible(...)
+
+```typescript
+setRegionOfInterestVisible(options: { value: boolean; }) => Promise<any>
+```
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setBarkoderResolution(...)
+
+```typescript
+setBarkoderResolution(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setBeepOnSuccessEnabled(...)
+
+```typescript
+setBeepOnSuccessEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setVibrateOnSuccessEnabled(...)
+
+```typescript
+setVibrateOnSuccessEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### showLogMessages(...)
+
+```typescript
+showLogMessages(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setBarcodeTypeLengthRange(...)
+
+```typescript
+setBarcodeTypeLengthRange(options: { type: number; min: number; max: number; }) => Promise<any>
+```
+
+| Param         | Type                                                     |
+| ------------- | -------------------------------------------------------- |
+| **`options`** | <code>{ type: number; min: number; max: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setEncodingCharacterSet(...)
+
+```typescript
+setEncodingCharacterSet(options: { value: string; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setDecodingSpeed(...)
+
+```typescript
+setDecodingSpeed(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setFormattingType(...)
+
+```typescript
+setFormattingType(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setCode11ChecksumType(...)
+
+```typescript
+setCode11ChecksumType(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setMsiChecksumType(...)
+
+```typescript
+setMsiChecksumType(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setCode39ChecksumType(...)
+
+```typescript
+setCode39ChecksumType(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setBarcodeTypeEnabled(...)
+
+```typescript
+setBarcodeTypeEnabled(options: { type: number; enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                                             |
+| ------------- | ------------------------------------------------ |
+| **`options`** | <code>{ type: number; enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setMulticodeCachingEnabled(...)
+
+```typescript
+setMulticodeCachingEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setMulticodeCachingDuration(...)
+
+```typescript
+setMulticodeCachingDuration(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setMaximumResultsCount(...)
+
+```typescript
+setMaximumResultsCount(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setBarcodeThumbnailOnResultEnabled(...)
+
+```typescript
+setBarcodeThumbnailOnResultEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setDuplicatesDelayMs(...)
+
+```typescript
+setDuplicatesDelayMs(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setThresholdBetweenDuplicatesScans(...)
+
+```typescript
+setThresholdBetweenDuplicatesScans(options: { value: number; }) => Promise<any>
+```
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setUpcEanDeblurEnabled(...)
+
+```typescript
+setUpcEanDeblurEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setMisshaped1DEnabled(...)
+
+```typescript
+setMisshaped1DEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setEnableVINRestrictions(...)
+
+```typescript
+setEnableVINRestrictions(options: { value: boolean; }) => Promise<any>
+```
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isFlashAvailable()
+
+```typescript
+isFlashAvailable() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isCloseSessionOnResultEnabled()
+
+```typescript
+isCloseSessionOnResultEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isImageResultEnabled()
+
+```typescript
+isImageResultEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isLocationInImageResultEnabled()
+
+```typescript
+isLocationInImageResultEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isLocationInPreviewEnabled()
+
+```typescript
+isLocationInPreviewEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isPinchToZoomEnabled()
+
+```typescript
+isPinchToZoomEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isRegionOfInterestVisible()
+
+```typescript
+isRegionOfInterestVisible() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isBeepOnSuccessEnabled()
+
+```typescript
+isBeepOnSuccessEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isVibrateOnSuccessEnabled()
+
+```typescript
+isVibrateOnSuccessEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getVersion()
+
+```typescript
+getVersion() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getLocationLineColorHex()
+
+```typescript
+getLocationLineColorHex() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getRoiLineColorHex()
+
+```typescript
+getRoiLineColorHex() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getRoiOverlayBackgroundColorHex()
+
+```typescript
+getRoiOverlayBackgroundColorHex() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getMaxZoomFactor()
+
+```typescript
+getMaxZoomFactor() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getLocationLineWidth()
+
+```typescript
+getLocationLineWidth() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getRoiLineWidth()
+
+```typescript
+getRoiLineWidth() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getRegionOfInterest()
+
+```typescript
+getRegionOfInterest() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getBarcodeTypeLengthRange(...)
+
+```typescript
+getBarcodeTypeLengthRange(options: { type: number; }) => Promise<any>
+```
+
+| Param         | Type                           |
+| ------------- | ------------------------------ |
+| **`options`** | <code>{ type: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getMsiChecksumType()
+
+```typescript
+getMsiChecksumType() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getCode39ChecksumType()
+
+```typescript
+getCode39ChecksumType() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getCode11ChecksumType()
+
+```typescript
+getCode11ChecksumType() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getEncodingCharacterSet()
+
+```typescript
+getEncodingCharacterSet() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getDecodingSpeed()
+
+```typescript
+getDecodingSpeed() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getFormattingType()
+
+```typescript
+getFormattingType() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getThreadsLimit()
+
+```typescript
+getThreadsLimit() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getMaximumResultsCount()
+
+```typescript
+getMaximumResultsCount() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getDuplicatesDelayMs()
+
+```typescript
+getDuplicatesDelayMs() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isBarcodeTypeEnabled(...)
+
+```typescript
+isBarcodeTypeEnabled(options: { type: number; }) => Promise<any>
+```
+
+| Param         | Type                           |
+| ------------- | ------------------------------ |
+| **`options`** | <code>{ type: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getMulticodeCachingEnabled()
+
+```typescript
+getMulticodeCachingEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getMulticodeCachingDuration()
+
+```typescript
+getMulticodeCachingDuration() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isUpcEanDeblurEnabled()
+
+```typescript
+isUpcEanDeblurEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isMisshaped1DEnabled()
+
+```typescript
+isMisshaped1DEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isBarcodeThumbnailOnResultEnabled()
+
+```typescript
+isBarcodeThumbnailOnResultEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getThresholdBetweenDuplicatesScans()
+
+```typescript
+getThresholdBetweenDuplicatesScans() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isVINRestrictionsEnabled()
+
+```typescript
+isVINRestrictionsEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+</docgen-api>

@@ -1,0 +1,11 @@
+framework module BarkoderSDK {
+  umbrella header "BarkoderSDK.h"
+  export *
+
+  module * { export * }
+}
+
+module BarkoderSDK.Swift {
+  header "BarkoderSDK-Swift.h"
+  requires objc
+}

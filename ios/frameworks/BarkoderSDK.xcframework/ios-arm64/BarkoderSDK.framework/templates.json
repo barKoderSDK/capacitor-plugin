@@ -1,0 +1,501 @@
+{
+    "all": {
+        "decoder": {
+            "Aztec": {
+                "enabled": true
+            },
+            "Aztec Compact": {
+                "enabled": true
+            },
+            "QR": {
+                "enabled": true
+            },
+            "QR Micro": {
+                "enabled": true
+            },
+            "Code 128": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 93": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 39": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "Codabar": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 11": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "MSI": {
+                "enabled": true,
+                "minimumLength": 4,
+                "maximumLength": 0,
+                "checksum": 1
+            },
+            "Upc-A": {
+                "enabled": true
+            },
+            "Upc-E": {
+                "enabled": true
+            },
+            "Ean-13": {
+                "enabled": true
+            },
+            "Ean-8": {
+                "enabled": true
+            },
+            "PDF 417": {
+                "enabled": true
+            },
+            "PDF 417 Micro": {
+                "enabled": true
+            },
+            "Datamatrix": {
+                "enabled": true,
+                "dpmMode": 0
+            },
+            "Code 25": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Interleaved 2 of 5": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "ITF 14": {
+                "enabled": true
+            },
+            "IATA 25": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Matrix 25": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "COOP 25": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 32": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Telepen": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 1,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 1,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 0,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "pdf_optimized": {
+        "decoder": {
+            "PDF 417": {
+                "enabled": true
+            },
+            "PDF 417 Micro": {
+                "enabled": true
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 3,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "qr": {
+        "decoder": {
+            "QR": {
+                "enabled": true
+            },
+            "QR Micro": {
+                "enabled": true
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "retail_1d": {
+        "decoder": {
+            "Upc-A": {
+                "enabled": true
+            },
+            "Upc-E": {
+                "enabled": true
+            },
+            "Ean-13": {
+                "enabled": true
+            },
+            "Ean-8": {
+                "enabled": true
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": true,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "industrial_1d": {
+        "decoder": {
+            "Code 128": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 93": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 39": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "Code 25": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Codabar": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 11": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "Interleaved 2 of 5": {
+                "enabled": true,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "ITF 14": {
+                "enabled": true
+            },
+            "Telepen": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "all_2d": {
+        "decoder": {
+            "Aztec": {
+                "enabled": true
+            },
+            "Aztec Compact": {
+                "enabled": true
+            },
+            "QR": {
+                "enabled": true
+            },
+            "QR Micro": {
+                "enabled": true
+            },
+            "Datamatrix": {
+                "enabled": true,
+                "dpmMode": 0
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "dpm": {
+        "decoder": {
+            "Datamatrix": {
+                "enabled": true,
+                "dpmMode": 1
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 40,
+                "roi_y": 40,
+                "roi_w": 20,
+                "roi_h": 9,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    },
+    "vin": {
+        "decoder": {
+            "Code 39": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "Code 128": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Datamatrix": {
+                "enabled": true,
+                "dpmMode": 0
+            },
+            "QR": {
+                "enabled": true
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": true,
+                "thresholdBetweenDuplicatesScans": 5
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 4,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": true
+    }
+}

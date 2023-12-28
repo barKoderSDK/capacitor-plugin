@@ -1,0 +1,139 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.9 (swiftlang-5.9.0.128.108 clang-1500.0.40.1)
+// swift-module-flags: -target arm64-apple-ios10.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name BarkoderSDK
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import AVFoundation
+import Barkoder
+@_exported import BarkoderSDK
+import CoreMedia
+import Foundation
+import Swift
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+@objc public protocol BarkoderResultDelegate {
+  @objc func scanningFinished(_ decoderResults: [Barkoder.DecoderResult], thumbnails: [UIKit.UIImage]?, image: UIKit.UIImage?)
+}
+@_inheritsConvenienceInitializers @objc public class BarkoderConfig : ObjectiveC.NSObject {
+  @objc public var roiLineColor: UIKit.UIColor {
+    @objc get
+    @objc set
+  }
+  @objc public var roiLineWidth: Swift.Float {
+    @objc get
+    @objc set
+  }
+  @objc public var roiOverlayBackgroundColor: UIKit.UIColor {
+    @objc get
+    @objc set
+  }
+  @objc public var regionOfInterestVisible: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc public var locationLineColor: UIKit.UIColor
+  @objc public var locationLineWidth: Swift.Float
+  @objc public var pinchToZoomEnabled: Swift.Bool
+  @objc public var beepOnSuccessEnabled: Swift.Bool
+  @objc public var vibrateOnSuccessEnabled: Swift.Bool
+  @objc public var closeSessionOnResultEnabled: Swift.Bool
+  @objc public var imageResultEnabled: Swift.Bool
+  @objc public var locationInImageResultEnabled: Swift.Bool
+  @objc public var locationInPreviewEnabled: Swift.Bool
+  @objc public var decoderConfig: Barkoder.Config?
+  @objc public var barkoderResolution: BarkoderSDK.BarkoderView.BarkoderResolution {
+    @objc get
+    @objc set
+  }
+  @objc public var barcodeThumbnailOnResult: Swift.Bool
+  @objc public var thresholdBetweenDuplicatesScans: Swift.Int
+  @objc open func setRegionOfInterest(_ value: CoreFoundation.CGRect) throws
+  @objc open func getRegionOfInterest() -> CoreFoundation.CGRect
+  @objc convenience public init(licenseKey: Swift.String, licenseCheckHandler: @escaping ((Barkoder.LicenseCheckResult) -> Swift.Void))
+  @objc open func setThreadsLimit(_ value: Swift.Int) throws
+  @objc open func getThreadsLimit() -> Swift.Int
+  @objc open func setMulticodeCachingEnabled(_ boolean: Swift.Bool)
+  @objc open func getMulticodeCachingEnabled() -> Swift.Bool
+  @objc open func setMulticodeCachingDuration(_ value: Swift.Int)
+  @objc open func getMulticodeCachingDuration() -> Swift.Int
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension UIKit.UIImage {
+  public func fixOrientation() -> UIKit.UIImage
+}
+@objc public protocol BarkoderPerformanceDelegate {
+  @objc optional func performanceReceived(fps: Swift.Float, dps: Swift.Float)
+}
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc @_Concurrency.MainActor(unsafe) public class BarkoderView : UIKit.UIView, BarkoderSDK.BarkoderPreviewFramesDelegate {
+  @objc public enum BarkoderResolution : Swift.Int {
+    case normal
+    case high
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc @_Concurrency.MainActor(unsafe) public var config: BarkoderSDK.BarkoderConfig? {
+    @objc get
+    @objc set
+  }
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @objc @_Concurrency.MainActor(unsafe) public func startCamera()
+  @objc @_Concurrency.MainActor(unsafe) public func setPreviewFramesDelegate(_ delegate: (any BarkoderSDK.BarkoderPreviewFramesDelegate)?)
+  @objc @_Concurrency.MainActor(unsafe) public func setBarkoderPerformanceDelegate(_ delegate: (any BarkoderSDK.BarkoderPerformanceDelegate)?)
+  @objc @_Concurrency.MainActor(unsafe) public func startScanning(_ resultDelegate: any BarkoderSDK.BarkoderResultDelegate) throws
+  @objc @_Concurrency.MainActor(unsafe) public func stopScanning()
+  @objc @_Concurrency.MainActor(unsafe) public func pauseScanning()
+  @objc @_Concurrency.MainActor(unsafe) public func setZoomFactor(_ zoomFactor: Swift.Float)
+  @objc @_Concurrency.MainActor(unsafe) public func setFlash(_ enabled: Swift.Bool)
+  @objc @_Concurrency.MainActor(unsafe) public func getMaxZoomFactor(_ completion: @escaping (_ maxZoomFactor: Swift.Float) -> Swift.Void)
+  @objc @_Concurrency.MainActor(unsafe) public func isFlashAvailable(_ completion: @escaping (_ flashAvailable: Swift.Bool) -> Swift.Void)
+  @_Concurrency.MainActor(unsafe) @objc public func cameraFrameReceived(sampleBuffer: CoreMedia.CMSampleBuffer)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public func layoutSubviews()
+  @objc deinit
+}
+extension CoreFoundation.CGRect {
+  public static let fullScreen: CoreFoundation.CGRect
+  public func fullScreenIntersection() -> CoreFoundation.CGRect
+  public func isFullScreen() -> Swift.Bool
+}
+@objc public protocol BarkoderPreviewFramesDelegate {
+  @objc optional func cameraFrameReceived(sampleBuffer: CoreMedia.CMSampleBuffer)
+}
+@objc extension Barkoder.iBarkoder {
+  @objc public static func GetVersion() -> Swift.String
+}
+@_inheritsConvenienceInitializers @objc public class BarkoderHelper : ObjectiveC.NSObject {
+  @objc public static func scanImage(_ image: UIKit.UIImage, bkdConfig: BarkoderSDK.BarkoderConfig, resultDelegate: any BarkoderSDK.BarkoderResultDelegate)
+  @objc public enum BarkoderConfigTemplate : Swift.Int {
+    case all
+    case pdf_optimized
+    case qr
+    case retail_1d
+    case industrial_1d
+    case all_2d
+    case dpm
+    case vin
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  @objc public static func applyConfigSettingsFromTemplate(_ config: BarkoderSDK.BarkoderConfig, template: BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate, finished: @escaping (BarkoderSDK.BarkoderConfig) -> Swift.Void)
+  @objc public static func applyConfigSettingsFromURL(_ config: BarkoderSDK.BarkoderConfig, url: Foundation.URL, finished: @escaping (BarkoderSDK.BarkoderConfig?, (any Swift.Error)?) -> Swift.Void)
+  @objc public static func applyConfigSettingsFromFile(_ config: BarkoderSDK.BarkoderConfig, url: Swift.String, finished: @escaping (BarkoderSDK.BarkoderConfig?, (any Swift.Error)?) -> Swift.Void)
+  @objc public static func applyConfigSettingsFromJson(_ config: BarkoderSDK.BarkoderConfig, jsonData: Foundation.Data, finished: @escaping (BarkoderSDK.BarkoderConfig?, (any Swift.Error)?) -> Swift.Void)
+  @objc public static func configToJSON(_ barkoderConfig: BarkoderSDK.BarkoderConfig) -> Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.Equatable {}
+extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.Hashable {}
+extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.RawRepresentable {}
+extension BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate : Swift.Equatable {}
+extension BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate : Swift.Hashable {}
+extension BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate : Swift.RawRepresentable {}
