@@ -541,6 +541,8 @@ extension BarkoderPlugin {
                         decoderConfig.code32.enabled = enabled
                     case Telepen:
                         decoderConfig.telepen.enabled = enabled
+                    case Dotcode:
+                        decoderConfig.dotcode.enabled = enabled
                     default:
                         call.reject(
                             BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -902,6 +904,8 @@ extension BarkoderPlugin {
                 call.resolve([decoderConfig.code32.typeName(): decoderConfig.code32.enabled])
             case Telepen:
                 call.resolve([decoderConfig.telepen.typeName(): decoderConfig.telepen.enabled])
+            case Dotcode:
+                call.resolve([decoderConfig.dotcode.typeName(): decoderConfig.dotcode.enabled])
             default:
                 call.reject(
                     BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,

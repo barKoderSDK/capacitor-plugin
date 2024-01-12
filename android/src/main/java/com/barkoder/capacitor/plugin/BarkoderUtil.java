@@ -122,6 +122,8 @@ public class BarkoderUtil {
                 return decoderConfig.Code32;
             case Telepen:
                 return decoderConfig.Telepen;
+            case Dotcode:
+                return  decoderConfig.Dotcode;
         }
         return null;
     }

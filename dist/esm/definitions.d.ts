@@ -194,7 +194,8 @@ export declare enum BarcodeType {
     datalogic25 = 23,
     coop25 = 24,
     code32 = 25,
-    telepen = 26
+    telepen = 26,
+    dotcode = 27
 }
 export declare enum FormattingType {
     disabled = 0,

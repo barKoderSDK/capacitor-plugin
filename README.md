@@ -7,7 +7,7 @@ The [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk) wil
 
 Even though the barKoder barcode scanner SDK is a relatively new product, it is already more advanced than other competitor API's. Its robust barcode reading engine can be used to read the content of the most widely used barcodes with lightning fast speed and unprecedented recognition rate:
 
-1D - [Codabar](https://barkoder.com/barcode-types/codaba), [Code 11](https://barkoder.com/barcode-types/code-11), [Code 25](https://barkoder.com/barcode-types/code-25), [Code 39](https://barkoder.com/barcode-types/code-39), [Code 93](https://barkoder.com/barcode-types/code-93), [Code 128](https://barkoder.com/barcode-types/code-128), [EAN-8](https://barkoder.com/barcode-types/ean-upc-code), [EAN-13](https://barkoder.com/barcode-types/ean-upc-code), [Interleaved 2 of 5](https://barkoder.com/barcode-types/code-25), [ITF-14](https://barkoder.com/barcode-types/code-25), [MSI Plessey](https://barkoder.com/barcode-types/msi-plessey), [Pharmacode](https://barkoder.com/barcode-types/code-32), [Telepen](https://barkoder.com/barcode-types/telepen), [UPC-A](https://barkoder.com/barcode-types/ean-upc-code) & [UPC-E](https://barkoder.com/barcode-types/ean-upc-code)
+1D - [Codabar](https://barkoder.com/barcode-types/codaba), [Code 11](https://barkoder.com/barcode-types/code-11), [Code 25](https://barkoder.com/barcode-types/code-25), [Code 39](https://barkoder.com/barcode-types/code-39), [Code 93](https://barkoder.com/barcode-types/code-93), [Code 128](https://barkoder.com/barcode-types/code-128), [DotCode](https://barkoder.com/barcode-types/dotcode), [EAN-8](https://barkoder.com/barcode-types/ean-upc-code), [EAN-13](https://barkoder.com/barcode-types/ean-upc-code), [Interleaved 2 of 5](https://barkoder.com/barcode-types/code-25), [ITF-14](https://barkoder.com/barcode-types/code-25), [MSI Plessey](https://barkoder.com/barcode-types/msi-plessey), [Pharmacode](https://barkoder.com/barcode-types/code-32), [Telepen](https://barkoder.com/barcode-types/telepen), [UPC-A](https://barkoder.com/barcode-types/ean-upc-code) & [UPC-E](https://barkoder.com/barcode-types/ean-upc-code)
 2D - [Aztec Code](https://barkoder.com/barcode-types/aztec), [Aztec Compact](https://barkoder.com/barcode-types/aztec), [Data Matrix](https://barkoder.com/barcode-types/data-matrix), [PDF417](https://barkoder.com/barcode-types/pdf417), [Micro PDF417](https://barkoder.com/barcode-types/pdf417), [QR Code](https://barkoder.com/barcode-types/qr-code) & [Micro QR Code](https://barkoder.com/barcode-types/qr-code)
 
 The [barKoder SDK](https://barkoder.com/) features multiple algorithms that handle a wide variety of barcode scanning scenarios with unprecedented performance in terms of speed and success rate: 
@@ -89,6 +89,67 @@ If you would like to install from a local folder you will need to follow these s
 ```bash
 npm install “/your-path/myApp/barkoder-capacitor”
 ```
+
+## Using the plugin 
+## Angular
+
+In your ts file:
+```bash
+import { Barkoder, BarcodeType } from 'barkoder-capacitor'
+
+@ViewChild('barkoderView') barkoderViewRef!: ElementRef;
+
+   constructor() {
+     Barkoder.addListener('barkoderResultEvent', (barkoderResult: any) => {
+       console.log('barkoderResultEvent was fired');
+       console.log("Result: " + barkoderResult.textualData);
+     });
+   }
+
+   setActiveBarcodeTypes() {
+    Barkoder.setBarcodeTypeEnabled({ type: BarcodeType.code128, enabled: true });
+    Barkoder.setBarcodeTypeEnabled({ type: BarcodeType.ean13, enabled: true });
+   }
+
+   setBarkoderSettings() {
+    Barkoder.setRegionOfInterestVisible({value: true});
+    Barkoder.setRegionOfInterest({ left: 5, top: 5, width: 90, height: 90 });
+    Barkoder.setCloseSessionOnResultEnabled({ enabled: false});
+    Barkoder.setImageResultEnabled({ enabled: true});
+    Barkoder.setBarcodeThumbnailOnResultEnabled({ enabled: true});
+    Barkoder.setBeepOnSuccessEnabled({ enabled: true});
+    Barkoder.setPinchToZoomEnabled({ enabled: true});
+    Barkoder.setZoomFactor({ value: 2.0 });
+   }
+
+   async startScanning() {
+      const boundingRect = this.barkoderViewRef.nativeElement.getBoundingClientRect() as DOMRect;
+      Barkoder.registerWithLicenseKey({licenseKey: "your_license_key"});
+      await Barkoder.initialize({
+         width: Math.round(boundingRect.width),
+         height: Math.round(boundingRect.height),
+         x: Math.round(boundingRect.x),
+         y: Math.round(boundingRect.y),
+      });
+      this.setBarkoderSettings();
+      this.setActiveBarcodeTypes();
+      Barkoder.startScanning();
+   }
+```
+
+In your HTML file add the barkoderView div id:
+```bash
+<div id="barkoderView" #barkoderView >
+```
+
+In your scss file set the desired barkoderView height:
+```bash
+#barkoderView {
+   height: 400px;
+}
+```
+
+
 
 ## API
 

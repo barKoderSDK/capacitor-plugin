@@ -33,6 +33,7 @@ exports.BarcodeType = void 0;
     BarcodeType[BarcodeType["coop25"] = 24] = "coop25";
     BarcodeType[BarcodeType["code32"] = 25] = "code32";
     BarcodeType[BarcodeType["telepen"] = 26] = "telepen";
+    BarcodeType[BarcodeType["dotcode"] = 27] = "dotcode";
 })(exports.BarcodeType || (exports.BarcodeType = {}));
 exports.FormattingType = void 0;
 (function (FormattingType) {
