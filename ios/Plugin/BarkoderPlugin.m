@@ -5,7 +5,7 @@
 // each method the plugin supports using the CAP_PLUGIN_METHOD macro.
 CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(initialize, CAPPluginReturnPromise);
-           CAP_PLUGIN_METHOD(registerWithLicenceKey, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(registerWithLicenseKey, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setZoomFactor, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setFlashEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(startCamera, CAPPluginReturnPromise);
