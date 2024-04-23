@@ -663,6 +663,75 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func setDatamatrixDpmModeEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.datamatrix.dpmMode = enabled ? 1 : 0
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func configureBarkoder(_ call: CAPPluginCall) {
+        guard var barkoderConfigAsDictionary = call.getObject("barkoderConfig"), let barkoderConfig = barkoderView.config else { return }
+                
+        let barkoderJsonData: Data
+        
+        // Changing values for colors from hexes to decimal values
+        // Converting from Dictionary -> Data with utf8 encoding
+        do {
+            if let colorHexCode = barkoderConfigAsDictionary["roiLineColor"] as? String {
+                barkoderConfigAsDictionary["roiLineColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+            
+            if let colorHexCode = barkoderConfigAsDictionary["locationLineColor"] as? String {
+                barkoderConfigAsDictionary["locationLineColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+            
+            if let colorHexCode = barkoderConfigAsDictionary["roiOverlayBackgroundColor"] as? String {
+                barkoderConfigAsDictionary["roiOverlayBackgroundColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+            
+            let jsonData = try JSONSerialization.data(withJSONObject: barkoderConfigAsDictionary as Any, options: .prettyPrinted)
+            
+            var convertedBarkoderConfigAsString = String(data: jsonData, encoding: .utf8) ?? ""
+            
+            zip(["aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi",  "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"],
+                
+                ["Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"]).forEach {
+                convertedBarkoderConfigAsString = convertedBarkoderConfigAsString.replacingOccurrences(of: $0, with: $1, options: .literal)
+            }
+            
+            barkoderJsonData = Data(convertedBarkoderConfigAsString.utf8)
+        } catch {
+            call.reject(
+                BarkoderPluginErrors.BARKODER_CONFIG_IS_NOT_VALID.errorMessage,
+                BarkoderPluginErrors.BARKODER_CONFIG_IS_NOT_VALID.errorCode
+            )
+            return
+        }
+        
+        BarkoderHelper.applyConfigSettingsFromJson(
+            barkoderConfig,
+            jsonData: barkoderJsonData
+        ) { [weak self] config, error in
+            if let error = error {
+                call.reject(
+                    BarkoderPluginErrors.BARKODER_CONFIG_IS_NOT_VALID.errorMessage,
+                    BarkoderPluginErrors.BARKODER_CONFIG_IS_NOT_VALID.errorCode
+                )
+            } else {
+                DispatchQueue.main.async {
+                    self?.barkoderView.config = config
+                }
+                call.resolve()
+            }
+        }
+    }
+    
 }
 
 // MARK: - Getters
@@ -941,6 +1010,10 @@ extension BarkoderPlugin {
     
     @objc func isVINRestrictionsEnabled(_ call: CAPPluginCall) {
         call.resolve(["isVINRestrictionsEnabled": barkoderView.config?.decoderConfig?.enableVINRestrictions as Any])
+    }
+    
+    @objc func getBarkoderResolution(_ call: CAPPluginCall) {
+        call.resolve(["getBarkoderResolution": barkoderView.config?.barkoderResolution.rawValue as Any])
     }
     
 }

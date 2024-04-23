@@ -127,6 +127,12 @@ export interface BarkoderPlugin extends Plugin {
     setEnableVINRestrictions(options: {
         value: boolean;
     }): Promise<any>;
+    setDatamatrixDpmModeEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    configureBarkoder(options: {
+        barkoderConfig: BarkoderConfig;
+    }): Promise<any>;
     isFlashAvailable(): Promise<any>;
     isCloseSessionOnResultEnabled(): Promise<any>;
     isImageResultEnabled(): Promise<any>;
@@ -166,6 +172,40 @@ export interface BarkoderPlugin extends Plugin {
     isBarcodeThumbnailOnResultEnabled(): Promise<any>;
     getThresholdBetweenDuplicatesScans(): Promise<any>;
     isVINRestrictionsEnabled(): Promise<any>;
+    getBarkoderResolution(): Promise<any>;
+}
+export declare enum DecodingSpeed {
+    fast = 0,
+    normal = 1,
+    slow = 2
+}
+export declare enum FormattingType {
+    disabled = 0,
+    automatic = 1,
+    gs1 = 2,
+    aamva = 3
+}
+export declare enum MsiChecksumType {
+    disabled = 0,
+    mod10 = 1,
+    mod11 = 2,
+    mod1010 = 3,
+    mod1110 = 4,
+    mod11IBM = 5,
+    mod1110IBM = 6
+}
+export declare enum Code39ChecksumType {
+    disabled = 0,
+    enabled = 1
+}
+export declare enum Code11ChecksumType {
+    disabled = 0,
+    single = 1,
+    double = 2
+}
+export declare enum BarkoderResolution {
+    normal = 0,
+    high = 1
 }
 export declare enum BarcodeType {
     aztec = 0,
@@ -197,36 +237,114 @@ export declare enum BarcodeType {
     telepen = 26,
     dotcode = 27
 }
-export declare enum FormattingType {
-    disabled = 0,
-    automatic = 1,
-    gs1 = 2,
-    aamva = 3
+export declare class BarkoderConfig {
+    locationLineColor?: string;
+    locationLineWidth?: number;
+    roiLineColor?: string;
+    roiLineWidth?: number;
+    roiOverlayBackgroundColor?: string;
+    closeSessionOnResultEnabled?: boolean;
+    imageResultEnabled?: boolean;
+    locationInImageResultEnabled?: boolean;
+    locationInPreviewEnabled?: boolean;
+    pinchToZoomEnabled?: boolean;
+    regionOfInterestVisible?: boolean;
+    barkoderResolution?: BarkoderResolution;
+    beepOnSuccessEnabled?: boolean;
+    vibrateOnSuccessEnabled?: boolean;
+    decoder?: DekoderConfig;
+    constructor(config: Partial<BarkoderConfig>);
 }
-export declare enum MsiChecksumType {
-    disabled = 0,
-    mod10 = 1,
-    mod11 = 2,
-    mod1010 = 3,
-    mod1110 = 4,
-    mod11IBM = 5,
-    mod1110IBM = 6
+export declare class DekoderConfig {
+    aztec?: BarcodeConfig;
+    aztecCompact?: BarcodeConfig;
+    qr?: BarcodeConfig;
+    qrMicro?: BarcodeConfig;
+    code128?: BarcodeConfigWithLength;
+    code93?: BarcodeConfigWithLength;
+    code39?: Code39BarcodeConfig;
+    codabar?: BarcodeConfigWithLength;
+    code11?: Code11BarcodeConfig;
+    msi?: MSIBarcodeConfig;
+    upcA?: BarcodeConfig;
+    upcE?: BarcodeConfig;
+    upcE1?: BarcodeConfig;
+    ean13?: BarcodeConfig;
+    ean8?: BarcodeConfig;
+    pdf417?: BarcodeConfig;
+    pdf417Micro?: BarcodeConfig;
+    datamatrix?: DatamatrixBarcodeConfig;
+    code25?: BarcodeConfig;
+    interleaved25?: BarcodeConfig;
+    itf14?: BarcodeConfig;
+    iata25?: BarcodeConfig;
+    matrix25?: BarcodeConfig;
+    datalogic25?: BarcodeConfig;
+    coop25?: BarcodeConfig;
+    code32?: BarcodeConfig;
+    telepen?: BarcodeConfig;
+    dotcode?: BarcodeConfig;
+    general?: GeneralSettings;
+    constructor(config: Partial<DekoderConfig>);
 }
-export declare enum Code39ChecksumType {
-    disabled = 0,
-    enabled = 1
+export declare class BarcodeConfig {
+    enabled?: boolean;
+    constructor(config: Partial<BarcodeConfig>);
 }
-export declare enum Code11ChecksumType {
-    disabled = 0,
-    single = 1,
-    double = 2
+export declare class BarcodeConfigWithLength {
+    enabled?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    constructor(config: Partial<BarcodeConfigWithLength>);
+    setLengthRange(minLength: number, maxLength: number): void;
 }
-export declare enum DecodingSpeed {
-    fast = 0,
-    normal = 1,
-    slow = 2
+export declare class MSIBarcodeConfig {
+    enabled?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    checksum?: MsiChecksumType;
+    constructor(config: Partial<MSIBarcodeConfig>);
+    setLengthRange(minLength: number, maxLength: number): void;
 }
-export declare enum BarkoderResolution {
-    normal = 0,
-    high = 1
+export declare class Code39BarcodeConfig {
+    enabled?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    checksum?: Code39ChecksumType;
+    constructor(config: Partial<Code39BarcodeConfig>);
+    setLengthRange(minLength: number, maxLength: number): void;
+}
+export declare class Code11BarcodeConfig {
+    enabled?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    checksum?: Code11ChecksumType;
+    constructor(config: Partial<Code11BarcodeConfig>);
+    setLengthRange(minLength: number, maxLength: number): void;
+}
+export declare class DatamatrixBarcodeConfig {
+    enabled?: boolean;
+    dpmMode?: number;
+    minLength?: number;
+    maxLength?: number;
+    constructor(config: Partial<DatamatrixBarcodeConfig>);
+    setLengthRange(minLength: number, maxLength: number): void;
+}
+export declare class GeneralSettings {
+    threadsLimit?: number;
+    decodingSpeed?: DecodingSpeed;
+    roiX?: number;
+    roiY?: number;
+    roiWidth?: number;
+    roiHeight?: number;
+    formattingType?: FormattingType;
+    encodingCharacterSet?: string;
+    maximumResultsCount?: number;
+    duplicatesDelayMs?: number;
+    multicodeCachingDuration?: number;
+    multicodeCachingEnabled?: boolean;
+    upcEanDeblur?: number;
+    enableMisshaped1D?: number;
+    constructor(config: Partial<GeneralSettings>);
+    setROI(x: number, y: number, width: number, height: number): void;
 }

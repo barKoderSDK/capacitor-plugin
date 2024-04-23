@@ -7,8 +7,8 @@ The [barKoder Barcode Scanner SDK](https://barkoder.com/barcode-scanner-sdk) wil
 
 Even though the barKoder barcode scanner SDK is a relatively new product, it is already more advanced than other competitor API's. Its robust barcode reading engine can be used to read the content of the most widely used barcodes with lightning fast speed and unprecedented recognition rate:
 
-1D - [Codabar](https://barkoder.com/barcode-types/codaba), [Code 11](https://barkoder.com/barcode-types/code-11), [Code 25](https://barkoder.com/barcode-types/code-25), [Code 39](https://barkoder.com/barcode-types/code-39), [Code 93](https://barkoder.com/barcode-types/code-93), [Code 128](https://barkoder.com/barcode-types/code-128), [DotCode](https://barkoder.com/barcode-types/dotcode), [EAN-8](https://barkoder.com/barcode-types/ean-upc-code), [EAN-13](https://barkoder.com/barcode-types/ean-upc-code), [Interleaved 2 of 5](https://barkoder.com/barcode-types/code-25), [ITF-14](https://barkoder.com/barcode-types/code-25), [MSI Plessey](https://barkoder.com/barcode-types/msi-plessey), [Pharmacode](https://barkoder.com/barcode-types/code-32), [Telepen](https://barkoder.com/barcode-types/telepen), [UPC-A](https://barkoder.com/barcode-types/ean-upc-code) & [UPC-E](https://barkoder.com/barcode-types/ean-upc-code)
-2D - [Aztec Code](https://barkoder.com/barcode-types/aztec), [Aztec Compact](https://barkoder.com/barcode-types/aztec), [Data Matrix](https://barkoder.com/barcode-types/data-matrix), [PDF417](https://barkoder.com/barcode-types/pdf417), [Micro PDF417](https://barkoder.com/barcode-types/pdf417), [QR Code](https://barkoder.com/barcode-types/qr-code) & [Micro QR Code](https://barkoder.com/barcode-types/qr-code)
+1D - [Codabar](https://barkoder.com/barcode-types/codaba), [Code 11](https://barkoder.com/barcode-types/code-11), [Code 25](https://barkoder.com/barcode-types/code-25), [Code 39](https://barkoder.com/barcode-types/code-39), [Code 93](https://barkoder.com/barcode-types/code-93), [Code 128](https://barkoder.com/barcode-types/code-128), [EAN-8](https://barkoder.com/barcode-types/ean-upc-code), [EAN-13](https://barkoder.com/barcode-types/ean-upc-code), [Interleaved 2 of 5](https://barkoder.com/barcode-types/code-25), [ITF-14](https://barkoder.com/barcode-types/code-25), [MSI Plessey](https://barkoder.com/barcode-types/msi-plessey), [Pharmacode](https://barkoder.com/barcode-types/code-32), [Telepen](https://barkoder.com/barcode-types/telepen), [UPC-A](https://barkoder.com/barcode-types/ean-upc-code) & [UPC-E](https://barkoder.com/barcode-types/ean-upc-code)
+2D - [Aztec Code](https://barkoder.com/barcode-types/aztec), [Aztec Compact](https://barkoder.com/barcode-types/aztec), [Data Matrix](https://barkoder.com/barcode-types/data-matrix), [DotCode](https://barkoder.com/barcode-types/dotcode), [PDF417](https://barkoder.com/barcode-types/pdf417), [Micro PDF417](https://barkoder.com/barcode-types/pdf417), [QR Code](https://barkoder.com/barcode-types/qr-code) & [Micro QR Code](https://barkoder.com/barcode-types/qr-code)
 
 The [barKoder SDK](https://barkoder.com/) features multiple algorithms that handle a wide variety of barcode scanning scenarios with unprecedented performance in terms of speed and success rate: 
 * [DPM Mode](https://barkoder.com/dpm-barcode-scanner-sdk) - Specially designed scanning template for decoding Data Matrix barcodes engraved using any Direct Part Marking (DPM) technique;
@@ -197,6 +197,8 @@ In your scss file set the desired barkoderView height:
 * [`setUpcEanDeblurEnabled(...)`](#setupceandeblurenabled)
 * [`setMisshaped1DEnabled(...)`](#setmisshaped1denabled)
 * [`setEnableVINRestrictions(...)`](#setenablevinrestrictions)
+* [`setDatamatrixDpmModeEnabled(...)`](#setdatamatrixdpmmodeenabled)
+* [`configureBarkoder(...)`](#configurebarkoder)
 * [`isFlashAvailable()`](#isflashavailable)
 * [`isCloseSessionOnResultEnabled()`](#isclosesessiononresultenabled)
 * [`isImageResultEnabled()`](#isimageresultenabled)
@@ -232,6 +234,7 @@ In your scss file set the desired barkoderView height:
 * [`isBarcodeThumbnailOnResultEnabled()`](#isbarcodethumbnailonresultenabled)
 * [`getThresholdBetweenDuplicatesScans()`](#getthresholdbetweenduplicatesscans)
 * [`isVINRestrictionsEnabled()`](#isvinrestrictionsenabled)
+* [`getBarkoderResolution()`](#getbarkoderresolution)
 
 </docgen-index>
 
@@ -852,6 +855,36 @@ setEnableVINRestrictions(options: { value: boolean; }) => Promise<any>
 --------------------
 
 
+### setDatamatrixDpmModeEnabled(...)
+
+```typescript
+setDatamatrixDpmModeEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### configureBarkoder(...)
+
+```typescript
+configureBarkoder(options: { barkoderConfig: BarkoderConfig; }) => Promise<any>
+```
+
+| Param         | Type                                             |
+| ------------- | ------------------------------------------------ |
+| **`options`** | <code>{ barkoderConfig: BarkoderConfig; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### isFlashAvailable()
 
 ```typescript
@@ -1238,6 +1271,17 @@ getThresholdBetweenDuplicatesScans() => Promise<any>
 
 ```typescript
 isVINRestrictionsEnabled() => Promise<any>
+```
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getBarkoderResolution()
+
+```typescript
+getBarkoderResolution() => Promise<any>
 ```
 
 **Returns:** <code>Promise&lt;any&gt;</code>

@@ -1,3 +1,42 @@
+export var DecodingSpeed;
+(function (DecodingSpeed) {
+    DecodingSpeed[DecodingSpeed["fast"] = 0] = "fast";
+    DecodingSpeed[DecodingSpeed["normal"] = 1] = "normal";
+    DecodingSpeed[DecodingSpeed["slow"] = 2] = "slow";
+})(DecodingSpeed || (DecodingSpeed = {}));
+export var FormattingType;
+(function (FormattingType) {
+    FormattingType[FormattingType["disabled"] = 0] = "disabled";
+    FormattingType[FormattingType["automatic"] = 1] = "automatic";
+    FormattingType[FormattingType["gs1"] = 2] = "gs1";
+    FormattingType[FormattingType["aamva"] = 3] = "aamva";
+})(FormattingType || (FormattingType = {}));
+export var MsiChecksumType;
+(function (MsiChecksumType) {
+    MsiChecksumType[MsiChecksumType["disabled"] = 0] = "disabled";
+    MsiChecksumType[MsiChecksumType["mod10"] = 1] = "mod10";
+    MsiChecksumType[MsiChecksumType["mod11"] = 2] = "mod11";
+    MsiChecksumType[MsiChecksumType["mod1010"] = 3] = "mod1010";
+    MsiChecksumType[MsiChecksumType["mod1110"] = 4] = "mod1110";
+    MsiChecksumType[MsiChecksumType["mod11IBM"] = 5] = "mod11IBM";
+    MsiChecksumType[MsiChecksumType["mod1110IBM"] = 6] = "mod1110IBM";
+})(MsiChecksumType || (MsiChecksumType = {}));
+export var Code39ChecksumType;
+(function (Code39ChecksumType) {
+    Code39ChecksumType[Code39ChecksumType["disabled"] = 0] = "disabled";
+    Code39ChecksumType[Code39ChecksumType["enabled"] = 1] = "enabled";
+})(Code39ChecksumType || (Code39ChecksumType = {}));
+export var Code11ChecksumType;
+(function (Code11ChecksumType) {
+    Code11ChecksumType[Code11ChecksumType["disabled"] = 0] = "disabled";
+    Code11ChecksumType[Code11ChecksumType["single"] = 1] = "single";
+    Code11ChecksumType[Code11ChecksumType["double"] = 2] = "double";
+})(Code11ChecksumType || (Code11ChecksumType = {}));
+export var BarkoderResolution;
+(function (BarkoderResolution) {
+    BarkoderResolution[BarkoderResolution["normal"] = 0] = "normal";
+    BarkoderResolution[BarkoderResolution["high"] = 1] = "high";
+})(BarkoderResolution || (BarkoderResolution = {}));
 export var BarcodeType;
 (function (BarcodeType) {
     BarcodeType[BarcodeType["aztec"] = 0] = "aztec";
@@ -29,43 +68,75 @@ export var BarcodeType;
     BarcodeType[BarcodeType["telepen"] = 26] = "telepen";
     BarcodeType[BarcodeType["dotcode"] = 27] = "dotcode";
 })(BarcodeType || (BarcodeType = {}));
-export var FormattingType;
-(function (FormattingType) {
-    FormattingType[FormattingType["disabled"] = 0] = "disabled";
-    FormattingType[FormattingType["automatic"] = 1] = "automatic";
-    FormattingType[FormattingType["gs1"] = 2] = "gs1";
-    FormattingType[FormattingType["aamva"] = 3] = "aamva";
-})(FormattingType || (FormattingType = {}));
-export var MsiChecksumType;
-(function (MsiChecksumType) {
-    MsiChecksumType[MsiChecksumType["disabled"] = 0] = "disabled";
-    MsiChecksumType[MsiChecksumType["mod10"] = 1] = "mod10";
-    MsiChecksumType[MsiChecksumType["mod11"] = 2] = "mod11";
-    MsiChecksumType[MsiChecksumType["mod1010"] = 3] = "mod1010";
-    MsiChecksumType[MsiChecksumType["mod1110"] = 4] = "mod1110";
-    MsiChecksumType[MsiChecksumType["mod11IBM"] = 5] = "mod11IBM";
-    MsiChecksumType[MsiChecksumType["mod1110IBM"] = 6] = "mod1110IBM";
-})(MsiChecksumType || (MsiChecksumType = {}));
-export var Code39ChecksumType;
-(function (Code39ChecksumType) {
-    Code39ChecksumType[Code39ChecksumType["disabled"] = 0] = "disabled";
-    Code39ChecksumType[Code39ChecksumType["enabled"] = 1] = "enabled";
-})(Code39ChecksumType || (Code39ChecksumType = {}));
-export var Code11ChecksumType;
-(function (Code11ChecksumType) {
-    Code11ChecksumType[Code11ChecksumType["disabled"] = 0] = "disabled";
-    Code11ChecksumType[Code11ChecksumType["single"] = 1] = "single";
-    Code11ChecksumType[Code11ChecksumType["double"] = 2] = "double";
-})(Code11ChecksumType || (Code11ChecksumType = {}));
-export var DecodingSpeed;
-(function (DecodingSpeed) {
-    DecodingSpeed[DecodingSpeed["fast"] = 0] = "fast";
-    DecodingSpeed[DecodingSpeed["normal"] = 1] = "normal";
-    DecodingSpeed[DecodingSpeed["slow"] = 2] = "slow";
-})(DecodingSpeed || (DecodingSpeed = {}));
-export var BarkoderResolution;
-(function (BarkoderResolution) {
-    BarkoderResolution[BarkoderResolution["normal"] = 0] = "normal";
-    BarkoderResolution[BarkoderResolution["high"] = 1] = "high";
-})(BarkoderResolution || (BarkoderResolution = {}));
+export class BarkoderConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+}
+export class DekoderConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+}
+export class BarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+}
+export class BarcodeConfigWithLength {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
+export class MSIBarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
+export class Code39BarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
+export class Code11BarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
+export class DatamatrixBarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
+export class GeneralSettings {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setROI(x, y, width, height) {
+        this.roiX = x;
+        this.roiY = y;
+        this.roiWidth = width;
+        this.roiHeight = height;
+    }
+}
 //# sourceMappingURL=definitions.js.map

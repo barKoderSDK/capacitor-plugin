@@ -654,6 +654,40 @@
         "slug": "setenablevinrestrictions"
       },
       {
+        "name": "setDatamatrixDpmModeEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "setdatamatrixdpmmodeenabled"
+      },
+      {
+        "name": "configureBarkoder",
+        "signature": "(options: { barkoderConfig: BarkoderConfig; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ barkoderConfig: BarkoderConfig; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [
+          "BarkoderConfig"
+        ],
+        "slug": "configurebarkoder"
+      },
+      {
         "name": "isFlashAvailable",
         "signature": "() => Promise<any>",
         "parameters": [],
@@ -1014,6 +1048,16 @@
         "docs": "",
         "complexTypes": [],
         "slug": "isvinrestrictionsenabled"
+      },
+      {
+        "name": "getBarkoderResolution",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "",
+        "complexTypes": [],
+        "slug": "getbarkoderresolution"
       }
     ],
     "properties": []

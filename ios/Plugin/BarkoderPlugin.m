@@ -47,6 +47,8 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setUpcEanDeblurEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setMisshaped1DEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setEnableVINRestrictions, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setDatamatrixDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(configureBarkoder, CAPPluginReturnPromise);
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isCloseSessionOnResultEnabled, CAPPluginReturnPromise);
@@ -83,4 +85,5 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(isBarcodeThumbnailOnResultEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getThresholdBetweenDuplicatesScans, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isVINRestrictionsEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getBarkoderResolution, CAPPluginReturnPromise);
 )
