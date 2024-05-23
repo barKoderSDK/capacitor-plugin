@@ -480,6 +480,7 @@ typedef enum {
 //==========================================================================
 @interface iBarkoder : NSObject
 +(NSString *) GetLibVersion;
++(bool) IsStringVINCompliant: (NSString *) VINString checkLevel: (int) checkLevel;
 +(bool) IsDecoderBusy;
 +(NSArray<DecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height;
 +(int) decodeImageAsync:(Config*)config image: (Image*) image callback:(void (^)(NSArray<DecoderResult*>*, Image*)) callback;
