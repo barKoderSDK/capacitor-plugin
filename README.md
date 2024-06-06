@@ -277,6 +277,8 @@ registerWithLicenseKey(options: { licenseKey: string; }) => Promise<any>
 setZoomFactor(options: { value: number; }) => Promise<any>
 ```
 
+Sets the zoom factor for the device's camera, adjusting the level of zoom during barcode scanning
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -291,6 +293,8 @@ setZoomFactor(options: { value: number; }) => Promise<any>
 ```typescript
 setFlashEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+Enables or disables the device's flash (torch) for illumination during barcode scanning
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -318,6 +322,8 @@ startCamera() => Promise<any>
 startScanning() => Promise<any>
 ```
 
+Initiates the barcode scanning process, allowing the application to detect and decode barcodes from the device's camera feed
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -328,6 +334,8 @@ startScanning() => Promise<any>
 ```typescript
 stopScanning() => Promise<any>
 ```
+
+Halts the barcode scanning process, stopping the camera from capturing and processing barcode information
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -340,6 +348,8 @@ stopScanning() => Promise<any>
 pauseScanning() => Promise<any>
 ```
 
+Temporarily suspends the barcode scanning process, pausing the camera feed without completely stopping the scanning session
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -350,6 +360,8 @@ pauseScanning() => Promise<any>
 ```typescript
 setLocationLineColor(options: { value: string; }) => Promise<any>
 ```
+
+Sets the color of the lines used to indicate the location of detected barcodes on the camera feed
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -366,6 +378,8 @@ setLocationLineColor(options: { value: string; }) => Promise<any>
 setLocationLineWidth(options: { value: number; }) => Promise<any>
 ```
 
+Sets the width of the lines indicating the location of detected barcodes on the camera feed
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -380,6 +394,8 @@ setLocationLineWidth(options: { value: number; }) => Promise<any>
 ```typescript
 setRoiLineColor(options: { value: string; }) => Promise<any>
 ```
+
+Sets the color of the lines outlining the Region of Interest (ROI) for barcode scanning on the camera feed
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -396,6 +412,8 @@ setRoiLineColor(options: { value: string; }) => Promise<any>
 setRoiLineWidth(options: { value: number; }) => Promise<any>
 ```
 
+Sets the width of the lines outlining the Region of Interest (ROI) for barcode scanning on the camera feed
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -410,6 +428,8 @@ setRoiLineWidth(options: { value: number; }) => Promise<any>
 ```typescript
 setRoiOverlayBackgroundColor(options: { value: string; }) => Promise<any>
 ```
+
+Sets the background color of the overlay within the Region of Interest (ROI) for barcode scanning on the camera feed
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -426,6 +446,8 @@ setRoiOverlayBackgroundColor(options: { value: string; }) => Promise<any>
 setCloseSessionOnResultEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
 
+Enables or disables the automatic closing of the scanning session upon detecting a barcode result
+
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ enabled: boolean; }</code> |
@@ -440,6 +462,8 @@ setCloseSessionOnResultEnabled(options: { enabled: boolean; }) => Promise<any>
 ```typescript
 setImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+Enables or disables the capturing and processing of image data when a barcode is successfully detected
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -456,6 +480,8 @@ setImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
 setLocationInImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
 
+Enables or disables the inclusion of barcode location information within the image data result
+
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ enabled: boolean; }</code> |
@@ -470,6 +496,8 @@ setLocationInImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
 ```typescript
 setRegionOfInterest(options: { left: number; top: number; width: number; height: number; }) => Promise<any>
 ```
+
+Defines the Region of Interest (ROI) on the camera preview for barcode scanning, specifying an area where the application focuses on detecting barcodes
 
 | Param         | Type                                                                       |
 | ------------- | -------------------------------------------------------------------------- |
@@ -486,6 +514,8 @@ setRegionOfInterest(options: { left: number; top: number; width: number; height:
 setThreadsLimit(options: { value: number; }) => Promise<any>
 ```
 
+Sets the threads limit
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -500,6 +530,8 @@ setThreadsLimit(options: { value: number; }) => Promise<any>
 ```typescript
 setLocationInPreviewEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+Enables or disables the display of barcode location information on the camera preview
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -516,6 +548,8 @@ setLocationInPreviewEnabled(options: { enabled: boolean; }) => Promise<any>
 setPinchToZoomEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
 
+Enables or disables the pinch-to-zoom feature for adjusting the zoom level during barcode scanning
+
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ enabled: boolean; }</code> |
@@ -530,6 +564,8 @@ setPinchToZoomEnabled(options: { enabled: boolean; }) => Promise<any>
 ```typescript
 setRegionOfInterestVisible(options: { value: boolean; }) => Promise<any>
 ```
+
+Sets the visibility of the Region of Interest (ROI) on the camera preview
 
 | Param         | Type                             |
 | ------------- | -------------------------------- |
@@ -546,6 +582,8 @@ setRegionOfInterestVisible(options: { value: boolean; }) => Promise<any>
 setBarkoderResolution(options: { value: number; }) => Promise<any>
 ```
 
+Sets the resolution for barcode scanning
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -561,6 +599,8 @@ setBarkoderResolution(options: { value: number; }) => Promise<any>
 setBeepOnSuccessEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
 
+Enables or disables the audible beep sound upon successfully decoding a barcode
+
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ enabled: boolean; }</code> |
@@ -575,6 +615,8 @@ setBeepOnSuccessEnabled(options: { enabled: boolean; }) => Promise<any>
 ```typescript
 setVibrateOnSuccessEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+Enables or disables the device vibration upon successfully decoding a barcode.
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -606,6 +648,8 @@ showLogMessages(options: { enabled: boolean; }) => Promise<any>
 setBarcodeTypeLengthRange(options: { type: number; min: number; max: number; }) => Promise<any>
 ```
 
+Sets the length range for the specified barcode type
+
 | Param         | Type                                                     |
 | ------------- | -------------------------------------------------------- |
 | **`options`** | <code>{ type: number; min: number; max: number; }</code> |
@@ -620,6 +664,8 @@ setBarcodeTypeLengthRange(options: { type: number; min: number; max: number; }) 
 ```typescript
 setEncodingCharacterSet(options: { value: string; }) => Promise<any>
 ```
+
+Sets the encoding character set for barcode scanning
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -636,6 +682,8 @@ setEncodingCharacterSet(options: { value: string; }) => Promise<any>
 setDecodingSpeed(options: { value: number; }) => Promise<any>
 ```
 
+Sets the decoding speed for barcode scanning
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -650,6 +698,8 @@ setDecodingSpeed(options: { value: number; }) => Promise<any>
 ```typescript
 setFormattingType(options: { value: number; }) => Promise<any>
 ```
+
+Sets the formatting type for barcode scanning
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -666,6 +716,8 @@ setFormattingType(options: { value: number; }) => Promise<any>
 setCode11ChecksumType(options: { value: number; }) => Promise<any>
 ```
 
+Sets the Code11 checksum type
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -680,6 +732,8 @@ setCode11ChecksumType(options: { value: number; }) => Promise<any>
 ```typescript
 setMsiChecksumType(options: { value: number; }) => Promise<any>
 ```
+
+Sets the MSI checksum type
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -696,6 +750,8 @@ setMsiChecksumType(options: { value: number; }) => Promise<any>
 setCode39ChecksumType(options: { value: number; }) => Promise<any>
 ```
 
+Sets the Code39 checksum type
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -710,6 +766,8 @@ setCode39ChecksumType(options: { value: number; }) => Promise<any>
 ```typescript
 setBarcodeTypeEnabled(options: { type: number; enabled: boolean; }) => Promise<any>
 ```
+
+Sets whether a specific barcode type is enabled
 
 | Param         | Type                                             |
 | ------------- | ------------------------------------------------ |
@@ -726,6 +784,8 @@ setBarcodeTypeEnabled(options: { type: number; enabled: boolean; }) => Promise<a
 setMulticodeCachingEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
 
+Sets whether multi-code caching is enabled
+
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ enabled: boolean; }</code> |
@@ -740,6 +800,8 @@ setMulticodeCachingEnabled(options: { enabled: boolean; }) => Promise<any>
 ```typescript
 setMulticodeCachingDuration(options: { value: number; }) => Promise<any>
 ```
+
+Sets the caching duration (in milliseconds) for multi-code results
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -756,6 +818,8 @@ setMulticodeCachingDuration(options: { value: number; }) => Promise<any>
 setMaximumResultsCount(options: { value: number; }) => Promise<any>
 ```
 
+Sets the maximum number of results to be returned from barcode scanning
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -770,6 +834,8 @@ setMaximumResultsCount(options: { value: number; }) => Promise<any>
 ```typescript
 setBarcodeThumbnailOnResultEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+A boolean indicating whether to enable barcode thumbnail on result.
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -786,6 +852,8 @@ setBarcodeThumbnailOnResultEnabled(options: { enabled: boolean; }) => Promise<an
 setDuplicatesDelayMs(options: { value: number; }) => Promise<any>
 ```
 
+Sets the delay in milliseconds for considering duplicate barcodes during scanning
+
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
@@ -800,6 +868,8 @@ setDuplicatesDelayMs(options: { value: number; }) => Promise<any>
 ```typescript
 setThresholdBetweenDuplicatesScans(options: { value: number; }) => Promise<any>
 ```
+
+Sets the threshold between duplicate scans
 
 | Param         | Type                            |
 | ------------- | ------------------------------- |
@@ -816,6 +886,8 @@ setThresholdBetweenDuplicatesScans(options: { value: number; }) => Promise<any>
 setUpcEanDeblurEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
 
+Sets whether the deblurring feature for UPC/EAN barcodes is enabled
+
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
 | **`options`** | <code>{ enabled: boolean; }</code> |
@@ -830,6 +902,8 @@ setUpcEanDeblurEnabled(options: { enabled: boolean; }) => Promise<any>
 ```typescript
 setMisshaped1DEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+Sets whether the detection of misshaped 1D barcodes is enabled
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -846,6 +920,8 @@ setMisshaped1DEnabled(options: { enabled: boolean; }) => Promise<any>
 setEnableVINRestrictions(options: { value: boolean; }) => Promise<any>
 ```
 
+Sets whether Vehicle Identification Number (VIN) restrictions are enabled
+
 | Param         | Type                             |
 | ------------- | -------------------------------- |
 | **`options`** | <code>{ value: boolean; }</code> |
@@ -860,6 +936,8 @@ setEnableVINRestrictions(options: { value: boolean; }) => Promise<any>
 ```typescript
 setDatamatrixDpmModeEnabled(options: { enabled: boolean; }) => Promise<any>
 ```
+
+Sets whether the Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled.
 
 | Param         | Type                               |
 | ------------- | ---------------------------------- |
@@ -876,6 +954,8 @@ setDatamatrixDpmModeEnabled(options: { enabled: boolean; }) => Promise<any>
 configureBarkoder(options: { barkoderConfig: BarkoderConfig; }) => Promise<any>
 ```
 
+Configures the Barkoder functionality based on the provided configuration
+
 | Param         | Type                                             |
 | ------------- | ------------------------------------------------ |
 | **`options`** | <code>{ barkoderConfig: BarkoderConfig; }</code> |
@@ -891,6 +971,8 @@ configureBarkoder(options: { barkoderConfig: BarkoderConfig; }) => Promise<any>
 isFlashAvailable() => Promise<any>
 ```
 
+Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -901,6 +983,8 @@ isFlashAvailable() => Promise<any>
 ```typescript
 isCloseSessionOnResultEnabled() => Promise<any>
 ```
+
+Enables or disables the automatic closing of the scanning session upon detecting a barcode result
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -913,6 +997,8 @@ isCloseSessionOnResultEnabled() => Promise<any>
 isImageResultEnabled() => Promise<any>
 ```
 
+Enables or disables the capturing and processing of image data when a barcode is successfully detected
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -923,6 +1009,8 @@ isImageResultEnabled() => Promise<any>
 ```typescript
 isLocationInImageResultEnabled() => Promise<any>
 ```
+
+Enables or disables the inclusion of barcode location information within the image data result
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -935,6 +1023,8 @@ isLocationInImageResultEnabled() => Promise<any>
 isLocationInPreviewEnabled() => Promise<any>
 ```
 
+Checks if location in preview is enabled
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -945,6 +1035,8 @@ isLocationInPreviewEnabled() => Promise<any>
 ```typescript
 isPinchToZoomEnabled() => Promise<any>
 ```
+
+Checks if pinch to zoom is enabled
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -957,6 +1049,8 @@ isPinchToZoomEnabled() => Promise<any>
 isRegionOfInterestVisible() => Promise<any>
 ```
 
+Checks if the region of interest (ROI) is visible
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -967,6 +1061,8 @@ isRegionOfInterestVisible() => Promise<any>
 ```typescript
 isBeepOnSuccessEnabled() => Promise<any>
 ```
+
+Retrieves the value indicating whether a beep sound is played on successful barcode scanning
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -979,6 +1075,8 @@ isBeepOnSuccessEnabled() => Promise<any>
 isVibrateOnSuccessEnabled() => Promise<any>
 ```
 
+Retrieves the value indicating whether vibration is enabled on successful barcode scanning
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -989,6 +1087,8 @@ isVibrateOnSuccessEnabled() => Promise<any>
 ```typescript
 getVersion() => Promise<any>
 ```
+
+Retrieves the version of the Barkoder library
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1001,6 +1101,8 @@ getVersion() => Promise<any>
 getLocationLineColorHex() => Promise<any>
 ```
 
+Retrieves the hexadecimal color code representing the line color used to indicate the location of detected barcodes
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1011,6 +1113,8 @@ getLocationLineColorHex() => Promise<any>
 ```typescript
 getRoiLineColorHex() => Promise<any>
 ```
+
+Retrieves the hexadecimal color code representing the line color of the Region of Interest (ROI) on the camera preview
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1023,6 +1127,8 @@ getRoiLineColorHex() => Promise<any>
 getRoiOverlayBackgroundColorHex() => Promise<any>
 ```
 
+Retrieves the hexadecimal color code representing the background color of the overlay within the Region of Interest (ROI) on the camera preview
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1033,6 +1139,8 @@ getRoiOverlayBackgroundColorHex() => Promise<any>
 ```typescript
 getMaxZoomFactor() => Promise<any>
 ```
+
+Retrieves the maximum available zoom factor for the device's camera
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1045,6 +1153,8 @@ getMaxZoomFactor() => Promise<any>
 getLocationLineWidth() => Promise<any>
 ```
 
+Retrieves the current width setting for the lines indicating the location of detected barcodes on the camera feed
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1055,6 +1165,8 @@ getLocationLineWidth() => Promise<any>
 ```typescript
 getRoiLineWidth() => Promise<any>
 ```
+
+Retrieves the current width setting for the lines outlining the Region of Interest (ROI) on the camera preview
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1067,6 +1179,8 @@ getRoiLineWidth() => Promise<any>
 getRegionOfInterest() => Promise<any>
 ```
 
+Retrieves the region of interest (ROI)
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1077,6 +1191,8 @@ getRegionOfInterest() => Promise<any>
 ```typescript
 getBarcodeTypeLengthRange(options: { type: number; }) => Promise<any>
 ```
+
+Retrieves the length range of a specific barcode type
 
 | Param         | Type                           |
 | ------------- | ------------------------------ |
@@ -1093,6 +1209,8 @@ getBarcodeTypeLengthRange(options: { type: number; }) => Promise<any>
 getMsiChecksumType() => Promise<any>
 ```
 
+Retrieves the MSI checksum type
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1103,6 +1221,8 @@ getMsiChecksumType() => Promise<any>
 ```typescript
 getCode39ChecksumType() => Promise<any>
 ```
+
+Retrieves the checksum type for Code 39 barcodes
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1115,6 +1235,8 @@ getCode39ChecksumType() => Promise<any>
 getCode11ChecksumType() => Promise<any>
 ```
 
+Retrieves the Code11 checksum type
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1125,6 +1247,8 @@ getCode11ChecksumType() => Promise<any>
 ```typescript
 getEncodingCharacterSet() => Promise<any>
 ```
+
+Retrieves the character set used for encoding barcode data
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1137,6 +1261,8 @@ getEncodingCharacterSet() => Promise<any>
 getDecodingSpeed() => Promise<any>
 ```
 
+Retrieves the current decoding speed setting for barcode scanning
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1147,6 +1273,8 @@ getDecodingSpeed() => Promise<any>
 ```typescript
 getFormattingType() => Promise<any>
 ```
+
+Retrieves the formatting type used for presenting decoded barcode data.
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1159,6 +1287,8 @@ getFormattingType() => Promise<any>
 getThreadsLimit() => Promise<any>
 ```
 
+Retrieves the threads limit
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1169,6 +1299,8 @@ getThreadsLimit() => Promise<any>
 ```typescript
 getMaximumResultsCount() => Promise<any>
 ```
+
+Retrieves the maximum number of results to be returned from barcode scanning at once
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1181,6 +1313,8 @@ getMaximumResultsCount() => Promise<any>
 getDuplicatesDelayMs() => Promise<any>
 ```
 
+Retrieves the delay in milliseconds for considering duplicate barcodes during scanning
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1191,6 +1325,8 @@ getDuplicatesDelayMs() => Promise<any>
 ```typescript
 isBarcodeTypeEnabled(options: { type: number; }) => Promise<any>
 ```
+
+Checks if a specific barcode type is enabled
 
 | Param         | Type                           |
 | ------------- | ------------------------------ |
@@ -1207,6 +1343,8 @@ isBarcodeTypeEnabled(options: { type: number; }) => Promise<any>
 getMulticodeCachingEnabled() => Promise<any>
 ```
 
+Retrieves whether multi-code caching is enabled
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1217,6 +1355,8 @@ getMulticodeCachingEnabled() => Promise<any>
 ```typescript
 getMulticodeCachingDuration() => Promise<any>
 ```
+
+Retrieves the caching duration (in milliseconds) for multi-code results
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1229,6 +1369,8 @@ getMulticodeCachingDuration() => Promise<any>
 isUpcEanDeblurEnabled() => Promise<any>
 ```
 
+Retrieves the value indicating whether deblurring is enabled for UPC/EAN barcodes
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1239,6 +1381,8 @@ isUpcEanDeblurEnabled() => Promise<any>
 ```typescript
 isMisshaped1DEnabled() => Promise<any>
 ```
+
+Checks if the detection of misshaped 1D barcodes is enabled
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1251,6 +1395,8 @@ isMisshaped1DEnabled() => Promise<any>
 isBarcodeThumbnailOnResultEnabled() => Promise<any>
 ```
 
+Retrieve whether to enable barcode thumbnail on result
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1261,6 +1407,8 @@ isBarcodeThumbnailOnResultEnabled() => Promise<any>
 ```typescript
 getThresholdBetweenDuplicatesScans() => Promise<any>
 ```
+
+Retrieves the threshold between duplicate scans
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1273,6 +1421,8 @@ getThresholdBetweenDuplicatesScans() => Promise<any>
 isVINRestrictionsEnabled() => Promise<any>
 ```
 
+Checks if VIN restrictions are enabled
+
 **Returns:** <code>Promise&lt;any&gt;</code>
 
 --------------------
@@ -1283,6 +1433,8 @@ isVINRestrictionsEnabled() => Promise<any>
 ```typescript
 getBarkoderResolution() => Promise<any>
 ```
+
+Retrieves the resolution for barcode scanning
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 

@@ -49,7 +49,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the zoom factor for the device's camera, adjusting the level of zoom during barcode scanning",
         "complexTypes": [],
         "slug": "setzoomfactor"
       },
@@ -65,7 +65,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the device's flash (torch) for illumination during barcode scanning",
         "complexTypes": [],
         "slug": "setflashenabled"
       },
@@ -85,7 +85,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Initiates the barcode scanning process, allowing the application to detect and decode barcodes from the device's camera feed",
         "complexTypes": [],
         "slug": "startscanning"
       },
@@ -95,7 +95,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Halts the barcode scanning process, stopping the camera from capturing and processing barcode information",
         "complexTypes": [],
         "slug": "stopscanning"
       },
@@ -105,7 +105,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Temporarily suspends the barcode scanning process, pausing the camera feed without completely stopping the scanning session",
         "complexTypes": [],
         "slug": "pausescanning"
       },
@@ -121,7 +121,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the color of the lines used to indicate the location of detected barcodes on the camera feed",
         "complexTypes": [],
         "slug": "setlocationlinecolor"
       },
@@ -137,7 +137,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the width of the lines indicating the location of detected barcodes on the camera feed",
         "complexTypes": [],
         "slug": "setlocationlinewidth"
       },
@@ -153,7 +153,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the color of the lines outlining the Region of Interest (ROI) for barcode scanning on the camera feed",
         "complexTypes": [],
         "slug": "setroilinecolor"
       },
@@ -169,7 +169,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the width of the lines outlining the Region of Interest (ROI) for barcode scanning on the camera feed",
         "complexTypes": [],
         "slug": "setroilinewidth"
       },
@@ -185,7 +185,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the background color of the overlay within the Region of Interest (ROI) for barcode scanning on the camera feed",
         "complexTypes": [],
         "slug": "setroioverlaybackgroundcolor"
       },
@@ -201,7 +201,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the automatic closing of the scanning session upon detecting a barcode result",
         "complexTypes": [],
         "slug": "setclosesessiononresultenabled"
       },
@@ -217,7 +217,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the capturing and processing of image data when a barcode is successfully detected",
         "complexTypes": [],
         "slug": "setimageresultenabled"
       },
@@ -233,7 +233,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the inclusion of barcode location information within the image data result",
         "complexTypes": [],
         "slug": "setlocationinimageresultenabled"
       },
@@ -249,7 +249,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Defines the Region of Interest (ROI) on the camera preview for barcode scanning, specifying an area where the application focuses on detecting barcodes",
         "complexTypes": [],
         "slug": "setregionofinterest"
       },
@@ -265,7 +265,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the threads limit",
         "complexTypes": [],
         "slug": "setthreadslimit"
       },
@@ -281,7 +281,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the display of barcode location information on the camera preview",
         "complexTypes": [],
         "slug": "setlocationinpreviewenabled"
       },
@@ -297,7 +297,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the pinch-to-zoom feature for adjusting the zoom level during barcode scanning",
         "complexTypes": [],
         "slug": "setpinchtozoomenabled"
       },
@@ -313,7 +313,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the visibility of the Region of Interest (ROI) on the camera preview",
         "complexTypes": [],
         "slug": "setregionofinterestvisible"
       },
@@ -329,7 +329,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the resolution for barcode scanning",
         "complexTypes": [],
         "slug": "setbarkoderresolution"
       },
@@ -345,7 +345,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the audible beep sound upon successfully decoding a barcode",
         "complexTypes": [],
         "slug": "setbeeponsuccessenabled"
       },
@@ -361,7 +361,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the device vibration upon successfully decoding a barcode.",
         "complexTypes": [],
         "slug": "setvibrateonsuccessenabled"
       },
@@ -393,7 +393,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the length range for the specified barcode type",
         "complexTypes": [],
         "slug": "setbarcodetypelengthrange"
       },
@@ -409,7 +409,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the encoding character set for barcode scanning",
         "complexTypes": [],
         "slug": "setencodingcharacterset"
       },
@@ -425,7 +425,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the decoding speed for barcode scanning",
         "complexTypes": [],
         "slug": "setdecodingspeed"
       },
@@ -441,7 +441,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the formatting type for barcode scanning",
         "complexTypes": [],
         "slug": "setformattingtype"
       },
@@ -457,7 +457,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the Code11 checksum type",
         "complexTypes": [],
         "slug": "setcode11checksumtype"
       },
@@ -473,7 +473,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the MSI checksum type",
         "complexTypes": [],
         "slug": "setmsichecksumtype"
       },
@@ -489,7 +489,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the Code39 checksum type",
         "complexTypes": [],
         "slug": "setcode39checksumtype"
       },
@@ -505,7 +505,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets whether a specific barcode type is enabled",
         "complexTypes": [],
         "slug": "setbarcodetypeenabled"
       },
@@ -521,7 +521,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets whether multi-code caching is enabled",
         "complexTypes": [],
         "slug": "setmulticodecachingenabled"
       },
@@ -537,7 +537,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the caching duration (in milliseconds) for multi-code results",
         "complexTypes": [],
         "slug": "setmulticodecachingduration"
       },
@@ -553,7 +553,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the maximum number of results to be returned from barcode scanning",
         "complexTypes": [],
         "slug": "setmaximumresultscount"
       },
@@ -569,7 +569,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "A boolean indicating whether to enable barcode thumbnail on result.",
         "complexTypes": [],
         "slug": "setbarcodethumbnailonresultenabled"
       },
@@ -585,7 +585,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the delay in milliseconds for considering duplicate barcodes during scanning",
         "complexTypes": [],
         "slug": "setduplicatesdelayms"
       },
@@ -601,7 +601,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets the threshold between duplicate scans",
         "complexTypes": [],
         "slug": "setthresholdbetweenduplicatesscans"
       },
@@ -617,7 +617,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets whether the deblurring feature for UPC/EAN barcodes is enabled",
         "complexTypes": [],
         "slug": "setupceandeblurenabled"
       },
@@ -633,7 +633,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets whether the detection of misshaped 1D barcodes is enabled",
         "complexTypes": [],
         "slug": "setmisshaped1denabled"
       },
@@ -649,7 +649,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets whether Vehicle Identification Number (VIN) restrictions are enabled",
         "complexTypes": [],
         "slug": "setenablevinrestrictions"
       },
@@ -665,7 +665,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Sets whether the Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled.",
         "complexTypes": [],
         "slug": "setdatamatrixdpmmodeenabled"
       },
@@ -681,7 +681,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Configures the Barkoder functionality based on the provided configuration",
         "complexTypes": [
           "BarkoderConfig"
         ],
@@ -693,7 +693,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning",
         "complexTypes": [],
         "slug": "isflashavailable"
       },
@@ -703,7 +703,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the automatic closing of the scanning session upon detecting a barcode result",
         "complexTypes": [],
         "slug": "isclosesessiononresultenabled"
       },
@@ -713,7 +713,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the capturing and processing of image data when a barcode is successfully detected",
         "complexTypes": [],
         "slug": "isimageresultenabled"
       },
@@ -723,7 +723,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Enables or disables the inclusion of barcode location information within the image data result",
         "complexTypes": [],
         "slug": "islocationinimageresultenabled"
       },
@@ -733,7 +733,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks if location in preview is enabled",
         "complexTypes": [],
         "slug": "islocationinpreviewenabled"
       },
@@ -743,7 +743,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks if pinch to zoom is enabled",
         "complexTypes": [],
         "slug": "ispinchtozoomenabled"
       },
@@ -753,7 +753,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks if the region of interest (ROI) is visible",
         "complexTypes": [],
         "slug": "isregionofinterestvisible"
       },
@@ -763,7 +763,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the value indicating whether a beep sound is played on successful barcode scanning",
         "complexTypes": [],
         "slug": "isbeeponsuccessenabled"
       },
@@ -773,7 +773,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the value indicating whether vibration is enabled on successful barcode scanning",
         "complexTypes": [],
         "slug": "isvibrateonsuccessenabled"
       },
@@ -783,7 +783,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the version of the Barkoder library",
         "complexTypes": [],
         "slug": "getversion"
       },
@@ -793,7 +793,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the hexadecimal color code representing the line color used to indicate the location of detected barcodes",
         "complexTypes": [],
         "slug": "getlocationlinecolorhex"
       },
@@ -803,7 +803,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the hexadecimal color code representing the line color of the Region of Interest (ROI) on the camera preview",
         "complexTypes": [],
         "slug": "getroilinecolorhex"
       },
@@ -813,7 +813,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the hexadecimal color code representing the background color of the overlay within the Region of Interest (ROI) on the camera preview",
         "complexTypes": [],
         "slug": "getroioverlaybackgroundcolorhex"
       },
@@ -823,7 +823,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the maximum available zoom factor for the device's camera",
         "complexTypes": [],
         "slug": "getmaxzoomfactor"
       },
@@ -833,7 +833,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the current width setting for the lines indicating the location of detected barcodes on the camera feed",
         "complexTypes": [],
         "slug": "getlocationlinewidth"
       },
@@ -843,7 +843,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the current width setting for the lines outlining the Region of Interest (ROI) on the camera preview",
         "complexTypes": [],
         "slug": "getroilinewidth"
       },
@@ -853,7 +853,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the region of interest (ROI)",
         "complexTypes": [],
         "slug": "getregionofinterest"
       },
@@ -869,7 +869,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the length range of a specific barcode type",
         "complexTypes": [],
         "slug": "getbarcodetypelengthrange"
       },
@@ -879,7 +879,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the MSI checksum type",
         "complexTypes": [],
         "slug": "getmsichecksumtype"
       },
@@ -889,7 +889,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the checksum type for Code 39 barcodes",
         "complexTypes": [],
         "slug": "getcode39checksumtype"
       },
@@ -899,7 +899,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the Code11 checksum type",
         "complexTypes": [],
         "slug": "getcode11checksumtype"
       },
@@ -909,7 +909,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the character set used for encoding barcode data",
         "complexTypes": [],
         "slug": "getencodingcharacterset"
       },
@@ -919,7 +919,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the current decoding speed setting for barcode scanning",
         "complexTypes": [],
         "slug": "getdecodingspeed"
       },
@@ -929,7 +929,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the formatting type used for presenting decoded barcode data.",
         "complexTypes": [],
         "slug": "getformattingtype"
       },
@@ -939,7 +939,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the threads limit",
         "complexTypes": [],
         "slug": "getthreadslimit"
       },
@@ -949,7 +949,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the maximum number of results to be returned from barcode scanning at once",
         "complexTypes": [],
         "slug": "getmaximumresultscount"
       },
@@ -959,7 +959,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the delay in milliseconds for considering duplicate barcodes during scanning",
         "complexTypes": [],
         "slug": "getduplicatesdelayms"
       },
@@ -975,7 +975,7 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks if a specific barcode type is enabled",
         "complexTypes": [],
         "slug": "isbarcodetypeenabled"
       },
@@ -985,7 +985,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves whether multi-code caching is enabled",
         "complexTypes": [],
         "slug": "getmulticodecachingenabled"
       },
@@ -995,7 +995,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the caching duration (in milliseconds) for multi-code results",
         "complexTypes": [],
         "slug": "getmulticodecachingduration"
       },
@@ -1005,7 +1005,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the value indicating whether deblurring is enabled for UPC/EAN barcodes",
         "complexTypes": [],
         "slug": "isupceandeblurenabled"
       },
@@ -1015,7 +1015,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks if the detection of misshaped 1D barcodes is enabled",
         "complexTypes": [],
         "slug": "ismisshaped1denabled"
       },
@@ -1025,7 +1025,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieve whether to enable barcode thumbnail on result",
         "complexTypes": [],
         "slug": "isbarcodethumbnailonresultenabled"
       },
@@ -1035,7 +1035,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the threshold between duplicate scans",
         "complexTypes": [],
         "slug": "getthresholdbetweenduplicatesscans"
       },
@@ -1045,7 +1045,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Checks if VIN restrictions are enabled",
         "complexTypes": [],
         "slug": "isvinrestrictionsenabled"
       },
@@ -1055,7 +1055,7 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "",
+        "docs": "Retrieves the resolution for barcode scanning",
         "complexTypes": [],
         "slug": "getbarkoderresolution"
       }
