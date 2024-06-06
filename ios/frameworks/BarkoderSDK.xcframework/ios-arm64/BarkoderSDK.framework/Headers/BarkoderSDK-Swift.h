@@ -311,55 +311,68 @@ enum BarkoderResolution : NSInteger;
 
 SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @interface BarkoderConfig : NSObject
-/// Region of interest line color as UIColor
+/// Retrieves/Sets the color of the lines outlining the Region of Interest (ROI) for barcode scanning on the camera feed
 @property (nonatomic, strong) UIColor * _Nonnull roiLineColor;
-/// Region of interest line width as float
+/// Retrieves/Sets the width of the lines outlining the Region of Interest (ROI) for barcode scanning on the camera feed
+/// note:
 /// Default value is 2.0
 @property (nonatomic) float roiLineWidth;
-/// Region of interest background color as UIColor
+/// Retrieves/Sets the background color of the overlay within the Region of Interest (ROI) for barcode scanning on the camera feed
 @property (nonatomic, strong) UIColor * _Nonnull roiOverlayBackgroundColor;
-/// Check if ROI is visible on the preview screen
+/// Retrieves/Sets the visibility of the Region of Interest (ROI) on the camera preview
+/// note:
 /// Default value is true
 @property (nonatomic) BOOL regionOfInterestVisible;
-/// Location line color as UIColor
+/// Retrieves/Sets the hexadecimal color code representing the line color used to indicate the location of detected barcodes
 @property (nonatomic, strong) UIColor * _Nonnull locationLineColor;
-/// Get the location line width as float
+/// Retrieves/Sets the width of the lines indicating the location of detected barcodes on the camera feed
+/// note:
 /// Default value is 2
 @property (nonatomic) float locationLineWidth;
-/// Check if the camera preview can be zoomed with pinch
+/// Enables or disables the pinch-to-zoom feature for adjusting the zoom level during barcode scanning
+/// note:
 /// Default value is false
 @property (nonatomic) BOOL pinchToZoomEnabled;
-/// Check if device will beep on successful scan
+/// Enables or disables the audible beep sound upon successfully decoding a barcode
+/// note:
 /// Default value is true
 @property (nonatomic) BOOL beepOnSuccessEnabled;
-/// Check if device will vibrate on successful scan
+/// Enables or disables the device vibration upon successfully decoding a barcode.
+/// note:
 /// Default value is true
 @property (nonatomic) BOOL vibrateOnSuccessEnabled;
-/// Check if camera preview session will be closed when barcode is scanned
+/// Enables or disables the automatic closing of the scanning session upon detecting a barcode result
+/// note:
 /// Default value is true
 @property (nonatomic) BOOL closeSessionOnResultEnabled;
-/// Check if the image result is enabled
-/// Image result is received in BarkoderResultDelegate as UIImage
+/// Enables or disables the capturing and processing of image data when a barcode is successfully detected
+/// note:
 /// Default value is false
 @property (nonatomic) BOOL imageResultEnabled;
-/// Check if barcode location in the image result is enabled
-/// If enabled, barcode in the result image will be marked
+/// Enables or disables the inclusion of barcode location information within the image data result
+/// note:
 /// Default value is false
 @property (nonatomic) BOOL locationInImageResultEnabled;
-/// Check if barcode location in preview is enabled
+/// Enables or disables the display of barcode location information on the camera preview
+/// note:
 /// Default value is true
 @property (nonatomic) BOOL locationInPreviewEnabled;
-/// Get the decoder config object. With this object you can enable/disable decoders (barcode types) or configure each one of them
+/// Configures the Barkoder functionality based on the provided configuration
 @property (nonatomic, strong) Config * _Nullable decoderConfig;
-/// Get the active resolution. It can be Normal(HD), or HIGH(Full HD)
+/// Retrieve/Sets the resolution for barcode scanning
+/// note:
 /// Default value is BarkoderView.BarkoderResolution.normal
 @property (nonatomic) enum BarkoderResolution barkoderResolution;
-/// Getting barcode thumbnail on result
+/// Retrieve/Sets whether to enable barcode thumbnail on result
+/// note:
+/// Default value is true
 @property (nonatomic) BOOL barcodeThumbnailOnResult;
-/// Getting threshold between duplicates scans
+/// Retrieve/Sets the threshold between duplicate scans
 @property (nonatomic) NSInteger thresholdBetweenDuplicatesScans;
+/// Defines the Region of Interest (ROI) on the camera preview for barcode scanning, specifying an area where the application focuses on detecting barcodes
 - (BOOL)setRegionOfInterest:(CGRect)value error:(NSError * _Nullable * _Nullable)error;
-/// Get active region of interest
+/// Retrieves the region of interest (ROI)
+/// note:
 /// Default value is ‘CGRect(x: 3, y: 30, width: 94, height: 40)’
 - (CGRect)getRegionOfInterest SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)initWithLicenseKey:(NSString * _Nonnull)licenseKey licenseCheckHandler:(void (^ _Nonnull)(LicenseCheckResult * _Nonnull))licenseCheckHandler;
@@ -372,10 +385,15 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 /// \param value [1, max threads available]
 ///
 - (BOOL)setThreadsLimit:(NSInteger)value error:(NSError * _Nullable * _Nullable)error;
+/// Get maximum threads that are used for the decoding process
 - (NSInteger)getThreadsLimit SWIFT_WARN_UNUSED_RESULT;
+/// Sets whether multi-code caching is enabled
 - (void)setMulticodeCachingEnabled:(BOOL)boolean;
+/// Retrieves whether multi-code caching is enabled
 - (BOOL)getMulticodeCachingEnabled SWIFT_WARN_UNUSED_RESULT;
+/// Sets the caching duration (in milliseconds) for multi-code results
 - (void)setMulticodeCachingDuration:(NSInteger)value;
+/// Retrieves the caching duration (in milliseconds) for multi-code results
 - (NSInteger)getMulticodeCachingDuration SWIFT_WARN_UNUSED_RESULT;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
@@ -479,24 +497,23 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 /// \param delegate Callback which return fps and dps as Float
 ///
 - (void)setBarkoderPerformanceDelegate:(id <BarkoderPerformanceDelegate> _Nullable)delegate;
-/// Turn flash ON/OFF
-/// If preview session is already active this state be set only for active session
-/// otherwise the initial flash state is set. Every next preview session will be started with this state
+/// Initiates the barcode scanning process, allowing the application to detect and decode barcodes from the device’s camera feed
 /// \param enabled [true, false]. Default value is false
 ///
 - (BOOL)startScanning:(id <BarkoderResultDelegate> _Nonnull)resultDelegate error:(NSError * _Nullable * _Nullable)error;
-/// Stop the scanning process and the camera preview
+/// Halts the barcode scanning process, stopping the camera from capturing and processing barcode information
 - (void)stopScanning;
-/// Pause only the scanning process. Camera preview is still running
+/// Temporarily suspends the barcode scanning process, pausing the camera feed without completely stopping the scanning session
 - (void)pauseScanning;
+/// Sets the zoom factor for the device’s camera, adjusting the level of zoom during barcode scanning
 - (void)setZoomFactor:(float)zoomFactor;
-/// Turn flash ON/OFF
-/// If preview session is already active this state be set only for active session
-/// otherwise the initial flash state is set. Every next preview session will be started with this state
+/// Enables or disables the device’s flash (torch) for illumination during barcode scanning
 /// \param enabled [true, false]. Default value is false
 ///
 - (void)setFlash:(BOOL)enabled;
+/// Retrieves the maximum available zoom factor for the device’s camera
 - (void)getMaxZoomFactor:(void (^ _Nonnull)(float))completion;
+/// Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
 - (void)isFlashAvailable:(void (^ _Nonnull)(BOOL))completion;
 - (void)cameraFrameReceivedWithSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
 - (void)layoutSubviews;
@@ -511,6 +528,7 @@ typedef SWIFT_ENUM(NSInteger, BarkoderResolution, open) {
 
 
 @interface iBarkoder (SWIFT_EXTENSION(BarkoderSDK))
+/// Retrieves the version of the Barkoder library
 + (NSString * _Nonnull)GetVersion SWIFT_WARN_UNUSED_RESULT;
 @end
 
