@@ -42,6 +42,30 @@ public class BarkoderUtil {
 
             if (thumbnails[0] != null)
                 resultJS.put("resultThumbnailAsBase64", bitmapImageToBase64(thumbnails[0]));
+
+            if (results[0].images != null) {
+                for (Barkoder.BKImageDescriptor image : results[0].images) {
+                    if (image != null && image.image != null) {
+                        switch (image.name) {
+                            case "main":
+                                resultJS.put("mainImageAsBase64", bitmapImageToBase64(image.image));
+                                break;
+                            case "document":
+                                resultJS.put("documentImageAsBase64", bitmapImageToBase64(image.image));
+                                break;
+                            case "signature":
+                                resultJS.put("signatureImageAsBase64", bitmapImageToBase64(image.image));
+                                break;
+                            case "picture":
+                                resultJS.put("pictureImageAsBase64", bitmapImageToBase64(image.image));
+                                break;
+                            default:
+                                break;
+                        }
+                    }
+                }
+            }
+
         } catch (JSONException ex) {
             BarkoderLog.d(TAG, ex.getMessage());
         }
@@ -124,6 +148,8 @@ public class BarkoderUtil {
                 return decoderConfig.Telepen;
             case Dotcode:
                 return  decoderConfig.Dotcode;
+            case IDDocument:
+                return decoderConfig.IDDocument;
         }
         return null;
     }

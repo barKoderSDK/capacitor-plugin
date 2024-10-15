@@ -463,7 +463,8 @@ export declare enum BarcodeType {
     coop25 = 24,
     code32 = 25,
     telepen = 26,
-    dotcode = 27
+    dotcode = 27,
+    idDocument = 28
 }
 export declare class BarkoderConfig {
     locationLineColor?: string;
@@ -512,6 +513,7 @@ export declare class DekoderConfig {
     code32?: BarcodeConfig;
     telepen?: BarcodeConfig;
     dotcode?: BarcodeConfig;
+    idDocument?: BarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
 }

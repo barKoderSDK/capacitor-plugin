@@ -4,20 +4,35 @@
 #import <Foundation/Foundation.h>
 #import <CoreImage/CoreImage.h>
 #import <CoreMedia/CoreMedia.h>
+#if TARGET_OS_IOS
 #import <UIKit/UIKit.h>
+#else
+#endif
+
+
 
 typedef enum {
     GlobalOption_SetMaximumThreads = 0,
     GlobalOption_UseGPU,
     GlobalOption_MulticodeCachingEnabled,
     GlobalOption_MulticodeCachingDuration,
+    GlobalOption_LazyInitEnable,
+    GlobalOption_RestultLocationPreview,
+    GlobalOption_DisableGPUCompletely
 } GlobalOption;
 
 typedef enum {
     Fast = 0,
     Normal,
-    Slow
+    Slow,
+    Rigorous
 } DecodingSpeed;
+
+typedef enum {
+    Grayscale = 0,
+    YUV,
+    BGRA
+} ColorFormat;
 
 typedef enum {
     Aztec,
@@ -47,7 +62,8 @@ typedef enum {
     COOP25,
     Code32,
     Telepen,
-    Dotcode
+    Dotcode,
+    IDDocument
 } DecoderType;
 
 
@@ -62,11 +78,13 @@ typedef enum {
 // BKImage
 //==========================================================================
 @interface Image : NSObject
-- (id)initWithPixels:(uint8_t *)pixels width: (int) width height: (int) height;
+- (id)initWithPixels:(uint8_t *)pixels width: (int) width height: (int) height  colorFormat: (ColorFormat) colorFormat;
 
 @property (nonatomic, readwrite) uint8_t* pixels;
 @property (nonatomic, readonly) int width;
 @property (nonatomic, readonly) int height;
+@property (nonatomic, readonly) ColorFormat colorFormat;
+
 @end
 
 //==========================================================================
@@ -79,11 +97,18 @@ typedef enum {
 - (bool)isLicensed;
 - (NSString *) typeName;
 
+typedef enum {
+    Checksum_Disabled,
+    Checksum_Enabled
+} StandardChecksum;
+
+
 @property (nonatomic, readwrite) bool enabled;
 @property (nonatomic, readwrite) int expectedCount;
 @property (nonatomic, readonly) int minimumLength;
 @property (nonatomic, readonly) int maximumLength;
 @end
+
 
 //==========================================================================
 // Code 11 Config
@@ -104,13 +129,9 @@ typedef enum {
 // Code 25 Config
 //==========================================================================
 @interface Code25Config : SpecificConfig
-typedef enum {
-    Code25_Checksum_Disabled,
-    Code25_Checksum_Enabled
-} Code25Checksum;
 
 
-@property (nonatomic, readwrite) Code25Checksum checksum;
+@property (nonatomic, readwrite) StandardChecksum checksum;
 
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
@@ -119,7 +140,7 @@ typedef enum {
 // IATA 25 Config
 //==========================================================================
 @interface IATA25Config : SpecificConfig
-@property (nonatomic, readwrite) Code25Checksum checksum;
+@property (nonatomic, readwrite) StandardChecksum checksum;
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
@@ -127,7 +148,7 @@ typedef enum {
 // Matrix 25 Config
 //==========================================================================
 @interface Matrix25Config : SpecificConfig
-@property (nonatomic, readwrite) Code25Checksum checksum;
+@property (nonatomic, readwrite) StandardChecksum checksum;
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
@@ -135,7 +156,7 @@ typedef enum {
 // Datalogic 25 Config
 //==========================================================================
 @interface Datalogic25Config : SpecificConfig
-@property (nonatomic, readwrite) Code25Checksum checksum;
+@property (nonatomic, readwrite) StandardChecksum checksum;
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
@@ -143,7 +164,7 @@ typedef enum {
 // COOP 25 Config
 //==========================================================================
 @interface COOP25Config : SpecificConfig
-@property (nonatomic, readwrite) Code25Checksum checksum;
+@property (nonatomic, readwrite) StandardChecksum checksum;
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
@@ -152,7 +173,7 @@ typedef enum {
 //==========================================================================
 @interface Interleaved25Config : SpecificConfig
 
-@property (nonatomic, readwrite) Code25Checksum checksum;
+@property (nonatomic, readwrite) StandardChecksum checksum;
 
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
@@ -328,6 +349,14 @@ typedef enum  {
 @end
 
 //==========================================================================
+// ID Document Config
+//==========================================================================
+@interface IDDocumentConfig : SpecificConfig
+@property (nonatomic, readwrite) StandardChecksum masterChecksum;
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
 // Config
 //==========================================================================
 @class Config;
@@ -396,6 +425,8 @@ typedef enum {
 @property (nonatomic, readonly, retain) PDF417MicroConfig* _Nonnull PDF417Micro;
 @property (nonatomic, readonly, retain) DatamatrixConfig* _Nonnull datamatrix;
 
+@property (nonatomic, readonly, retain) IDDocumentConfig* _Nonnull idDocument;
+
 @property (nonatomic, readwrite) DecodingSpeed decodingSpeed;
 @property (nonatomic, readwrite) NSString * _Nonnull encodingCharacterSet;
 @property (nonatomic, readwrite) Formatting formatting;
@@ -451,8 +482,44 @@ typedef enum {
     BT_COOP25,
     BT_Code32,
     BT_Telepen,
-    BT_Dotcode
+    BT_Dotcode,
+    BT_ID_Document,
+    BT_ID_Picture,
+    BT_ID_MRZ2,
+    BT_ID_MRZ3
+    
 } BarcodeType;
+
+
+@interface BKLocation : NSObject {
+    CGPoint location[4];
+}
+@property (nonatomic, readwrite, retain) NSString *locationName;
+
+-(CGPoint*) getLocationPoints;
+
+@end;
+
+@interface BKImageDescriptor : NSObject
+
+#if TARGET_OS_OSX
+@property (nonatomic, strong) NSImage *image;
+#else
+@property (nonatomic, strong) UIImage *image;
+#endif
+
+@property (nonatomic, strong) NSString *name;
+
+- (instancetype)initWithImage:(
+
+#if TARGET_OS_OSX
+NSImage
+#else
+UIImage
+#endif
+    *)image name:(NSString *)name;
+
+@end
 
 @interface DecoderResult : NSObject {
     CGPoint location[4];
@@ -464,6 +531,8 @@ typedef enum {
 @property (nonatomic, readwrite, retain) NSString* textualData;
 @property (nonatomic, readwrite, retain) NSString* characterSet;
 @property (nonatomic, readwrite, retain) NSDictionary* extra;
+@property (nonatomic, readwrite, retain) NSArray<BKLocation*>* extraLocations;
+@property (nonatomic, readwrite, retain) NSArray<BKImageDescriptor*>* images;
 
 -(int)polygonPointCount;
 -(CGPoint)polygonPointAt:(int)index;
@@ -471,6 +540,9 @@ typedef enum {
 -(NSArray<NSString*>*)getAllKeys;
 -(CGPoint)locationAt:(int)index;
 -(CGPoint*) getLocationPoints;
+-(BKLocation *)getLocationFromExtras:(NSString *)locationName;
+-(NSArray *)getLocationsNamesFromExtras;
+
 
 @end
 
@@ -482,12 +554,29 @@ typedef enum {
 +(NSString *) GetLibVersion;
 +(bool) IsStringVINCompliant: (NSString *) VINString checkLevel: (int) checkLevel;
 +(bool) IsDecoderBusy;
+
++(NSArray<DecoderResult*>*)decodeImage:(Config*)config imageRef:(void*)imageRef imageWidth:(int)width imageHeight:(int) height;
++(NSArray<DecoderResult*>*)decodeImage:(Config*)config imageRef:(void*)imageRef imageWidth:(int)width imageHeight:(int) height colorFormat: (ColorFormat) colorFormat;
+
 +(NSArray<DecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height;
++(NSArray<DecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height colorFormat: (ColorFormat) colorFormat;
+
 +(int) decodeImageAsync:(Config*)config image: (Image*) image callback:(void (^)(NSArray<DecoderResult*>*, Image*)) callback;
 +(int) decodeSampleBufferAsync:(Config*)config sampleBuffer:(CMSampleBufferRef)sampleBuffer callback:(void (^)(NSArray<DecoderResult*>*, CMSampleBufferRef)) callback;
 + (unsigned char*)CGImageToPixels:(CGImageRef) image;
 + (CGImageRef) CGImageFromPixels:(const char*)pixels width:(int)width height:(int)height;
+#if TARGET_OS_IOS
 + (UIImage *) UIImageFromPixels:(uint8_t*)pixels width:(int)width height:(int)height;
+#else
+#endif
+#if TARGET_OS_OSX
++ (NSImage *)UIImageFromLocation:(NSImage *)source points:(CGPoint[4])points marginPercent:(float)marginPercent;
+#else
++ (UIImage *)UIImageFromLocation:(UIImage *)source points:(CGPoint[4])points marginPercent:(float)marginPercent;
+#endif
+
+
+
 
 @end
 

@@ -543,6 +543,8 @@ extension BarkoderPlugin {
                         decoderConfig.telepen.enabled = enabled
                     case Dotcode:
                         decoderConfig.dotcode.enabled = enabled
+                    case IDDocument:
+                        decoderConfig.idDocument.enabled = enabled
                     default:
                         call.reject(
                             BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -699,9 +701,9 @@ extension BarkoderPlugin {
             
             var convertedBarkoderConfigAsString = String(data: jsonData, encoding: .utf8) ?? ""
             
-            zip(["aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi",  "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"],
+            zip(["aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi",  "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "idDocument", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"],
                 
-                ["Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"]).forEach {
+                ["Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"]).forEach {
                 convertedBarkoderConfigAsString = convertedBarkoderConfigAsString.replacingOccurrences(of: $0, with: $1, options: .literal)
             }
             
@@ -975,6 +977,8 @@ extension BarkoderPlugin {
                 call.resolve([decoderConfig.telepen.typeName(): decoderConfig.telepen.enabled])
             case Dotcode:
                 call.resolve([decoderConfig.dotcode.typeName(): decoderConfig.dotcode.enabled])
+            case IDDocument:
+                call.resolve([decoderConfig.idDocument.typeName(): decoderConfig.idDocument.enabled])
             default:
                 call.reject(
                     BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,

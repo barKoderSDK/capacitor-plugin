@@ -67,6 +67,7 @@ export var BarcodeType;
     BarcodeType[BarcodeType["code32"] = 25] = "code32";
     BarcodeType[BarcodeType["telepen"] = 26] = "telepen";
     BarcodeType[BarcodeType["dotcode"] = 27] = "dotcode";
+    BarcodeType[BarcodeType["idDocument"] = 28] = "idDocument";
 })(BarcodeType || (BarcodeType = {}));
 export class BarkoderConfig {
     constructor(config) {

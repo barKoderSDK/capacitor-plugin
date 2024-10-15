@@ -460,6 +460,8 @@ typedef SWIFT_ENUM(NSInteger, BarkoderConfigTemplate, open) {
   BarkoderConfigTemplateVin = 7,
   BarkoderConfigTemplateDotcode = 8,
   BarkoderConfigTemplateAll_1d = 9,
+  BarkoderConfigTemplateMrz = 10,
+  BarkoderConfigTemplateGallery_scan = 11,
 };
 
 
@@ -498,8 +500,6 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 ///
 - (void)setBarkoderPerformanceDelegate:(id <BarkoderPerformanceDelegate> _Nullable)delegate;
 /// Initiates the barcode scanning process, allowing the application to detect and decode barcodes from the device’s camera feed
-/// \param enabled [true, false]. Default value is false
-///
 - (BOOL)startScanning:(id <BarkoderResultDelegate> _Nonnull)resultDelegate error:(NSError * _Nullable * _Nullable)error;
 /// Halts the barcode scanning process, stopping the camera from capturing and processing barcode information
 - (void)stopScanning;
@@ -523,6 +523,7 @@ typedef SWIFT_ENUM(NSInteger, BarkoderResolution, open) {
   BarkoderResolutionNormal = 0,
   BarkoderResolutionHigh = 1,
 };
+
 
 
 
