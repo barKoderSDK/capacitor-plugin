@@ -6,6 +6,7 @@ var capacitorBarkoder = (function (exports, core) {
         DecodingSpeed[DecodingSpeed["fast"] = 0] = "fast";
         DecodingSpeed[DecodingSpeed["normal"] = 1] = "normal";
         DecodingSpeed[DecodingSpeed["slow"] = 2] = "slow";
+        DecodingSpeed[DecodingSpeed["rigorous"] = 3] = "rigorous";
     })(exports.DecodingSpeed || (exports.DecodingSpeed = {}));
     exports.FormattingType = void 0;
     (function (FormattingType) {
@@ -123,13 +124,23 @@ var capacitorBarkoder = (function (exports, core) {
             this.maxLength = maxLength;
         }
     }
-    class DatamatrixBarcodeConfig {
+    class BarcodeConfigWithDpmMode {
         constructor(config) {
             Object.assign(this, config);
         }
         setLengthRange(minLength, maxLength) {
             this.minLength = minLength;
             this.maxLength = maxLength;
+        }
+    }
+    exports.IdDocumentMasterChecksumType = void 0;
+    (function (IdDocumentMasterChecksumType) {
+        IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["disabled"] = 0] = "disabled";
+        IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["enabled"] = 1] = "enabled";
+    })(exports.IdDocumentMasterChecksumType || (exports.IdDocumentMasterChecksumType = {}));
+    class IdDocumentBarcodeConfig {
+        constructor(config) {
+            Object.assign(this, config);
         }
     }
     class GeneralSettings {
@@ -141,6 +152,41 @@ var capacitorBarkoder = (function (exports, core) {
             this.roiY = y;
             this.roiWidth = width;
             this.roiHeight = height;
+        }
+    }
+    class BarkoderResult {
+        constructor(resultMap) {
+            if (Array.isArray(resultMap['decoderResults'])) {
+                this.decoderResults = resultMap['decoderResults'].map((result) => new DecoderResult(result));
+            }
+            else {
+                this.decoderResults = [];
+            }
+            this.resultThumbnailsAsBase64 = Array.isArray(resultMap['resultThumbnailsAsBase64'])
+                ? resultMap['resultThumbnailsAsBase64']
+                    .map(thumbnail => this.convertToBase64(thumbnail))
+                    .filter((thumbnail) => thumbnail !== null)
+                : null;
+            this.resultImageAsBase64 = this.convertToBase64(resultMap['resultImageAsBase64']);
+        }
+        convertToBase64(data) {
+            return data ? `data:image/jpeg;base64,${data}` : null;
+        }
+    }
+    class DecoderResult {
+        constructor(resultMap) {
+            this.barcodeType = resultMap['barcodeType'];
+            this.barcodeTypeName = resultMap['barcodeTypeName'];
+            this.binaryDataAsBase64 = resultMap['binaryDataAsBase64'];
+            this.textualData = resultMap['textualData'];
+            this.characterSet = resultMap['characterSet'] || null;
+            this.extra = 'extra' in resultMap ? JSON.parse(resultMap['extra']) : null;
+            this.mrzImagesAsBase64 = Array.isArray(resultMap['mrzImagesAsBase64'])
+                ? resultMap['mrzImagesAsBase64'].map((image) => ({
+                    name: image.name,
+                    base64: `data:image/jpeg;base64,${image.base64}`,
+                }))
+                : [];
         }
     }
 
@@ -157,14 +203,17 @@ var capacitorBarkoder = (function (exports, core) {
     });
 
     exports.BarcodeConfig = BarcodeConfig;
+    exports.BarcodeConfigWithDpmMode = BarcodeConfigWithDpmMode;
     exports.BarcodeConfigWithLength = BarcodeConfigWithLength;
     exports.Barkoder = Barkoder;
     exports.BarkoderConfig = BarkoderConfig;
+    exports.BarkoderResult = BarkoderResult;
     exports.Code11BarcodeConfig = Code11BarcodeConfig;
     exports.Code39BarcodeConfig = Code39BarcodeConfig;
-    exports.DatamatrixBarcodeConfig = DatamatrixBarcodeConfig;
+    exports.DecoderResult = DecoderResult;
     exports.DekoderConfig = DekoderConfig;
     exports.GeneralSettings = GeneralSettings;
+    exports.IdDocumentBarcodeConfig = IdDocumentBarcodeConfig;
     exports.MSIBarcodeConfig = MSIBarcodeConfig;
 
     Object.defineProperty(exports, '__esModule', { value: true });

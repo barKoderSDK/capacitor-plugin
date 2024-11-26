@@ -127,6 +127,28 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func scanImage(_ call: CAPPluginCall) {
+        guard let base64Image = call.getString("base64") else {
+            return
+        }
+        
+        guard let imageData = Data(base64Encoded: base64Image, options: .ignoreUnknownCharacters) else {
+            return
+        }
+        
+        guard let image = UIImage(data: imageData) else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            guard let config = self.barkoderView.config else { return }
+            
+            BarkoderHelper.scanImage(image, bkdConfig: config, resultDelegate: self)
+        }
+        
+        call.resolve()
+    }
+    
     @objc func setLocationLineColor(_ call: CAPPluginCall) {
         guard let hexColor = call.getString("value") else {
             return
@@ -677,6 +699,42 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func setQrDpmModeEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.qr.dpmMode = enabled ? 1 : 0
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setQrMicroDpmModeEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.qrMicro.dpmMode = enabled ? 1 : 0
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setIdDocumentMasterChecksumEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.idDocument.masterChecksum = StandardChecksum(rawValue: enabled == true ? 1 : 0)
+        }
+        
+        call.resolve()
+    }
+    
     @objc func configureBarkoder(_ call: CAPPluginCall) {
         guard var barkoderConfigAsDictionary = call.getObject("barkoderConfig"), let barkoderConfig = barkoderView.config else { return }
                 
@@ -781,35 +839,35 @@ extension BarkoderPlugin {
     }
     
     @objc func getVersion(_ call: CAPPluginCall) {
-        call.resolve(["getVersion": iBarkoder.GetVersion() as Any])
+        call.resolve(["version": iBarkoder.GetVersion() as Any])
     }
     
     @objc func getLocationLineColorHex(_ call: CAPPluginCall) {
-        call.resolve(["getLocationLineColorHex": barkoderView.config?.locationLineColor.toHex() as Any])
+        call.resolve(["locationLineColorHex": barkoderView.config?.locationLineColor.toHex() as Any])
     }
     
     @objc func getRoiLineColorHex(_ call: CAPPluginCall) {
-        call.resolve(["getRoiLineColorHex": barkoderView.config?.roiLineColor.toHex() as Any])
+        call.resolve(["roiLineColorHex": barkoderView.config?.roiLineColor.toHex() as Any])
     }
     
     @objc func getRoiOverlayBackgroundColorHex(_ call: CAPPluginCall) {
-        call.resolve(["getRoiOverlayBackgroundColorHex": barkoderView.config?.roiOverlayBackgroundColor.toHex() as Any])
+        call.resolve(["roiOverlayBackgroundColorHex": barkoderView.config?.roiOverlayBackgroundColor.toHex() as Any])
     }
     
     @objc func getMaxZoomFactor(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
             self.barkoderView.getMaxZoomFactor { maxZoomFactor in
-                call.resolve(["getMaxZoomFactor": maxZoomFactor])
+                call.resolve(["maxZoomFactor": maxZoomFactor])
             }
         }
     }
     
     @objc func getLocationLineWidth(_ call: CAPPluginCall) {
-        call.resolve(["getLocationLineWidth": barkoderView.config?.locationLineWidth as Any])
+        call.resolve(["locationLineWidth": barkoderView.config?.locationLineWidth as Any])
     }
     
     @objc func getRoiLineWidth(_ call: CAPPluginCall) {
-        call.resolve(["getRoiLineWidth": barkoderView.config?.roiLineWidth as Any])
+        call.resolve(["roiLineWidth": barkoderView.config?.roiLineWidth as Any])
     }
     
     @objc func getRegionOfInterest(_ call: CAPPluginCall) {
@@ -866,39 +924,39 @@ extension BarkoderPlugin {
     }
     
     @objc func getMsiChecksumType(_ call: CAPPluginCall) {
-        call.resolve(["getMsiChecksumType": barkoderView.config?.decoderConfig?.msi.checksum.rawValue as Any])
+        call.resolve(["msiChecksumType": barkoderView.config?.decoderConfig?.msi.checksum.rawValue as Any])
     }
     
     @objc func getCode39ChecksumType(_ call: CAPPluginCall) {
-        call.resolve(["getCode39ChecksumType": barkoderView.config?.decoderConfig?.code39.checksum.rawValue as Any])
+        call.resolve(["code39ChecksumType": barkoderView.config?.decoderConfig?.code39.checksum.rawValue as Any])
     }
     
     @objc func getCode11ChecksumType(_ call: CAPPluginCall) {
-        call.resolve(["getCode11ChecksumType": barkoderView.config?.decoderConfig?.code11.checksum.rawValue as Any])
+        call.resolve(["code11ChecksumType": barkoderView.config?.decoderConfig?.code11.checksum.rawValue as Any])
     }
     
     @objc func getEncodingCharacterSet(_ call: CAPPluginCall) {
-        call.resolve(["getEncodingCharacterSet": barkoderView.config?.decoderConfig?.encodingCharacterSet as Any])
+        call.resolve(["encodingCharacterSet": barkoderView.config?.decoderConfig?.encodingCharacterSet as Any])
     }
     
     @objc func getDecodingSpeed(_ call: CAPPluginCall) {
-        call.resolve(["getDecodingSpeed": barkoderView.config?.decoderConfig?.decodingSpeed.rawValue as Any])
+        call.resolve(["decodingSpeed": barkoderView.config?.decoderConfig?.decodingSpeed.rawValue as Any])
     }
     
     @objc func getFormattingType(_ call: CAPPluginCall) {
-        call.resolve(["getFormattingType": barkoderView.config?.decoderConfig?.formatting.rawValue as Any])
+        call.resolve(["formattingType": barkoderView.config?.decoderConfig?.formatting.rawValue as Any])
     }
     
     @objc func getThreadsLimit(_ call: CAPPluginCall) {
-        call.resolve(["getThreadsLimit": barkoderView.config?.getThreadsLimit() as Any])
+        call.resolve(["threadsLimit": barkoderView.config?.getThreadsLimit() as Any])
     }
     
     @objc func getMaximumResultsCount(_ call: CAPPluginCall) {
-        call.resolve(["getMaximumResultsCount": barkoderView.config?.decoderConfig?.maximumResultsCount as Any])
+        call.resolve(["maximumResultsCount": barkoderView.config?.decoderConfig?.maximumResultsCount as Any])
     }
     
     @objc func getDuplicatesDelayMs(_ call: CAPPluginCall) {
-        call.resolve(["getDuplicatesDelayMs": barkoderView.config?.decoderConfig?.duplicatesDelayMs as Any])
+        call.resolve(["duplicatesDelayMs": barkoderView.config?.decoderConfig?.duplicatesDelayMs as Any])
     }
     
     @objc func isBarcodeTypeEnabled(_ call: CAPPluginCall) {
@@ -989,11 +1047,11 @@ extension BarkoderPlugin {
     }
     
     @objc func getMulticodeCachingEnabled(_ call: CAPPluginCall) {
-        call.resolve(["getMulticodeCachingEnabled": barkoderView.config?.getMulticodeCachingEnabled() as Any])
+        call.resolve(["multicodeCachingEnabled": barkoderView.config?.getMulticodeCachingEnabled() as Any])
     }
     
     @objc func getMulticodeCachingDuration(_ call: CAPPluginCall) {
-        call.resolve(["getMulticodeCachingDuration": barkoderView.config?.getMulticodeCachingDuration() as Any])
+        call.resolve(["multicodeCachingDuration": barkoderView.config?.getMulticodeCachingDuration() as Any])
     }
     
     @objc func isUpcEanDeblurEnabled(_ call: CAPPluginCall) {
@@ -1009,7 +1067,7 @@ extension BarkoderPlugin {
     }
     
     @objc func getThresholdBetweenDuplicatesScans(_ call: CAPPluginCall) {
-        call.resolve(["getThresholdBetweenDuplicatesScans": barkoderView.config?.thresholdBetweenDuplicatesScans as Any])
+        call.resolve(["thresholdBetweenDuplicatesScans": barkoderView.config?.thresholdBetweenDuplicatesScans as Any])
     }
     
     @objc func isVINRestrictionsEnabled(_ call: CAPPluginCall) {
@@ -1017,7 +1075,23 @@ extension BarkoderPlugin {
     }
     
     @objc func getBarkoderResolution(_ call: CAPPluginCall) {
-        call.resolve(["getBarkoderResolution": barkoderView.config?.barkoderResolution.rawValue as Any])
+        call.resolve(["barkoderResolution": barkoderView.config?.barkoderResolution.rawValue as Any])
+    }
+    
+    @objc func isDatamatrixDpmModeEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isDatamatrixDpmModeEnabled": barkoderView.config?.decoderConfig?.datamatrix.dpmMode == 1 ? true : false as Any])
+    }
+    
+    @objc func isQrDpmModeEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isQrDpmModeEnabled": barkoderView.config?.decoderConfig?.qr.dpmMode == 1 ? true : false as Any])
+    }
+    
+    @objc func isQrMicroDpmModeEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isQrMicroDpmModeEnabled": barkoderView.config?.decoderConfig?.qrMicro.dpmMode == 1 ? true : false as Any])
+    }
+    
+    @objc func isIdDocumentMasterChecksumEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isIdDocumentMasterChecksumEnabled": barkoderView.config?.decoderConfig?.idDocument.masterChecksum.rawValue == 1 ? true : false as Any])
     }
     
 }

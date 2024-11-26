@@ -10,7 +10,7 @@
 		</data>
 		<key>Headers/iBarkoder.h</key>
 		<data>
-		y4LghLkEJRgVLQlVkYnX/3Tvad0=
+		jszfXt4mmOmsq71vgpaWY4wwVqM=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -30,11 +30,11 @@
 		</data>
 		<key>float16_384x256.mlmodelc/coremldata.bin</key>
 		<data>
-		3VZ6OZr8KoIv6aRzf06PyZRTPcg=
+		ZTCiFb9WIixOpXv4I2qJjS9dfuk=
 		</data>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<data>
-		kJV02YV0HSEgw6erBoPElTnhLio=
+		pdoq7EamiIFlmwwJVE01TL9ahss=
 		</data>
 		<key>float16_384x256.mlmodelc/model.mil</key>
 		<data>
@@ -50,11 +50,11 @@
 		</data>
 		<key>float16_512x384.mlmodelc/coremldata.bin</key>
 		<data>
-		o033/mQFmOu/CyQGof9aVVPW9p8=
+		PinlMBeBLpNNyJ9yO3+wnH7PW3E=
 		</data>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<data>
-		PoRFQdKR5UpPukMJ5/brZqmKv1k=
+		VBjMeUsS2031XxE748NRHQ+GVsM=
 		</data>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<data>
@@ -86,7 +86,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			GcTDnl9ezl/+n/IowBBiqwCSpuyNwBVzlhjag8uWObw=
+			AP6lUrKs1YTqkHsINX/J86Mk8hshfK3GauwNsYIS7tw=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -114,14 +114,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			k0J80cMHXbSngtbOQguBqIWvrHJvWnSsokme8Llez78=
+			kx/sQn4qIxtjNY5t4C8J+5hrDSHgOtzxofeYPuat0js=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			1sQ2/3WVNqXOqmselYfNvv4YyL9H+AwgmRjReQwTxi4=
+			GhEGI4rq1mo7g2O9g37JNIJER6d01o8lqTwJjErTOCQ=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/model.mil</key>
@@ -149,14 +149,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			juZjnoTjaEwR4qAOcJLlgcsEEx9bp+Rt+j0w1di0K84=
+			6SHZ8f/65NHWM49H+IlL++PiAV/4A4cPn/D0lAyrzUI=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			yHlSSpIiF86AyEe5vbpQgnjuEtf8rZbXJDb9qZZI1Zo=
+			0sqyuvtlP3y1VKjyEiGstDxE/Tlh4opnrHs6L7FR6c0=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/model.mil</key>

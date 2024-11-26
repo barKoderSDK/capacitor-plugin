@@ -13,60 +13,89 @@ import Capacitor
 class BarkoderUtil {
     
     static func barkoderResultsToJson(_ decoderResults: [DecoderResult], thumbnails: [UIImage]?, image: UIImage?) -> [String: Any]? {
-        guard let decoderResult = decoderResults.first else {
-            return nil
-        }
+        var resultsJsonArray = [[String: Any]]()
         
-        var resultJson = [String: Any]()
-
-        resultJson["barcodeType"] = decoderResult.barcodeType.rawValue
-        resultJson["barcodeTypeName"] = decoderResult.barcodeTypeName
-        resultJson["binaryDataAsBase64"] = Data(decoderResult.binaryData).base64EncodedString()
-        resultJson["textualData"] = decoderResult.textualData
-        resultJson["characterSet"] = decoderResult.characterSet
-        
-        if let extraAsDictionary = decoderResult.extra as? [String: Any],
-           !extraAsDictionary.isEmpty,
-           let jsonData = try? JSONSerialization.data(withJSONObject: extraAsDictionary, options: []),
-           let jsonString = String(data: jsonData, encoding: .utf8) {
-            resultJson["extra"] = jsonString
-        }
-        
-        if let image = image,
-           let imageData = image.pngData() {
-            resultJson["resultImageAsBase64"] = imageData.base64EncodedString()
-        }
-        
-        if let thumbnail = thumbnails?.first?.pngData() {
-            resultJson["resultThumbnailAsBase64"] = thumbnail.base64EncodedString()
-        }
-        
-        if let images = decoderResult.images {
-            for image in images {
-                switch image.name {
-                case "main":
-                    if let imageData = image.image.pngData() {
-                        resultJson["mainImageAsBase64"] = imageData.base64EncodedString()
+        // Process each decoder result separately
+        for decoderResult in decoderResults {
+            var resultJson = [String: Any]()
+            
+            resultJson["barcodeType"] = decoderResult.barcodeType.rawValue
+            resultJson["barcodeTypeName"] = decoderResult.barcodeTypeName
+            resultJson["binaryDataAsBase64"] = Data(decoderResult.binaryData).base64EncodedString()
+            resultJson["textualData"] = decoderResult.textualData
+            resultJson["characterSet"] = decoderResult.characterSet
+            
+            if let extraAsDictionary = decoderResult.extra as? [String: Any],
+               !extraAsDictionary.isEmpty,
+               let jsonData = try? JSONSerialization.data(withJSONObject: extraAsDictionary, options: []),
+               let jsonString = String(data: jsonData, encoding: .utf8) {
+                resultJson["extra"] = jsonString
+            }
+            
+            if decoderResult.barcodeTypeName == "MRZ" {
+                if let images = decoderResult.images {
+                    var mrzImagesArray = [[String: Any]]()
+                    
+                    for image in images {
+                        if let imageName = image.name, let imageData = image.image.pngData() {
+                            switch imageName {
+                            case "main", "document", "signature", "picture":
+                                let imageInfo: [String: Any] = [
+                                    "name": imageName,
+                                    "base64": imageData.base64EncodedString()
+                                ]
+                                mrzImagesArray.append(imageInfo)
+                            default:
+                                break
+                            }
+                        }
                     }
-                case "document":
-                    if let imageData = image.image.pngData() {
-                        resultJson["documentImageAsBase64"] = imageData.base64EncodedString()
-                    }
-                case "signature":
-                    if let imageData = image.image.pngData() {
-                        resultJson["signatureImageAsBase64"] = imageData.base64EncodedString()
-                    }
-                case "picture":
-                    if let imageData = image.image.pngData() {
-                        resultJson["pictureImageAsBase64"] = imageData.base64EncodedString()
-                    }
-                default:
-                    break
+                    resultJson["mrzImagesAsBase64"] = mrzImagesArray
                 }
             }
+            
+            resultsJsonArray.append(resultJson)
         }
         
-        return resultJson
+        // Create the main result dictionary, starting with the results array
+        var barkoderResult: [String: Any] = ["decoderResults": resultsJsonArray]
+        
+        // Process main image as base64 if available, outside the loop
+        if let image = image, let imageData = image.pngData() {
+            barkoderResult["resultImageAsBase64"] = imageData.base64EncodedString()
+        }
+        
+        // Process thumbnails as an array of base64 strings if available, outside the loop
+        if let thumbnails = thumbnails {
+            let thumbnailsBase64Array = thumbnails.compactMap { thumbnail in
+                thumbnail.pngData()?.base64EncodedString()
+            }
+            barkoderResult["resultThumbnailsAsBase64"] = thumbnailsBase64Array
+        }
+        return barkoderResult
+    }
+    
+    func printPrettyJSON(jsonString: String) {
+        // Convert JSON String to Data
+        guard let jsonData = jsonString.data(using: .utf8) else {
+            print("Invalid JSON string")
+            return
+        }
+        
+        do {
+            // Deserialize JSON Data to a Dictionary or an Array
+            let jsonObject = try JSONSerialization.jsonObject(with: jsonData, options: [])
+            
+            // Convert to Pretty Printed Data
+            let prettyJSONData = try JSONSerialization.data(withJSONObject: jsonObject, options: .prettyPrinted)
+            
+            // Convert back to String
+            if let prettyJSONString = String(data: prettyJSONData, encoding: .utf8) {
+                print(prettyJSONString)
+            }
+        } catch {
+            print("Error beautifying JSON: \(error)")
+        }
     }
     
     static func parseColor(hexColor: String) -> Int? {

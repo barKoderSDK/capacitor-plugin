@@ -412,6 +412,14 @@
                 "enabled": true,
                 "dpmMode": 1
             },
+            "QR": {
+               "enabled": true,
+               "dpmMode": 1
+             },
+            "QR Micro": {
+               "enabled": true,
+               "dpmMode": 1
+             },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 2,
@@ -671,7 +679,8 @@
     "mrz": {
         "decoder": {
             "ID Document": {
-                "enabled": true
+                "enabled": true,
+                "masterChecksum": 0
             },
             "general": {
                 "maxThreads": 2,
@@ -715,10 +724,12 @@
             "enabled": true
            },
            "QR": {
-            "enabled": true
+            "enabled": true,
+            "dpmMode": 1
            },
            "QR Micro": {
-            "enabled": true
+            "enabled": true,
+            "dpmMode": 1
            },
            "Code 128": {
             "enabled": true,

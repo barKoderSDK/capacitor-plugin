@@ -12,6 +12,7 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(startScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(stopScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(pauseScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(scanImage, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setLocationLineColor, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setLocationLineWidth, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setRoiLineColor, CAPPluginReturnPromise);
@@ -48,7 +49,10 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setMisshaped1DEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setEnableVINRestrictions, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setDatamatrixDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setQrDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setQrMicroDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(configureBarkoder, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setIdDocumentMasterChecksumEnabled, CAPPluginReturnPromise);
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isCloseSessionOnResultEnabled, CAPPluginReturnPromise);
@@ -86,4 +90,8 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(getThresholdBetweenDuplicatesScans, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isVINRestrictionsEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getBarkoderResolution, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isDatamatrixDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isQrDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isQrMicroDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isIdDocumentMasterChecksumEnabled, CAPPluginReturnPromise);
 )

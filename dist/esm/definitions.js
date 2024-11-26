@@ -3,6 +3,7 @@ export var DecodingSpeed;
     DecodingSpeed[DecodingSpeed["fast"] = 0] = "fast";
     DecodingSpeed[DecodingSpeed["normal"] = 1] = "normal";
     DecodingSpeed[DecodingSpeed["slow"] = 2] = "slow";
+    DecodingSpeed[DecodingSpeed["rigorous"] = 3] = "rigorous";
 })(DecodingSpeed || (DecodingSpeed = {}));
 export var FormattingType;
 (function (FormattingType) {
@@ -120,13 +121,23 @@ export class Code11BarcodeConfig {
         this.maxLength = maxLength;
     }
 }
-export class DatamatrixBarcodeConfig {
+export class BarcodeConfigWithDpmMode {
     constructor(config) {
         Object.assign(this, config);
     }
     setLengthRange(minLength, maxLength) {
         this.minLength = minLength;
         this.maxLength = maxLength;
+    }
+}
+export var IdDocumentMasterChecksumType;
+(function (IdDocumentMasterChecksumType) {
+    IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["disabled"] = 0] = "disabled";
+    IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["enabled"] = 1] = "enabled";
+})(IdDocumentMasterChecksumType || (IdDocumentMasterChecksumType = {}));
+export class IdDocumentBarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
     }
 }
 export class GeneralSettings {
@@ -138,6 +149,41 @@ export class GeneralSettings {
         this.roiY = y;
         this.roiWidth = width;
         this.roiHeight = height;
+    }
+}
+export class BarkoderResult {
+    constructor(resultMap) {
+        if (Array.isArray(resultMap['decoderResults'])) {
+            this.decoderResults = resultMap['decoderResults'].map((result) => new DecoderResult(result));
+        }
+        else {
+            this.decoderResults = [];
+        }
+        this.resultThumbnailsAsBase64 = Array.isArray(resultMap['resultThumbnailsAsBase64'])
+            ? resultMap['resultThumbnailsAsBase64']
+                .map(thumbnail => this.convertToBase64(thumbnail))
+                .filter((thumbnail) => thumbnail !== null)
+            : null;
+        this.resultImageAsBase64 = this.convertToBase64(resultMap['resultImageAsBase64']);
+    }
+    convertToBase64(data) {
+        return data ? `data:image/jpeg;base64,${data}` : null;
+    }
+}
+export class DecoderResult {
+    constructor(resultMap) {
+        this.barcodeType = resultMap['barcodeType'];
+        this.barcodeTypeName = resultMap['barcodeTypeName'];
+        this.binaryDataAsBase64 = resultMap['binaryDataAsBase64'];
+        this.textualData = resultMap['textualData'];
+        this.characterSet = resultMap['characterSet'] || null;
+        this.extra = 'extra' in resultMap ? JSON.parse(resultMap['extra']) : null;
+        this.mrzImagesAsBase64 = Array.isArray(resultMap['mrzImagesAsBase64'])
+            ? resultMap['mrzImagesAsBase64'].map((image) => ({
+                name: image.name,
+                base64: `data:image/jpeg;base64,${image.base64}`,
+            }))
+            : [];
     }
 }
 //# sourceMappingURL=definitions.js.map

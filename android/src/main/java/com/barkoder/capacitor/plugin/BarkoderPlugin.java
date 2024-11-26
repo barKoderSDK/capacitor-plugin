@@ -13,6 +13,7 @@ import com.getcapacitor.annotation.CapacitorPlugin;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -25,6 +26,7 @@ import com.barkoder.BarkoderView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.ref.SoftReference;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -74,8 +76,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     public void createBarkoderConfig(Context context) {
         // In order to perform scanning, config property need to be set before
         // If license key is not valid you will receive results with asterisks inside
-        barkoderView.config = new BarkoderConfig(context, licenseKey, licenseCheckResult ->
-                BarkoderLog.i(TAG, "LICENSE RESULT: " + licenseCheckResult.message));
+        barkoderView.config = new BarkoderConfig(context, licenseKey,
+                licenseCheckResult -> BarkoderLog.i(TAG, "LICENSE RESULT: " + licenseCheckResult.message));
     }
 
     @PluginMethod
@@ -94,7 +96,6 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         JSObject barkoderResultsToJS = BarkoderUtil.barkoderResultsToJS(results, thumbnails, image);
         notifyListeners("barkoderResultEvent", barkoderResultsToJS);
     }
-
 
     // - Setters
 
@@ -129,7 +130,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
     @PluginMethod
     public void startScanning(PluginCall call) {
-        barkoderView.startScanning(this);
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.startScanning(this));
         call.resolve();
     }
 
@@ -148,12 +149,38 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void scanImage(PluginCall call) {
+        String base64 = call.getString("base64");
+        if (base64 == null) {
+            return;
+        }
+
+        getBridge().getActivity().runOnUiThread(
+                () -> {
+                    byte[] imageData = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
+                    if (imageData == null) {
+                        return;
+                    }
+
+                    Bitmap image = BitmapFactory.decodeByteArray(imageData, 0, imageData.length);
+                    if (image == null) {
+                        return;
+                    }
+
+                    BarkoderHelper.scanImage(image, barkoderView.config, this, this.barkoderView.getContext());
+                });
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void setLocationLineColor(PluginCall call) {
         String hexColor = call.getString("value");
         if (hexColor == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setLocationLineColor(BarkoderUtil.hexColorToIntColor(hexColor)));
+        getBridge().getActivity().runOnUiThread(
+                () -> barkoderView.config.setLocationLineColor(BarkoderUtil.hexColorToIntColor(hexColor)));
 
         call.resolve();
     }
@@ -175,7 +202,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (hexColor == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setRoiLineColor(BarkoderUtil.hexColorToIntColor(hexColor)));
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.setRoiLineColor(BarkoderUtil.hexColorToIntColor(hexColor)));
 
         call.resolve();
     }
@@ -197,7 +225,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (hexColor == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setRoiOverlayBackgroundColor(BarkoderUtil.hexColorToIntColor(hexColor)));
+        getBridge().getActivity().runOnUiThread(
+                () -> barkoderView.config.setRoiOverlayBackgroundColor(BarkoderUtil.hexColorToIntColor(hexColor)));
 
         call.resolve();
     }
@@ -245,7 +274,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
         getBridge().getActivity().runOnUiThread(() -> {
             try {
-                barkoderView.config.setRegionOfInterest(left.floatValue(), top.floatValue(), width.floatValue(), height.floatValue());
+                barkoderView.config.setRegionOfInterest(left.floatValue(), top.floatValue(), width.floatValue(),
+                        height.floatValue());
 
                 call.resolve();
             } catch (IllegalArgumentException ex) {
@@ -299,7 +329,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (regionOfInterestVisible == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setRegionOfInterestVisible(regionOfInterestVisible));
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.setRegionOfInterestVisible(regionOfInterestVisible));
 
         call.resolve();
     }
@@ -352,7 +383,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         }
 
         // TODO: - Logic about log messages
-//        getBridge().getActivity().runOnUiThread(() -> );
+        // getBridge().getActivity().runOnUiThread(() -> );
 
         call.resolve();
     }
@@ -372,8 +403,9 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     barcodeTypeOrdinal == Barkoder.BarcodeType.Code11.ordinal() ||
                     barcodeTypeOrdinal == Barkoder.BarcodeType.Msi.ordinal()) {
                 try {
-                    final Barkoder.SpecificConfig specificConfig = BarkoderUtil.getSpecificConfigRefFromBarcodeTypeOrdinal(barcodeTypeOrdinal,
-                            barkoderView.config.getDecoderConfig());
+                    final Barkoder.SpecificConfig specificConfig = BarkoderUtil
+                            .getSpecificConfigRefFromBarcodeTypeOrdinal(barcodeTypeOrdinal,
+                                    barkoderView.config.getDecoderConfig());
 
                     if (specificConfig != null) {
                         if (specificConfig.setLengthRange(min, max) == 0)
@@ -398,7 +430,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (characterSet == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().encodingCharacterSet = characterSet);
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().encodingCharacterSet = characterSet);
 
         call.resolve();
     }
@@ -409,7 +442,9 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (decodingSpeedOrdinal == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().decodingSpeed = Barkoder.DecodingSpeed.valueOf(decodingSpeedOrdinal));
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().decodingSpeed = Barkoder.DecodingSpeed
+                        .valueOf(decodingSpeedOrdinal));
 
         call.resolve();
     }
@@ -420,7 +455,9 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (formattingTypeOrdinal == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().formattingType = Barkoder.FormattingType.valueOf(formattingTypeOrdinal));
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().formattingType = Barkoder.FormattingType
+                        .valueOf(formattingTypeOrdinal));
 
         call.resolve();
     }
@@ -434,7 +471,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
         getBridge().getActivity().runOnUiThread(() -> {
             try {
-                barkoderView.config.getDecoderConfig().Code11.checksumType = Barkoder.Code11ChecksumType.valueOf(checksumTypeOrdinal);
+                barkoderView.config.getDecoderConfig().Code11.checksumType = Barkoder.Code11ChecksumType
+                        .valueOf(checksumTypeOrdinal);
 
                 call.resolve();
             } catch (Exception ex) {
@@ -452,7 +490,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
         getBridge().getActivity().runOnUiThread(() -> {
             try {
-                barkoderView.config.getDecoderConfig().Msi.checksumType = Barkoder.MsiChecksumType.valueOf(checksumTypeOrdinal);
+                barkoderView.config.getDecoderConfig().Msi.checksumType = Barkoder.MsiChecksumType
+                        .valueOf(checksumTypeOrdinal);
 
                 call.resolve();
             } catch (Exception ex) {
@@ -470,7 +509,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
         getBridge().getActivity().runOnUiThread(() -> {
             try {
-                barkoderView.config.getDecoderConfig().Code39.checksumType = Barkoder.Code39ChecksumType.valueOf(checksumTypeOrdinal);
+                barkoderView.config.getDecoderConfig().Code39.checksumType = Barkoder.Code39ChecksumType
+                        .valueOf(checksumTypeOrdinal);
 
                 call.resolve();
             } catch (Exception ex) {
@@ -487,7 +527,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
         getBridge().getActivity().runOnUiThread(() -> {
             try {
-                final Barkoder.SpecificConfig specificConfig = BarkoderUtil.getSpecificConfigRefFromBarcodeTypeOrdinal(barcodeTypeOrdinal,
+                final Barkoder.SpecificConfig specificConfig = BarkoderUtil.getSpecificConfigRefFromBarcodeTypeOrdinal(
+                        barcodeTypeOrdinal,
                         barkoderView.config.getDecoderConfig());
 
                 if (specificConfig != null) {
@@ -509,7 +550,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (multicodeCachingEnabled == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> BarkoderConfig.SetMulticodeCachingEnabled(multicodeCachingEnabled));
+        getBridge().getActivity()
+                .runOnUiThread(() -> BarkoderConfig.SetMulticodeCachingEnabled(multicodeCachingEnabled));
 
         call.resolve();
     }
@@ -520,7 +562,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (multicodeCachingDuration == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> BarkoderConfig.SetMulticodeCachingDuration(multicodeCachingDuration));
+        getBridge().getActivity()
+                .runOnUiThread(() -> BarkoderConfig.SetMulticodeCachingDuration(multicodeCachingDuration));
 
         call.resolve();
     }
@@ -531,7 +574,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (maximumResultsCount == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().maximumResultsCount = maximumResultsCount);
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().maximumResultsCount = maximumResultsCount);
 
         call.resolve();
     }
@@ -553,7 +597,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (duplicatesDelayMs == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().duplicatesDelayMs = duplicatesDelayMs);
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().duplicatesDelayMs = duplicatesDelayMs);
 
         call.resolve();
     }
@@ -564,7 +609,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (thresholdBetweenDuplicatesScans == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setThresholdBetweenDuplicatesScans(thresholdBetweenDuplicatesScans));
+        getBridge().getActivity().runOnUiThread(
+                () -> barkoderView.config.setThresholdBetweenDuplicatesScans(thresholdBetweenDuplicatesScans));
 
         call.resolve();
     }
@@ -586,7 +632,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (enabled == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().enableMisshaped1D = enabled);
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().enableMisshaped1D = enabled);
 
         call.resolve();
     }
@@ -597,7 +644,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (enableVINRestrictions == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().enableVINRestrictions = enableVINRestrictions);
+        getBridge().getActivity().runOnUiThread(
+                () -> barkoderView.config.getDecoderConfig().enableVINRestrictions = enableVINRestrictions);
 
         call.resolve();
     }
@@ -608,7 +656,32 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         if (enabled == null) {
             return;
         }
-        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().Datamatrix.dpmMode = enabled);
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().Datamatrix.dpmMode = enabled);
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setQrDpmModeEnabled(PluginCall call) {
+        Boolean enabled = call.getBoolean("enabled");
+        if (enabled == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().QR.dpmMode = enabled);
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setQrMicroDpmModeEnabled(PluginCall call) {
+        Boolean enabled = call.getBoolean("enabled");
+        if (enabled == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().QRMicro.dpmMode = enabled);
 
         call.resolve();
     }
@@ -639,9 +712,17 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
                 String convertedBarkoderConfigAsString = configAsJson.toString();
 
-                String[] keys = {"aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi", "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "idDocument", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"};
+                String[] keys = { "aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar",
+                        "code11", "msi", "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro",
+                        "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25",
+                        "code32", "telepen", "dotcode", "idDocument", "minLength", "maxLength", "threadsLimit", "roiX",
+                        "roiY", "roiWidth", "roiHeight" };
 
-                String[] values = {"Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"};
+                String[] values = { "Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39",
+                        "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417",
+                        "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25",
+                        "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document",
+                        "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h" };
 
                 Map<String, String> map = new HashMap<>();
                 for (int i = 0; i < keys.length; i++) {
@@ -649,7 +730,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                 }
 
                 for (Map.Entry<String, String> entry : map.entrySet()) {
-                    convertedBarkoderConfigAsString = convertedBarkoderConfigAsString.replaceAll(entry.getKey(), entry.getValue());
+                    convertedBarkoderConfigAsString = convertedBarkoderConfigAsString.replaceAll(entry.getKey(),
+                            entry.getValue());
                 }
 
                 JSONObject convertedConfigAsJson = new JSONObject(convertedBarkoderConfigAsString);
@@ -661,6 +743,18 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                 sendErrorReject(BarkoderPluginErrors.BARKODER_CONFIG_IS_NOT_VALID, ex.getMessage(), call);
             }
         });
+    }
+
+    @PluginMethod
+    public void setIdDocumentMasterChecksumEnabled(PluginCall call) {
+        Boolean enabled = call.getBoolean("enabled");
+        if (enabled == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().IDDocument.masterChecksumType = Barkoder.StandardChecksumType.valueOf(enabled ? 1 : 0));
+
+        call.resolve();
     }
 
     // Getters
@@ -675,7 +769,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     @PluginMethod
     public void isCloseSessionOnResultEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("isCloseSessionOnResultEnabled", barkoderView.config.isCloseSessionOnResultEnabled()));
+            call.resolve(toJSObjectBool("isCloseSessionOnResultEnabled",
+                    barkoderView.config.isCloseSessionOnResultEnabled()));
         });
     }
 
@@ -689,14 +784,16 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     @PluginMethod
     public void isLocationInImageResultEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("isLocationInImageResultEnabled", barkoderView.config.isLocationInImageResultEnabled()));
+            call.resolve(toJSObjectBool("isLocationInImageResultEnabled",
+                    barkoderView.config.isLocationInImageResultEnabled()));
         });
     }
 
     @PluginMethod
     public void isLocationInPreviewEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("isLocationInPreviewEnabled", barkoderView.config.isLocationInPreviewEnabled()));
+            call.resolve(
+                    toJSObjectBool("isLocationInPreviewEnabled", barkoderView.config.isLocationInPreviewEnabled()));
         });
     }
 
@@ -731,7 +828,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     @PluginMethod
     public void getVersion(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectString("getVersion", Barkoder.GetVersion()));
+            call.resolve(toJSObjectString("version", Barkoder.GetVersion()));
         });
     }
 
@@ -739,7 +836,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     public void getLocationLineColorHex(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             String hexColor = String.format("#%08X", barkoderView.config.getLocationLineColor());
-            call.resolve(toJSObjectString("getLocationLineColorHex", hexColor));
+            call.resolve(toJSObjectString("locationLineColorHex", hexColor));
         });
     }
 
@@ -747,7 +844,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     public void getRoiLineColorHex(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             String hexColor = String.format("#%08X", barkoderView.config.getRoiLineColor());
-            call.resolve(toJSObjectString("getRoiLineColorHex", hexColor));
+            call.resolve(toJSObjectString("roiLineColorHex", hexColor));
         });
     }
 
@@ -755,28 +852,28 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     public void getRoiOverlayBackgroundColorHex(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             String hexColor = String.format("#%08X", barkoderView.config.getRoiOverlayBackgroundColor());
-            call.resolve(toJSObjectString("getRoiOverlayBackgroundColorHex", hexColor));
+            call.resolve(toJSObjectString("roiOverlayBackgroundColorHex", hexColor));
         });
     }
 
     @PluginMethod
     public void getMaxZoomFactor(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            barkoderView.getMaxZoomFactor(value -> call.resolve(toJSObjectFloat("getMaxZoomFactor", value)));
+            barkoderView.getMaxZoomFactor(value -> call.resolve(toJSObjectFloat("maxZoomFactor", value)));
         });
     }
 
     @PluginMethod
     public void getLocationLineWidth(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectFloat("getLocationLineWidth", barkoderView.config.getLocationLineWidth()));
+            call.resolve(toJSObjectFloat("locationLineWidth", barkoderView.config.getLocationLineWidth()));
         });
     }
 
     @PluginMethod
     public void getRoiLineWidth(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectFloat("getRoiLineWidth", barkoderView.config.getRoiLineWidth()));
+            call.resolve(toJSObjectFloat("roiLineWidth", barkoderView.config.getRoiLineWidth()));
         });
     }
 
@@ -805,12 +902,14 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     barcodeTypeOrdinal == Barkoder.BarcodeType.Code11.ordinal() ||
                     barcodeTypeOrdinal == Barkoder.BarcodeType.Msi.ordinal()) {
                 try {
-                    final Barkoder.SpecificConfig specificConfig = BarkoderUtil.getSpecificConfigRefFromBarcodeTypeOrdinal(barcodeTypeOrdinal,
-                            barkoderView.config.getDecoderConfig());
+                    final Barkoder.SpecificConfig specificConfig = BarkoderUtil
+                            .getSpecificConfigRefFromBarcodeTypeOrdinal(barcodeTypeOrdinal,
+                                    barkoderView.config.getDecoderConfig());
 
                     if (specificConfig != null) {
                         JSObject jsObject = new JSObject();
-                        jsObject.put(specificConfig.typeName, Arrays.asList(specificConfig.minimumLength, specificConfig.maximumLength));
+                        jsObject.put(specificConfig.typeName,
+                                Arrays.asList(specificConfig.minimumLength, specificConfig.maximumLength));
                         call.resolve(jsObject);
                     } else {
                         sendErrorReject(BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED, null, call);
@@ -827,63 +926,71 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     @PluginMethod
     public void getMsiChecksumType(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getMsiChecksumType", barkoderView.config.getDecoderConfig().Msi.checksumType.ordinal()));
+            call.resolve(toJSObjectInt("msiChecksumType",
+                    barkoderView.config.getDecoderConfig().Msi.checksumType.ordinal()));
         });
     }
 
     @PluginMethod
     public void getCode39ChecksumType(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getCode39ChecksumType", barkoderView.config.getDecoderConfig().Code39.checksumType.ordinal()));
+            call.resolve(toJSObjectInt("code39ChecksumType",
+                    barkoderView.config.getDecoderConfig().Code39.checksumType.ordinal()));
         });
     }
 
     @PluginMethod
     public void getCode11ChecksumType(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getCode11ChecksumType", barkoderView.config.getDecoderConfig().Code11.checksumType.ordinal()));
+            call.resolve(toJSObjectInt("code11ChecksumType",
+                    barkoderView.config.getDecoderConfig().Code11.checksumType.ordinal()));
         });
     }
 
     @PluginMethod
     public void getEncodingCharacterSet(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectString("getEncodingCharacterSet", barkoderView.config.getDecoderConfig().encodingCharacterSet));
+            call.resolve(toJSObjectString("encodingCharacterSet",
+                    barkoderView.config.getDecoderConfig().encodingCharacterSet));
         });
     }
 
     @PluginMethod
     public void getDecodingSpeed(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getDecodingSpeed", barkoderView.config.getDecoderConfig().decodingSpeed.ordinal()));
+            call.resolve(
+                    toJSObjectInt("decodingSpeed", barkoderView.config.getDecoderConfig().decodingSpeed.ordinal()));
         });
     }
 
     @PluginMethod
     public void getFormattingType(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getFormattingType", barkoderView.config.getDecoderConfig().formattingType.ordinal()));
+            call.resolve(toJSObjectInt("formattingType",
+                    barkoderView.config.getDecoderConfig().formattingType.ordinal()));
         });
     }
 
     @PluginMethod
     public void getThreadsLimit(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getThreadsLimit", BarkoderConfig.GetThreadsLimit()));
+            call.resolve(toJSObjectInt("threadsLimit", BarkoderConfig.GetThreadsLimit()));
         });
     }
 
     @PluginMethod
     public void getMaximumResultsCount(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getMaximumResultsCount", barkoderView.config.getDecoderConfig().maximumResultsCount));
+            call.resolve(toJSObjectInt("maximumResultsCount",
+                    barkoderView.config.getDecoderConfig().maximumResultsCount));
         });
     }
 
     @PluginMethod
     public void getDuplicatesDelayMs(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getDuplicatesDelayMs", barkoderView.config.getDecoderConfig().duplicatesDelayMs));
+            call.resolve(
+                    toJSObjectInt("duplicatesDelayMs", barkoderView.config.getDecoderConfig().duplicatesDelayMs));
         });
     }
 
@@ -893,7 +1000,8 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         Integer barcodeTypeOrdinal = arguments.getInt("type");
         getBridge().getActivity().runOnUiThread(() -> {
             try {
-                final Barkoder.SpecificConfig specificConfig = BarkoderUtil.getSpecificConfigRefFromBarcodeTypeOrdinal(barcodeTypeOrdinal,
+                final Barkoder.SpecificConfig specificConfig = BarkoderUtil.getSpecificConfigRefFromBarcodeTypeOrdinal(
+                        barcodeTypeOrdinal,
                         barkoderView.config.getDecoderConfig());
 
                 if (specificConfig != null) {
@@ -912,14 +1020,14 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     @PluginMethod
     public void getMulticodeCachingEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("getMulticodeCachingEnabled", BarkoderConfig.IsMulticodeCachingEnabled()));
+            call.resolve(toJSObjectBool("multicodeCachingEnabled", BarkoderConfig.IsMulticodeCachingEnabled()));
         });
     }
 
     @PluginMethod
     public void getMulticodeCachingDuration(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getMulticodeCachingDuration", BarkoderConfig.GetMulticodeCachingDuration()));
+            call.resolve(toJSObjectInt("multicodeCachingDuration", BarkoderConfig.GetMulticodeCachingDuration()));
         });
     }
 
@@ -933,35 +1041,71 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     @PluginMethod
     public void isMisshaped1DEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("isMisshaped1DEnabled", barkoderView.config.getDecoderConfig().enableMisshaped1D));
+            call.resolve(
+                    toJSObjectBool("isMisshaped1DEnabled", barkoderView.config.getDecoderConfig().enableMisshaped1D));
         });
     }
 
     @PluginMethod
     public void isBarcodeThumbnailOnResultEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("isBarcodeThumbnailOnResultEnabled", barkoderView.config.getThumbnailOnResulEnabled()));
+            call.resolve(toJSObjectBool("isBarcodeThumbnailOnResultEnabled",
+                    barkoderView.config.getThumbnailOnResulEnabled()));
         });
     }
 
     @PluginMethod
     public void getThresholdBetweenDuplicatesScans(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getThresholdBetweenDuplicatesScans", barkoderView.config.getThresholdBetweenDuplicatesScans()));
+            call.resolve(toJSObjectInt("thresholdBetweenDuplicatesScans",
+                    barkoderView.config.getThresholdBetweenDuplicatesScans()));
         });
     }
 
     @PluginMethod
     public void isVINRestrictionsEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectBool("isVINRestrictionsEnabled", barkoderView.config.getDecoderConfig().enableVINRestrictions));
+            call.resolve(toJSObjectBool("isVINRestrictionsEnabled",
+                    barkoderView.config.getDecoderConfig().enableVINRestrictions));
         });
     }
 
     @PluginMethod
     public void getBarkoderResolution(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(toJSObjectInt("getBarkoderResolution", barkoderView.config.getBarkoderResolution().ordinal()));
+            call.resolve(toJSObjectInt("barkoderResolution", barkoderView.config.getBarkoderResolution().ordinal()));
+        });
+    }
+
+    @PluginMethod
+    public void isDatamatrixDpmModeEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isDatamatrixDpmModeEnabled",
+                    barkoderView.config.getDecoderConfig().Datamatrix.dpmMode));
+        });
+    }
+
+    @PluginMethod
+    public void isQrDpmModeEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isQrDpmModeEnabled",
+                    barkoderView.config.getDecoderConfig().QR.dpmMode));
+        });
+    }
+
+    @PluginMethod
+    public void isQrMicroDpmModeEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isQrMicroDpmModeEnabled",
+                    barkoderView.config.getDecoderConfig().QRMicro.dpmMode));
+        });
+    }
+
+    @PluginMethod
+    public void isIdDocumentMasterChecksumEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isIdDocumentMasterChecksumEnabled",
+                    barkoderView.config.getDecoderConfig().IDDocument.masterChecksumType.ordinal() == 1));
         });
     }
 

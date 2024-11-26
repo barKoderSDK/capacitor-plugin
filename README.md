@@ -95,18 +95,39 @@ npm install “/your-path/myApp/barkoder-capacitor”
 
 In your ts file:
 ```bash
-import { Barkoder, BarcodeType } from 'barkoder-capacitor'
+import { Barkoder, BarkoderResult, BarcodeType } from 'barkoder-capacitor'
 
 @ViewChild('barkoderView') barkoderViewRef!: ElementRef;
 
    constructor() {
-     Barkoder.addListener('barkoderResultEvent', (barkoderResult: any) => {
+     Barkoder.addListener('barkoderResultEvent', (data: any) => {
        console.log('barkoderResultEvent was fired');
-       console.log("Result: " + barkoderResult.textualData);
+       const barkoderResult = new BarkoderResult(data);
+       if (barkoderResult) { 
+         barkoderResult.decoderResults.forEach((result, index) => {
+            console.log(`Result ${index + 1}: ${result.textualData}`);
+         });
+       }
      });
    }
 
+   ngAfterViewInit() {
+    Barkoder.registerWithLicenseKey({ licenseKey: "YOUR_LICENSE_KEY" });
+    setTimeout(() => {
+      const boundingRect = this.barkoderViewRef.nativeElement.getBoundingClientRect() as DOMRect;
+      Barkoder.initialize({
+        width: Math.round(boundingRect.width),
+        height: Math.round(boundingRect.height),
+        x: Math.round(boundingRect.x),
+        y: Math.round(boundingRect.y),
+      });
+      this.setBarkoderSettings();
+      this.setActiveBarcodeTypes();
+    }, 200);
+  }
+
    setActiveBarcodeTypes() {
+    Barkoder.setBarcodeTypeEnabled({ type: BarcodeType.qr, enabled: true });
     Barkoder.setBarcodeTypeEnabled({ type: BarcodeType.code128, enabled: true });
     Barkoder.setBarcodeTypeEnabled({ type: BarcodeType.ean13, enabled: true });
    }
@@ -114,26 +135,12 @@ import { Barkoder, BarcodeType } from 'barkoder-capacitor'
    setBarkoderSettings() {
     Barkoder.setRegionOfInterestVisible({value: true});
     Barkoder.setRegionOfInterest({ left: 5, top: 5, width: 90, height: 90 });
-    Barkoder.setCloseSessionOnResultEnabled({ enabled: false});
     Barkoder.setImageResultEnabled({ enabled: true});
     Barkoder.setBarcodeThumbnailOnResultEnabled({ enabled: true});
-    Barkoder.setBeepOnSuccessEnabled({ enabled: true});
-    Barkoder.setPinchToZoomEnabled({ enabled: true});
-    Barkoder.setZoomFactor({ value: 2.0 });
    }
 
-   async startScanning() {
-      const boundingRect = this.barkoderViewRef.nativeElement.getBoundingClientRect() as DOMRect;
-      Barkoder.registerWithLicenseKey({licenseKey: "your_license_key"});
-      await Barkoder.initialize({
-         width: Math.round(boundingRect.width),
-         height: Math.round(boundingRect.height),
-         x: Math.round(boundingRect.x),
-         y: Math.round(boundingRect.y),
-      });
-      this.setBarkoderSettings();
-      this.setActiveBarcodeTypes();
-      Barkoder.startScanning();
+   startScanning() {
+    Barkoder.startScanning();
    }
 ```
 
@@ -163,6 +170,7 @@ In your scss file set the desired barkoderView height:
 * [`startScanning()`](#startscanning)
 * [`stopScanning()`](#stopscanning)
 * [`pauseScanning()`](#pausescanning)
+* [`scanImage(...)`](#scanimage)
 * [`setLocationLineColor(...)`](#setlocationlinecolor)
 * [`setLocationLineWidth(...)`](#setlocationlinewidth)
 * [`setRoiLineColor(...)`](#setroilinecolor)
@@ -198,7 +206,10 @@ In your scss file set the desired barkoderView height:
 * [`setMisshaped1DEnabled(...)`](#setmisshaped1denabled)
 * [`setEnableVINRestrictions(...)`](#setenablevinrestrictions)
 * [`setDatamatrixDpmModeEnabled(...)`](#setdatamatrixdpmmodeenabled)
+* [`setQrDpmModeEnabled(...)`](#setqrdpmmodeenabled)
+* [`setQrMicroDpmModeEnabled(...)`](#setqrmicrodpmmodeenabled)
 * [`configureBarkoder(...)`](#configurebarkoder)
+* [`setIdDocumentMasterChecksumEnabled(...)`](#setiddocumentmasterchecksumenabled)
 * [`isFlashAvailable()`](#isflashavailable)
 * [`isCloseSessionOnResultEnabled()`](#isclosesessiononresultenabled)
 * [`isImageResultEnabled()`](#isimageresultenabled)
@@ -235,6 +246,10 @@ In your scss file set the desired barkoderView height:
 * [`getThresholdBetweenDuplicatesScans()`](#getthresholdbetweenduplicatesscans)
 * [`isVINRestrictionsEnabled()`](#isvinrestrictionsenabled)
 * [`getBarkoderResolution()`](#getbarkoderresolution)
+* [`isDatamatrixDpmModeEnabled()`](#isdatamatrixdpmmodeenabled)
+* [`isQrDpmModeEnabled()`](#isqrdpmmodeenabled)
+* [`isQrMicroDpmModeEnabled()`](#isqrmicrodpmmodeenabled)
+* [`isIdDocumentMasterChecksumEnabled()`](#isiddocumentmasterchecksumenabled)
 
 </docgen-index>
 
@@ -349,6 +364,23 @@ pauseScanning() => Promise<any>
 ```
 
 Temporarily suspends the barcode scanning process, pausing the camera feed without completely stopping the scanning session
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### scanImage(...)
+
+```typescript
+scanImage(options: { base64: string; }) => Promise<any>
+```
+
+Scan barcodes from base64 string image
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ base64: string; }</code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -948,6 +980,40 @@ Sets whether the Direct Part Marking (DPM) mode for Datamatrix barcodes is enabl
 --------------------
 
 
+### setQrDpmModeEnabled(...)
+
+```typescript
+setQrDpmModeEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+Sets whether the Direct Part Marking (DPM) mode for QR barcodes is enabled.
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setQrMicroDpmModeEnabled(...)
+
+```typescript
+setQrMicroDpmModeEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+Sets whether the Direct Part Marking (DPM) mode for QR Micro barcodes is enabled.
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### configureBarkoder(...)
 
 ```typescript
@@ -959,6 +1025,23 @@ Configures the Barkoder functionality based on the provided configuration
 | Param         | Type                                             |
 | ------------- | ------------------------------------------------ |
 | **`options`** | <code>{ barkoderConfig: BarkoderConfig; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setIdDocumentMasterChecksumEnabled(...)
+
+```typescript
+setIdDocumentMasterChecksumEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+Sets whether Master checksum should be requiered when scanning ID Documents
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1435,6 +1518,58 @@ getBarkoderResolution() => Promise<any>
 ```
 
 Retrieves the resolution for barcode scanning
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isDatamatrixDpmModeEnabled()
+
+```typescript
+isDatamatrixDpmModeEnabled() => Promise<any>
+```
+
+Retrieves whether Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isQrDpmModeEnabled()
+
+```typescript
+isQrDpmModeEnabled() => Promise<any>
+```
+
+Retrieves whether Direct Part Marking (DPM) mode for QR barcodes is enabled
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isQrMicroDpmModeEnabled()
+
+```typescript
+isQrMicroDpmModeEnabled() => Promise<any>
+```
+
+Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enabled
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isIdDocumentMasterChecksumEnabled()
+
+```typescript
+isIdDocumentMasterChecksumEnabled() => Promise<any>
+```
+
+Retrieves whether Master checksum is enabled when scanning ID Documents
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 

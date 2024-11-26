@@ -110,6 +110,22 @@
         "slug": "pausescanning"
       },
       {
+        "name": "scanImage",
+        "signature": "(options: { base64: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ base64: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Scan barcodes from base64 string image",
+        "complexTypes": [],
+        "slug": "scanimage"
+      },
+      {
         "name": "setLocationLineColor",
         "signature": "(options: { value: string; }) => Promise<any>",
         "parameters": [
@@ -670,6 +686,38 @@
         "slug": "setdatamatrixdpmmodeenabled"
       },
       {
+        "name": "setQrDpmModeEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether the Direct Part Marking (DPM) mode for QR barcodes is enabled.",
+        "complexTypes": [],
+        "slug": "setqrdpmmodeenabled"
+      },
+      {
+        "name": "setQrMicroDpmModeEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether the Direct Part Marking (DPM) mode for QR Micro barcodes is enabled.",
+        "complexTypes": [],
+        "slug": "setqrmicrodpmmodeenabled"
+      },
+      {
         "name": "configureBarkoder",
         "signature": "(options: { barkoderConfig: BarkoderConfig; }) => Promise<any>",
         "parameters": [
@@ -686,6 +734,22 @@
           "BarkoderConfig"
         ],
         "slug": "configurebarkoder"
+      },
+      {
+        "name": "setIdDocumentMasterChecksumEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether Master checksum should be requiered when scanning ID Documents",
+        "complexTypes": [],
+        "slug": "setiddocumentmasterchecksumenabled"
       },
       {
         "name": "isFlashAvailable",
@@ -1058,6 +1122,46 @@
         "docs": "Retrieves the resolution for barcode scanning",
         "complexTypes": [],
         "slug": "getbarkoderresolution"
+      },
+      {
+        "name": "isDatamatrixDpmModeEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled",
+        "complexTypes": [],
+        "slug": "isdatamatrixdpmmodeenabled"
+      },
+      {
+        "name": "isQrDpmModeEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether Direct Part Marking (DPM) mode for QR barcodes is enabled",
+        "complexTypes": [],
+        "slug": "isqrdpmmodeenabled"
+      },
+      {
+        "name": "isQrMicroDpmModeEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enabled",
+        "complexTypes": [],
+        "slug": "isqrmicrodpmmodeenabled"
+      },
+      {
+        "name": "isIdDocumentMasterChecksumEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether Master checksum is enabled when scanning ID Documents",
+        "complexTypes": [],
+        "slug": "isiddocumentmasterchecksumenabled"
       }
     ],
     "properties": []

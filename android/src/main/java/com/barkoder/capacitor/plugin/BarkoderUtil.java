@@ -7,70 +7,91 @@ import android.util.Base64;
 
 import com.barkoder.Barkoder;
 import com.barkoder.BarkoderLog;
+import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.ByteArrayOutputStream;
+import java.util.Objects;
 
 public class BarkoderUtil {
     private static final String TAG = BarkoderUtil.class.getSimpleName();
 
     static JSObject barkoderResultsToJS(Barkoder.Result[] results, Bitmap[] thumbnails, Bitmap resultImage) {
-        JSObject resultJS = new JSObject();
+        JSObject barkoderResultJS = new JSObject();
+        JSArray resultsArray = new JSArray();
 
-        try {
-            resultJS.put("barcodeType", results[0].barcodeType.ordinal());
-            resultJS.put("barcodeTypeName", results[0].barcodeTypeName);
-            resultJS.put("binaryDataAsBase64", Base64.encodeToString(results[0].binaryData, Base64.NO_WRAP));
-            resultJS.put("textualData", results[0].textualData);
+        // Process each decoder result separately
+        for (Barkoder.Result decoderResult : results) {
+            JSObject resultJS = new JSObject();
 
-            if (!TextUtils.isEmpty(results[0].characterSet))
-                resultJS.put("characterSet", results[0].characterSet);
+            resultJS.put("barcodeType", decoderResult.barcodeType.ordinal());
+            resultJS.put("barcodeTypeName", decoderResult.barcodeTypeName);
+            resultJS.put("binaryDataAsBase64", Base64.encodeToString(decoderResult.binaryData, Base64.NO_WRAP));
+            resultJS.put("textualData", decoderResult.textualData);
 
-            if (results[0].extra != null && results[0].extra.length > 0) {
-                JSONObject extraAsJson = new JSONObject();
-                for (Barkoder.BKKeyValue item : results[0].extra) {
-                    extraAsJson.put(item.key, item.value);
-                }
-                resultJS.put("extra", extraAsJson.toString());
+            if (!TextUtils.isEmpty(decoderResult.characterSet)) {
+                resultJS.put("characterSet", decoderResult.characterSet);
             }
 
-            if (resultImage != null)
-                resultJS.put("resultImageAsBase64", bitmapImageToBase64(resultImage));
+            // Add "extra" if available and not empty
+            if (decoderResult.extra != null && decoderResult.extra.length > 0) {
+                JSObject extraJson = new JSObject();
+                for (Barkoder.BKKeyValue item : decoderResult.extra) {
+                    extraJson.put(item.key, item.value);
+                }
+                resultJS.put("extra", extraJson.toString());
+            }
 
-            if (thumbnails[0] != null)
-                resultJS.put("resultThumbnailAsBase64", bitmapImageToBase64(thumbnails[0]));
+            // Add mrzImagesAsBase64
+            if (Objects.equals(decoderResult.barcodeTypeName, "MRZ")) {
+                if (decoderResult.images != null) {
+                    JSArray mrzImagesArray = new JSArray();
 
-            if (results[0].images != null) {
-                for (Barkoder.BKImageDescriptor image : results[0].images) {
-                    if (image != null && image.image != null) {
-                        switch (image.name) {
-                            case "main":
-                                resultJS.put("mainImageAsBase64", bitmapImageToBase64(image.image));
-                                break;
-                            case "document":
-                                resultJS.put("documentImageAsBase64", bitmapImageToBase64(image.image));
-                                break;
-                            case "signature":
-                                resultJS.put("signatureImageAsBase64", bitmapImageToBase64(image.image));
-                                break;
-                            case "picture":
-                                resultJS.put("pictureImageAsBase64", bitmapImageToBase64(image.image));
-                                break;
-                            default:
-                                break;
+                    for (Barkoder.BKImageDescriptor image : decoderResult.images) {
+                        if (image != null && image.image != null) {
+                            switch (image.name) {
+                                case "main":
+                                case "document":
+                                case "signature":
+                                case "picture":
+                                    JSObject imageInfo = new JSObject();
+                                    imageInfo.put("name", image.name);
+                                    imageInfo.put("base64", bitmapImageToBase64(image.image));
+                                    mrzImagesArray.put(imageInfo);
+                                    break;
+                            }
                         }
                     }
+                    resultJS.put("mrzImagesAsBase64", mrzImagesArray);
                 }
             }
 
-        } catch (JSONException ex) {
-            BarkoderLog.d(TAG, ex.getMessage());
+            resultsArray.put(resultJS);
         }
 
-        return resultJS;
+        // Add decoderResults to the final JSON object
+        barkoderResultJS.put("decoderResults", resultsArray);
+
+        // Process thumbnails as an array of base64 strings if available, outside the loop
+        if (thumbnails != null) {
+            JSArray thumbnailsBase64Array = new JSArray();
+            for (Bitmap thumbnail : thumbnails) {
+                if (thumbnail != null) {
+                    thumbnailsBase64Array.put(bitmapImageToBase64(thumbnail));
+                }
+            }
+            barkoderResultJS.put("resultThumbnailsAsBase64", thumbnailsBase64Array);
+        }
+
+        // Process the main result image as base64 if available, outside the loop
+        if (resultImage != null) {
+            barkoderResultJS.put("resultImageAsBase64", bitmapImageToBase64(resultImage));
+        }
+
+        return barkoderResultJS;
     }
 
     private static String bitmapImageToBase64(Bitmap bitmapImage) {

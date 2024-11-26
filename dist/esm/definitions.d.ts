@@ -35,6 +35,12 @@ export interface BarkoderPlugin extends Plugin {
      */
     pauseScanning(): Promise<any>;
     /**
+   * Scan barcodes from base64 string image
+   */
+    scanImage(options: {
+        base64: string;
+    }): Promise<any>;
+    /**
      * Sets the color of the lines used to indicate the location of detected barcodes on the camera feed
      */
     setLocationLineColor(options: {
@@ -248,10 +254,28 @@ export interface BarkoderPlugin extends Plugin {
         enabled: boolean;
     }): Promise<any>;
     /**
+   * Sets whether the Direct Part Marking (DPM) mode for QR barcodes is enabled.
+   */
+    setQrDpmModeEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    /**
+   * Sets whether the Direct Part Marking (DPM) mode for QR Micro barcodes is enabled.
+   */
+    setQrMicroDpmModeEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    /**
      * Configures the Barkoder functionality based on the provided configuration
      */
     configureBarkoder(options: {
         barkoderConfig: BarkoderConfig;
+    }): Promise<any>;
+    /**
+  *  Sets whether Master checksum should be requiered when scanning ID Documents
+  */
+    setIdDocumentMasterChecksumEnabled(options: {
+        enabled: boolean;
     }): Promise<any>;
     /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
@@ -401,11 +425,28 @@ export interface BarkoderPlugin extends Plugin {
      * Retrieves the resolution for barcode scanning
      */
     getBarkoderResolution(): Promise<any>;
+    /**
+   * Retrieves whether Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled
+   */
+    isDatamatrixDpmModeEnabled(): Promise<any>;
+    /**
+  * Retrieves whether Direct Part Marking (DPM) mode for QR barcodes is enabled
+  */
+    isQrDpmModeEnabled(): Promise<any>;
+    /**
+  * Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enabled
+  */
+    isQrMicroDpmModeEnabled(): Promise<any>;
+    /**
+  * Retrieves whether Master checksum is enabled when scanning ID Documents
+  */
+    isIdDocumentMasterChecksumEnabled(): Promise<any>;
 }
 export declare enum DecodingSpeed {
     fast = 0,
     normal = 1,
-    slow = 2
+    slow = 2,
+    rigorous = 3
 }
 export declare enum FormattingType {
     disabled = 0,
@@ -487,8 +528,8 @@ export declare class BarkoderConfig {
 export declare class DekoderConfig {
     aztec?: BarcodeConfig;
     aztecCompact?: BarcodeConfig;
-    qr?: BarcodeConfig;
-    qrMicro?: BarcodeConfig;
+    qr?: BarcodeConfigWithDpmMode;
+    qrMicro?: BarcodeConfigWithDpmMode;
     code128?: BarcodeConfigWithLength;
     code93?: BarcodeConfigWithLength;
     code39?: Code39BarcodeConfig;
@@ -502,7 +543,7 @@ export declare class DekoderConfig {
     ean8?: BarcodeConfig;
     pdf417?: BarcodeConfig;
     pdf417Micro?: BarcodeConfig;
-    datamatrix?: DatamatrixBarcodeConfig;
+    datamatrix?: BarcodeConfigWithDpmMode;
     code25?: BarcodeConfig;
     interleaved25?: BarcodeConfig;
     itf14?: BarcodeConfig;
@@ -513,7 +554,7 @@ export declare class DekoderConfig {
     code32?: BarcodeConfig;
     telepen?: BarcodeConfig;
     dotcode?: BarcodeConfig;
-    idDocument?: BarcodeConfig;
+    idDocument?: IdDocumentBarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
 }
@@ -552,13 +593,22 @@ export declare class Code11BarcodeConfig {
     constructor(config: Partial<Code11BarcodeConfig>);
     setLengthRange(minLength: number, maxLength: number): void;
 }
-export declare class DatamatrixBarcodeConfig {
+export declare class BarcodeConfigWithDpmMode {
     enabled?: boolean;
     dpmMode?: number;
     minLength?: number;
     maxLength?: number;
-    constructor(config: Partial<DatamatrixBarcodeConfig>);
+    constructor(config: Partial<BarcodeConfigWithDpmMode>);
     setLengthRange(minLength: number, maxLength: number): void;
+}
+export declare enum IdDocumentMasterChecksumType {
+    disabled = 0,
+    enabled = 1
+}
+export declare class IdDocumentBarcodeConfig {
+    enabled?: boolean;
+    masterChecksum?: IdDocumentMasterChecksumType;
+    constructor(config: Partial<IdDocumentBarcodeConfig>);
 }
 export declare class GeneralSettings {
     threadsLimit?: number;
@@ -577,4 +627,24 @@ export declare class GeneralSettings {
     enableMisshaped1D?: number;
     constructor(config: Partial<GeneralSettings>);
     setROI(x: number, y: number, width: number, height: number): void;
+}
+export declare class BarkoderResult {
+    decoderResults: DecoderResult[];
+    resultThumbnailsAsBase64?: string[] | null;
+    resultImageAsBase64?: string | null;
+    constructor(resultMap: Record<string, any>);
+    private convertToBase64;
+}
+export declare class DecoderResult {
+    barcodeType: number;
+    barcodeTypeName: string;
+    binaryDataAsBase64: string;
+    textualData: string;
+    characterSet?: string | null;
+    extra?: Record<string, any> | null;
+    mrzImagesAsBase64?: {
+        name: string;
+        base64: string;
+    }[];
+    constructor(resultMap: Record<string, any>);
 }

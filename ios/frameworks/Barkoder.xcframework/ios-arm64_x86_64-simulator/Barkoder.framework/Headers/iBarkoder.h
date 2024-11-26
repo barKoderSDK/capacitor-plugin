@@ -266,6 +266,7 @@ typedef enum  {
 //==========================================================================
 @interface QRConfig : SpecificConfig
 @property (nonatomic, readwrite) bool multiPartMerge;
+@property (nonatomic, readwrite) int dpmMode;
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
@@ -273,6 +274,7 @@ typedef enum  {
 // QRMicro Config
 //==========================================================================
 @interface QRMicroConfig : SpecificConfig
+@property (nonatomic, readwrite) int dpmMode;
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
