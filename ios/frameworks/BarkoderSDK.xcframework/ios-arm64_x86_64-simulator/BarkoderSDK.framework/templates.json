@@ -111,6 +111,15 @@
                 "minimumLength": 0,
                 "maximumLength": 0
             },
+            "Databar 14": {
+             "enabled": true
+            },
+            "Databar Limited": {
+             "enabled": true
+            },
+            "Databar Expanded": {
+             "enabled": true
+            },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 1,
@@ -126,11 +135,12 @@
                 "enableMisshaped1D": false,
                 "upcEanDeblur": false,
                 "enableVINRestrictions": false,
-                "thresholdBetweenDuplicatesScans": 5
+                "thresholdBetweenDuplicatesScans": 5,
+                "enableComposite": 0
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -171,7 +181,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -212,7 +222,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -240,6 +250,15 @@
             "Ean-8": {
                 "enabled": true
             },
+            "Databar 14": {
+             "enabled": true
+            },
+            "Databar Limited": {
+             "enabled": false
+            },
+            "Databar Expanded": {
+             "enabled": false
+            },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 2,
@@ -259,7 +278,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -322,6 +341,15 @@
                 "minimumLength": 0,
                 "maximumLength": 0
             },
+            "Databar 14": {
+             "enabled": true
+            },
+            "Databar Limited": {
+             "enabled": true
+            },
+            "Databar Expanded": {
+             "enabled": true
+            },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 2,
@@ -341,7 +369,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -392,7 +420,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -439,7 +467,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -492,11 +520,11 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
-        "closeSessionOnResultEnabled": false,
+        "closeSessionOnResultEnabled": true,
         "imageResultEnabled": false,
         "locationInImageResultEnabled": false,
         "locationInPreviewEnabled": true,
@@ -530,7 +558,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -643,6 +671,15 @@
 				"minimumLength": 0,
 				"maximumLength": 0
 			},
+            "Databar 14": {
+             "enabled": true
+            },
+            "Databar Limited": {
+             "enabled": true
+            },
+            "Databar Expanded": {
+             "enabled": true
+            },
 			"general": {
 				"maxThreads": 2,
 				"decodingSpeed": 2,
@@ -662,7 +699,7 @@
 			}
 		},
 		"locationLineColor": -65536,
-		"locationLineWidth": 4,
+		"locationLineWidth": 2,
 		"roiLineColor": -65536,
 		"roiLineWidth": 3,
 		"roiOverlayBackgroundColor": 1711276032,
@@ -701,7 +738,7 @@
             }
         },
         "locationLineColor": -65536,
-        "locationLineWidth": 4,
+        "locationLineWidth": 2,
         "roiLineColor": -65536,
         "roiLineWidth": 3,
         "roiOverlayBackgroundColor": 1711276032,
@@ -863,6 +900,77 @@
           "beepOnSuccessEnabled": true,
           "vibrateOnSuccessEnabled": false,
           "locationInImageResultEnabled": true,
-          "locationLineWidth": 7
-         }
+          "locationLineWidth": 8
+    },
+    "composite": {
+        "decoder": {
+            "Upc-A": {
+                "enabled": true
+            },
+            "Upc-E": {
+                "enabled": true
+            },
+            "Upc-E1": {
+                "enabled": false
+            },
+            "Ean-13": {
+                "enabled": true
+            },
+            "Ean-8": {
+                "enabled": true
+            },
+            "Code 128": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "PDF 417": {
+                "enabled": true
+            },
+            "PDF 417 Micro": {
+                "enabled": true
+            },
+            "Databar 14": {
+                "enabled": true
+            },
+            "Databar Limited": {
+                "enabled": true
+            },
+            "Databar Expanded": {
+                "enabled": true
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 2,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": true,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5,
+                "enableComposite": 1
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 2,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": false
+    },
 }

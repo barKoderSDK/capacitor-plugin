@@ -567,6 +567,12 @@ extension BarkoderPlugin {
                         decoderConfig.dotcode.enabled = enabled
                     case IDDocument:
                         decoderConfig.idDocument.enabled = enabled
+                    case Databar14:
+                        decoderConfig.databar14.enabled = enabled
+                    case DatabarLimited:
+                        decoderConfig.databarLimited.enabled = enabled
+                    case DatabarExpanded:
+                        decoderConfig.databarExpanded.enabled = enabled
                     default:
                         call.reject(
                             BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -755,13 +761,17 @@ extension BarkoderPlugin {
                 barkoderConfigAsDictionary["roiOverlayBackgroundColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
             }
             
+            if let colorHexCode = barkoderConfigAsDictionary["scanningIndicatorColor"] as? String {
+                barkoderConfigAsDictionary["scanningIndicatorColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+            
             let jsonData = try JSONSerialization.data(withJSONObject: barkoderConfigAsDictionary as Any, options: .prettyPrinted)
             
             var convertedBarkoderConfigAsString = String(data: jsonData, encoding: .utf8) ?? ""
             
-            zip(["aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi",  "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "idDocument", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"],
+            zip(["aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi",  "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "idDocument", "databar14", "databarLimited", "databarExpanded", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"],
                 
-                ["Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"]).forEach {
+                ["Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document", "Databar 14", "Databar Limited", "Databar Expanded", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"]).forEach {
                 convertedBarkoderConfigAsString = convertedBarkoderConfigAsString.replacingOccurrences(of: $0, with: $1, options: .literal)
             }
             
@@ -790,6 +800,127 @@ extension BarkoderPlugin {
                 call.resolve()
             }
         }
+    }
+    
+    @objc func setUPCEexpandToUPCA(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.upcE.expandToUPCA = enabled
+        }
+        
+        call.resolve()
+    }
+
+    @objc func setUPCE1expandToUPCA(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.upcE1.expandToUPCA = enabled
+        }
+        
+        call.resolve()
+    }
+
+    @objc func setCustomOption(_ call: CAPPluginCall) {
+        guard let option = call.getString("option"),
+              let value = call.getInt("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.setcustomOption(option, value: Int32(value))
+        }
+        
+        call.resolve()
+    }
+
+    @objc func setScanningIndicatorColor(_ call: CAPPluginCall) {
+        guard let hexColor = call.getString("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.scanningIndicatorColor = UIColor(hexString: hexColor, call: call)
+        }
+        
+        call.resolve()
+    }
+
+    @objc func setScanningIndicatorWidth(_ call: CAPPluginCall) {
+        guard let width = call.getFloat("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.scanningIndicatorWidth = width
+        }
+        
+        call.resolve()
+    }
+
+    @objc func setScanningIndicatorAnimation(_ call: CAPPluginCall) {
+        guard let animation = call.getInt("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.scanningIndicatorAnimation = animation
+        }
+        
+        call.resolve()
+    }
+
+    @objc func setScanningIndicatorAlwaysVisible(_ call: CAPPluginCall) {
+        guard let visible = call.getBool("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.scanningIndicatorAlwaysVisible = visible
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setDynamicExposure(_ call: CAPPluginCall) {
+        guard let dynamicExposure = call.getInt("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.setDynamicExposure(dynamicExposure)
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setCentricFocusAndExposure(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.setCentricFocusAndExposure(enabled)
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setEnableComposite(_ call: CAPPluginCall) {
+        guard let enableComposite = call.getInt("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.enableComposite = Int32(enableComposite)
+        }
+        
+        call.resolve()
     }
     
 }
@@ -1037,6 +1168,12 @@ extension BarkoderPlugin {
                 call.resolve([decoderConfig.dotcode.typeName(): decoderConfig.dotcode.enabled])
             case IDDocument:
                 call.resolve([decoderConfig.idDocument.typeName(): decoderConfig.idDocument.enabled])
+            case Databar14:
+                call.resolve([decoderConfig.databar14.typeName(): decoderConfig.databar14.enabled])
+            case DatabarLimited:
+                call.resolve([decoderConfig.databarLimited.typeName(): decoderConfig.databarLimited.enabled])
+            case DatabarExpanded:
+                call.resolve([decoderConfig.databarExpanded.typeName(): decoderConfig.databarExpanded.enabled])
             default:
                 call.reject(
                     BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -1092,6 +1229,22 @@ extension BarkoderPlugin {
     
     @objc func isIdDocumentMasterChecksumEnabled(_ call: CAPPluginCall) {
         call.resolve(["isIdDocumentMasterChecksumEnabled": barkoderView.config?.decoderConfig?.idDocument.masterChecksum.rawValue == 1 ? true : false as Any])
+    }
+    
+    @objc func getScanningIndicatorColorHex(_ call: CAPPluginCall) {
+        call.resolve(["scanningIndicatorColorHex": barkoderView.config?.scanningIndicatorColor.toHex() as Any])
+    }
+    
+    @objc func getScanningIndicatorWidth(_ call: CAPPluginCall) {
+        call.resolve(["scanningIndicatorWidth": barkoderView.config?.scanningIndicatorWidth as Any])
+    }
+    
+    @objc func getScanningIndicatorAnimation(_ call: CAPPluginCall) {
+        call.resolve(["scanningIndicatorAnimation": barkoderView.config?.scanningIndicatorAnimation as Any])
+    }
+    
+    @objc func isScanningIndicatorAlwaysVisible(_ call: CAPPluginCall) {
+        call.resolve(["isScanningIndicatorAlwaysVisible": barkoderView.config?.scanningIndicatorAlwaysVisible as Any])
     }
     
 }

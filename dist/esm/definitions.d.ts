@@ -278,6 +278,67 @@ export interface BarkoderPlugin extends Plugin {
         enabled: boolean;
     }): Promise<any>;
     /**
+   * Sets whether the UPC-E barcodes should be expanded to UPC-A format
+   */
+    setUPCEexpandToUPCA(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Sets whether the UPC-E1 barcodes should be expanded to UPC-A format
+     */
+    setUPCE1expandToUPCA(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Sets a custom option with a string option and integer value
+     */
+    setCustomOption(options: {
+        option: string;
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the color of the lines outlining the scanning indicator for barcode scanning on the camera feed
+     */
+    setScanningIndicatorColor(options: {
+        value: string;
+    }): Promise<any>;
+    /**
+     * Sets the width of the scanning indicator for barcode scanning on the camera feed
+     */
+    setScanningIndicatorWidth(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the animation of the scanning indicator for barcode scanning on the camera feed
+     */
+    setScanningIndicatorAnimation(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the scanning indicator to be always shown on the camera feed
+     */
+    setScanningIndicatorAlwaysVisible(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+   * Sets the camera's exposure dynamically based on the provided intensity, cycling through predefined compensation values
+   */
+    setDynamicExposure(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+ * Set the camera to use the center of the viewfinder for focus and exposure
+ */
+    setCentricFocusAndExposure(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+   * Sets wheter Composite Mode should be enabled when scanning
+   */
+    setEnableComposite(options: {
+        value: number;
+    }): Promise<any>;
+    /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
      */
     isFlashAvailable(): Promise<any>;
@@ -441,6 +502,22 @@ export interface BarkoderPlugin extends Plugin {
   * Retrieves whether Master checksum is enabled when scanning ID Documents
   */
     isIdDocumentMasterChecksumEnabled(): Promise<any>;
+    /**
+   * Retrieves the hexadecimal color code representing the line color of the scanning indicator on the camera preview
+   */
+    getScanningIndicatorColorHex(): Promise<any>;
+    /**
+   * Retrieves the current width setting for the scanning indicator on the camera preview
+   */
+    getScanningIndicatorWidth(): Promise<any>;
+    /**
+   * Retrieves the current animation setting for the scanning indicator on the camera preview
+   */
+    getScanningIndicatorAnimation(): Promise<any>;
+    /**
+   * Retrieves if the scanning indicator is set to be always visible on the camera preview
+   */
+    isScanningIndicatorAlwaysVisible(): Promise<any>;
 }
 export declare enum DecodingSpeed {
     fast = 0,
@@ -473,8 +550,9 @@ export declare enum Code11ChecksumType {
     double = 2
 }
 export declare enum BarkoderResolution {
-    normal = 0,
-    high = 1
+    HD = 0,
+    FHD = 1,
+    UHD = 2
 }
 export declare enum BarcodeType {
     aztec = 0,
@@ -505,7 +583,10 @@ export declare enum BarcodeType {
     code32 = 25,
     telepen = 26,
     dotcode = 27,
-    idDocument = 28
+    idDocument = 28,
+    databar14 = 29,
+    databarLimited = 30,
+    databarExpanded = 31
 }
 export declare class BarkoderConfig {
     locationLineColor?: string;
@@ -513,6 +594,10 @@ export declare class BarkoderConfig {
     roiLineColor?: string;
     roiLineWidth?: number;
     roiOverlayBackgroundColor?: string;
+    scanningIndicatorColor?: string;
+    scanningIndicatorWidth?: number;
+    scanningIndicatorAnimation?: number;
+    scanningIndicatorAlwaysVisible?: boolean;
     closeSessionOnResultEnabled?: boolean;
     imageResultEnabled?: boolean;
     locationInImageResultEnabled?: boolean;
@@ -555,6 +640,9 @@ export declare class DekoderConfig {
     telepen?: BarcodeConfig;
     dotcode?: BarcodeConfig;
     idDocument?: IdDocumentBarcodeConfig;
+    databar14?: BarcodeConfig;
+    databarLimited?: BarcodeConfig;
+    databarExpanded?: BarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
 }

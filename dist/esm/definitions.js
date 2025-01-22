@@ -35,8 +35,9 @@ export var Code11ChecksumType;
 })(Code11ChecksumType || (Code11ChecksumType = {}));
 export var BarkoderResolution;
 (function (BarkoderResolution) {
-    BarkoderResolution[BarkoderResolution["normal"] = 0] = "normal";
-    BarkoderResolution[BarkoderResolution["high"] = 1] = "high";
+    BarkoderResolution[BarkoderResolution["HD"] = 0] = "HD";
+    BarkoderResolution[BarkoderResolution["FHD"] = 1] = "FHD";
+    BarkoderResolution[BarkoderResolution["UHD"] = 2] = "UHD";
 })(BarkoderResolution || (BarkoderResolution = {}));
 export var BarcodeType;
 (function (BarcodeType) {
@@ -69,6 +70,9 @@ export var BarcodeType;
     BarcodeType[BarcodeType["telepen"] = 26] = "telepen";
     BarcodeType[BarcodeType["dotcode"] = 27] = "dotcode";
     BarcodeType[BarcodeType["idDocument"] = 28] = "idDocument";
+    BarcodeType[BarcodeType["databar14"] = 29] = "databar14";
+    BarcodeType[BarcodeType["databarLimited"] = 30] = "databarLimited";
+    BarcodeType[BarcodeType["databarExpanded"] = 31] = "databarExpanded";
 })(BarcodeType || (BarcodeType = {}));
 export class BarkoderConfig {
     constructor(config) {

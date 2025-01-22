@@ -710,18 +710,23 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     configAsJson.put("locationLineColor", BarkoderUtil.hexColorToIntColor(colorAsHex));
                 }
 
+                if (configAsJson.has("scanningIndicatorColor")) {
+                    String colorAsHex = configAsJson.getString("scanningIndicatorColor");
+                    configAsJson.put("scanningIndicatorColor", BarkoderUtil.hexColorToIntColor(colorAsHex));
+                }
+
                 String convertedBarkoderConfigAsString = configAsJson.toString();
 
                 String[] keys = { "aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar",
                         "code11", "msi", "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro",
                         "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25",
-                        "code32", "telepen", "dotcode", "idDocument", "minLength", "maxLength", "threadsLimit", "roiX",
+                        "code32", "telepen", "dotcode", "idDocument", "databar14", "databarLimited", "databarExpanded", "minLength", "maxLength", "threadsLimit", "roiX",
                         "roiY", "roiWidth", "roiHeight" };
 
                 String[] values = { "Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39",
                         "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417",
                         "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25",
-                        "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document",
+                        "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document", "Databar 14", "Databar Limited", "Databar Expanded",
                         "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h" };
 
                 Map<String, String> map = new HashMap<>();
@@ -753,6 +758,119 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         }
         getBridge().getActivity()
                 .runOnUiThread(() -> barkoderView.config.getDecoderConfig().IDDocument.masterChecksumType = Barkoder.StandardChecksumType.valueOf(enabled ? 1 : 0));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setUPCEexpandToUPCA(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().UpcE.expandToUPCA = value);
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setUPCE1expandToUPCA(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().UpcE1.expandToUPCA = value);
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setCustomOption(PluginCall call) throws JSONException {
+        JSONObject arguments = call.getData();
+        String option = arguments.getString("option");
+        Integer value = arguments.getInt("value");
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            Barkoder.SetCustomOption(barkoderView.config.getDecoderConfig(), option, value);
+        });
+    }
+
+    @PluginMethod
+    public void setScanningIndicatorColor(PluginCall call) {
+        String hexColor = call.getString("value");
+        if (hexColor == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.setScanningIndicatorColor(BarkoderUtil.hexColorToIntColor(hexColor)));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setScanningIndicatorWidth(PluginCall call) {
+        Float lineWidth = call.getFloat("value");
+        if (lineWidth == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setScanningIndicatorWidth(lineWidth));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setScanningIndicatorAnimation(PluginCall call) {
+        Integer animation = call.getInt("value");
+        if (animation == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setScanningIndicatorAnimation(animation));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setScanningIndicatorAlwaysVisible(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.setScanningIndicatorAlwaysVisible(value));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setDynamicExposure(PluginCall call) {
+        Integer dynamicExposure = call.getInt("value");
+        if (dynamicExposure == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.setDynamicExposure(dynamicExposure));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setCentricFocusAndExposure(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.setCentricFocusAndExposure(value));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setEnableComposite(PluginCall call) {
+        Integer value = call.getInt("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().enableComposite = value);
 
         call.resolve();
     }
@@ -1106,6 +1224,36 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         getBridge().getActivity().runOnUiThread(() -> {
             call.resolve(toJSObjectBool("isIdDocumentMasterChecksumEnabled",
                     barkoderView.config.getDecoderConfig().IDDocument.masterChecksumType.ordinal() == 1));
+        });
+    }
+
+    @PluginMethod
+    public void getScanningIndicatorColorHex(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            String hexColor = String.format("#%08X", barkoderView.config.getScanningIndicatorColor());
+            call.resolve(toJSObjectString("scanningIndicatorColorHex", hexColor));
+        });
+    }
+
+    @PluginMethod
+    public void getScanningIndicatorWidth(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectFloat("scanningIndicatorWidth", barkoderView.config.getScanningIndicatorWidth()));
+        });
+    }
+
+    @PluginMethod
+    public void getScanningIndicatorAnimation(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectInt("scanningIndicatorAnimation", barkoderView.config.getScanningIndicatorAnimation()));
+        });
+    }
+
+    @PluginMethod
+    public void isScanningIndicatorAlwaysVisible(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isScanningIndicatorAlwaysVisible",
+                    barkoderView.config.isScanningIndicatorAlwaysVisible()));
         });
     }
 

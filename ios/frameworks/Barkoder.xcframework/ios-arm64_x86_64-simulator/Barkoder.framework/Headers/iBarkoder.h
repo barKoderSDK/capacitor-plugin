@@ -63,7 +63,10 @@ typedef enum {
     Code32,
     Telepen,
     Dotcode,
-    IDDocument
+    IDDocument,
+    Databar14,
+    DatabarLimited,
+    DatabarExpanded
 } DecoderType;
 
 
@@ -351,6 +354,27 @@ typedef enum  {
 @end
 
 //==========================================================================
+// Databar 14 Config
+//==========================================================================
+@interface Databar14Config : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Databar Limited Config
+//==========================================================================
+@interface DatabarLimitedConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Databar Expanded Config
+//==========================================================================
+@interface DatabarExpandedConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
 // ID Document Config
 //==========================================================================
 @interface IDDocumentConfig : SpecificConfig
@@ -426,6 +450,9 @@ typedef enum {
 @property (nonatomic, readonly, retain) PDF417Config* _Nonnull PDF417;
 @property (nonatomic, readonly, retain) PDF417MicroConfig* _Nonnull PDF417Micro;
 @property (nonatomic, readonly, retain) DatamatrixConfig* _Nonnull datamatrix;
+@property (nonatomic, readonly, retain) Databar14Config* _Nonnull databar14;
+@property (nonatomic, readonly, retain) DatabarLimitedConfig* _Nonnull databarLimited;
+@property (nonatomic, readonly, retain) DatabarExpandedConfig* _Nonnull databarExpanded;
 
 @property (nonatomic, readonly, retain) IDDocumentConfig* _Nonnull idDocument;
 
@@ -437,6 +464,7 @@ typedef enum {
 @property (nonatomic, readwrite) bool upcEanDeblur;
 @property (nonatomic, readwrite) bool enableMisshaped1D;
 @property (nonatomic, readwrite) bool enableVINRestrictions;
+@property (nonatomic, readwrite) int enableComposite;
 
 
 -(void)setEnabledDecoders:(NSArray* _Nonnull)decoders;
@@ -454,7 +482,7 @@ typedef enum {
 @end
 
 //==========================================================================
-// DecoderResult
+// BKDecoderResult
 //==========================================================================
 typedef enum {
     BT_Aztec = 0,
@@ -488,7 +516,10 @@ typedef enum {
     BT_ID_Document,
     BT_ID_Picture,
     BT_ID_MRZ2,
-    BT_ID_MRZ3
+    BT_ID_MRZ3,
+    BT_Databar14,
+    BT_DatabarLimited,
+    BT_DatabarExpanded
     
 } BarcodeType;
 
@@ -523,7 +554,7 @@ UIImage
 
 @end
 
-@interface DecoderResult : NSObject {
+@interface BKDecoderResult : NSObject {
     CGPoint location[4];
 }
 
@@ -547,6 +578,7 @@ UIImage
 
 
 @end
+@compatibility_alias DecoderResult BKDecoderResult;
 
 
 //==========================================================================
@@ -557,14 +589,14 @@ UIImage
 +(bool) IsStringVINCompliant: (NSString *) VINString checkLevel: (int) checkLevel;
 +(bool) IsDecoderBusy;
 
-+(NSArray<DecoderResult*>*)decodeImage:(Config*)config imageRef:(void*)imageRef imageWidth:(int)width imageHeight:(int) height;
-+(NSArray<DecoderResult*>*)decodeImage:(Config*)config imageRef:(void*)imageRef imageWidth:(int)width imageHeight:(int) height colorFormat: (ColorFormat) colorFormat;
++(NSArray<BKDecoderResult*>*)decodeImage:(Config*)config imageRef:(void*)imageRef imageWidth:(int)width imageHeight:(int) height;
++(NSArray<BKDecoderResult*>*)decodeImage:(Config*)config imageRef:(void*)imageRef imageWidth:(int)width imageHeight:(int) height colorFormat: (ColorFormat) colorFormat;
 
-+(NSArray<DecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height;
-+(NSArray<DecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height colorFormat: (ColorFormat) colorFormat;
++(NSArray<BKDecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height;
++(NSArray<BKDecoderResult*>*)decodeImageInMemory:(Config*)config imagePixels:(uint8_t*)pixels imageWidth:(int)width imageHeight:(int) height colorFormat: (ColorFormat) colorFormat;
 
-+(int) decodeImageAsync:(Config*)config image: (Image*) image callback:(void (^)(NSArray<DecoderResult*>*, Image*)) callback;
-+(int) decodeSampleBufferAsync:(Config*)config sampleBuffer:(CMSampleBufferRef)sampleBuffer callback:(void (^)(NSArray<DecoderResult*>*, CMSampleBufferRef)) callback;
++(int) decodeImageAsync:(Config*)config image: (Image*) image callback:(void (^)(NSArray<BKDecoderResult*>*, Image*)) callback;
++(int) decodeSampleBufferAsync:(Config*)config sampleBuffer:(CMSampleBufferRef)sampleBuffer callback:(void (^)(NSArray<BKDecoderResult*>*, CMSampleBufferRef)) callback;
 + (unsigned char*)CGImageToPixels:(CGImageRef) image;
 + (CGImageRef) CGImageFromPixels:(const char*)pixels width:(int)width height:(int)height;
 #if TARGET_OS_IOS

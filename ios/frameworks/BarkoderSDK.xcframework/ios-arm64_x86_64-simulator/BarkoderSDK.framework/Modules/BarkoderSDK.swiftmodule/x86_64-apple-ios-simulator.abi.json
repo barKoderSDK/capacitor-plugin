@@ -23,6 +23,13 @@
       },
       {
         "kind": "Import",
+        "name": "Barkoder",
+        "printedName": "Barkoder",
+        "declKind": "Import",
+        "moduleName": "BarkoderSDK"
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -107,13 +114,13 @@
               {
                 "kind": "TypeNominal",
                 "name": "Array",
-                "printedName": "[Barkoder.DecoderResult]",
+                "printedName": "[Barkoder.BKDecoderResult]",
                 "children": [
                   {
                     "kind": "TypeNominal",
-                    "name": "DecoderResult",
-                    "printedName": "Barkoder.DecoderResult",
-                    "usr": "c:objc(cs)DecoderResult"
+                    "name": "BKDecoderResult",
+                    "printedName": "Barkoder.BKDecoderResult",
+                    "usr": "c:objc(cs)BKDecoderResult"
                   }
                 ],
                 "usr": "s:Sa"
@@ -157,7 +164,7 @@
             ],
             "declKind": "Func",
             "usr": "c:@M@BarkoderSDK@objc(pl)BarkoderResultDelegate(im)scanningFinished:thumbnails:image:",
-            "mangledName": "$s11BarkoderSDK0A14ResultDelegateP16scanningFinished_10thumbnails5imageySaySo07DecoderC0CG_SaySo7UIImageCGSgAKSgtF",
+            "mangledName": "$s11BarkoderSDK0A14ResultDelegateP16scanningFinished_10thumbnails5imageySaySo09BKDecoderC0CG_SaySo7UIImageCGSgAKSgtF",
             "moduleName": "BarkoderSDK",
             "genericSig": "<τ_0_0 where τ_0_0 : BarkoderSDK.BarkoderResultDelegate>",
             "sugared_genericSig": "<Self where Self : BarkoderSDK.BarkoderResultDelegate>",
@@ -528,6 +535,382 @@
                 "declKind": "Accessor",
                 "usr": "s:11BarkoderSDK0A6ConfigC25roiOverlayBackgroundColorSo7UIColorCvM",
                 "mangledName": "$s11BarkoderSDK0A6ConfigC25roiOverlayBackgroundColorSo7UIColorCvM",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "scanningIndicatorColor",
+            "printedName": "scanningIndicatorColor",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UIColor",
+                "printedName": "UIKit.UIColor",
+                "usr": "c:objc(cs)UIColor"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(py)scanningIndicatorColor",
+            "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorColorSo7UIColorCvp",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIColor",
+                    "printedName": "UIKit.UIColor",
+                    "usr": "c:objc(cs)UIColor"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)scanningIndicatorColor",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorColorSo7UIColorCvg",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UIColor",
+                    "printedName": "UIKit.UIColor",
+                    "usr": "c:objc(cs)UIColor"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)setScanningIndicatorColor:",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorColorSo7UIColorCvs",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11BarkoderSDK0A6ConfigC22scanningIndicatorColorSo7UIColorCvM",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorColorSo7UIColorCvM",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "scanningIndicatorWidth",
+            "printedName": "scanningIndicatorWidth",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Float",
+                "printedName": "Swift.Float",
+                "usr": "s:Sf"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(py)scanningIndicatorWidth",
+            "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorWidthSfvp",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Float",
+                    "printedName": "Swift.Float",
+                    "usr": "s:Sf"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)scanningIndicatorWidth",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorWidthSfvg",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Float",
+                    "printedName": "Swift.Float",
+                    "usr": "s:Sf"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)setScanningIndicatorWidth:",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorWidthSfvs",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11BarkoderSDK0A6ConfigC22scanningIndicatorWidthSfvM",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC22scanningIndicatorWidthSfvM",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "scanningIndicatorAnimation",
+            "printedName": "scanningIndicatorAnimation",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(py)scanningIndicatorAnimation",
+            "mangledName": "$s11BarkoderSDK0A6ConfigC26scanningIndicatorAnimationSivp",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)scanningIndicatorAnimation",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC26scanningIndicatorAnimationSivg",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)setScanningIndicatorAnimation:",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC26scanningIndicatorAnimationSivs",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11BarkoderSDK0A6ConfigC26scanningIndicatorAnimationSivM",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC26scanningIndicatorAnimationSivM",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "accessorKind": "_modify"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "scanningIndicatorAlwaysVisible",
+            "printedName": "scanningIndicatorAlwaysVisible",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(py)scanningIndicatorAlwaysVisible",
+            "mangledName": "$s11BarkoderSDK0A6ConfigC30scanningIndicatorAlwaysVisibleSbvp",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "HasInitialValue",
+              "HasStorage",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)scanningIndicatorAlwaysVisible",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC30scanningIndicatorAlwaysVisibleSbvg",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "get"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Set",
+                "printedName": "Set()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Bool",
+                    "printedName": "Swift.Bool",
+                    "usr": "s:Sb"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderConfig(im)setScanningIndicatorAlwaysVisible:",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC30scanningIndicatorAlwaysVisibleSbvs",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "accessorKind": "set"
+              },
+              {
+                "kind": "Accessor",
+                "name": "Modify",
+                "printedName": "Modify()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Void",
+                    "printedName": "()"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:11BarkoderSDK0A6ConfigC30scanningIndicatorAlwaysVisibleSbvM",
+                "mangledName": "$s11BarkoderSDK0A6ConfigC30scanningIndicatorAlwaysVisibleSbvM",
                 "moduleName": "BarkoderSDK",
                 "implicit": true,
                 "accessorKind": "_modify"
@@ -2389,6 +2772,16 @@
       },
       {
         "kind": "Import",
+        "name": "AVFoundation",
+        "printedName": "AVFoundation",
+        "declKind": "Import",
+        "moduleName": "BarkoderSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "Import",
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
@@ -2454,8 +2847,8 @@
             "children": [
               {
                 "kind": "Var",
-                "name": "normal",
-                "printedName": "normal",
+                "name": "HD",
+                "printedName": "HD",
                 "children": [
                   {
                     "kind": "TypeFunc",
@@ -2485,18 +2878,19 @@
                   }
                 ],
                 "declKind": "EnumElement",
-                "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO6normalyA2EmF",
-                "mangledName": "$s11BarkoderSDK0A4ViewC0A10ResolutionO6normalyA2EmF",
+                "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO2HDyA2EmF",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A10ResolutionO2HDyA2EmF",
                 "moduleName": "BarkoderSDK",
                 "declAttributes": [
+                  "RawDocComment",
                   "ObjC"
                 ],
                 "fixedbinaryorder": 0
               },
               {
                 "kind": "Var",
-                "name": "high",
-                "printedName": "high",
+                "name": "FHD",
+                "printedName": "FHD",
                 "children": [
                   {
                     "kind": "TypeFunc",
@@ -2526,13 +2920,56 @@
                   }
                 ],
                 "declKind": "EnumElement",
-                "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO4highyA2EmF",
-                "mangledName": "$s11BarkoderSDK0A4ViewC0A10ResolutionO4highyA2EmF",
+                "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO3FHDyA2EmF",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A10ResolutionO3FHDyA2EmF",
                 "moduleName": "BarkoderSDK",
                 "declAttributes": [
+                  "RawDocComment",
                   "ObjC"
                 ],
                 "fixedbinaryorder": 1
+              },
+              {
+                "kind": "Var",
+                "name": "UHD",
+                "printedName": "UHD",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(BarkoderSDK.BarkoderView.BarkoderResolution.Type) -> BarkoderSDK.BarkoderView.BarkoderResolution",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BarkoderResolution",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderResolution",
+                        "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderResolution.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "BarkoderResolution",
+                            "printedName": "BarkoderSDK.BarkoderView.BarkoderResolution",
+                            "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:11BarkoderSDK0A4ViewC0A10ResolutionO3UHDyA2EmF",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A10ResolutionO3UHDyA2EmF",
+                "moduleName": "BarkoderSDK",
+                "declAttributes": [
+                  "RawDocComment",
+                  "ObjC"
+                ],
+                "fixedbinaryorder": 2
               },
               {
                 "kind": "Constructor",
@@ -3137,6 +3574,96 @@
             "declKind": "Func",
             "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderView(im)isFlashAvailable:",
             "mangledName": "$s11BarkoderSDK0A4ViewC16isFlashAvailableyyySbcF",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setDynamicExposure",
+            "printedName": "setDynamicExposure(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Int",
+                "printedName": "Swift.Int",
+                "usr": "s:Si"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderView(im)setDynamicExposure:",
+            "mangledName": "$s11BarkoderSDK0A4ViewC18setDynamicExposureyySiF",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setCentricFocusAndExposure",
+            "printedName": "setCentricFocusAndExposure(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderView(im)setCentricFocusAndExposure:",
+            "mangledName": "$s11BarkoderSDK0A4ViewC26setCentricFocusAndExposureyySbF",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setVideoStabilization",
+            "printedName": "setVideoStabilization(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Bool",
+                "printedName": "Swift.Bool",
+                "usr": "s:Sb"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderView(im)setVideoStabilization:",
+            "mangledName": "$s11BarkoderSDK0A4ViewC21setVideoStabilizationyySbF",
             "moduleName": "BarkoderSDK",
             "declAttributes": [
               "Preconcurrency",
@@ -4083,6 +4610,47 @@
                   "ObjC"
                 ],
                 "fixedbinaryorder": 11
+              },
+              {
+                "kind": "Var",
+                "name": "composite",
+                "printedName": "composite",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate.Type) -> BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BarkoderConfigTemplate",
+                        "printedName": "BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate",
+                        "usr": "s:11BarkoderSDK0A6HelperC0A14ConfigTemplateO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "BarkoderConfigTemplate",
+                            "printedName": "BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate",
+                            "usr": "s:11BarkoderSDK0A6HelperC0A14ConfigTemplateO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:11BarkoderSDK0A6HelperC0A14ConfigTemplateO9compositeyA2EmF",
+                "mangledName": "$s11BarkoderSDK0A6HelperC0A14ConfigTemplateO9compositeyA2EmF",
+                "moduleName": "BarkoderSDK",
+                "declAttributes": [
+                  "ObjC"
+                ],
+                "fixedbinaryorder": 12
               },
               {
                 "kind": "Constructor",
@@ -5122,7 +5690,42 @@
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderOverlay\/BarkoderRoiView.swift",
       "kind": "BooleanLiteral",
-      "offset": 205,
+      "offset": 335,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderOverlay\/BarkoderRoiView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 377,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderOverlay\/BarkoderRoiView.swift",
+      "kind": "StringLiteral",
+      "offset": 518,
+      "length": 24,
+      "value": "\"scanningIndicatorLayer\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderOverlay\/BarkoderRoiView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 660,
+      "length": 4,
+      "value": "true"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderOverlay\/BarkoderRoiView.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1018,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarcodeScannerStats\/BarcodeScannerStats.swift",
+      "kind": "BooleanLiteral",
+      "offset": 393,
       "length": 5,
       "value": "false"
     },
@@ -5166,175 +5769,238 @@
       "kind": "IntegerLiteral",
       "offset": 378,
       "length": 1,
-      "value": "3"
+      "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
       "offset": 384,
-      "length": 2,
-      "value": "30"
+      "length": 1,
+      "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 395,
-      "length": 2,
-      "value": "94"
+      "offset": 394,
+      "length": 3,
+      "value": "100"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
       "offset": 407,
-      "length": 2,
-      "value": "40"
+      "length": 3,
+      "value": "100"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "BooleanLiteral",
-      "offset": 453,
+      "offset": 454,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "BooleanLiteral",
-      "offset": 503,
+      "offset": 504,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "BooleanLiteral",
-      "offset": 555,
+      "offset": 556,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "BooleanLiteral",
-      "offset": 608,
+      "offset": 609,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "BooleanLiteral",
+      "offset": 663,
       "length": 4,
       "value": "true"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "BooleanLiteral",
-      "offset": 661,
-      "length": 4,
-      "value": "true"
-    },
-    {
-      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
-      "kind": "BooleanLiteral",
-      "offset": 711,
+      "offset": 713,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 771,
+      "offset": 773,
       "length": 1,
       "value": "5"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 841,
+      "offset": 843,
       "length": 3,
       "value": "0.8"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 853,
+      "offset": 855,
       "length": 14,
       "value": "0.003921568627"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 875,
+      "offset": 877,
       "length": 13,
       "value": "0.09803921569"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 897,
+      "offset": 899,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 942,
+      "offset": 944,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 1002,
+      "offset": 1004,
       "length": 3,
       "value": "0.8"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 1014,
+      "offset": 1016,
       "length": 14,
       "value": "0.003921568627"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 1036,
+      "offset": 1038,
       "length": 13,
       "value": "0.09803921569"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 1058,
+      "offset": 1060,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "FloatLiteral",
+      "offset": 1082,
+      "length": 3,
+      "value": "0.5"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 1098,
+      "offset": 1124,
       "length": 1,
       "value": "2"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 1171,
+      "offset": 1197,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 1181,
+      "offset": 1207,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "IntegerLiteral",
-      "offset": 1190,
+      "offset": 1216,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
       "kind": "FloatLiteral",
-      "offset": 1200,
+      "offset": 1226,
       "length": 12,
       "value": "0.3950227649"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "FloatLiteral",
+      "offset": 1308,
+      "length": 3,
+      "value": "0.8"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "FloatLiteral",
+      "offset": 1320,
+      "length": 14,
+      "value": "0.003921568627"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "FloatLiteral",
+      "offset": 1342,
+      "length": 13,
+      "value": "0.09803921569"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1364,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "FloatLiteral",
+      "offset": 1386,
+      "length": 3,
+      "value": "0.5"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1438,
+      "length": 1,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1489,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigDefaults.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1545,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
@@ -5542,247 +6208,303 @@
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1238,
+      "offset": 1178,
+      "length": 12,
+      "value": "\"Databar 14\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1221,
+      "length": 17,
+      "value": "\"Databar Limited\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1270,
+      "length": 18,
+      "value": "\"Databar Expanded\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 1374,
       "length": 9,
       "value": "\"decoder\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1271,
+      "offset": 1407,
       "length": 9,
       "value": "\"general\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1310,
+      "offset": 1446,
       "length": 15,
       "value": "\"decodingSpeed\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1347,
+      "offset": 1483,
       "length": 7,
       "value": "\"roi_x\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1376,
+      "offset": 1512,
       "length": 7,
       "value": "\"roi_y\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1405,
+      "offset": 1541,
       "length": 7,
       "value": "\"roi_w\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1434,
+      "offset": 1570,
       "length": 7,
       "value": "\"roi_h\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1466,
+      "offset": 1602,
       "length": 10,
       "value": "\"checksum\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1507,
+      "offset": 1643,
       "length": 16,
       "value": "\"masterChecksum\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1550,
+      "offset": 1686,
       "length": 12,
       "value": "\"maxThreads\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1586,
+      "offset": 1722,
       "length": 9,
       "value": "\"enabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1625,
+      "offset": 1761,
       "length": 15,
       "value": "\"minimumLength\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1670,
+      "offset": 1806,
       "length": 15,
       "value": "\"maximumLength\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1719,
+      "offset": 1855,
       "length": 19,
       "value": "\"locationLineColor\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1772,
+      "offset": 1908,
       "length": 19,
       "value": "\"locationLineWidth\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1820,
+      "offset": 1956,
       "length": 14,
       "value": "\"roiLineColor\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1863,
+      "offset": 1999,
       "length": 14,
       "value": "\"roiLineWidth\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1921,
+      "offset": 2052,
+      "length": 24,
+      "value": "\"scanningIndicatorColor\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2115,
+      "length": 24,
+      "value": "\"scanningIndicatorWidth\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2182,
+      "length": 28,
+      "value": "\"scanningIndicatorAnimation\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2257,
+      "length": 32,
+      "value": "\"scanningIndicatorAlwaysVisible\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 2333,
       "length": 29,
       "value": "\"closeSessionOnResultEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 1985,
+      "offset": 2397,
       "length": 20,
       "value": "\"imageResultEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2050,
+      "offset": 2462,
       "length": 30,
       "value": "\"locationInImageResultEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2121,
+      "offset": 2533,
       "length": 26,
       "value": "\"locationInPreviewEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2182,
+      "offset": 2594,
       "length": 20,
       "value": "\"pinchToZoomEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2239,
+      "offset": 2651,
       "length": 22,
       "value": "\"beepOnSuccessEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2301,
+      "offset": 2713,
       "length": 25,
       "value": "\"vibrateOnSuccessEnabled\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2366,
+      "offset": 2778,
       "length": 25,
       "value": "\"regionOfInterestVisible\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2426,
+      "offset": 2838,
       "length": 20,
       "value": "\"barkoderResolution\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2477,
+      "offset": 2889,
       "length": 16,
       "value": "\"formattingType\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2530,
+      "offset": 2942,
       "length": 22,
       "value": "\"encodingCharacterSet\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2586,
+      "offset": 2998,
       "length": 19,
       "value": "\"duplicatesDelayMs\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2641,
+      "offset": 3053,
       "length": 21,
       "value": "\"maximumResultsCount\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2686,
+      "offset": 3098,
       "length": 9,
       "value": "\"dpmMode\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2729,
+      "offset": 3141,
       "length": 19,
       "value": "\"enableMisshaped1D\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2777,
+      "offset": 3189,
       "length": 14,
       "value": "\"upcEanDeblur\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2829,
+      "offset": 3241,
       "length": 23,
       "value": "\"enableVINRestrictions\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
       "kind": "StringLiteral",
-      "offset": 2900,
+      "offset": 3312,
       "length": 33,
       "value": "\"thresholdBetweenDuplicatesScans\""
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/Config\/BarkoderConfigHelper.swift",
+      "kind": "StringLiteral",
+      "offset": 3377,
+      "length": 17,
+      "value": "\"enableComposite\""
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderError.swift",
@@ -5890,86 +6612,135 @@
       "value": "\"Config not set\""
     },
     {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BeepPlayer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 172,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BeepPlayer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 240,
+      "length": 1,
+      "value": "8"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BeepPlayer.swift",
+      "kind": "IntegerLiteral",
+      "offset": 273,
+      "length": 1,
+      "value": "0"
+    },
+    {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 372,
+      "offset": 449,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 728,
+      "offset": 805,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "FloatLiteral",
-      "offset": 764,
+      "offset": 841,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "FloatLiteral",
-      "offset": 795,
+      "offset": 872,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 828,
+      "offset": 905,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 867,
+      "offset": 944,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "FloatLiteral",
-      "offset": 913,
+      "offset": 990,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "FloatLiteral",
-      "offset": 949,
+      "offset": 1026,
       "length": 3,
       "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
+      "kind": "IntegerLiteral",
+      "offset": 1082,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1131,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 1186,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "IntegerLiteral",
-      "offset": 347,
-      "length": 4,
+      "offset": 525,
+      "length": 3,
       "value": "1"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
+      "kind": "IntegerLiteral",
+      "offset": 614,
+      "length": 3,
+      "value": "2"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "Array",
-      "offset": 1769,
+      "offset": 2124,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "IntegerLiteral",
-      "offset": 1835,
+      "offset": 2190,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "BooleanLiteral",
-      "offset": 1875,
+      "offset": 2230,
       "length": 5,
       "value": "false"
     },
@@ -6140,6 +6911,13 @@
       "offset": 5578,
       "length": 12,
       "value": "11"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderHelper.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5604,
+      "length": 9,
+      "value": "12"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderOverlay\/NoActiveDecodersOverlay.swift",

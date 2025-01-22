@@ -53,6 +53,17 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setQrMicroDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(configureBarkoder, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setIdDocumentMasterChecksumEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setUPCEexpandToUPCA, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setUPCE1expandToUPCA, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setCustomOption, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setScanningIndicatorColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setScanningIndicatorWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setScanningIndicatorAnimation, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setScanningIndicatorAlwaysVisible, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setDynamicExposure, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setCentricFocusAndExposure, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setEnableComposite, CAPPluginReturnPromise);
+
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isCloseSessionOnResultEnabled, CAPPluginReturnPromise);
@@ -94,4 +105,8 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(isQrDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isQrMicroDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isIdDocumentMasterChecksumEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getScanningIndicatorColorHex, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getScanningIndicatorWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getScanningIndicatorAnimation, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isScanningIndicatorAlwaysVisible, CAPPluginReturnPromise);
 )

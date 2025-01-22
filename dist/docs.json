@@ -752,6 +752,166 @@
         "slug": "setiddocumentmasterchecksumenabled"
       },
       {
+        "name": "setUPCEexpandToUPCA",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether the UPC-E barcodes should be expanded to UPC-A format",
+        "complexTypes": [],
+        "slug": "setupceexpandtoupca"
+      },
+      {
+        "name": "setUPCE1expandToUPCA",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether the UPC-E1 barcodes should be expanded to UPC-A format",
+        "complexTypes": [],
+        "slug": "setupce1expandtoupca"
+      },
+      {
+        "name": "setCustomOption",
+        "signature": "(options: { option: string; value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ option: string; value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets a custom option with a string option and integer value",
+        "complexTypes": [],
+        "slug": "setcustomoption"
+      },
+      {
+        "name": "setScanningIndicatorColor",
+        "signature": "(options: { value: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the color of the lines outlining the scanning indicator for barcode scanning on the camera feed",
+        "complexTypes": [],
+        "slug": "setscanningindicatorcolor"
+      },
+      {
+        "name": "setScanningIndicatorWidth",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the width of the scanning indicator for barcode scanning on the camera feed",
+        "complexTypes": [],
+        "slug": "setscanningindicatorwidth"
+      },
+      {
+        "name": "setScanningIndicatorAnimation",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the animation of the scanning indicator for barcode scanning on the camera feed",
+        "complexTypes": [],
+        "slug": "setscanningindicatoranimation"
+      },
+      {
+        "name": "setScanningIndicatorAlwaysVisible",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the scanning indicator to be always shown on the camera feed",
+        "complexTypes": [],
+        "slug": "setscanningindicatoralwaysvisible"
+      },
+      {
+        "name": "setDynamicExposure",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the camera's exposure dynamically based on the provided intensity, cycling through predefined compensation values",
+        "complexTypes": [],
+        "slug": "setdynamicexposure"
+      },
+      {
+        "name": "setCentricFocusAndExposure",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Set the camera to use the center of the viewfinder for focus and exposure",
+        "complexTypes": [],
+        "slug": "setcentricfocusandexposure"
+      },
+      {
+        "name": "setEnableComposite",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets wheter Composite Mode should be enabled when scanning",
+        "complexTypes": [],
+        "slug": "setenablecomposite"
+      },
+      {
         "name": "isFlashAvailable",
         "signature": "() => Promise<any>",
         "parameters": [],
@@ -1162,6 +1322,46 @@
         "docs": "Retrieves whether Master checksum is enabled when scanning ID Documents",
         "complexTypes": [],
         "slug": "isiddocumentmasterchecksumenabled"
+      },
+      {
+        "name": "getScanningIndicatorColorHex",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the hexadecimal color code representing the line color of the scanning indicator on the camera preview",
+        "complexTypes": [],
+        "slug": "getscanningindicatorcolorhex"
+      },
+      {
+        "name": "getScanningIndicatorWidth",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the current width setting for the scanning indicator on the camera preview",
+        "complexTypes": [],
+        "slug": "getscanningindicatorwidth"
+      },
+      {
+        "name": "getScanningIndicatorAnimation",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the current animation setting for the scanning indicator on the camera preview",
+        "complexTypes": [],
+        "slug": "getscanningindicatoranimation"
+      },
+      {
+        "name": "isScanningIndicatorAlwaysVisible",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves if the scanning indicator is set to be always visible on the camera preview",
+        "complexTypes": [],
+        "slug": "isscanningindicatoralwaysvisible"
       }
     ],
     "properties": []

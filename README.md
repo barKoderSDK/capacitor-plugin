@@ -210,6 +210,16 @@ In your scss file set the desired barkoderView height:
 * [`setQrMicroDpmModeEnabled(...)`](#setqrmicrodpmmodeenabled)
 * [`configureBarkoder(...)`](#configurebarkoder)
 * [`setIdDocumentMasterChecksumEnabled(...)`](#setiddocumentmasterchecksumenabled)
+* [`setUPCEexpandToUPCA(...)`](#setupceexpandtoupca)
+* [`setUPCE1expandToUPCA(...)`](#setupce1expandtoupca)
+* [`setCustomOption(...)`](#setcustomoption)
+* [`setScanningIndicatorColor(...)`](#setscanningindicatorcolor)
+* [`setScanningIndicatorWidth(...)`](#setscanningindicatorwidth)
+* [`setScanningIndicatorAnimation(...)`](#setscanningindicatoranimation)
+* [`setScanningIndicatorAlwaysVisible(...)`](#setscanningindicatoralwaysvisible)
+* [`setDynamicExposure(...)`](#setdynamicexposure)
+* [`setCentricFocusAndExposure(...)`](#setcentricfocusandexposure)
+* [`setEnableComposite(...)`](#setenablecomposite)
 * [`isFlashAvailable()`](#isflashavailable)
 * [`isCloseSessionOnResultEnabled()`](#isclosesessiononresultenabled)
 * [`isImageResultEnabled()`](#isimageresultenabled)
@@ -250,6 +260,10 @@ In your scss file set the desired barkoderView height:
 * [`isQrDpmModeEnabled()`](#isqrdpmmodeenabled)
 * [`isQrMicroDpmModeEnabled()`](#isqrmicrodpmmodeenabled)
 * [`isIdDocumentMasterChecksumEnabled()`](#isiddocumentmasterchecksumenabled)
+* [`getScanningIndicatorColorHex()`](#getscanningindicatorcolorhex)
+* [`getScanningIndicatorWidth()`](#getscanningindicatorwidth)
+* [`getScanningIndicatorAnimation()`](#getscanningindicatoranimation)
+* [`isScanningIndicatorAlwaysVisible()`](#isscanningindicatoralwaysvisible)
 
 </docgen-index>
 
@@ -1048,6 +1062,176 @@ Sets whether Master checksum should be requiered when scanning ID Documents
 --------------------
 
 
+### setUPCEexpandToUPCA(...)
+
+```typescript
+setUPCEexpandToUPCA(options: { value: boolean; }) => Promise<any>
+```
+
+Sets whether the UPC-E barcodes should be expanded to UPC-A format
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setUPCE1expandToUPCA(...)
+
+```typescript
+setUPCE1expandToUPCA(options: { value: boolean; }) => Promise<any>
+```
+
+Sets whether the UPC-E1 barcodes should be expanded to UPC-A format
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setCustomOption(...)
+
+```typescript
+setCustomOption(options: { option: string; value: number; }) => Promise<any>
+```
+
+Sets a custom option with a string option and integer value
+
+| Param         | Type                                            |
+| ------------- | ----------------------------------------------- |
+| **`options`** | <code>{ option: string; value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setScanningIndicatorColor(...)
+
+```typescript
+setScanningIndicatorColor(options: { value: string; }) => Promise<any>
+```
+
+Sets the color of the lines outlining the scanning indicator for barcode scanning on the camera feed
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setScanningIndicatorWidth(...)
+
+```typescript
+setScanningIndicatorWidth(options: { value: number; }) => Promise<any>
+```
+
+Sets the width of the scanning indicator for barcode scanning on the camera feed
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setScanningIndicatorAnimation(...)
+
+```typescript
+setScanningIndicatorAnimation(options: { value: number; }) => Promise<any>
+```
+
+Sets the animation of the scanning indicator for barcode scanning on the camera feed
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setScanningIndicatorAlwaysVisible(...)
+
+```typescript
+setScanningIndicatorAlwaysVisible(options: { value: boolean; }) => Promise<any>
+```
+
+Sets the scanning indicator to be always shown on the camera feed
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setDynamicExposure(...)
+
+```typescript
+setDynamicExposure(options: { value: number; }) => Promise<any>
+```
+
+Sets the camera's exposure dynamically based on the provided intensity, cycling through predefined compensation values
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setCentricFocusAndExposure(...)
+
+```typescript
+setCentricFocusAndExposure(options: { value: boolean; }) => Promise<any>
+```
+
+Set the camera to use the center of the viewfinder for focus and exposure
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setEnableComposite(...)
+
+```typescript
+setEnableComposite(options: { value: number; }) => Promise<any>
+```
+
+Sets wheter Composite Mode should be enabled when scanning
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### isFlashAvailable()
 
 ```typescript
@@ -1570,6 +1754,58 @@ isIdDocumentMasterChecksumEnabled() => Promise<any>
 ```
 
 Retrieves whether Master checksum is enabled when scanning ID Documents
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getScanningIndicatorColorHex()
+
+```typescript
+getScanningIndicatorColorHex() => Promise<any>
+```
+
+Retrieves the hexadecimal color code representing the line color of the scanning indicator on the camera preview
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getScanningIndicatorWidth()
+
+```typescript
+getScanningIndicatorWidth() => Promise<any>
+```
+
+Retrieves the current width setting for the scanning indicator on the camera preview
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getScanningIndicatorAnimation()
+
+```typescript
+getScanningIndicatorAnimation() => Promise<any>
+```
+
+Retrieves the current animation setting for the scanning indicator on the camera preview
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isScanningIndicatorAlwaysVisible()
+
+```typescript
+isScanningIndicatorAlwaysVisible() => Promise<any>
+```
+
+Retrieves if the scanning indicator is set to be always visible on the camera preview
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 

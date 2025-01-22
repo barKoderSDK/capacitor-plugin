@@ -38,8 +38,9 @@ var capacitorBarkoder = (function (exports, core) {
     })(exports.Code11ChecksumType || (exports.Code11ChecksumType = {}));
     exports.BarkoderResolution = void 0;
     (function (BarkoderResolution) {
-        BarkoderResolution[BarkoderResolution["normal"] = 0] = "normal";
-        BarkoderResolution[BarkoderResolution["high"] = 1] = "high";
+        BarkoderResolution[BarkoderResolution["HD"] = 0] = "HD";
+        BarkoderResolution[BarkoderResolution["FHD"] = 1] = "FHD";
+        BarkoderResolution[BarkoderResolution["UHD"] = 2] = "UHD";
     })(exports.BarkoderResolution || (exports.BarkoderResolution = {}));
     exports.BarcodeType = void 0;
     (function (BarcodeType) {
@@ -72,6 +73,9 @@ var capacitorBarkoder = (function (exports, core) {
         BarcodeType[BarcodeType["telepen"] = 26] = "telepen";
         BarcodeType[BarcodeType["dotcode"] = 27] = "dotcode";
         BarcodeType[BarcodeType["idDocument"] = 28] = "idDocument";
+        BarcodeType[BarcodeType["databar14"] = 29] = "databar14";
+        BarcodeType[BarcodeType["databarLimited"] = 30] = "databarLimited";
+        BarcodeType[BarcodeType["databarExpanded"] = 31] = "databarExpanded";
     })(exports.BarcodeType || (exports.BarcodeType = {}));
     class BarkoderConfig {
         constructor(config) {

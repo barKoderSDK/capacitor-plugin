@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/BarkoderSDK-Swift.h</key>
 		<data>
-		sNiW6n8M6rXqajE6I+gctmXc3hM=
+		FHd0DiKIvoz/EcxTVzp5rS0Uqsk=
 		</data>
 		<key>Headers/BarkoderSDK.h</key>
 		<data>
@@ -14,47 +14,47 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		fqkjv2ZA3EOH9iiIdr7fUE0sloU=
+		gMzr+elVLDxvAVuijl2KFPSJWC0=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		mzxMElj6j3edfJlZ2YPtDureCpw=
+		wOryhDoNCvp5UhNu918KMHxn7ZE=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		ALhvfPBpIRiLmdsEgk4idN/4AVQ=
+		bqQbALP2dOnEPZHQLOafCKZu88M=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		63ghKfVIhitE0RyKpWViIPfqsWE=
+		hVt9kDMiPKDPKsxRCdPDO7+kBoU=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		ALhvfPBpIRiLmdsEgk4idN/4AVQ=
+		bqQbALP2dOnEPZHQLOafCKZu88M=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		wgjKUDepxha49eM7vySQ/Llhgho=
+		WY0WNmTmsy+fk81tIKQJsgVIiKo=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		mzxMElj6j3edfJlZ2YPtDureCpw=
+		wOryhDoNCvp5UhNu918KMHxn7ZE=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		bkSbKnybuKoFsjS03ry7yChXBCs=
+		wvS6Xt3sH0g+whPdp8VumBuAv5U=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		N48+6Aoy6AfDBuTDyfJ2VkQM+34=
+		RwAMyA9hg4ea9oaWd9EHWL6wgjU=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		bkSbKnybuKoFsjS03ry7yChXBCs=
+		wvS6Xt3sH0g+whPdp8VumBuAv5U=
 		</data>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		qMZGtYLsDanuvNLQUX8aQL7mfyo=
+		t17UDz8APEnAyX1zdF3EnpKPDO0=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -62,11 +62,11 @@
 		</data>
 		<key>beep.mp3</key>
 		<data>
-		v4dveaWQ0q9bQRlDI6pkZHR+ygM=
+		i2XHYlvtGZ30Wf9UB/y3C+8Y3eY=
 		</data>
 		<key>templates.json</key>
 		<data>
-		1KFVIlXdUubr4CMmSv/wVSgKayw=
+		gemncgAP38s2JofOSPdxVYif2dQ=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -75,7 +75,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			WOYE3h8HrIacr+jC49D8guiclDvFm+mzfPZ3znKFk8c=
+			DMXEDP0cldG+dRhi4Z7q844RNxS52r8YxgVNVEfujnY=
 			</data>
 		</dict>
 		<key>Headers/BarkoderSDK.h</key>
@@ -89,70 +89,70 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			SNd4H4B74KKOugue8//Ucjc+HEcskt/v4adj3AV9CGQ=
+			1K5T8mNxCOAXXAJgVSl4Iy5EJQsu18Wnvi5GgVZ482U=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			svDA0pGtwCOIhTpxQf0sSGFjmxfRqtgHIetQoKq/dD8=
+			wrDnBGsgCSP/OFFJbeQEo4rmt6vqnoULZwS9F+T3l1Q=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			PKvbq77vts7G5MmvwSegQuXGJ36Xmx63+ZLoW8sDPqA=
+			orsAOe/k6/wmlDdqfUgsLmxmqzAol8cjGj01mdYb1lo=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			svDA0pGtwCOIhTpxQf0sSGFjmxfRqtgHIetQoKq/dD8=
+			wrDnBGsgCSP/OFFJbeQEo4rmt6vqnoULZwS9F+T3l1Q=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			FuhYH6rLCWZcBqJLCBZyTpkshT9EEh0hTKnCsezKzx4=
+			MOiQ9AQyv052ZSfmp26ghawbRNUrIpEUy4MDW6AS4HE=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			SNd4H4B74KKOugue8//Ucjc+HEcskt/v4adj3AV9CGQ=
+			1K5T8mNxCOAXXAJgVSl4Iy5EJQsu18Wnvi5GgVZ482U=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fy0y5er0FW09Lawq/uJnhiBDis4Lo8In0yYxp6i5CuU=
+			1gxk3ARE3t0ZjBfq4OYWhDd2EHefXYZJUeQ3TIg/ghY=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			xnXPLB6RIld/MO89Xdj4vQW7B/zSX9qJhpi+m1yy7Dg=
+			8x9Q10GRALf229IjoJtSTpjveQ0hSeCQrH7ArsMZatw=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			fy0y5er0FW09Lawq/uJnhiBDis4Lo8In0yYxp6i5CuU=
+			1gxk3ARE3t0ZjBfq4OYWhDd2EHefXYZJUeQ3TIg/ghY=
 			</data>
 		</dict>
 		<key>Modules/BarkoderSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			XbEJqIbH83CwpkTv4VakQai+pdW1fNRWLRHddBn2YpQ=
+			F8QnBygKkuqgFwkyUZdNmOu/x3UW7pVP0dvOZ2lb2FY=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -166,14 +166,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JABKgt1SdLhS3nZu8rKsA1yi1rKu/HIIaACWi0qY530=
+			xZTknyJ1H1V7sOrHntj4J0IFu7IJI2RXSqgiUZPNBws=
 			</data>
 		</dict>
 		<key>templates.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			w9ddPCMDfX4hZWBUadmPDAZChVqov60lLGMlJXOGLRM=
+			JuWaoH8DwWBOPpUg6aAkBluIW2OCONTrQ3Bz92pc50M=
 			</data>
 		</dict>
 	</dict>
