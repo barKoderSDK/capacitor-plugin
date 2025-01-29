@@ -339,6 +339,12 @@ export interface BarkoderPlugin extends Plugin {
         value: number;
     }): Promise<any>;
     /**
+   * Enable or disable video stabilization for smoother video capture
+   */
+    setVideoStabilization(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
      */
     isFlashAvailable(): Promise<any>;

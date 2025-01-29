@@ -27,7 +27,9 @@ public class BarkoderPlugin: CAPPlugin {
             self.barkoderView = BarkoderView(frame: frame)
             self.createBarkoderConfig()
             
-            self.bridge?.viewController?.view.addSubview(self.barkoderView)
+            if let webView = self.bridge?.webView {
+                webView.superview?.addSubview(self.barkoderView)
+            }
         }
         call.resolve([
             "barkoderView initialized": true
@@ -106,6 +108,7 @@ extension BarkoderPlugin {
     @objc func startScanning(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
             try? self.barkoderView.startScanning(self)
+            self.barkoderView.isUserInteractionEnabled = true
         }
         
         call.resolve()
@@ -114,6 +117,7 @@ extension BarkoderPlugin {
     @objc func stopScanning(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
             self.barkoderView.stopScanning()
+            self.barkoderView.isUserInteractionEnabled = false
         }
         
         call.resolve()
@@ -918,6 +922,18 @@ extension BarkoderPlugin {
         
         DispatchQueue.main.async {
             self.barkoderView.config?.decoderConfig?.enableComposite = Int32(enableComposite)
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setVideoStabilization(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.setVideoStabilization(enabled)
         }
         
         call.resolve()

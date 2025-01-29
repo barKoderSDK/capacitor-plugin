@@ -63,6 +63,7 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setDynamicExposure, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setCentricFocusAndExposure, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setEnableComposite, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setVideoStabilization, CAPPluginReturnPromise);
 
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);

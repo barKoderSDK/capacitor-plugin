@@ -912,6 +912,22 @@
         "slug": "setenablecomposite"
       },
       {
+        "name": "setVideoStabilization",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Enable or disable video stabilization for smoother video capture",
+        "complexTypes": [],
+        "slug": "setvideostabilization"
+      },
+      {
         "name": "isFlashAvailable",
         "signature": "() => Promise<any>",
         "parameters": [],

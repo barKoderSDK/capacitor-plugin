@@ -875,6 +875,17 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         call.resolve();
     }
 
+    @PluginMethod
+    public void setVideoStabilization(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.setVideoStabilization(value));
+
+        call.resolve();
+    }
+
     // Getters
 
     @PluginMethod

@@ -220,6 +220,7 @@ In your scss file set the desired barkoderView height:
 * [`setDynamicExposure(...)`](#setdynamicexposure)
 * [`setCentricFocusAndExposure(...)`](#setcentricfocusandexposure)
 * [`setEnableComposite(...)`](#setenablecomposite)
+* [`setVideoStabilization(...)`](#setvideostabilization)
 * [`isFlashAvailable()`](#isflashavailable)
 * [`isCloseSessionOnResultEnabled()`](#isclosesessiononresultenabled)
 * [`isImageResultEnabled()`](#isimageresultenabled)
@@ -1226,6 +1227,23 @@ Sets wheter Composite Mode should be enabled when scanning
 | Param         | Type                            |
 | ------------- | ------------------------------- |
 | **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setVideoStabilization(...)
+
+```typescript
+setVideoStabilization(options: { value: boolean; }) => Promise<any>
+```
+
+Enable or disable video stabilization for smoother video capture
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
