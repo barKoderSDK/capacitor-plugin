@@ -939,6 +939,23 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func setCamera(_ call: CAPPluginCall) {
+        guard let value = call.getInt("value"),
+              let cameraPosition = BarkoderView.BarkoderCameraPosition(rawValue: value) else {
+            call.reject(
+                BarkoderPluginErrors.INVALID_CAMERA_POSITION.errorMessage,
+                BarkoderPluginErrors.INVALID_CAMERA_POSITION.errorCode
+            )
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.setCamera(cameraPosition)
+        }
+        
+        call.resolve()
+    }
+    
 }
 
 // MARK: - Getters

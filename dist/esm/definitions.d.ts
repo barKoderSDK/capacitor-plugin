@@ -345,6 +345,12 @@ export interface BarkoderPlugin extends Plugin {
         value: boolean;
     }): Promise<any>;
     /**
+* Sets the camera to be used for scanning (back/front)
+*/
+    setCamera(options: {
+        value: number;
+    }): Promise<any>;
+    /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
      */
     isFlashAvailable(): Promise<any>;
@@ -554,6 +560,10 @@ export declare enum Code11ChecksumType {
     disabled = 0,
     single = 1,
     double = 2
+}
+export declare enum BarkoderCameraPosition {
+    BACK = 0,
+    FRONT = 1
 }
 export declare enum BarkoderResolution {
     HD = 0,

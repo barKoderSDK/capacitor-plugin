@@ -4,6 +4,10 @@
 <dict>
 	<key>files</key>
 	<dict>
+		<key>.DS_Store</key>
+		<data>
+		Cz/yhX2hYQD8hpitbrP/7/lW/e4=
+		</data>
 		<key>Headers/Barkoder.h</key>
 		<data>
 		9tBmdiEM3Piw6SdXbESop6X7Zac=
@@ -14,7 +18,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		HpPzC0E5Z0vYLtrwpyYuK/ISng8=
+		bHYij+U0CnlRcjhd84pSxfJ8V4A=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -22,7 +26,7 @@
 		</data>
 		<key>default.metallib</key>
 		<data>
-		SK4RwTAvjikWlg3ipM8cmOmOvuQ=
+		g0rvIZOVkgeBTdCqKFiJdE0xH40=
 		</data>
 		<key>float16_384x256.mlmodelc/analytics/coremldata.bin</key>
 		<data>
@@ -34,7 +38,7 @@
 		</data>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<data>
-		N1FDjs1/pfpn4wosj/GpUePmZlU=
+		dMnvopdHJQ6Jk3TYgtts2rZp26c=
 		</data>
 		<key>float16_384x256.mlmodelc/model.mil</key>
 		<data>
@@ -50,11 +54,11 @@
 		</data>
 		<key>float16_512x384.mlmodelc/coremldata.bin</key>
 		<data>
-		2AAFX/c1bbHK+W6ihEJUM5YoH3E=
+		n6VsTw0Zo/smE97gypYnErJy49E=
 		</data>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<data>
-		6Sc0q3tN6csNFo1gyM1DdvtpHUc=
+		C36Hwk5NGVUo1zk14wg8NqUntAM=
 		</data>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<data>
@@ -100,7 +104,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			EnKjCsxhIQYquiSYcnox8C37lezGw1JDMj8J7ybQNFY=
+			KTc+Wq8krmIlx2re2CO30GCnkx1qk10cQcojmYEUkSc=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/analytics/coremldata.bin</key>
@@ -121,7 +125,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			kFdpsZsvkYqsbE0UZLsYr8gpvSX8Tlvg+JWg0nqHQR8=
+			wjG+zQM7M/EPrCRi6FWKpjPscclGEJwyIwSvgZFpeWg=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/model.mil</key>
@@ -149,14 +153,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			zYudbFEcMA6g9W+4WaUFEv4qG9/Mi969dWjFFQaMJKc=
+			ETveWY0KzrDaGv39v54e6NP97zSTY8tg8DnTTFA91B4=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			znNv6UVW9ClzS+Uaw2q3kvUgwhiW0tMLC63yY1Iv9sk=
+			KUY6i6p5lmjlwXT4nknCFaO1sgIkAI1As2j6v68gE7U=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/model.mil</key>

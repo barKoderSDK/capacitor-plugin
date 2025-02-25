@@ -511,6 +511,7 @@ SWIFT_PROTOCOL("_TtP11BarkoderSDK22BarkoderResultDelegate_")
 @end
 
 @class NSCoder;
+enum BarkoderCameraPosition : NSInteger;
 
 SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 @interface BarkoderView : UIView <BarkoderPreviewFramesDelegate>
@@ -532,6 +533,10 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 - (void)pauseScanning;
 /// Sets the zoom factor for the device’s camera, adjusting the level of zoom during barcode scanning
 - (void)setZoomFactor:(float)zoomFactor;
+/// Sets the camera to be used for scanning (back/front).
+/// \param position The desired camera position. Default is back
+///
+- (void)setCamera:(enum BarkoderCameraPosition)position;
 /// Enables or disables the device’s flash (torch) for illumination during barcode scanning
 /// \param enabled [true, false]. Default value is false
 ///
@@ -564,6 +569,14 @@ typedef SWIFT_ENUM(NSInteger, BarkoderResolution, open) {
   BarkoderResolutionFHD = 1,
 /// Ultra High (4K) Definition resolution (3840x2160).
   BarkoderResolutionUHD = 2,
+};
+
+/// Represents the available camera’s for the BarkoderView.
+typedef SWIFT_ENUM(NSInteger, BarkoderCameraPosition, open) {
+/// Uses the device’s back camera.
+  BarkoderCameraPositionBACK = 0,
+/// Uses the device’s front (selfie) camera.
+  BarkoderCameraPositionFRONT = 1,
 };
 
 

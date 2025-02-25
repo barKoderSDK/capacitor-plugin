@@ -3,6 +3,7 @@ package com.barkoder.capacitor.plugin;
 import static android.content.ContentValues.TAG;
 
 import com.barkoder.BarkoderHelper;
+import com.barkoder.enums.BarkoderCameraPosition;
 import com.barkoder.enums.BarkoderResolution;
 import com.barkoder.interfaces.BarkoderResultCallback;
 import com.getcapacitor.JSObject;
@@ -882,6 +883,23 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
             return;
         }
         getBridge().getActivity().runOnUiThread(() -> barkoderView.setVideoStabilization(value));
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setCamera(PluginCall call) {
+        Integer value = call.getInt("value");
+
+        if (value == null || value < 0 || value >= BarkoderCameraPosition.values().length) {
+            sendErrorReject(BarkoderPluginErrors.INVALID_CAMERA_POSITION, BarkoderPluginErrors.INVALID_CAMERA_POSITION.getErrorMessage(), call);
+            return;
+        }
+
+        getBridge().getActivity().runOnUiThread(() -> {
+                BarkoderCameraPosition cameraPosition = BarkoderCameraPosition.values()[value];
+                barkoderView.setCamera(cameraPosition);
+        });
 
         call.resolve();
     }

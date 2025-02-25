@@ -3108,6 +3108,231 @@
             ]
           },
           {
+            "kind": "TypeDecl",
+            "name": "BarkoderCameraPosition",
+            "printedName": "BarkoderCameraPosition",
+            "children": [
+              {
+                "kind": "Var",
+                "name": "BACK",
+                "printedName": "BACK",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(BarkoderSDK.BarkoderView.BarkoderCameraPosition.Type) -> BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BarkoderCameraPosition",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                        "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "BarkoderCameraPosition",
+                            "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                            "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO4BACKyA2EmF",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A14CameraPositionO4BACKyA2EmF",
+                "moduleName": "BarkoderSDK",
+                "declAttributes": [
+                  "RawDocComment",
+                  "ObjC"
+                ],
+                "fixedbinaryorder": 0
+              },
+              {
+                "kind": "Var",
+                "name": "FRONT",
+                "printedName": "FRONT",
+                "children": [
+                  {
+                    "kind": "TypeFunc",
+                    "name": "Function",
+                    "printedName": "(BarkoderSDK.BarkoderView.BarkoderCameraPosition.Type) -> BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BarkoderCameraPosition",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                        "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Metatype",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition.Type",
+                        "children": [
+                          {
+                            "kind": "TypeNominal",
+                            "name": "BarkoderCameraPosition",
+                            "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                            "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO"
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ],
+                "declKind": "EnumElement",
+                "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO5FRONTyA2EmF",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A14CameraPositionO5FRONTyA2EmF",
+                "moduleName": "BarkoderSDK",
+                "declAttributes": [
+                  "RawDocComment",
+                  "ObjC"
+                ],
+                "fixedbinaryorder": 1
+              },
+              {
+                "kind": "Constructor",
+                "name": "init",
+                "printedName": "init(rawValue:)",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Optional",
+                    "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition?",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "BarkoderCameraPosition",
+                        "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                        "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO"
+                      }
+                    ],
+                    "usr": "s:Sq"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Constructor",
+                "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO8rawValueAESgSi_tcfc",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A14CameraPositionO8rawValueAESgSi_tcfc",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "init_kind": "Designated"
+              },
+              {
+                "kind": "Var",
+                "name": "rawValue",
+                "printedName": "rawValue",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Int",
+                    "printedName": "Swift.Int",
+                    "usr": "s:Si"
+                  }
+                ],
+                "declKind": "Var",
+                "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO8rawValueSivp",
+                "mangledName": "$s11BarkoderSDK0A4ViewC0A14CameraPositionO8rawValueSivp",
+                "moduleName": "BarkoderSDK",
+                "implicit": true,
+                "accessors": [
+                  {
+                    "kind": "Accessor",
+                    "name": "Get",
+                    "printedName": "Get()",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ],
+                    "declKind": "Accessor",
+                    "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO8rawValueSivg",
+                    "mangledName": "$s11BarkoderSDK0A4ViewC0A14CameraPositionO8rawValueSivg",
+                    "moduleName": "BarkoderSDK",
+                    "implicit": true,
+                    "accessorKind": "get"
+                  }
+                ]
+              }
+            ],
+            "declKind": "Enum",
+            "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO",
+            "mangledName": "$s11BarkoderSDK0A4ViewC0A14CameraPositionO",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "enumRawTypeName": "Int",
+            "conformances": [
+              {
+                "kind": "Conformance",
+                "name": "Copyable",
+                "printedName": "Copyable",
+                "usr": "s:s8CopyableP",
+                "mangledName": "$ss8CopyableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Escapable",
+                "printedName": "Escapable",
+                "usr": "s:s9EscapableP",
+                "mangledName": "$ss9EscapableP"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Equatable",
+                "printedName": "Equatable",
+                "usr": "s:SQ",
+                "mangledName": "$sSQ"
+              },
+              {
+                "kind": "Conformance",
+                "name": "Hashable",
+                "printedName": "Hashable",
+                "usr": "s:SH",
+                "mangledName": "$sSH"
+              },
+              {
+                "kind": "Conformance",
+                "name": "RawRepresentable",
+                "printedName": "RawRepresentable",
+                "children": [
+                  {
+                    "kind": "TypeWitness",
+                    "name": "RawValue",
+                    "printedName": "RawValue",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "Int",
+                        "printedName": "Swift.Int",
+                        "usr": "s:Si"
+                      }
+                    ]
+                  }
+                ],
+                "usr": "s:SY",
+                "mangledName": "$sSY"
+              }
+            ]
+          },
+          {
             "kind": "Var",
             "name": "config",
             "printedName": "config",
@@ -3460,6 +3685,36 @@
             "declKind": "Func",
             "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderView(im)setZoomFactor:",
             "mangledName": "$s11BarkoderSDK0A4ViewC13setZoomFactoryySfF",
+            "moduleName": "BarkoderSDK",
+            "declAttributes": [
+              "Preconcurrency",
+              "Custom",
+              "AccessControl",
+              "ObjC",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setCamera",
+            "printedName": "setCamera(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "BarkoderCameraPosition",
+                "printedName": "BarkoderSDK.BarkoderView.BarkoderCameraPosition",
+                "usr": "s:11BarkoderSDK0A4ViewC0A14CameraPositionO"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "c:@M@BarkoderSDK@objc(cs)BarkoderView(im)setCamera:",
+            "mangledName": "$s11BarkoderSDK0A4ViewC9setCamerayyAC0aE8PositionOF",
             "moduleName": "BarkoderSDK",
             "declAttributes": [
               "Preconcurrency",
@@ -6676,36 +6931,43 @@
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
+      "kind": "BooleanLiteral",
+      "offset": 981,
+      "length": 5,
+      "value": "false"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "FloatLiteral",
-      "offset": 990,
+      "offset": 1027,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "FloatLiteral",
-      "offset": 1026,
+      "offset": 1063,
       "length": 3,
       "value": "1.0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "IntegerLiteral",
-      "offset": 1082,
+      "offset": 1119,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 1131,
+      "offset": 1168,
       "length": 5,
       "value": "false"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderCameraManager.swift",
       "kind": "BooleanLiteral",
-      "offset": 1186,
+      "offset": 1223,
       "length": 5,
       "value": "false"
     },
@@ -6725,22 +6987,29 @@
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
+      "kind": "IntegerLiteral",
+      "offset": 881,
+      "length": 5,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "Array",
-      "offset": 2124,
+      "offset": 2393,
       "length": 2,
       "value": "[]"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "IntegerLiteral",
-      "offset": 2190,
+      "offset": 2459,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/goranchakarevski\/Desktop\/Barkoder\/barkoder-ios\/BarkoderSDK\/BarkoderSDK\/BarkoderView\/BarkoderView.swift",
       "kind": "BooleanLiteral",
-      "offset": 2230,
+      "offset": 2499,
       "length": 5,
       "value": "false"
     },

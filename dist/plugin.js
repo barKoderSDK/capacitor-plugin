@@ -36,6 +36,11 @@ var capacitorBarkoder = (function (exports, core) {
         Code11ChecksumType[Code11ChecksumType["single"] = 1] = "single";
         Code11ChecksumType[Code11ChecksumType["double"] = 2] = "double";
     })(exports.Code11ChecksumType || (exports.Code11ChecksumType = {}));
+    exports.BarkoderCameraPosition = void 0;
+    (function (BarkoderCameraPosition) {
+        BarkoderCameraPosition[BarkoderCameraPosition["BACK"] = 0] = "BACK";
+        BarkoderCameraPosition[BarkoderCameraPosition["FRONT"] = 1] = "FRONT";
+    })(exports.BarkoderCameraPosition || (exports.BarkoderCameraPosition = {}));
     exports.BarkoderResolution = void 0;
     (function (BarkoderResolution) {
         BarkoderResolution[BarkoderResolution["HD"] = 0] = "HD";

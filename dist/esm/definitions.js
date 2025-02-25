@@ -33,6 +33,11 @@ export var Code11ChecksumType;
     Code11ChecksumType[Code11ChecksumType["single"] = 1] = "single";
     Code11ChecksumType[Code11ChecksumType["double"] = 2] = "double";
 })(Code11ChecksumType || (Code11ChecksumType = {}));
+export var BarkoderCameraPosition;
+(function (BarkoderCameraPosition) {
+    BarkoderCameraPosition[BarkoderCameraPosition["BACK"] = 0] = "BACK";
+    BarkoderCameraPosition[BarkoderCameraPosition["FRONT"] = 1] = "FRONT";
+})(BarkoderCameraPosition || (BarkoderCameraPosition = {}));
 export var BarkoderResolution;
 (function (BarkoderResolution) {
     BarkoderResolution[BarkoderResolution["HD"] = 0] = "HD";

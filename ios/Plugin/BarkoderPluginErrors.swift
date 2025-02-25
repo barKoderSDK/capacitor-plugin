@@ -22,6 +22,7 @@ enum BarkoderPluginErrors {
     case LENGTH_RANGE_NOT_VALID
     case CHECKSUM_TYPE_NOT_FOUNDED
     case BARKODER_CONFIG_IS_NOT_VALID
+    case INVALID_CAMERA_POSITION
 
     var errorCode: String {
         switch self {
@@ -49,6 +50,8 @@ enum BarkoderPluginErrors {
             return "11"
         case .BARKODER_CONFIG_IS_NOT_VALID:
             return "12"
+        case .INVALID_CAMERA_POSITION:
+            return "13"
         }
     }
     
@@ -78,6 +81,8 @@ enum BarkoderPluginErrors {
             return "Checksum type can't be founded."
         case .BARKODER_CONFIG_IS_NOT_VALID:
             return ""
+        case .INVALID_CAMERA_POSITION:
+            return "Invalid camera position"
         }
     }
 }

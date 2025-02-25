@@ -15,7 +15,8 @@ enum BarkoderPluginErrors {
     CHECKSUM_TYPE_NOT_FOUNDED("11", "Checksum type can't be founded. "),
     BARKODER_CONFIG_IS_NOT_VALID("12", ""),
     MAXIMUM_RESULTS_TYPE_NOT_FOUNDED("13", "Maximum result value can't be founded. "),
-    DUPLICATES_DELAY_NOT_FOUNDED("14", "Duplicates delay value can't be founded. ");
+    DUPLICATES_DELAY_NOT_FOUNDED("14", "Duplicates delay value can't be founded. "),
+    INVALID_CAMERA_POSITION("15", "Invalid camera position. ");
 
     private final String errorCode;
     private final String errorMessage;

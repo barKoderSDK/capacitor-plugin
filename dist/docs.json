@@ -928,6 +928,22 @@
         "slug": "setvideostabilization"
       },
       {
+        "name": "setCamera",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the camera to be used for scanning (back/front)",
+        "complexTypes": [],
+        "slug": "setcamera"
+      },
+      {
         "name": "isFlashAvailable",
         "signature": "() => Promise<any>",
         "parameters": [],
