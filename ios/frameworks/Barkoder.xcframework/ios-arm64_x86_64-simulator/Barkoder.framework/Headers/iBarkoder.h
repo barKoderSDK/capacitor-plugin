@@ -66,7 +66,15 @@ typedef enum {
     IDDocument,
     Databar14,
     DatabarLimited,
-    DatabarExpanded
+    DatabarExpanded,
+    PostalIMB,
+    Postnet,
+    Planet,
+    AustralianPost,
+    RoyalMail,
+    KIX,
+    JapanesePost
+    
 } DecoderType;
 
 
@@ -74,7 +82,8 @@ typedef enum {
     Disabled = 0,
     Automatic,
     GS1,
-    AAMVA
+    AAMVA,
+    SADL
 } Formatting;
 
 //==========================================================================
@@ -206,6 +215,56 @@ typedef enum  {
 // Telepen Config
 //==========================================================================
 @interface TelepenConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Postal IMB Config
+//==========================================================================
+@interface PostalIMBConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Postnet Config
+//==========================================================================
+@interface PostnetConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Planet Config
+//==========================================================================
+@interface PlanetConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// AustralianPost Config
+//==========================================================================
+@interface AustralianPostConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Royal Mail Config
+//==========================================================================
+@interface RoyalMailConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
+// Japanese Post Config
+//==========================================================================
+@interface JapanesePostConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+
+//==========================================================================
+// KIX Config
+//==========================================================================
+@interface KIXConfig : SpecificConfig
 - (id)initWithDecoderType:(DecoderType)decoderType;
 @end
 
@@ -453,6 +512,13 @@ typedef enum {
 @property (nonatomic, readonly, retain) Databar14Config* _Nonnull databar14;
 @property (nonatomic, readonly, retain) DatabarLimitedConfig* _Nonnull databarLimited;
 @property (nonatomic, readonly, retain) DatabarExpandedConfig* _Nonnull databarExpanded;
+@property (nonatomic, readonly, retain) PostalIMBConfig* _Nonnull postalIMB;
+@property (nonatomic, readonly, retain) PostnetConfig* _Nonnull postnet;
+@property (nonatomic, readonly, retain) PlanetConfig* _Nonnull planet;
+@property (nonatomic, readonly, retain) AustralianPostConfig* _Nonnull australianPost;
+@property (nonatomic, readonly, retain) RoyalMailConfig* _Nonnull royalMail;
+@property (nonatomic, readonly, retain) JapanesePostConfig* _Nonnull japanesePost;
+@property (nonatomic, readonly, retain) KIXConfig* _Nonnull kix;
 
 @property (nonatomic, readonly, retain) IDDocumentConfig* _Nonnull idDocument;
 
@@ -519,7 +585,14 @@ typedef enum {
     BT_ID_MRZ3,
     BT_Databar14,
     BT_DatabarLimited,
-    BT_DatabarExpanded
+    BT_DatabarExpanded,
+    BT_PostalIMB,
+    BT_Postnet,
+    BT_Planet,
+    BT_AustralianPost,
+    BT_RoyalMail,
+    BT_KIX,
+    BT_JapanesePost
     
 } BarcodeType;
 

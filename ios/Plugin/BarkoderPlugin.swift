@@ -577,6 +577,20 @@ extension BarkoderPlugin {
                         decoderConfig.databarLimited.enabled = enabled
                     case DatabarExpanded:
                         decoderConfig.databarExpanded.enabled = enabled
+                    case PostalIMB:
+                        decoderConfig.postalIMB.enabled = enabled
+                    case Postnet:
+                        decoderConfig.postnet.enabled = enabled
+                    case Planet:
+                        decoderConfig.planet.enabled = enabled
+                    case AustralianPost:
+                        decoderConfig.australianPost.enabled = enabled
+                    case RoyalMail:
+                        decoderConfig.royalMail.enabled = enabled
+                    case KIX:
+                        decoderConfig.kix.enabled = enabled
+                    case JapanesePost:
+                        decoderConfig.japanesePost.enabled = enabled
                     default:
                         call.reject(
                             BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -773,10 +787,28 @@ extension BarkoderPlugin {
             
             var convertedBarkoderConfigAsString = String(data: jsonData, encoding: .utf8) ?? ""
             
-            zip(["aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39", "codabar", "code11", "msi",  "upcA", "upcE", "upcE1", "ean13", "ean8", "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14", "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode", "idDocument", "databar14", "databarLimited", "databarExpanded", "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"],
-                
-                ["Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39", "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8", "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14", "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode", "ID Document", "Databar 14", "Databar Limited", "Databar Expanded", "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"]).forEach {
-                convertedBarkoderConfigAsString = convertedBarkoderConfigAsString.replacingOccurrences(of: $0, with: $1, options: .literal)
+            zip(
+                [
+                    "aztec", "aztecCompact", "qr", "qrMicro", "code128", "code93", "code39",
+                    "codabar", "code11", "msi", "upcA", "upcE", "upcE1", "ean13", "ean8",
+                    "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14",
+                    "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode",
+                    "idDocument", "databar14", "databarLimited", "databarExpanded",
+                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost",
+                    "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"
+                ],
+                [
+                    "Aztec", "Aztec Compact", "QR", "QR Micro", "Code 128", "Code 93", "Code 39",
+                    "Codabar", "Code 11", "MSI", "Upc-A", "Upc-E", "Upc-E1", "Ean-13", "Ean-8",
+                    "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14",
+                    "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode",
+                    "ID Document", "Databar 14", "Databar Limited", "Databar Expanded",
+                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post",
+                    "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"
+                ]
+            ).forEach {
+                convertedBarkoderConfigAsString = convertedBarkoderConfigAsString
+                    .replacingOccurrences(of: $0, with: $1, options: .literal)
             }
             
             barkoderJsonData = Data(convertedBarkoderConfigAsString.utf8)
@@ -1207,6 +1239,20 @@ extension BarkoderPlugin {
                 call.resolve([decoderConfig.databarLimited.typeName(): decoderConfig.databarLimited.enabled])
             case DatabarExpanded:
                 call.resolve([decoderConfig.databarExpanded.typeName(): decoderConfig.databarExpanded.enabled])
+            case PostalIMB:
+                call.resolve([decoderConfig.postalIMB.typeName(): decoderConfig.postalIMB.enabled])
+            case Postnet:
+                call.resolve([decoderConfig.postnet.typeName(): decoderConfig.postnet.enabled])
+            case Planet:
+                call.resolve([decoderConfig.planet.typeName(): decoderConfig.planet.enabled])
+            case AustralianPost:
+                call.resolve([decoderConfig.australianPost.typeName(): decoderConfig.australianPost.enabled])
+            case RoyalMail:
+                call.resolve([decoderConfig.royalMail.typeName(): decoderConfig.royalMail.enabled])
+            case KIX:
+                call.resolve([decoderConfig.kix.typeName(): decoderConfig.kix.enabled])
+            case JapanesePost:
+                call.resolve([decoderConfig.japanesePost.typeName(): decoderConfig.japanesePost.enabled])
             default:
                 call.reject(
                     BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,

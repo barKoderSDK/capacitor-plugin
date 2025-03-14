@@ -11,6 +11,7 @@ export var FormattingType;
     FormattingType[FormattingType["automatic"] = 1] = "automatic";
     FormattingType[FormattingType["gs1"] = 2] = "gs1";
     FormattingType[FormattingType["aamva"] = 3] = "aamva";
+    FormattingType[FormattingType["sadl"] = 4] = "sadl";
 })(FormattingType || (FormattingType = {}));
 export var MsiChecksumType;
 (function (MsiChecksumType) {
@@ -78,6 +79,13 @@ export var BarcodeType;
     BarcodeType[BarcodeType["databar14"] = 29] = "databar14";
     BarcodeType[BarcodeType["databarLimited"] = 30] = "databarLimited";
     BarcodeType[BarcodeType["databarExpanded"] = 31] = "databarExpanded";
+    BarcodeType[BarcodeType["postalIMB"] = 32] = "postalIMB";
+    BarcodeType[BarcodeType["postnet"] = 33] = "postnet";
+    BarcodeType[BarcodeType["planet"] = 34] = "planet";
+    BarcodeType[BarcodeType["australianPost"] = 35] = "australianPost";
+    BarcodeType[BarcodeType["royalMail"] = 36] = "royalMail";
+    BarcodeType[BarcodeType["kix"] = 37] = "kix";
+    BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
 })(BarcodeType || (BarcodeType = {}));
 export class BarkoderConfig {
     constructor(config) {

@@ -71,14 +71,14 @@
       }
     ],
     "userDefinedMetadata" : {
+      "com.github.apple.coremltools.source" : "torch==2.3.1+cu121",
       "stride" : "32",
       "com.github.apple.coremltools.version" : "7.2",
-      "com.github.apple.coremltools.source_dialect" : "TorchScript",
       "docs" : "https:\/\/docs.ultralytics.com",
       "task" : "obb",
-      "com.github.apple.coremltools.source" : "torch==2.3.1+cu121",
-      "date" : "2024-08-01T09:34:45.251931",
+      "com.github.apple.coremltools.source_dialect" : "TorchScript",
       "imgsz" : "[256, 384]",
+      "date" : "2024-08-01T09:34:45.251931",
       "batch" : "1",
       "names" : "{0: 'id_mrz_image', 1: 'mrz_2', 2: 'mrz_3', 3: 'id_mrz', 4: 'id_image', 5: 'face', 6: 'vin', 7: 'signature'}"
     },

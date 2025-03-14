@@ -541,7 +541,8 @@ export declare enum FormattingType {
     disabled = 0,
     automatic = 1,
     gs1 = 2,
-    aamva = 3
+    aamva = 3,
+    sadl = 4
 }
 export declare enum MsiChecksumType {
     disabled = 0,
@@ -602,7 +603,14 @@ export declare enum BarcodeType {
     idDocument = 28,
     databar14 = 29,
     databarLimited = 30,
-    databarExpanded = 31
+    databarExpanded = 31,
+    postalIMB = 32,
+    postnet = 33,
+    planet = 34,
+    australianPost = 35,
+    royalMail = 36,
+    kix = 37,
+    japanesePost = 38
 }
 export declare class BarkoderConfig {
     locationLineColor?: string;
@@ -659,6 +667,13 @@ export declare class DekoderConfig {
     databar14?: BarcodeConfig;
     databarLimited?: BarcodeConfig;
     databarExpanded?: BarcodeConfig;
+    postalIMB?: BarcodeConfig;
+    postnet?: BarcodeConfig;
+    planet?: BarcodeConfig;
+    australianPost?: BarcodeConfig;
+    royalMail?: BarcodeConfig;
+    kix?: BarcodeConfig;
+    japanesePost?: BarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
 }

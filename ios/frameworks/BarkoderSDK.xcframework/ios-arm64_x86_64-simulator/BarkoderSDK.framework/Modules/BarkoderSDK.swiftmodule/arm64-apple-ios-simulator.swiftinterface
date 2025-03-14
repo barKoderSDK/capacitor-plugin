@@ -3,6 +3,7 @@
 // swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name BarkoderSDK
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface
 import AVFoundation
+import AudioToolbox
 import Barkoder
 @_exported import BarkoderSDK
 import CoreMedia
@@ -153,6 +154,7 @@ extension CoreFoundation.CGRect {
     case mrz
     case gallery_scan
     case composite
+    case postal_codes
     public init?(rawValue: Swift.Int)
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {

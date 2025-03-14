@@ -6,7 +6,7 @@
 	<dict>
 		<key>.DS_Store</key>
 		<data>
-		Cz/yhX2hYQD8hpitbrP/7/lW/e4=
+		P6qZVTGE53h9Lxb+J/uyXkv1bqY=
 		</data>
 		<key>Headers/Barkoder.h</key>
 		<data>
@@ -14,7 +14,7 @@
 		</data>
 		<key>Headers/iBarkoder.h</key>
 		<data>
-		HWvyfRx0vJw54YvowmacOsMcCZo=
+		SZhNgFi7RtRZqv2nkN1gkSWaMi0=
 		</data>
 		<key>Info.plist</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>float16_384x256.mlmodelc/coremldata.bin</key>
 		<data>
-		DhqAtxD028QsTfplUYIAps/FbHI=
+		4acfvjtKB+QXIFN1DCZFn4BckhM=
 		</data>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<data>
-		dMnvopdHJQ6Jk3TYgtts2rZp26c=
+		an14sqZLrrHp3mJLYRO7VdINw0w=
 		</data>
 		<key>float16_384x256.mlmodelc/model.mil</key>
 		<data>
@@ -54,11 +54,11 @@
 		</data>
 		<key>float16_512x384.mlmodelc/coremldata.bin</key>
 		<data>
-		n6VsTw0Zo/smE97gypYnErJy49E=
+		PpHz5TTc8QHl8SBy3+sE1KII3Mc=
 		</data>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<data>
-		C36Hwk5NGVUo1zk14wg8NqUntAM=
+		lANcsTOGAN+Avg4RsZuIUnf0YVw=
 		</data>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<data>
@@ -90,7 +90,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			LRZMgxoVr5DNV9oE8vKV1dCaffBCYCVMPALCEdPo8Q4=
+			y6miqUcIdmuwFuj3r3k8dHXBYmyuhBrLViEyYWPtuPU=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -118,14 +118,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			d2P3cicPTjX12IQwvuqBets8rVTV6K52vXkuN04+XxU=
+			Khn5zu+up/5FpEHcufxmZI4MDDb7NMtGijeqPiFrgyE=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wjG+zQM7M/EPrCRi6FWKpjPscclGEJwyIwSvgZFpeWg=
+			VdQKGrmKPXUIeh9lWgIWK5mNsDTgi5MdZ3Kd4490VyQ=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/model.mil</key>
@@ -153,14 +153,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ETveWY0KzrDaGv39v54e6NP97zSTY8tg8DnTTFA91B4=
+			ytxs9CfML0oDNZTtE4loTlHPKhli+oPL97vnLH8Nhmc=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KUY6i6p5lmjlwXT4nknCFaO1sgIkAI1As2j6v68gE7U=
+			OmPT2ZIzT4d3j19XzODQyt9+n8Qr5q2tKxLdEVJ0w18=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/model.mil</key>

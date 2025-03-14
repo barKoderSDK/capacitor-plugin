@@ -177,6 +177,20 @@ public class BarkoderUtil {
                 return decoderConfig.DatabarLimited;
             case DatabarExpanded:
                 return decoderConfig.DatabarExpanded;
+            case PostalIMB:
+                return decoderConfig.PostalIMB;
+            case Postnet:
+                return decoderConfig.Postnet;
+            case Planet:
+                return decoderConfig.Planet;
+            case AustralianPost:
+                return decoderConfig.AustralianPost;
+            case RoyalMail:
+                return decoderConfig.RoyalMail;
+            case KIX:
+                return decoderConfig.KIX;
+            case JapanesePost:
+                return decoderConfig.JapanesePost;
         }
         return null;
     }

@@ -120,6 +120,27 @@
             "Databar Expanded": {
              "enabled": true
             },
+            "Postal IMB": {
+                "enabled": true
+            },
+            "Postnet": {
+                "enabled": false
+            },
+            "Planet": {
+                "enabled": false
+            },
+            "Australian Post": {
+                "enabled": false
+            },
+            "Royal Mail": {
+             "enabled": true
+            },
+            "KIX": {
+             "enabled": false
+            },
+            "Japanese Post": {
+             "enabled": false
+            },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 1,
@@ -680,6 +701,27 @@
             "Databar Expanded": {
              "enabled": true
             },
+            "Postal IMB": {
+                "enabled": true
+            },
+            "Postnet": {
+                "enabled": false
+            },
+            "Planet": {
+                "enabled": false
+            },
+            "Australian Post": {
+                "enabled": false
+            },
+            "Royal Mail": {
+             "enabled": true
+            },
+            "KIX": {
+             "enabled": false
+            },
+            "Japanese Post": {
+             "enabled": false
+            },
 			"general": {
 				"maxThreads": 2,
 				"decodingSpeed": 2,
@@ -956,6 +998,62 @@
                 "enableVINRestrictions": false,
                 "thresholdBetweenDuplicatesScans": 5,
                 "enableComposite": 1
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 2,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": true,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": false,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": false
+    },
+    "postal_codes": {
+        "decoder": {
+            "Postal IMB": {
+                "enabled": true
+            },
+            "Postnet": {
+                "enabled": true
+            },
+            "Planet": {
+                "enabled": true
+            },
+            "Australian Post": {
+                "enabled": true
+            },
+            "Royal Mail": {
+             "enabled": true
+            },
+            "KIX": {
+             "enabled": true
+            },
+            "Japanese Post": {
+             "enabled": true
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": true,
+                "multicodeCachingDuration": 1000,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false,
+                "thresholdBetweenDuplicatesScans": 5
             }
         },
         "locationLineColor": -65536,

@@ -487,6 +487,7 @@ typedef SWIFT_ENUM(NSInteger, BarkoderConfigTemplate, open) {
   BarkoderConfigTemplateMrz = 10,
   BarkoderConfigTemplateGallery_scan = 11,
   BarkoderConfigTemplateComposite = 12,
+  BarkoderConfigTemplatePostal_codes = 13,
 };
 
 
