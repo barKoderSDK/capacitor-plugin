@@ -110,6 +110,26 @@
         "slug": "pausescanning"
       },
       {
+        "name": "freezeScanning",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Freezes the current AR scanning session by capturing a still image from the camera feed.\nUse only when AR mode is enabled to temporarily freeze the view while keeping overlays visible.",
+        "complexTypes": [],
+        "slug": "freezescanning"
+      },
+      {
+        "name": "unfreezeScanning",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Unfreezes the AR scanning session by removing the still image and reactivating the camera and overlays.\nUse only when AR mode is enabled to restore the live AR view and continue scanning.",
+        "complexTypes": [],
+        "slug": "unfreezescanning"
+      },
+      {
         "name": "scanImage",
         "signature": "(options: { base64: string; }) => Promise<any>",
         "parameters": [
@@ -335,18 +355,20 @@
       },
       {
         "name": "setBarkoderResolution",
-        "signature": "(options: { value: number; }) => Promise<any>",
+        "signature": "(options: { value: BarkoderResolution; }) => Promise<any>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ value: number; }"
+            "type": "{ value: BarkoderResolution; }"
           }
         ],
         "returns": "Promise<any>",
         "tags": [],
         "docs": "Sets the resolution for barcode scanning",
-        "complexTypes": [],
+        "complexTypes": [
+          "BarkoderResolution"
+        ],
         "slug": "setbarkoderresolution"
       },
       {
@@ -399,18 +421,20 @@
       },
       {
         "name": "setBarcodeTypeLengthRange",
-        "signature": "(options: { type: number; min: number; max: number; }) => Promise<any>",
+        "signature": "(options: { type: BarcodeType; min: number; max: number; }) => Promise<any>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ type: number; min: number; max: number; }"
+            "type": "{ type: BarcodeType; min: number; max: number; }"
           }
         ],
         "returns": "Promise<any>",
         "tags": [],
         "docs": "Sets the length range for the specified barcode type",
-        "complexTypes": [],
+        "complexTypes": [
+          "BarcodeType"
+        ],
         "slug": "setbarcodetypelengthrange"
       },
       {
@@ -431,34 +455,38 @@
       },
       {
         "name": "setDecodingSpeed",
-        "signature": "(options: { value: number; }) => Promise<any>",
+        "signature": "(options: { value: DecodingSpeed; }) => Promise<any>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ value: number; }"
+            "type": "{ value: DecodingSpeed; }"
           }
         ],
         "returns": "Promise<any>",
         "tags": [],
         "docs": "Sets the decoding speed for barcode scanning",
-        "complexTypes": [],
+        "complexTypes": [
+          "DecodingSpeed"
+        ],
         "slug": "setdecodingspeed"
       },
       {
         "name": "setFormattingType",
-        "signature": "(options: { value: number; }) => Promise<any>",
+        "signature": "(options: { value: FormattingType; }) => Promise<any>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ value: number; }"
+            "type": "{ value: FormattingType; }"
           }
         ],
         "returns": "Promise<any>",
         "tags": [],
         "docs": "Sets the formatting type for barcode scanning",
-        "complexTypes": [],
+        "complexTypes": [
+          "FormattingType"
+        ],
         "slug": "setformattingtype"
       },
       {
@@ -511,18 +539,20 @@
       },
       {
         "name": "setBarcodeTypeEnabled",
-        "signature": "(options: { type: number; enabled: boolean; }) => Promise<any>",
+        "signature": "(options: { type: BarcodeType; enabled: boolean; }) => Promise<any>",
         "parameters": [
           {
             "name": "options",
             "docs": "",
-            "type": "{ type: number; enabled: boolean; }"
+            "type": "{ type: BarcodeType; enabled: boolean; }"
           }
         ],
         "returns": "Promise<any>",
         "tags": [],
         "docs": "Sets whether a specific barcode type is enabled",
-        "complexTypes": [],
+        "complexTypes": [
+          "BarcodeType"
+        ],
         "slug": "setbarcodetypeenabled"
       },
       {
@@ -588,22 +618,6 @@
         "docs": "A boolean indicating whether to enable barcode thumbnail on result.",
         "complexTypes": [],
         "slug": "setbarcodethumbnailonresultenabled"
-      },
-      {
-        "name": "setDuplicatesDelayMs",
-        "signature": "(options: { value: number; }) => Promise<any>",
-        "parameters": [
-          {
-            "name": "options",
-            "docs": "",
-            "type": "{ value: number; }"
-          }
-        ],
-        "returns": "Promise<any>",
-        "tags": [],
-        "docs": "Sets the delay in milliseconds for considering duplicate barcodes during scanning",
-        "complexTypes": [],
-        "slug": "setduplicatesdelayms"
       },
       {
         "name": "setThresholdBetweenDuplicatesScans",
@@ -929,6 +943,58 @@
       },
       {
         "name": "setCamera",
+        "signature": "(options: { value: BarkoderCameraPosition; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: BarkoderCameraPosition; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the camera to be used for scanning (back/front)",
+        "complexTypes": [
+          "BarkoderCameraPosition"
+        ],
+        "slug": "setcamera"
+      },
+      {
+        "name": "setShowDuplicatesLocations",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Enables or disables showing duplicate barcode locations on the preview overlay.",
+        "complexTypes": [],
+        "slug": "setshowduplicateslocations"
+      },
+      {
+        "name": "setARMode",
+        "signature": "(options: { value: BarkoderARMode; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: BarkoderARMode; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the AR mode used for barcode scanning visualization (e.g., interactive, non-interactive, or off).",
+        "complexTypes": [
+          "BarkoderARMode"
+        ],
+        "slug": "setarmode"
+      },
+      {
+        "name": "setARResultDisappearanceDelayMs",
         "signature": "(options: { value: number; }) => Promise<any>",
         "parameters": [
           {
@@ -939,9 +1005,287 @@
         ],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "Sets the camera to be used for scanning (back/front)",
+        "docs": "Sets the delay (in milliseconds) after which a detected AR result is considered expired and removed.",
         "complexTypes": [],
-        "slug": "setcamera"
+        "slug": "setarresultdisappearancedelayms"
+      },
+      {
+        "name": "setARLocationTransitionSpeed",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the speed at which barcode location overlays transition positions.",
+        "complexTypes": [],
+        "slug": "setarlocationtransitionspeed"
+      },
+      {
+        "name": "setAROverlayRefresh",
+        "signature": "(options: { value: BarkoderAROverlayRefresh; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: BarkoderAROverlayRefresh; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the refresh mode for the AR overlay on the camera preview.",
+        "complexTypes": [
+          "BarkoderAROverlayRefresh"
+        ],
+        "slug": "setaroverlayrefresh"
+      },
+      {
+        "name": "setARSelectedLocationColor",
+        "signature": "(options: { value: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the color used for drawing the overlay around selected barcodes in AR mode.",
+        "complexTypes": [],
+        "slug": "setarselectedlocationcolor"
+      },
+      {
+        "name": "setARNonSelectedLocationColor",
+        "signature": "(options: { value: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the color used for drawing the overlay around non-selected barcodes in AR mode.",
+        "complexTypes": [],
+        "slug": "setarnonselectedlocationcolor"
+      },
+      {
+        "name": "setARSelectedLocationLineWidth",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the line width of the overlay for selected barcodes in AR mode.",
+        "complexTypes": [],
+        "slug": "setarselectedlocationlinewidth"
+      },
+      {
+        "name": "setARNonSelectedLocationLineWidth",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the line width of the overlay for non-selected barcodes in AR mode.",
+        "complexTypes": [],
+        "slug": "setarnonselectedlocationlinewidth"
+      },
+      {
+        "name": "setARLocationType",
+        "signature": "(options: { value: BarkoderARLocationType; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: BarkoderARLocationType; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the style of location overlays drawn around detected barcodes (tight, bounding box, or none).",
+        "complexTypes": [
+          "BarkoderARLocationType"
+        ],
+        "slug": "setarlocationtype"
+      },
+      {
+        "name": "setARDoubleTapToFreezeEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Enables or disables the ability to freeze/unfreeze scanning via a double-tap gesture in AR mode.",
+        "complexTypes": [],
+        "slug": "setardoubletaptofreezeenabled"
+      },
+      {
+        "name": "setARHeaderHeight",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the height of the header text label shown above the barcode in AR mode.",
+        "complexTypes": [],
+        "slug": "setarheaderheight"
+      },
+      {
+        "name": "setARHeaderShowMode",
+        "signature": "(options: { value: BarkoderARHeaderShowMode; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: BarkoderARHeaderShowMode; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the condition under which the header text is shown above the barcode (always, on selected, or never).",
+        "complexTypes": [
+          "BarkoderARHeaderShowMode"
+        ],
+        "slug": "setarheadershowmode"
+      },
+      {
+        "name": "setARHeaderMaxTextHeight",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the maximum text height used for rendering AR header text above barcodes.",
+        "complexTypes": [],
+        "slug": "setarheadermaxtextheight"
+      },
+      {
+        "name": "setARHeaderMinTextHeight",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the minimum text height used for rendering AR header text above barcodes.",
+        "complexTypes": [],
+        "slug": "setarheadermintextheight"
+      },
+      {
+        "name": "setARHeaderTextColorSelected",
+        "signature": "(options: { value: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the text color of the header when the barcode is in a selected state.",
+        "complexTypes": [],
+        "slug": "setarheadertextcolorselected"
+      },
+      {
+        "name": "setARHeaderTextColorNonSelected",
+        "signature": "(options: { value: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the text color of the header when the barcode is not selected.",
+        "complexTypes": [],
+        "slug": "setarheadertextcolornonselected"
+      },
+      {
+        "name": "setARHeaderHorizontalTextMargin",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the horizontal margin applied to the header text in AR mode, creating equal padding on both sides.",
+        "complexTypes": [],
+        "slug": "setarheaderhorizontaltextmargin"
+      },
+      {
+        "name": "setARHeaderVerticalTextMargin",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the vertical margin applied to the header text in AR mode, creating equal padding on both sides.",
+        "complexTypes": [],
+        "slug": "setarheaderverticaltextmargin"
+      },
+      {
+        "name": "setARHeaderTextFormat",
+        "signature": "(options: { value: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the format string for the AR header text above each barcode, using placeholders like [barcode_text], [barcode_type].",
+        "complexTypes": [],
+        "slug": "setarheadertextformat"
       },
       {
         "name": "isFlashAvailable",
@@ -1210,16 +1554,6 @@
         "slug": "getmaximumresultscount"
       },
       {
-        "name": "getDuplicatesDelayMs",
-        "signature": "() => Promise<any>",
-        "parameters": [],
-        "returns": "Promise<any>",
-        "tags": [],
-        "docs": "Retrieves the delay in milliseconds for considering duplicate barcodes during scanning",
-        "complexTypes": [],
-        "slug": "getduplicatesdelayms"
-      },
-      {
         "name": "isBarcodeTypeEnabled",
         "signature": "(options: { type: number; }) => Promise<any>",
         "parameters": [
@@ -1394,12 +1728,592 @@
         "docs": "Retrieves if the scanning indicator is set to be always visible on the camera preview",
         "complexTypes": [],
         "slug": "isscanningindicatoralwaysvisible"
+      },
+      {
+        "name": "getShowDuplicatesLocations",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether showing duplicate barcode locations is enabled.",
+        "complexTypes": [],
+        "slug": "getshowduplicateslocations"
+      },
+      {
+        "name": "getARMode",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the current AR mode used for barcode scanning.",
+        "complexTypes": [],
+        "slug": "getarmode"
+      },
+      {
+        "name": "getARResultDisappearanceDelayMs",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the delay (in milliseconds) after which AR results disappear once detected.",
+        "complexTypes": [],
+        "slug": "getarresultdisappearancedelayms"
+      },
+      {
+        "name": "getARLocationTransitionSpeed",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the transition speed for moving AR barcode locations on the screen.",
+        "complexTypes": [],
+        "slug": "getarlocationtransitionspeed"
+      },
+      {
+        "name": "getAROverlayRefresh",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the current AR overlay refresh mode.",
+        "complexTypes": [],
+        "slug": "getaroverlayrefresh"
+      },
+      {
+        "name": "getARSelectedLocationColor",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the color used to highlight selected barcode locations in AR mode.",
+        "complexTypes": [],
+        "slug": "getarselectedlocationcolor"
+      },
+      {
+        "name": "getARNonSelectedLocationColor",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the color used to highlight non-selected barcode locations in AR mode.",
+        "complexTypes": [],
+        "slug": "getarnonselectedlocationcolor"
+      },
+      {
+        "name": "getARSelectedLocationLineWidth",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the line width used for selected barcode locations in AR mode.",
+        "complexTypes": [],
+        "slug": "getarselectedlocationlinewidth"
+      },
+      {
+        "name": "getARNonSelectedLocationLineWidth",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the line width used for non-selected barcode locations in AR mode.",
+        "complexTypes": [],
+        "slug": "getarnonselectedlocationlinewidth"
+      },
+      {
+        "name": "getARLocationType",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the location type style used for drawing AR overlays (tight, bounding box, or none).",
+        "complexTypes": [],
+        "slug": "getarlocationtype"
+      },
+      {
+        "name": "isARDoubleTapToFreezeEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Checks if the double-tap-to-freeze feature is enabled in AR mode.",
+        "complexTypes": [],
+        "slug": "isardoubletaptofreezeenabled"
+      },
+      {
+        "name": "getARHeaderHeight",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the height of the header text shown above barcodes in AR mode.",
+        "complexTypes": [],
+        "slug": "getarheaderheight"
+      },
+      {
+        "name": "getARHeaderShowMode",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the display mode for AR header text (always, on selected, or never).",
+        "complexTypes": [],
+        "slug": "getarheadershowmode"
+      },
+      {
+        "name": "getARHeaderMaxTextHeight",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the maximum height for AR header text.",
+        "complexTypes": [],
+        "slug": "getarheadermaxtextheight"
+      },
+      {
+        "name": "getARHeaderMinTextHeight",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the minimum height for AR header text.",
+        "complexTypes": [],
+        "slug": "getarheadermintextheight"
+      },
+      {
+        "name": "getARHeaderTextColorSelected",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the color used for header text when a barcode is selected in AR mode.",
+        "complexTypes": [],
+        "slug": "getarheadertextcolorselected"
+      },
+      {
+        "name": "getARHeaderTextColorNonSelected",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the color used for header text when a barcode is not selected in AR mode.",
+        "complexTypes": [],
+        "slug": "getarheadertextcolornonselected"
+      },
+      {
+        "name": "getARHeaderHorizontalTextMargin",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the horizontal margin applied to the AR header text.",
+        "complexTypes": [],
+        "slug": "getarheaderhorizontaltextmargin"
+      },
+      {
+        "name": "getARHeaderVerticalTextMargin",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the vertical margin applied to the AR header text.",
+        "complexTypes": [],
+        "slug": "getarheaderverticaltextmargin"
+      },
+      {
+        "name": "getARHeaderTextFormat",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the format string used for rendering AR header text above barcodes.",
+        "complexTypes": [],
+        "slug": "getarheadertextformat"
       }
     ],
     "properties": []
   },
   "interfaces": [],
-  "enums": [],
+  "enums": [
+    {
+      "name": "BarkoderResolution",
+      "slug": "barkoderresolution",
+      "members": [
+        {
+          "name": "HD",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "FHD",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "UHD",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "BarcodeType",
+      "slug": "barcodetype",
+      "members": [
+        {
+          "name": "aztec",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "aztecCompact",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "qr",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "qrMicro",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "code128",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "code93",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "code39",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "codabar",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "code11",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "msi",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "upcA",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "upcE",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "upcE1",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "ean13",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "ean8",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "pdf417",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "pdf417Micro",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "datamatrix",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "code25",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "interleaved25",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "itf14",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "iata25",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "matrix25",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "datalogic25",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "coop25",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "code32",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "telepen",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "dotcode",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "idDocument",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "databar14",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "databarLimited",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "databarExpanded",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "postalIMB",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "postnet",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "planet",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "australianPost",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "royalMail",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "kix",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "japanesePost",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "DecodingSpeed",
+      "slug": "decodingspeed",
+      "members": [
+        {
+          "name": "fast",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "normal",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "slow",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "rigorous",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "FormattingType",
+      "slug": "formattingtype",
+      "members": [
+        {
+          "name": "disabled",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "automatic",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "gs1",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "aamva",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "sadl",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "BarkoderCameraPosition",
+      "slug": "barkodercameraposition",
+      "members": [
+        {
+          "name": "BACK",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "FRONT",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "BarkoderARMode",
+      "slug": "barkoderarmode",
+      "members": [
+        {
+          "name": "off",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "interactiveDisabled",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "interactiveEnabled",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "nonInteractive",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "BarkoderAROverlayRefresh",
+      "slug": "barkoderaroverlayrefresh",
+      "members": [
+        {
+          "name": "smooth",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "normal",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "BarkoderARLocationType",
+      "slug": "barkoderarlocationtype",
+      "members": [
+        {
+          "name": "none",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "tight",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "boundingBox",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    },
+    {
+      "name": "BarkoderARHeaderShowMode",
+      "slug": "barkoderarheadershowmode",
+      "members": [
+        {
+          "name": "never",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "always",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "onSelected",
+          "tags": [],
+          "docs": ""
+        }
+      ]
+    }
+  ],
   "typeAliases": [],
   "pluginConfigs": []
 }

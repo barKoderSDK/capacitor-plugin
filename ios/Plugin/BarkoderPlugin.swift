@@ -25,6 +25,7 @@ public class BarkoderPlugin: CAPPlugin {
             ]
             let frame = CGRect(x: self.barkoderViewBounds["x"] ?? 0, y: self.barkoderViewBounds["y"] ?? 0, width: self.barkoderViewBounds["width"] ?? 0, height: self.barkoderViewBounds["height"] ?? 0)
             self.barkoderView = BarkoderView(frame: frame)
+            self.barkoderView.isUserInteractionEnabled = false
             self.createBarkoderConfig()
             
             if let webView = self.bridge?.webView {
@@ -126,6 +127,22 @@ extension BarkoderPlugin {
     @objc func pauseScanning(_ call: CAPPluginCall) {
         DispatchQueue.main.async {
             self.barkoderView.pauseScanning()
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func freezeScanning(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            self.barkoderView.freezeScanning()
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func unfreezeScanning(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            self.barkoderView.unfreezeScanning()
         }
         
         call.resolve()
@@ -651,18 +668,6 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
-    @objc func setDuplicatesDelayMs(_ call: CAPPluginCall) {
-        guard let index = call.getInt("value") else {
-            return
-        }
-        
-        DispatchQueue.main.async {
-            self.barkoderView.config?.decoderConfig?.duplicatesDelayMs = Int32(index)
-        }
-        
-        call.resolve()
-    }
-    
     @objc func setThresholdBetweenDuplicatesScans(_ call: CAPPluginCall) {
         guard let thresholdBetweenDuplicatesScans = call.getInt("value") else {
             return
@@ -781,6 +786,22 @@ extension BarkoderPlugin {
             
             if let colorHexCode = barkoderConfigAsDictionary["scanningIndicatorColor"] as? String {
                 barkoderConfigAsDictionary["scanningIndicatorColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+            
+            if let colorHexCode = barkoderConfigAsDictionary["selectedLocationColor"] as? String {
+                barkoderConfigAsDictionary["selectedLocationColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+
+            if let colorHexCode = barkoderConfigAsDictionary["nonSelectedLocationColor"] as? String {
+                barkoderConfigAsDictionary["nonSelectedLocationColor"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+
+            if let colorHexCode = barkoderConfigAsDictionary["headerTextColorSelected"] as? String {
+                barkoderConfigAsDictionary["headerTextColorSelected"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
+            }
+
+            if let colorHexCode = barkoderConfigAsDictionary["headerTextColorNonSelected"] as? String {
+                barkoderConfigAsDictionary["headerTextColorNonSelected"] = BarkoderUtil.parseColor(hexColor: colorHexCode)
             }
             
             let jsonData = try JSONSerialization.data(withJSONObject: barkoderConfigAsDictionary as Any, options: .prettyPrinted)
@@ -988,6 +1009,220 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func setShowDuplicatesLocations(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.showDuplicatesLocations = enabled
+        }
+
+        call.resolve()
+    }
+    
+    @objc func setARMode(_ call: CAPPluginCall) {
+        guard let index = call.getInt("value"),
+              let mode = BarkoderARMode(rawValue: index) else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.arMode = mode
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARResultDisappearanceDelayMs(_ call: CAPPluginCall) {
+        guard let value = call.getInt("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.resultDisappearanceDelayMs = value
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARLocationTransitionSpeed(_ call: CAPPluginCall) {
+        guard let value = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.locationTransitionSpeed = value
+        }
+
+        call.resolve()
+    }
+
+    @objc func setAROverlayRefresh(_ call: CAPPluginCall) {
+        guard let index = call.getInt("value"),
+              let overlayRefresh = BarkoderAROverlayRefresh(rawValue: index) else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.overlayRefresh = overlayRefresh
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARSelectedLocationColor(_ call: CAPPluginCall) {
+        guard let hex = call.getString("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.selectedLocationColor = UIColor(hexString: hex, call: call)
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARNonSelectedLocationColor(_ call: CAPPluginCall) {
+        guard let hex = call.getString("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.nonSelectedLocationColor = UIColor(hexString: hex, call: call)
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARSelectedLocationLineWidth(_ call: CAPPluginCall) {
+        guard let width = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.selectedLocationLineWidth = width
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARNonSelectedLocationLineWidth(_ call: CAPPluginCall) {
+        guard let width = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.nonSelectedLocationLineWidth = width
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARLocationType(_ call: CAPPluginCall) {
+        guard let index = call.getInt("value"),
+              let type = BarkoderARLocationType(rawValue: index) else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.locationType = type
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARDoubleTapToFreezeEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.doubleTapToFreezeEnabled = enabled
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderHeight(_ call: CAPPluginCall) {
+        guard let height = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerHeight = height
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderShowMode(_ call: CAPPluginCall) {
+        guard let index = call.getInt("value"),
+              let mode = BarkoderARHeaderShowMode(rawValue: index) else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerShowMode = mode
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderMaxTextHeight(_ call: CAPPluginCall) {
+        guard let value = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerMaxTextHeight = value
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderMinTextHeight(_ call: CAPPluginCall) {
+        guard let value = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerMinTextHeight = value
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderTextColorSelected(_ call: CAPPluginCall) {
+        guard let hex = call.getString("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerTextColorSelected = UIColor(hexString: hex, call: call)
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderTextColorNonSelected(_ call: CAPPluginCall) {
+        guard let hex = call.getString("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerTextColorNonSelected = UIColor(hexString: hex, call: call)
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderHorizontalTextMargin(_ call: CAPPluginCall) {
+        guard let value = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerHorizontalTextMargin = value
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderVerticalTextMargin(_ call: CAPPluginCall) {
+        guard let value = call.getFloat("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerVerticalTextMargin = value
+        }
+
+        call.resolve()
+    }
+
+    @objc func setARHeaderTextFormat(_ call: CAPPluginCall) {
+        guard let format = call.getString("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.headerTextFormat = format
+        }
+
+        call.resolve()
+    }
+    
 }
 
 // MARK: - Getters
@@ -1149,10 +1384,6 @@ extension BarkoderPlugin {
     
     @objc func getMaximumResultsCount(_ call: CAPPluginCall) {
         call.resolve(["maximumResultsCount": barkoderView.config?.decoderConfig?.maximumResultsCount as Any])
-    }
-    
-    @objc func getDuplicatesDelayMs(_ call: CAPPluginCall) {
-        call.resolve(["duplicatesDelayMs": barkoderView.config?.decoderConfig?.duplicatesDelayMs as Any])
     }
     
     @objc func isBarcodeTypeEnabled(_ call: CAPPluginCall) {
@@ -1324,6 +1555,86 @@ extension BarkoderPlugin {
     
     @objc func isScanningIndicatorAlwaysVisible(_ call: CAPPluginCall) {
         call.resolve(["isScanningIndicatorAlwaysVisible": barkoderView.config?.scanningIndicatorAlwaysVisible as Any])
+    }
+    
+    @objc func getShowDuplicatesLocations(_ call: CAPPluginCall) {
+        call.resolve(["showDuplicatesLocations": barkoderView.config?.showDuplicatesLocations as Any])
+    }
+    
+    @objc func getARMode(_ call: CAPPluginCall) {
+        call.resolve(["arMode": barkoderView.config?.arConfig.arMode.rawValue as Any])
+    }
+
+    @objc func getARResultDisappearanceDelayMs(_ call: CAPPluginCall) {
+        call.resolve(["arResultDisappearanceDelayMs": barkoderView.config?.arConfig.resultDisappearanceDelayMs as Any])
+    }
+
+    @objc func getARLocationTransitionSpeed(_ call: CAPPluginCall) {
+        call.resolve(["arLocationTransitionSpeed": barkoderView.config?.arConfig.locationTransitionSpeed as Any])
+    }
+
+    @objc func getAROverlayRefresh(_ call: CAPPluginCall) {
+        call.resolve(["arOverlayRefresh": barkoderView.config?.arConfig.overlayRefresh.rawValue as Any])
+    }
+
+    @objc func getARSelectedLocationColor(_ call: CAPPluginCall) {
+        call.resolve(["arSelectedLocationColor": barkoderView.config?.arConfig.selectedLocationColor.toHex() as Any])
+    }
+
+    @objc func getARNonSelectedLocationColor(_ call: CAPPluginCall) {
+        call.resolve(["arNonSelectedLocationColor": barkoderView.config?.arConfig.nonSelectedLocationColor.toHex() as Any])
+    }
+
+    @objc func getARSelectedLocationLineWidth(_ call: CAPPluginCall) {
+        call.resolve(["arSelectedLocationLineWidth": barkoderView.config?.arConfig.selectedLocationLineWidth as Any])
+    }
+
+    @objc func getARNonSelectedLocationLineWidth(_ call: CAPPluginCall) {
+        call.resolve(["arNonSelectedLocationLineWidth": barkoderView.config?.arConfig.nonSelectedLocationLineWidth as Any])
+    }
+
+    @objc func getARLocationType(_ call: CAPPluginCall) {
+        call.resolve(["arLocationType": barkoderView.config?.arConfig.locationType.rawValue as Any])
+    }
+
+    @objc func isARDoubleTapToFreezeEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isARDoubleTapToFreezeEnabled": barkoderView.config?.arConfig.doubleTapToFreezeEnabled as Any])
+    }
+
+    @objc func getARHeaderHeight(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderHeight": barkoderView.config?.arConfig.headerHeight as Any])
+    }
+
+    @objc func getARHeaderShowMode(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderShowMode": barkoderView.config?.arConfig.headerShowMode.rawValue as Any])
+    }
+
+    @objc func getARHeaderMaxTextHeight(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderMaxTextHeight": barkoderView.config?.arConfig.headerMaxTextHeight as Any])
+    }
+
+    @objc func getARHeaderMinTextHeight(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderMinTextHeight": barkoderView.config?.arConfig.headerMinTextHeight as Any])
+    }
+
+    @objc func getARHeaderTextColorSelected(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderTextColorSelected": barkoderView.config?.arConfig.headerTextColorSelected.toHex() as Any])
+    }
+
+    @objc func getARHeaderTextColorNonSelected(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderTextColorNonSelected": barkoderView.config?.arConfig.headerTextColorNonSelected.toHex() as Any])
+    }
+
+    @objc func getARHeaderHorizontalTextMargin(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderHorizontalTextMargin": barkoderView.config?.arConfig.headerHorizontalTextMargin as Any])
+    }
+
+    @objc func getARHeaderVerticalTextMargin(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderVerticalTextMargin": barkoderView.config?.arConfig.headerVerticalTextMargin as Any])
+    }
+
+    @objc func getARHeaderTextFormat(_ call: CAPPluginCall) {
+        call.resolve(["arHeaderTextFormat": barkoderView.config?.arConfig.headerTextFormat as Any])
     }
     
 }

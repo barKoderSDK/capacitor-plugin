@@ -87,12 +87,41 @@ export var BarcodeType;
     BarcodeType[BarcodeType["kix"] = 37] = "kix";
     BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
 })(BarcodeType || (BarcodeType = {}));
+export var BarkoderARMode;
+(function (BarkoderARMode) {
+    BarkoderARMode[BarkoderARMode["off"] = 0] = "off";
+    BarkoderARMode[BarkoderARMode["interactiveDisabled"] = 1] = "interactiveDisabled";
+    BarkoderARMode[BarkoderARMode["interactiveEnabled"] = 2] = "interactiveEnabled";
+    BarkoderARMode[BarkoderARMode["nonInteractive"] = 3] = "nonInteractive";
+})(BarkoderARMode || (BarkoderARMode = {}));
+export var BarkoderAROverlayRefresh;
+(function (BarkoderAROverlayRefresh) {
+    BarkoderAROverlayRefresh[BarkoderAROverlayRefresh["smooth"] = 0] = "smooth";
+    BarkoderAROverlayRefresh[BarkoderAROverlayRefresh["normal"] = 1] = "normal";
+})(BarkoderAROverlayRefresh || (BarkoderAROverlayRefresh = {}));
+export var BarkoderARLocationType;
+(function (BarkoderARLocationType) {
+    BarkoderARLocationType[BarkoderARLocationType["none"] = 0] = "none";
+    BarkoderARLocationType[BarkoderARLocationType["tight"] = 1] = "tight";
+    BarkoderARLocationType[BarkoderARLocationType["boundingBox"] = 2] = "boundingBox";
+})(BarkoderARLocationType || (BarkoderARLocationType = {}));
+export var BarkoderARHeaderShowMode;
+(function (BarkoderARHeaderShowMode) {
+    BarkoderARHeaderShowMode[BarkoderARHeaderShowMode["never"] = 0] = "never";
+    BarkoderARHeaderShowMode[BarkoderARHeaderShowMode["always"] = 1] = "always";
+    BarkoderARHeaderShowMode[BarkoderARHeaderShowMode["onSelected"] = 2] = "onSelected";
+})(BarkoderARHeaderShowMode || (BarkoderARHeaderShowMode = {}));
 export class BarkoderConfig {
     constructor(config) {
         Object.assign(this, config);
     }
 }
 export class DekoderConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+}
+export class BarkoderARConfig {
     constructor(config) {
         Object.assign(this, config);
     }

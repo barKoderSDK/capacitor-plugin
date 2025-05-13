@@ -173,7 +173,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 0,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "pdf_optimized": {
         "decoder": {
@@ -214,7 +223,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "qr": {
         "decoder": {
@@ -255,7 +273,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "retail_1d": {
         "decoder": {
@@ -311,7 +338,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "industrial_1d": {
         "decoder": {
@@ -402,7 +438,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "all_2d": {
         "decoder": {
@@ -453,7 +498,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "dpm": {
         "decoder": {
@@ -500,7 +554,10 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0
+        }
     },
     "vin": {
         "decoder": {
@@ -553,7 +610,16 @@
         "regionOfInterestVisible": true,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "dotcode": {
         "decoder": {
@@ -591,7 +657,10 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0
+        }
     },
 	"all_1d": {
 		"decoder": {
@@ -753,7 +822,16 @@
 		"regionOfInterestVisible": false,
 		"barkoderResolution": 1,
 		"beepOnSuccessEnabled": true,
-		"vibrateOnSuccessEnabled": false
+		"vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
 	},
     "mrz": {
         "decoder": {
@@ -792,7 +870,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "gallery_scan": {
           "decoder": {
@@ -923,6 +1010,36 @@
            "ID Document": {
                "enabled": true
            },
+           "Databar 14": {
+               "enabled": true
+           },
+           "Databar Limited": {
+               "enabled": true
+           },
+           "Databar Expanded": {
+               "enabled": true
+           },
+           "Postal IMB": {
+               "enabled": true
+           },
+           "Postnet": {
+               "enabled": true
+           },
+           "Planet": {
+               "enabled": true
+           },
+           "Australian Post": {
+               "enabled": true
+           },
+           "Royal Mail": {
+            "enabled": true
+           },
+           "KIX": {
+            "enabled": true
+           },
+           "Japanese Post": {
+            "enabled": true
+           },
            "general": {
             "maxThreads": 2,
             "decodingSpeed": 3,
@@ -934,7 +1051,8 @@
             "encodingCharacterSet": "",
             "enableMisshaped1D": true,
             "upcEanDeblur": true,
-            "enableVINRestrictions": false
+            "enableVINRestrictions": false,
+            "enableComposite": 1
            }
           },
           "closeSessionOnResultEnabled": true,
@@ -942,7 +1060,10 @@
           "beepOnSuccessEnabled": true,
           "vibrateOnSuccessEnabled": false,
           "locationInImageResultEnabled": true,
-          "locationLineWidth": 8
+          "locationLineWidth": 8,
+          "arConfig": {
+              "arMode": 0
+          }
     },
     "composite": {
         "decoder": {
@@ -1013,7 +1134,16 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
     "postal_codes": {
         "decoder": {
@@ -1069,6 +1199,201 @@
         "regionOfInterestVisible": false,
         "barkoderResolution": 1,
         "beepOnSuccessEnabled": true,
-        "vibrateOnSuccessEnabled": false
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 0,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
     },
+    "ar": {
+        "decoder": {
+            "Aztec": {
+                "enabled": false
+            },
+            "Aztec Compact": {
+                "enabled": false
+            },
+            "QR": {
+                "enabled": true
+            },
+            "QR Micro": {
+                "enabled": false
+            },
+            "Code 128": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 93": {
+                "enabled": false,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 39": {
+                "enabled": true,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "Codabar": {
+                "enabled": false,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 11": {
+                "enabled": false,
+                "minimumLength": 0,
+                "maximumLength": 0,
+                "checksum": 0
+            },
+            "MSI": {
+                "enabled": false,
+                "minimumLength": 4,
+                "maximumLength": 0,
+                "checksum": 1
+            },
+            "Upc-A": {
+                "enabled": true
+            },
+            "Upc-E": {
+                "enabled": true
+            },
+            "Upc-E1": {
+                "enabled": false
+            },
+            "Ean-13": {
+                "enabled": true
+            },
+            "Ean-8": {
+                "enabled": true
+            },
+            "PDF 417": {
+                "enabled": false
+            },
+            "PDF 417 Micro": {
+                "enabled": false
+            },
+            "Datamatrix": {
+                "enabled": false,
+                "dpmMode": 0
+            },
+            "Code 25": {
+                "enabled": false,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Interleaved 2 of 5": {
+                "enabled": false,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "ITF 14": {
+                "enabled": false
+            },
+            "IATA 25": {
+                "enabled": false,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Matrix 25": {
+                "enabled": false,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "COOP 25": {
+                "enabled": false,
+                "checksum": 0,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Code 32": {
+                "enabled": false,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Telepen": {
+                "enabled": false,
+                "minimumLength": 0,
+                "maximumLength": 0
+            },
+            "Databar 14": {
+             "enabled": false
+            },
+            "Databar Limited": {
+             "enabled": false
+            },
+            "Databar Expanded": {
+             "enabled": false
+            },
+            "Postal IMB": {
+                "enabled": false
+            },
+            "Postnet": {
+                "enabled": false
+            },
+            "Planet": {
+                "enabled": false
+            },
+            "Australian Post": {
+                "enabled": false
+            },
+            "Royal Mail": {
+             "enabled": false
+            },
+            "KIX": {
+             "enabled": false
+            },
+            "Japanese Post": {
+             "enabled": false
+            },
+            "general": {
+                "maxThreads": 2,
+                "decodingSpeed": 2,
+                "roi_x": 0,
+                "roi_y": 0,
+                "roi_w": 100,
+                "roi_h": 100,
+                "formattingType": 0,
+                "duplicatesDelayMs": 0,
+                "encodingCharacterSet": "",
+                "multicodeCachingEnabled": false,
+                "multicodeCachingDuration": 0,
+                "enableMisshaped1D": false,
+                "upcEanDeblur": false,
+                "enableVINRestrictions": false
+            }
+        },
+        "locationLineColor": -65536,
+        "locationLineWidth": 2,
+        "roiLineColor": -65536,
+        "roiLineWidth": 3,
+        "roiOverlayBackgroundColor": 1711276032,
+        "closeSessionOnResultEnabled": false,
+        "imageResultEnabled": false,
+        "locationInImageResultEnabled": false,
+        "locationInPreviewEnabled": true,
+        "pinchToZoomEnabled": true,
+        "regionOfInterestVisible": false,
+        "barkoderResolution": 1,
+        "beepOnSuccessEnabled": true,
+        "vibrateOnSuccessEnabled": false,
+        "arConfig": {
+            "arMode": 1,
+            "resultDisappearanceDelayMs": 800,
+            "locationTransitionSpeed": 0.3,
+            "overlayRefresh": 0,
+            "locationType": 1,
+            "doubleTapToFreezeEnabled": true,
+            "headerShowMode": 2
+        }
+    }
 }

@@ -59,12 +59,14 @@ import _SwiftConcurrencyShims
   @objc public var locationInImageResultEnabled: Swift.Bool
   @objc public var locationInPreviewEnabled: Swift.Bool
   @objc public var decoderConfig: Barkoder.Config?
+  @objc public var arConfig: BarkoderSDK.BarkoderARConfig
   @objc public var barkoderResolution: BarkoderSDK.BarkoderView.BarkoderResolution {
     @objc get
     @objc set
   }
   @objc public var barcodeThumbnailOnResult: Swift.Bool
   @objc public var thresholdBetweenDuplicatesScans: Swift.Int
+  @objc public var showDuplicatesLocations: Swift.Bool
   @objc open func setRegionOfInterest(_ value: CoreFoundation.CGRect) throws
   @objc open func getRegionOfInterest() -> CoreFoundation.CGRect
   @objc convenience public init(licenseKey: Swift.String, licenseCheckHandler: @escaping ((Barkoder.LicenseCheckResult) -> Swift.Void))
@@ -114,6 +116,8 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func startScanning(_ resultDelegate: any BarkoderSDK.BarkoderResultDelegate) throws
   @objc @_Concurrency.MainActor @preconcurrency public func stopScanning()
   @objc @_Concurrency.MainActor @preconcurrency public func pauseScanning()
+  @objc @_Concurrency.MainActor @preconcurrency public func freezeScanning()
+  @objc @_Concurrency.MainActor @preconcurrency public func unfreezeScanning()
   @objc @_Concurrency.MainActor @preconcurrency public func setZoomFactor(_ zoomFactor: Swift.Float)
   @objc @_Concurrency.MainActor @preconcurrency public func setCamera(_ position: BarkoderSDK.BarkoderView.BarkoderCameraPosition)
   @objc @_Concurrency.MainActor @preconcurrency public func setFlash(_ enabled: Swift.Bool)
@@ -126,10 +130,82 @@ extension UIKit.UIImage {
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
   @objc deinit
 }
+extension BarkoderSDK.BarkoderView : UIKit.UIGestureRecognizerDelegate {
+  @_Concurrency.MainActor @preconcurrency @objc dynamic public func gestureRecognizer(_ gestureRecognizer: UIKit.UIGestureRecognizer, shouldReceive touch: UIKit.UITouch) -> Swift.Bool
+}
 extension CoreFoundation.CGRect {
   public static let fullScreen: CoreFoundation.CGRect
   public func fullScreenIntersection() -> CoreFoundation.CGRect
   public func isFullScreen() -> Swift.Bool
+}
+@objc public enum BarkoderARMode : Swift.Int {
+  case off
+  case interactiveDisabled
+  case interactiveEnabled
+  case nonInteractive
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum BarkoderAROverlayRefresh : Swift.Int {
+  case smooth
+  case normal
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum BarkoderARLocationType : Swift.Int {
+  case none
+  case tight
+  case boundingBox
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum BarkoderARHeaderShowMode : Swift.Int {
+  case never
+  case always
+  case onSelected
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class BarkoderARConfig : ObjectiveC.NSObject {
+  @objc public var arMode: BarkoderSDK.BarkoderARMode {
+    @objc get
+    @objc set
+  }
+  @objc public var resultDisappearanceDelayMs: Swift.Int
+  @objc public var locationTransitionSpeed: Swift.Float {
+    @objc get
+    @objc set
+  }
+  @objc public var overlayRefresh: BarkoderSDK.BarkoderAROverlayRefresh
+  @objc public var selectedLocationColor: UIKit.UIColor
+  @objc public var nonSelectedLocationColor: UIKit.UIColor
+  @objc public var selectedLocationLineWidth: Swift.Float
+  @objc public var nonSelectedLocationLineWidth: Swift.Float
+  @objc public var locationType: BarkoderSDK.BarkoderARLocationType
+  @objc public var doubleTapToFreezeEnabled: Swift.Bool
+  @objc public var headerHeight: Swift.Float
+  @objc public var headerShowMode: BarkoderSDK.BarkoderARHeaderShowMode
+  @objc public var headerMaxTextHeight: Swift.Float
+  @objc public var headerMinTextHeight: Swift.Float
+  @objc public var headerTextColorSelected: UIKit.UIColor
+  @objc public var headerTextColorNonSelected: UIKit.UIColor
+  @objc public var headerHorizontalTextMargin: Swift.Float
+  @objc public var headerVerticalTextMargin: Swift.Float
+  @objc public var headerTextFormat: Swift.String
+  @objc override dynamic public init()
+  @objc deinit
 }
 @objc public protocol BarkoderPreviewFramesDelegate {
   @objc optional func cameraFrameReceived(sampleBuffer: CoreMedia.CMSampleBuffer)
@@ -155,6 +231,7 @@ extension CoreFoundation.CGRect {
     case gallery_scan
     case composite
     case postal_codes
+    case ar
     public init?(rawValue: Swift.Int)
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
@@ -175,6 +252,18 @@ extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.RawRepresentable {
 extension BarkoderSDK.BarkoderView.BarkoderCameraPosition : Swift.Equatable {}
 extension BarkoderSDK.BarkoderView.BarkoderCameraPosition : Swift.Hashable {}
 extension BarkoderSDK.BarkoderView.BarkoderCameraPosition : Swift.RawRepresentable {}
+extension BarkoderSDK.BarkoderARMode : Swift.Equatable {}
+extension BarkoderSDK.BarkoderARMode : Swift.Hashable {}
+extension BarkoderSDK.BarkoderARMode : Swift.RawRepresentable {}
+extension BarkoderSDK.BarkoderAROverlayRefresh : Swift.Equatable {}
+extension BarkoderSDK.BarkoderAROverlayRefresh : Swift.Hashable {}
+extension BarkoderSDK.BarkoderAROverlayRefresh : Swift.RawRepresentable {}
+extension BarkoderSDK.BarkoderARLocationType : Swift.Equatable {}
+extension BarkoderSDK.BarkoderARLocationType : Swift.Hashable {}
+extension BarkoderSDK.BarkoderARLocationType : Swift.RawRepresentable {}
+extension BarkoderSDK.BarkoderARHeaderShowMode : Swift.Equatable {}
+extension BarkoderSDK.BarkoderARHeaderShowMode : Swift.Hashable {}
+extension BarkoderSDK.BarkoderARHeaderShowMode : Swift.RawRepresentable {}
 extension BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate : Swift.Equatable {}
 extension BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate : Swift.Hashable {}
 extension BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate : Swift.RawRepresentable {}

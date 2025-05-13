@@ -12,6 +12,8 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(startScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(stopScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(pauseScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(freezeScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(unfreezeScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(scanImage, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setLocationLineColor, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setLocationLineWidth, CAPPluginReturnPromise);
@@ -43,7 +45,6 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setMulticodeCachingDuration, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setMaximumResultsCount, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setBarcodeThumbnailOnResultEnabled, CAPPluginReturnPromise);
-           CAP_PLUGIN_METHOD(setDuplicatesDelayMs, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setThresholdBetweenDuplicatesScans, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setUpcEanDeblurEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setMisshaped1DEnabled, CAPPluginReturnPromise);
@@ -65,6 +66,26 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setEnableComposite, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setVideoStabilization, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setCamera, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setShowDuplicatesLocations, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARMode, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARResultDisappearanceDelayMs, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARLocationTransitionSpeed, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setAROverlayRefresh, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARSelectedLocationColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARNonSelectedLocationColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARSelectedLocationLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARNonSelectedLocationLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARLocationType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARDoubleTapToFreezeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderShowMode, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderMaxTextHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderMinTextHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderTextColorSelected, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderTextColorNonSelected, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderHorizontalTextMargin, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderVerticalTextMargin, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARHeaderTextFormat, CAPPluginReturnPromise);
 
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
@@ -93,7 +114,6 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(getFormattingType, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getThreadsLimit, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getMaximumResultsCount, CAPPluginReturnPromise);
-           CAP_PLUGIN_METHOD(getDuplicatesDelayMs, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isBarcodeTypeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getMulticodeCachingEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getMulticodeCachingDuration, CAPPluginReturnPromise);
@@ -111,4 +131,24 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(getScanningIndicatorWidth, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getScanningIndicatorAnimation, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isScanningIndicatorAlwaysVisible, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getShowDuplicatesLocations, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARMode, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARResultDisappearanceDelayMs, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARLocationTransitionSpeed, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getAROverlayRefresh, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARSelectedLocationColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARNonSelectedLocationColor, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARSelectedLocationLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARNonSelectedLocationLineWidth, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARLocationType, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isARDoubleTapToFreezeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderShowMode, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderMaxTextHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderMinTextHeight, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderTextColorSelected, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderTextColorNonSelected, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderHorizontalTextMargin, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderVerticalTextMargin, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARHeaderTextFormat, CAPPluginReturnPromise);
 )

@@ -35,6 +35,16 @@ export interface BarkoderPlugin extends Plugin {
      */
     pauseScanning(): Promise<any>;
     /**
+     * Freezes the current AR scanning session by capturing a still image from the camera feed.
+     * Use only when AR mode is enabled to temporarily freeze the view while keeping overlays visible.
+     */
+    freezeScanning(): Promise<any>;
+    /**
+     * Unfreezes the AR scanning session by removing the still image and reactivating the camera and overlays.
+     * Use only when AR mode is enabled to restore the live AR view and continue scanning.
+     */
+    unfreezeScanning(): Promise<any>;
+    /**
    * Scan barcodes from base64 string image
    */
     scanImage(options: {
@@ -125,7 +135,7 @@ export interface BarkoderPlugin extends Plugin {
      * Sets the resolution for barcode scanning
      */
     setBarkoderResolution(options: {
-        value: number;
+        value: BarkoderResolution;
     }): Promise<any>;
     /**
      * Enables or disables the audible beep sound upon successfully decoding a barcode
@@ -146,7 +156,7 @@ export interface BarkoderPlugin extends Plugin {
      * Sets the length range for the specified barcode type
      */
     setBarcodeTypeLengthRange(options: {
-        type: number;
+        type: BarcodeType;
         min: number;
         max: number;
     }): Promise<any>;
@@ -160,13 +170,13 @@ export interface BarkoderPlugin extends Plugin {
      * Sets the decoding speed for barcode scanning
      */
     setDecodingSpeed(options: {
-        value: number;
+        value: DecodingSpeed;
     }): Promise<any>;
     /**
      * Sets the formatting type for barcode scanning
      */
     setFormattingType(options: {
-        value: number;
+        value: FormattingType;
     }): Promise<any>;
     /**
      * Sets the Code11 checksum type
@@ -190,7 +200,7 @@ export interface BarkoderPlugin extends Plugin {
      * Sets whether a specific barcode type is enabled
      */
     setBarcodeTypeEnabled(options: {
-        type: number;
+        type: BarcodeType;
         enabled: boolean;
     }): Promise<any>;
     /**
@@ -216,12 +226,6 @@ export interface BarkoderPlugin extends Plugin {
      */
     setBarcodeThumbnailOnResultEnabled(options: {
         enabled: boolean;
-    }): Promise<any>;
-    /**
-     * Sets the delay in milliseconds for considering duplicate barcodes during scanning
-     */
-    setDuplicatesDelayMs(options: {
-        value: number;
     }): Promise<any>;
     /**
      * Sets the threshold between duplicate scans
@@ -345,10 +349,130 @@ export interface BarkoderPlugin extends Plugin {
         value: boolean;
     }): Promise<any>;
     /**
-* Sets the camera to be used for scanning (back/front)
-*/
+   * Sets the camera to be used for scanning (back/front)
+   */
     setCamera(options: {
+        value: BarkoderCameraPosition;
+    }): Promise<any>;
+    /**
+    * Enables or disables showing duplicate barcode locations on the preview overlay.
+    */
+    setShowDuplicatesLocations(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Sets the AR mode used for barcode scanning visualization (e.g., interactive, non-interactive, or off).
+     */
+    setARMode(options: {
+        value: BarkoderARMode;
+    }): Promise<any>;
+    /**
+     * Sets the delay (in milliseconds) after which a detected AR result is considered expired and removed.
+     */
+    setARResultDisappearanceDelayMs(options: {
         value: number;
+    }): Promise<any>;
+    /**
+     * Sets the speed at which barcode location overlays transition positions.
+     */
+    setARLocationTransitionSpeed(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the refresh mode for the AR overlay on the camera preview.
+     */
+    setAROverlayRefresh(options: {
+        value: BarkoderAROverlayRefresh;
+    }): Promise<any>;
+    /**
+     * Sets the color used for drawing the overlay around selected barcodes in AR mode.
+     */
+    setARSelectedLocationColor(options: {
+        value: string;
+    }): Promise<any>;
+    /**
+     * Sets the color used for drawing the overlay around non-selected barcodes in AR mode.
+     */
+    setARNonSelectedLocationColor(options: {
+        value: string;
+    }): Promise<any>;
+    /**
+     * Sets the line width of the overlay for selected barcodes in AR mode.
+     */
+    setARSelectedLocationLineWidth(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the line width of the overlay for non-selected barcodes in AR mode.
+     */
+    setARNonSelectedLocationLineWidth(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the style of location overlays drawn around detected barcodes (tight, bounding box, or none).
+     */
+    setARLocationType(options: {
+        value: BarkoderARLocationType;
+    }): Promise<any>;
+    /**
+     * Enables or disables the ability to freeze/unfreeze scanning via a double-tap gesture in AR mode.
+     */
+    setARDoubleTapToFreezeEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    /**
+     * Sets the height of the header text label shown above the barcode in AR mode.
+     */
+    setARHeaderHeight(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the condition under which the header text is shown above the barcode (always, on selected, or never).
+     */
+    setARHeaderShowMode(options: {
+        value: BarkoderARHeaderShowMode;
+    }): Promise<any>;
+    /**
+     * Sets the maximum text height used for rendering AR header text above barcodes.
+     */
+    setARHeaderMaxTextHeight(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the minimum text height used for rendering AR header text above barcodes.
+     */
+    setARHeaderMinTextHeight(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the text color of the header when the barcode is in a selected state.
+     */
+    setARHeaderTextColorSelected(options: {
+        value: string;
+    }): Promise<any>;
+    /**
+     * Sets the text color of the header when the barcode is not selected.
+     */
+    setARHeaderTextColorNonSelected(options: {
+        value: string;
+    }): Promise<any>;
+    /**
+     * Sets the horizontal margin applied to the header text in AR mode, creating equal padding on both sides.
+     */
+    setARHeaderHorizontalTextMargin(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the vertical margin applied to the header text in AR mode, creating equal padding on both sides.
+     */
+    setARHeaderVerticalTextMargin(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets the format string for the AR header text above each barcode, using placeholders like [barcode_text], [barcode_type].
+     */
+    setARHeaderTextFormat(options: {
+        value: string;
     }): Promise<any>;
     /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
@@ -457,10 +581,6 @@ export interface BarkoderPlugin extends Plugin {
      */
     getMaximumResultsCount(): Promise<any>;
     /**
-     * Retrieves the delay in milliseconds for considering duplicate barcodes during scanning
-     */
-    getDuplicatesDelayMs(): Promise<any>;
-    /**
      * Checks if a specific barcode type is enabled
      */
     isBarcodeTypeEnabled(options: {
@@ -530,6 +650,86 @@ export interface BarkoderPlugin extends Plugin {
    * Retrieves if the scanning indicator is set to be always visible on the camera preview
    */
     isScanningIndicatorAlwaysVisible(): Promise<any>;
+    /**
+     * Retrieves whether showing duplicate barcode locations is enabled.
+     */
+    getShowDuplicatesLocations(): Promise<any>;
+    /**
+     * Retrieves the current AR mode used for barcode scanning.
+     */
+    getARMode(): Promise<any>;
+    /**
+     * Retrieves the delay (in milliseconds) after which AR results disappear once detected.
+     */
+    getARResultDisappearanceDelayMs(): Promise<any>;
+    /**
+     * Retrieves the transition speed for moving AR barcode locations on the screen.
+     */
+    getARLocationTransitionSpeed(): Promise<any>;
+    /**
+     * Retrieves the current AR overlay refresh mode.
+     */
+    getAROverlayRefresh(): Promise<any>;
+    /**
+     * Retrieves the color used to highlight selected barcode locations in AR mode.
+     */
+    getARSelectedLocationColor(): Promise<any>;
+    /**
+     * Retrieves the color used to highlight non-selected barcode locations in AR mode.
+     */
+    getARNonSelectedLocationColor(): Promise<any>;
+    /**
+     * Retrieves the line width used for selected barcode locations in AR mode.
+     */
+    getARSelectedLocationLineWidth(): Promise<any>;
+    /**
+     * Retrieves the line width used for non-selected barcode locations in AR mode.
+     */
+    getARNonSelectedLocationLineWidth(): Promise<any>;
+    /**
+     * Retrieves the location type style used for drawing AR overlays (tight, bounding box, or none).
+     */
+    getARLocationType(): Promise<any>;
+    /**
+     * Checks if the double-tap-to-freeze feature is enabled in AR mode.
+     */
+    isARDoubleTapToFreezeEnabled(): Promise<any>;
+    /**
+     * Retrieves the height of the header text shown above barcodes in AR mode.
+     */
+    getARHeaderHeight(): Promise<any>;
+    /**
+     * Retrieves the display mode for AR header text (always, on selected, or never).
+     */
+    getARHeaderShowMode(): Promise<any>;
+    /**
+     * Retrieves the maximum height for AR header text.
+     */
+    getARHeaderMaxTextHeight(): Promise<any>;
+    /**
+     * Retrieves the minimum height for AR header text.
+     */
+    getARHeaderMinTextHeight(): Promise<any>;
+    /**
+     * Retrieves the color used for header text when a barcode is selected in AR mode.
+     */
+    getARHeaderTextColorSelected(): Promise<any>;
+    /**
+     * Retrieves the color used for header text when a barcode is not selected in AR mode.
+     */
+    getARHeaderTextColorNonSelected(): Promise<any>;
+    /**
+     * Retrieves the horizontal margin applied to the AR header text.
+     */
+    getARHeaderHorizontalTextMargin(): Promise<any>;
+    /**
+     * Retrieves the vertical margin applied to the AR header text.
+     */
+    getARHeaderVerticalTextMargin(): Promise<any>;
+    /**
+     * Retrieves the format string used for rendering AR header text above barcodes.
+     */
+    getARHeaderTextFormat(): Promise<any>;
 }
 export declare enum DecodingSpeed {
     fast = 0,
@@ -612,6 +812,26 @@ export declare enum BarcodeType {
     kix = 37,
     japanesePost = 38
 }
+export declare enum BarkoderARMode {
+    off = 0,
+    interactiveDisabled = 1,
+    interactiveEnabled = 2,
+    nonInteractive = 3
+}
+export declare enum BarkoderAROverlayRefresh {
+    smooth = 0,
+    normal = 1
+}
+export declare enum BarkoderARLocationType {
+    none = 0,
+    tight = 1,
+    boundingBox = 2
+}
+export declare enum BarkoderARHeaderShowMode {
+    never = 0,
+    always = 1,
+    onSelected = 2
+}
 export declare class BarkoderConfig {
     locationLineColor?: string;
     locationLineWidth?: number;
@@ -632,6 +852,7 @@ export declare class BarkoderConfig {
     beepOnSuccessEnabled?: boolean;
     vibrateOnSuccessEnabled?: boolean;
     decoder?: DekoderConfig;
+    arConfig?: BarkoderARConfig;
     constructor(config: Partial<BarkoderConfig>);
 }
 export declare class DekoderConfig {
@@ -676,6 +897,28 @@ export declare class DekoderConfig {
     japanesePost?: BarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
+}
+export declare class BarkoderARConfig {
+    arMode?: BarkoderARMode;
+    resultDisappearanceDelayMs?: number;
+    locationTransitionSpeed?: number;
+    overlayRefresh?: BarkoderAROverlayRefresh;
+    selectedLocationColor?: string;
+    nonSelectedLocationColor?: string;
+    selectedLocationLineWidth?: number;
+    nonSelectedLocationLineWidth?: number;
+    locationType?: BarkoderARLocationType;
+    doubleTapToFreezeEnabled?: boolean;
+    headerHeight?: number;
+    headerShowMode?: BarkoderARHeaderShowMode;
+    headerMaxTextHeight?: number;
+    headerMinTextHeight?: number;
+    headerTextColorSelected?: string;
+    headerTextColorNonSelected?: string;
+    headerHorizontalTextMargin?: number;
+    headerVerticalTextMargin?: number;
+    headerTextFormat?: string;
+    constructor(config: Partial<BarkoderARConfig>);
 }
 export declare class BarcodeConfig {
     enabled?: boolean;
@@ -739,7 +982,6 @@ export declare class GeneralSettings {
     formattingType?: FormattingType;
     encodingCharacterSet?: string;
     maximumResultsCount?: number;
-    duplicatesDelayMs?: number;
     multicodeCachingDuration?: number;
     multicodeCachingEnabled?: boolean;
     upcEanDeblur?: number;

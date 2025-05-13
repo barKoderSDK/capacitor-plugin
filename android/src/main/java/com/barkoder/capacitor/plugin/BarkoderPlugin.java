@@ -3,9 +3,13 @@ package com.barkoder.capacitor.plugin;
 import static android.content.ContentValues.TAG;
 
 import com.barkoder.BarkoderHelper;
+import com.barkoder.enums.BarkoderARHeaderShowMode;
+import com.barkoder.enums.BarkoderARLocationType;
+import com.barkoder.enums.BarkoderARMode;
 import com.barkoder.enums.BarkoderCameraPosition;
 import com.barkoder.enums.BarkoderResolution;
 import com.barkoder.interfaces.BarkoderResultCallback;
+import com.barkoder.overlaymanager.BarkoderAROverlayRefresh;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
@@ -137,14 +141,28 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
     @PluginMethod
     public void stopScanning(PluginCall call) {
-        barkoderView.stopScanning();
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.stopScanning());
 
         call.resolve();
     }
 
     @PluginMethod
     public void pauseScanning(PluginCall call) {
-        barkoderView.pauseScanning();
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.pauseScanning());
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void freezeScanning(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.freezeScanning());
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void unfreezeScanning(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.unfreezeScanning());
 
         call.resolve();
     }
@@ -593,18 +611,6 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
-    public void setDuplicatesDelayMs(PluginCall call) {
-        Integer duplicatesDelayMs = call.getInt("value");
-        if (duplicatesDelayMs == null) {
-            return;
-        }
-        getBridge().getActivity()
-                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().duplicatesDelayMs = duplicatesDelayMs);
-
-        call.resolve();
-    }
-
-    @PluginMethod
     public void setThresholdBetweenDuplicatesScans(PluginCall call) {
         Integer thresholdBetweenDuplicatesScans = call.getInt("value");
         if (thresholdBetweenDuplicatesScans == null) {
@@ -714,6 +720,26 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                 if (configAsJson.has("scanningIndicatorColor")) {
                     String colorAsHex = configAsJson.getString("scanningIndicatorColor");
                     configAsJson.put("scanningIndicatorColor", BarkoderUtil.hexColorToIntColor(colorAsHex));
+                }
+
+                if (configAsJson.has("selectedLocationColor")) {
+                  String colorAsHex = configAsJson.getString("selectedLocationColor");
+                  configAsJson.put("selectedLocationColor", BarkoderUtil.hexColorToIntColor(colorAsHex));
+                }
+
+                if (configAsJson.has("nonSelectedLocationColor")) {
+                  String colorAsHex = configAsJson.getString("nonSelectedLocationColor");
+                  configAsJson.put("nonSelectedLocationColor", BarkoderUtil.hexColorToIntColor(colorAsHex));
+                }
+
+                if (configAsJson.has("headerTextColorSelected")) {
+                  String colorAsHex = configAsJson.getString("headerTextColorSelected");
+                  configAsJson.put("headerTextColorSelected", BarkoderUtil.hexColorToIntColor(colorAsHex));
+                }
+
+                if (configAsJson.has("headerTextColorNonSelected")) {
+                  String colorAsHex = configAsJson.getString("headerTextColorNonSelected");
+                  configAsJson.put("headerTextColorNonSelected", BarkoderUtil.hexColorToIntColor(colorAsHex));
                 }
 
                 String convertedBarkoderConfigAsString = configAsJson.toString();
@@ -910,6 +936,250 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         });
 
         call.resolve();
+    }
+
+    @PluginMethod
+    public void setShowDuplicatesLocations(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) return;
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.config.setShowDuplicatesLocations(value);
+        });
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setARMode(PluginCall call) {
+      Integer index = call.getInt("value");
+      if (index == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        BarkoderARMode bkdARMode = BarkoderARMode.values()[index];
+        barkoderView.config.getArConfig().setARModeEnabled(bkdARMode);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARResultDisappearanceDelayMs(PluginCall call) {
+      Integer value = call.getInt("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setResultDisappearanceDelayMs(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARLocationTransitionSpeed(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setLocationTransitionSpeed(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setAROverlayRefresh(PluginCall call) {
+      Integer index = call.getInt("value");
+      if (index == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        BarkoderAROverlayRefresh bkdOverlayRefresh = BarkoderAROverlayRefresh.values()[index];
+        barkoderView.config.getArConfig().setOverlayRefresh(bkdOverlayRefresh);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARSelectedLocationColor(PluginCall call) {
+      String hex = call.getString("value");
+      if (hex == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setSelectedLocationColor(BarkoderUtil.hexColorToIntColor(hex));
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARNonSelectedLocationColor(PluginCall call) {
+      String hex = call.getString("value");
+      if (hex == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setNonSelectedLocationColor(BarkoderUtil.hexColorToIntColor(hex));
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARSelectedLocationLineWidth(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setSelectedLocationLineWidth(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARNonSelectedLocationLineWidth(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setNonSelectedLocationLineWidth(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARLocationType(PluginCall call) {
+      Integer index = call.getInt("value");
+      if (index == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        BarkoderARLocationType bkdARLocationType = BarkoderARLocationType.values()[index];
+        barkoderView.config.getArConfig().setLocationType(bkdARLocationType);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARDoubleTapToFreezeEnabled(PluginCall call) {
+      Boolean enabled = call.getBoolean("enabled");
+      if (enabled == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setDoubleTapToFreezeEnabled(enabled);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderHeight(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderHeight(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderShowMode(PluginCall call) {
+      Integer index = call.getInt("value");
+      if (index == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        BarkoderARHeaderShowMode bkdARHeaderShowMode = BarkoderARHeaderShowMode.values()[index];
+        barkoderView.config.getArConfig().setHeaderShowMode(bkdARHeaderShowMode);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderMaxTextHeight(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderMaxTextHeight(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderMinTextHeight(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderMinTextHeight(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderTextColorSelected(PluginCall call) {
+      String hex = call.getString("value");
+      if (hex == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderTextColorSelected(BarkoderUtil.hexColorToIntColor(hex));
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderTextColorNonSelected(PluginCall call) {
+      String hex = call.getString("value");
+      if (hex == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderTextColorNonSelected(BarkoderUtil.hexColorToIntColor(hex));
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderHorizontalTextMargin(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderHorizontalTextMargin(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderVerticalTextMargin(PluginCall call) {
+      Float value = call.getFloat("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderVerticalTextMargin(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARHeaderTextFormat(PluginCall call) {
+      String value = call.getString("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setHeaderTextFormat(value);
+      });
+
+      call.resolve();
     }
 
     // Getters
@@ -1142,14 +1412,6 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
-    public void getDuplicatesDelayMs(PluginCall call) {
-        getBridge().getActivity().runOnUiThread(() -> {
-            call.resolve(
-                    toJSObjectInt("duplicatesDelayMs", barkoderView.config.getDecoderConfig().duplicatesDelayMs));
-        });
-    }
-
-    @PluginMethod
     public void isBarcodeTypeEnabled(PluginCall call) throws JSONException {
         JSONObject arguments = call.getData();
         Integer barcodeTypeOrdinal = arguments.getInt("type");
@@ -1292,6 +1554,151 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
             call.resolve(toJSObjectBool("isScanningIndicatorAlwaysVisible",
                     barkoderView.config.isScanningIndicatorAlwaysVisible()));
         });
+    }
+
+    @PluginMethod
+    public void getShowDuplicatesLocations(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectBool("showDuplicatesLocations", barkoderView.config.getShowDuplicatesLocations()));
+      });
+    }
+
+    @PluginMethod
+    public void getARMode(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        int mode = barkoderView.config.getArConfig().getARMode().ordinal();
+        call.resolve(toJSObjectInt("arMode", mode));
+      });
+    }
+
+    @PluginMethod
+    public void getARResultDisappearanceDelayMs(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectInt("arResultDisappearanceDelayMs", barkoderView.config.getArConfig().getResultDisappearanceDelayMs()));
+      });
+    }
+
+    @PluginMethod
+    public void getARLocationTransitionSpeed(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arLocationTransitionSpeed", barkoderView.config.getArConfig().getLocationTransitionSpeed()));
+      });
+    }
+
+    @PluginMethod
+    public void getAROverlayRefresh(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectInt("arOverlayRefresh", barkoderView.config.getArConfig().getOverlayRefresh().ordinal()));
+      });
+    }
+
+    @PluginMethod
+    public void getARSelectedLocationColor(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        String hexColor = String.format("#%08X", barkoderView.config.getArConfig().getSelectedLocationColor());
+        call.resolve(toJSObjectString("arSelectedLocationColor", hexColor));
+      });
+    }
+
+    @PluginMethod
+    public void getARNonSelectedLocationColor(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        String hexColor = String.format("#%08X", barkoderView.config.getArConfig().getNonSelectedLocationColor());
+        call.resolve(toJSObjectString("arNonSelectedLocationColor", hexColor));
+      });
+    }
+
+    @PluginMethod
+    public void getARSelectedLocationLineWidth(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arSelectedLocationLineWidth", barkoderView.config.getArConfig().getSelectedLocationLineWidth()));
+      });
+    }
+
+    @PluginMethod
+    public void getARNonSelectedLocationLineWidth(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arNonSelectedLocationLineWidth", barkoderView.config.getArConfig().getNonSelectedLocationLineWidth()));
+      });
+    }
+
+    @PluginMethod
+    public void getARLocationType(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectInt("arLocationType", barkoderView.config.getArConfig().getLocationType().ordinal()));
+      });
+    }
+
+    @PluginMethod
+    public void isARDoubleTapToFreezeEnabled(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectBool("isARDoubleTapToFreezeEnabled", barkoderView.config.getArConfig().isDoubleTapToFreezeEnabled()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderHeight(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arHeaderHeight", barkoderView.config.getArConfig().getHeaderHeight()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderShowMode(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectInt("arHeaderShowMode", barkoderView.config.getArConfig().getHeaderShowMode().ordinal()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderMaxTextHeight(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arHeaderMaxTextHeight", barkoderView.config.getArConfig().getHeaderMaxTextHeight()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderMinTextHeight(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arHeaderMinTextHeight", barkoderView.config.getArConfig().getHeaderMinTextHeight()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderTextColorSelected(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        String hexColor = String.format("#%08X", barkoderView.config.getArConfig().getHeaderTextColorSelected());
+        call.resolve(toJSObjectString("arHeaderTextColorSelected", hexColor));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderTextColorNonSelected(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        String hexColor = String.format("#%08X", barkoderView.config.getArConfig().getHeaderTextColorNonSelected());
+        call.resolve(toJSObjectString("arHeaderTextColorNonSelected", hexColor));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderHorizontalTextMargin(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arHeaderHorizontalTextMargin", barkoderView.config.getArConfig().getHeaderHorizontalTextMargin()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderVerticalTextMargin(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectFloat("arHeaderVerticalTextMargin", barkoderView.config.getArConfig().getHeaderVerticalTextMargin()));
+      });
+    }
+
+    @PluginMethod
+    public void getARHeaderTextFormat(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectString("arHeaderTextFormat", barkoderView.config.getArConfig().getHeaderTextFormat()));
+      });
     }
 
     // Helpers

@@ -4,10 +4,6 @@
 <dict>
 	<key>files</key>
 	<dict>
-		<key>.DS_Store</key>
-		<data>
-		P6qZVTGE53h9Lxb+J/uyXkv1bqY=
-		</data>
 		<key>Headers/Barkoder.h</key>
 		<data>
 		9tBmdiEM3Piw6SdXbESop6X7Zac=
@@ -18,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		bHYij+U0CnlRcjhd84pSxfJ8V4A=
+		otCqrqsy3quxLVueROGZaLjiLOc=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -26,7 +22,7 @@
 		</data>
 		<key>default.metallib</key>
 		<data>
-		g0rvIZOVkgeBTdCqKFiJdE0xH40=
+		06tfFnf1MRUFe5+MjBs/VNQcEn8=
 		</data>
 		<key>float16_384x256.mlmodelc/analytics/coremldata.bin</key>
 		<data>
@@ -34,15 +30,15 @@
 		</data>
 		<key>float16_384x256.mlmodelc/coremldata.bin</key>
 		<data>
-		4acfvjtKB+QXIFN1DCZFn4BckhM=
+		9Bv8yQbnj4Lbv7S63P3ISqwX9Uk=
 		</data>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<data>
-		an14sqZLrrHp3mJLYRO7VdINw0w=
+		pQxfZIpErO25AQJ3b0OjQfi8fVg=
 		</data>
 		<key>float16_384x256.mlmodelc/model.mil</key>
 		<data>
-		60POCedZ8Ola3jOF4gnDCKwB5HQ=
+		6Ckdeih7+rV3d26T7DaHxE5hyFI=
 		</data>
 		<key>float16_384x256.mlmodelc/weights/weight.bin</key>
 		<data>
@@ -58,11 +54,11 @@
 		</data>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<data>
-		lANcsTOGAN+Avg4RsZuIUnf0YVw=
+		C36Hwk5NGVUo1zk14wg8NqUntAM=
 		</data>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<data>
-		3XSGiUasEGirjqNas55bb1ojzBA=
+		Aege+CQOzfTneIZUrYzoj5FEkpA=
 		</data>
 		<key>float16_512x384.mlmodelc/weights/weight.bin</key>
 		<data>
@@ -104,7 +100,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			KTc+Wq8krmIlx2re2CO30GCnkx1qk10cQcojmYEUkSc=
+			Qj/z+8FdHfP9cLtOYOlObxt2VaiDjowSZ+0y+PjkVW4=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/analytics/coremldata.bin</key>
@@ -118,21 +114,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Khn5zu+up/5FpEHcufxmZI4MDDb7NMtGijeqPiFrgyE=
+			QvgqHo4R9DXLZAaZEBnPkBHE/C0p0YQEYZj8TeFukDU=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			VdQKGrmKPXUIeh9lWgIWK5mNsDTgi5MdZ3Kd4490VyQ=
+			TR74LsZ7M/RLOnoqqEfLMd+hXw5mk/ekzuzSMhIbaDQ=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/model.mil</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			BGkZJPNQyasx/tvFwRtUE1MWSYXtdAS3RgX9kchn+rI=
+			DH/EvVTBcigkEptFEgXKMXS6HhIr0lj/LkqDFf4hRlg=
 			</data>
 		</dict>
 		<key>float16_384x256.mlmodelc/weights/weight.bin</key>
@@ -160,14 +156,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			OmPT2ZIzT4d3j19XzODQyt9+n8Qr5q2tKxLdEVJ0w18=
+			KUY6i6p5lmjlwXT4nknCFaO1sgIkAI1As2j6v68gE7U=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			EBpUgzipmMIoHWtBkutao5vNtAhp3GwZTjJET3FaR+U=
+			AVEamImyGo8s6a9HV9at/87RiZRBDgpfrrfiPbDgMz8=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/weights/weight.bin</key>

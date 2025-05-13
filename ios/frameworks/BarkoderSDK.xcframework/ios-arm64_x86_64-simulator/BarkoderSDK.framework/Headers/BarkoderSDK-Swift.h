@@ -307,10 +307,132 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 #if defined(__OBJC__)
+enum BarkoderARMode : NSInteger;
+enum BarkoderAROverlayRefresh : NSInteger;
 @class UIColor;
+enum BarkoderARLocationType : NSInteger;
+enum BarkoderARHeaderShowMode : NSInteger;
+@class NSString;
+
+/// Contains all configurable options for AR-related barcode behavior.
+SWIFT_CLASS("_TtC11BarkoderSDK16BarkoderARConfig")
+@interface BarkoderARConfig : NSObject
+/// Defines the overall AR behavior mode (e.g., interactive, non-interactive, disabled).
+/// note:
+/// Default value is <code>.off</code>
+@property (nonatomic) enum BarkoderARMode arMode;
+/// Time delay (in milliseconds) after which a detected barcode result is considered expired and removed from the view.
+/// note:
+/// Default value is 800 ms
+@property (nonatomic) NSInteger resultDisappearanceDelayMs;
+/// Speed factor (0.1 to 1.0) for smooth interpolation of overlay positions during camera movement.
+/// Higher values mean faster transition.
+/// note:
+/// Default value is 0.3
+@property (nonatomic) float locationTransitionSpeed;
+/// Defines how often AR overlays are updated.
+/// A smoother refresh enhances visual quality but consume more processing power.
+/// note:
+/// Default value is <code>.smooth</code>
+@property (nonatomic) enum BarkoderAROverlayRefresh overlayRefresh;
+/// Color used to draw overlays around selected barcodes.
+@property (nonatomic, strong) UIColor * _Nonnull selectedLocationColor;
+/// Color used to draw overlays around non-selected barcodes.
+@property (nonatomic, strong) UIColor * _Nonnull nonSelectedLocationColor;
+/// Line width for selected barcode overlays.
+/// note:
+/// Default value is 2.0
+@property (nonatomic) float selectedLocationLineWidth;
+/// Line width for non-selected barcode overlays.
+/// note:
+/// Default value is 2.0
+@property (nonatomic) float nonSelectedLocationLineWidth;
+/// Type of location overlay to be drawn (tight box, bounding box, or none).
+/// note:
+/// Default is <code>.tight</code>
+@property (nonatomic) enum BarkoderARLocationType locationType;
+/// Whether a double-tap gesture is enabled to freeze/unfreeze barcode scanning in AR mode.
+/// note:
+/// Default value is <code>true</code>
+@property (nonatomic) BOOL doubleTapToFreezeEnabled;
+/// Height of the header above the barcode.
+/// note:
+/// Default value is 19.0
+@property (nonatomic) float headerHeight;
+/// Defines when the header should be visible above detected barcodes.
+/// note:
+/// Default is <code>.onSelected</code>
+@property (nonatomic) enum BarkoderARHeaderShowMode headerShowMode;
+/// Maximum text height inside the header area.
+/// note:
+/// Default value is 20.0
+@property (nonatomic) float headerMaxTextHeight;
+/// Minimum text height inside the header area.
+/// note:
+/// Default value is 7.0
+@property (nonatomic) float headerMinTextHeight;
+/// Text color used for the header when the barcode is selected.
+@property (nonatomic, strong) UIColor * _Nonnull headerTextColorSelected;
+/// Text color used for the header when the barcode is not selected.
+@property (nonatomic, strong) UIColor * _Nonnull headerTextColorNonSelected;
+/// Horizontal margin inside the header, creating equal padding on both sides of the text.
+/// note:
+/// Default value is 5.0
+@property (nonatomic) float headerHorizontalTextMargin;
+/// Vertical margin inside the header, creating equal padding on both sides of the text.
+/// note:
+/// Default value is 3.0
+@property (nonatomic) float headerVerticalTextMargin;
+/// Format string for the header text above barcodes.
+/// Supports dynamic placeholders like [barcode_type], [barcode_text], [gs1], etc.
+/// note:
+/// Default value is <code>"[barcode_text]"</code>
+@property (nonatomic, copy) NSString * _Nonnull headerTextFormat;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+/// Defines when the header text (above a barcode) should be shown in AR mode.
+typedef SWIFT_ENUM(NSInteger, BarkoderARHeaderShowMode, open) {
+/// Never display the header text.
+  BarkoderARHeaderShowModeNever = 0,
+/// Always display the header text above detected barcodes.
+  BarkoderARHeaderShowModeAlways = 1,
+/// Display the header text only when the barcode is selected.
+  BarkoderARHeaderShowModeOnSelected = 2,
+};
+
+/// Specifies how the location overlays around barcodes should be drawn.
+typedef SWIFT_ENUM(NSInteger, BarkoderARLocationType, open) {
+/// No overlay will be drawn.
+  BarkoderARLocationTypeNone = 0,
+/// A tight overlay will be drawn closely around the detected barcode.
+  BarkoderARLocationTypeTight = 1,
+/// A full bounding rectangle will be drawn around the barcode.
+  BarkoderARLocationTypeBoundingBox = 2,
+};
+
+/// Defines the behavior mode for AR barcode selection and interaction.
+typedef SWIFT_ENUM(NSInteger, BarkoderARMode, open) {
+/// AR mode is disabled. No AR-specific features will be used.
+  BarkoderARModeOff = 0,
+/// AR is enabled, but new barcodes are not selected automatically by default.
+  BarkoderARModeInteractiveDisabled = 1,
+/// AR is enabled, and new barcodes are automatically selected by default.
+  BarkoderARModeInteractiveEnabled = 2,
+/// AR is enabled with non-interactive behavior; selection happens automatically without any user actions.
+  BarkoderARModeNonInteractive = 3,
+};
+
+/// Defines the refresh rate for updating AR barcode overlays on the camera preview.
+typedef SWIFT_ENUM(NSInteger, BarkoderAROverlayRefresh, open) {
+/// Smooth refresh rate — provides optimal visual fidelity, suitable for high-performance devices.
+  BarkoderAROverlayRefreshSmooth = 0,
+/// Normal refresh rate — offers a balance between performance and power usage, ideal for lower-end devices.
+  BarkoderAROverlayRefreshNormal = 1,
+};
+
 @class Config;
 enum BarkoderResolution : NSInteger;
-@class NSString;
 @class LicenseCheckResult;
 
 SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
@@ -377,6 +499,8 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @property (nonatomic) BOOL locationInPreviewEnabled;
 /// Configures the Barkoder functionality based on the provided configuration
 @property (nonatomic, strong) Config * _Nullable decoderConfig;
+/// Configuration options for AR barcode detection and overlay behavior.
+@property (nonatomic, strong) BarkoderARConfig * _Nonnull arConfig;
 /// Retrieve/Sets the resolution for barcode scanning
 /// note:
 /// Default value is BarkoderView.BarkoderResolution.HD
@@ -387,6 +511,10 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @property (nonatomic) BOOL barcodeThumbnailOnResult;
 /// Retrieve/Sets the threshold between duplicate scans
 @property (nonatomic) NSInteger thresholdBetweenDuplicatesScans;
+/// Controls whether duplicate barcode locations are shown on preview.
+/// note:
+/// Default value is true
+@property (nonatomic) BOOL showDuplicatesLocations;
 /// Defines the Region of Interest (ROI) on the camera preview for barcode scanning, specifying an area where the application focuses on detecting barcodes
 - (BOOL)setRegionOfInterest:(CGRect)value error:(NSError * _Nullable * _Nullable)error;
 /// Retrieves the region of interest (ROI)
@@ -488,6 +616,7 @@ typedef SWIFT_ENUM(NSInteger, BarkoderConfigTemplate, open) {
   BarkoderConfigTemplateGallery_scan = 11,
   BarkoderConfigTemplateComposite = 12,
   BarkoderConfigTemplatePostal_codes = 13,
+  BarkoderConfigTemplateAr = 14,
 };
 
 
@@ -532,6 +661,12 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 - (void)stopScanning;
 /// Temporarily suspends the barcode scanning process, pausing the camera feed without completely stopping the scanning session
 - (void)pauseScanning;
+/// Freezes the AR scanning session by capturing a still image from the camera feed.
+/// Use only when AR mode is enabled to temporarily freeze the view while keeping overlays visible.
+- (void)freezeScanning;
+/// Unfreezes the AR scanning session by removing the still image and reactivating the camera and overlays.
+/// Use only when AR mode is enabled to restore the live AR view and continue scanning.
+- (void)unfreezeScanning;
 /// Sets the zoom factor for the device’s camera, adjusting the level of zoom during barcode scanning
 - (void)setZoomFactor:(float)zoomFactor;
 /// Sets the camera to be used for scanning (back/front).
@@ -580,6 +715,12 @@ typedef SWIFT_ENUM(NSInteger, BarkoderCameraPosition, open) {
   BarkoderCameraPositionFRONT = 1,
 };
 
+@class UIGestureRecognizer;
+@class UITouch;
+
+@interface BarkoderView (SWIFT_EXTENSION(BarkoderSDK)) <UIGestureRecognizerDelegate>
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldReceiveTouch:(UITouch * _Nonnull)touch SWIFT_WARN_UNUSED_RESULT;
+@end
 
 
 
@@ -906,10 +1047,132 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 #if defined(__OBJC__)
+enum BarkoderARMode : NSInteger;
+enum BarkoderAROverlayRefresh : NSInteger;
 @class UIColor;
+enum BarkoderARLocationType : NSInteger;
+enum BarkoderARHeaderShowMode : NSInteger;
+@class NSString;
+
+/// Contains all configurable options for AR-related barcode behavior.
+SWIFT_CLASS("_TtC11BarkoderSDK16BarkoderARConfig")
+@interface BarkoderARConfig : NSObject
+/// Defines the overall AR behavior mode (e.g., interactive, non-interactive, disabled).
+/// note:
+/// Default value is <code>.off</code>
+@property (nonatomic) enum BarkoderARMode arMode;
+/// Time delay (in milliseconds) after which a detected barcode result is considered expired and removed from the view.
+/// note:
+/// Default value is 800 ms
+@property (nonatomic) NSInteger resultDisappearanceDelayMs;
+/// Speed factor (0.1 to 1.0) for smooth interpolation of overlay positions during camera movement.
+/// Higher values mean faster transition.
+/// note:
+/// Default value is 0.3
+@property (nonatomic) float locationTransitionSpeed;
+/// Defines how often AR overlays are updated.
+/// A smoother refresh enhances visual quality but consume more processing power.
+/// note:
+/// Default value is <code>.smooth</code>
+@property (nonatomic) enum BarkoderAROverlayRefresh overlayRefresh;
+/// Color used to draw overlays around selected barcodes.
+@property (nonatomic, strong) UIColor * _Nonnull selectedLocationColor;
+/// Color used to draw overlays around non-selected barcodes.
+@property (nonatomic, strong) UIColor * _Nonnull nonSelectedLocationColor;
+/// Line width for selected barcode overlays.
+/// note:
+/// Default value is 2.0
+@property (nonatomic) float selectedLocationLineWidth;
+/// Line width for non-selected barcode overlays.
+/// note:
+/// Default value is 2.0
+@property (nonatomic) float nonSelectedLocationLineWidth;
+/// Type of location overlay to be drawn (tight box, bounding box, or none).
+/// note:
+/// Default is <code>.tight</code>
+@property (nonatomic) enum BarkoderARLocationType locationType;
+/// Whether a double-tap gesture is enabled to freeze/unfreeze barcode scanning in AR mode.
+/// note:
+/// Default value is <code>true</code>
+@property (nonatomic) BOOL doubleTapToFreezeEnabled;
+/// Height of the header above the barcode.
+/// note:
+/// Default value is 19.0
+@property (nonatomic) float headerHeight;
+/// Defines when the header should be visible above detected barcodes.
+/// note:
+/// Default is <code>.onSelected</code>
+@property (nonatomic) enum BarkoderARHeaderShowMode headerShowMode;
+/// Maximum text height inside the header area.
+/// note:
+/// Default value is 20.0
+@property (nonatomic) float headerMaxTextHeight;
+/// Minimum text height inside the header area.
+/// note:
+/// Default value is 7.0
+@property (nonatomic) float headerMinTextHeight;
+/// Text color used for the header when the barcode is selected.
+@property (nonatomic, strong) UIColor * _Nonnull headerTextColorSelected;
+/// Text color used for the header when the barcode is not selected.
+@property (nonatomic, strong) UIColor * _Nonnull headerTextColorNonSelected;
+/// Horizontal margin inside the header, creating equal padding on both sides of the text.
+/// note:
+/// Default value is 5.0
+@property (nonatomic) float headerHorizontalTextMargin;
+/// Vertical margin inside the header, creating equal padding on both sides of the text.
+/// note:
+/// Default value is 3.0
+@property (nonatomic) float headerVerticalTextMargin;
+/// Format string for the header text above barcodes.
+/// Supports dynamic placeholders like [barcode_type], [barcode_text], [gs1], etc.
+/// note:
+/// Default value is <code>"[barcode_text]"</code>
+@property (nonatomic, copy) NSString * _Nonnull headerTextFormat;
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
+@end
+
+/// Defines when the header text (above a barcode) should be shown in AR mode.
+typedef SWIFT_ENUM(NSInteger, BarkoderARHeaderShowMode, open) {
+/// Never display the header text.
+  BarkoderARHeaderShowModeNever = 0,
+/// Always display the header text above detected barcodes.
+  BarkoderARHeaderShowModeAlways = 1,
+/// Display the header text only when the barcode is selected.
+  BarkoderARHeaderShowModeOnSelected = 2,
+};
+
+/// Specifies how the location overlays around barcodes should be drawn.
+typedef SWIFT_ENUM(NSInteger, BarkoderARLocationType, open) {
+/// No overlay will be drawn.
+  BarkoderARLocationTypeNone = 0,
+/// A tight overlay will be drawn closely around the detected barcode.
+  BarkoderARLocationTypeTight = 1,
+/// A full bounding rectangle will be drawn around the barcode.
+  BarkoderARLocationTypeBoundingBox = 2,
+};
+
+/// Defines the behavior mode for AR barcode selection and interaction.
+typedef SWIFT_ENUM(NSInteger, BarkoderARMode, open) {
+/// AR mode is disabled. No AR-specific features will be used.
+  BarkoderARModeOff = 0,
+/// AR is enabled, but new barcodes are not selected automatically by default.
+  BarkoderARModeInteractiveDisabled = 1,
+/// AR is enabled, and new barcodes are automatically selected by default.
+  BarkoderARModeInteractiveEnabled = 2,
+/// AR is enabled with non-interactive behavior; selection happens automatically without any user actions.
+  BarkoderARModeNonInteractive = 3,
+};
+
+/// Defines the refresh rate for updating AR barcode overlays on the camera preview.
+typedef SWIFT_ENUM(NSInteger, BarkoderAROverlayRefresh, open) {
+/// Smooth refresh rate — provides optimal visual fidelity, suitable for high-performance devices.
+  BarkoderAROverlayRefreshSmooth = 0,
+/// Normal refresh rate — offers a balance between performance and power usage, ideal for lower-end devices.
+  BarkoderAROverlayRefreshNormal = 1,
+};
+
 @class Config;
 enum BarkoderResolution : NSInteger;
-@class NSString;
 @class LicenseCheckResult;
 
 SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
@@ -976,6 +1239,8 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @property (nonatomic) BOOL locationInPreviewEnabled;
 /// Configures the Barkoder functionality based on the provided configuration
 @property (nonatomic, strong) Config * _Nullable decoderConfig;
+/// Configuration options for AR barcode detection and overlay behavior.
+@property (nonatomic, strong) BarkoderARConfig * _Nonnull arConfig;
 /// Retrieve/Sets the resolution for barcode scanning
 /// note:
 /// Default value is BarkoderView.BarkoderResolution.HD
@@ -986,6 +1251,10 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @property (nonatomic) BOOL barcodeThumbnailOnResult;
 /// Retrieve/Sets the threshold between duplicate scans
 @property (nonatomic) NSInteger thresholdBetweenDuplicatesScans;
+/// Controls whether duplicate barcode locations are shown on preview.
+/// note:
+/// Default value is true
+@property (nonatomic) BOOL showDuplicatesLocations;
 /// Defines the Region of Interest (ROI) on the camera preview for barcode scanning, specifying an area where the application focuses on detecting barcodes
 - (BOOL)setRegionOfInterest:(CGRect)value error:(NSError * _Nullable * _Nullable)error;
 /// Retrieves the region of interest (ROI)
@@ -1087,6 +1356,7 @@ typedef SWIFT_ENUM(NSInteger, BarkoderConfigTemplate, open) {
   BarkoderConfigTemplateGallery_scan = 11,
   BarkoderConfigTemplateComposite = 12,
   BarkoderConfigTemplatePostal_codes = 13,
+  BarkoderConfigTemplateAr = 14,
 };
 
 
@@ -1131,6 +1401,12 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 - (void)stopScanning;
 /// Temporarily suspends the barcode scanning process, pausing the camera feed without completely stopping the scanning session
 - (void)pauseScanning;
+/// Freezes the AR scanning session by capturing a still image from the camera feed.
+/// Use only when AR mode is enabled to temporarily freeze the view while keeping overlays visible.
+- (void)freezeScanning;
+/// Unfreezes the AR scanning session by removing the still image and reactivating the camera and overlays.
+/// Use only when AR mode is enabled to restore the live AR view and continue scanning.
+- (void)unfreezeScanning;
 /// Sets the zoom factor for the device’s camera, adjusting the level of zoom during barcode scanning
 - (void)setZoomFactor:(float)zoomFactor;
 /// Sets the camera to be used for scanning (back/front).
@@ -1179,6 +1455,12 @@ typedef SWIFT_ENUM(NSInteger, BarkoderCameraPosition, open) {
   BarkoderCameraPositionFRONT = 1,
 };
 
+@class UIGestureRecognizer;
+@class UITouch;
+
+@interface BarkoderView (SWIFT_EXTENSION(BarkoderSDK)) <UIGestureRecognizerDelegate>
+- (BOOL)gestureRecognizer:(UIGestureRecognizer * _Nonnull)gestureRecognizer shouldReceiveTouch:(UITouch * _Nonnull)touch SWIFT_WARN_UNUSED_RESULT;
+@end
 
 
 

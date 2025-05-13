@@ -90,12 +90,41 @@ var capacitorBarkoder = (function (exports, core) {
         BarcodeType[BarcodeType["kix"] = 37] = "kix";
         BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
     })(exports.BarcodeType || (exports.BarcodeType = {}));
+    exports.BarkoderARMode = void 0;
+    (function (BarkoderARMode) {
+        BarkoderARMode[BarkoderARMode["off"] = 0] = "off";
+        BarkoderARMode[BarkoderARMode["interactiveDisabled"] = 1] = "interactiveDisabled";
+        BarkoderARMode[BarkoderARMode["interactiveEnabled"] = 2] = "interactiveEnabled";
+        BarkoderARMode[BarkoderARMode["nonInteractive"] = 3] = "nonInteractive";
+    })(exports.BarkoderARMode || (exports.BarkoderARMode = {}));
+    exports.BarkoderAROverlayRefresh = void 0;
+    (function (BarkoderAROverlayRefresh) {
+        BarkoderAROverlayRefresh[BarkoderAROverlayRefresh["smooth"] = 0] = "smooth";
+        BarkoderAROverlayRefresh[BarkoderAROverlayRefresh["normal"] = 1] = "normal";
+    })(exports.BarkoderAROverlayRefresh || (exports.BarkoderAROverlayRefresh = {}));
+    exports.BarkoderARLocationType = void 0;
+    (function (BarkoderARLocationType) {
+        BarkoderARLocationType[BarkoderARLocationType["none"] = 0] = "none";
+        BarkoderARLocationType[BarkoderARLocationType["tight"] = 1] = "tight";
+        BarkoderARLocationType[BarkoderARLocationType["boundingBox"] = 2] = "boundingBox";
+    })(exports.BarkoderARLocationType || (exports.BarkoderARLocationType = {}));
+    exports.BarkoderARHeaderShowMode = void 0;
+    (function (BarkoderARHeaderShowMode) {
+        BarkoderARHeaderShowMode[BarkoderARHeaderShowMode["never"] = 0] = "never";
+        BarkoderARHeaderShowMode[BarkoderARHeaderShowMode["always"] = 1] = "always";
+        BarkoderARHeaderShowMode[BarkoderARHeaderShowMode["onSelected"] = 2] = "onSelected";
+    })(exports.BarkoderARHeaderShowMode || (exports.BarkoderARHeaderShowMode = {}));
     class BarkoderConfig {
         constructor(config) {
             Object.assign(this, config);
         }
     }
     class DekoderConfig {
+        constructor(config) {
+            Object.assign(this, config);
+        }
+    }
+    class BarkoderARConfig {
         constructor(config) {
             Object.assign(this, config);
         }
@@ -223,6 +252,7 @@ var capacitorBarkoder = (function (exports, core) {
     exports.BarcodeConfigWithDpmMode = BarcodeConfigWithDpmMode;
     exports.BarcodeConfigWithLength = BarcodeConfigWithLength;
     exports.Barkoder = Barkoder;
+    exports.BarkoderARConfig = BarkoderARConfig;
     exports.BarkoderConfig = BarkoderConfig;
     exports.BarkoderResult = BarkoderResult;
     exports.Code11BarcodeConfig = Code11BarcodeConfig;
