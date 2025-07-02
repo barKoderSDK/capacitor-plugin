@@ -421,6 +421,18 @@ export interface BarkoderPlugin extends Plugin {
         enabled: boolean;
     }): Promise<any>;
     /**
+     * Enables or disables the capturing and processing of image data when a barcode is selected for AR mode.
+     */
+    setARImageResultEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    /**
+      * Enables or disables the barcode thumbnail on result for AR mode.
+     */
+    setARBarcodeThumbnailOnResultEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    /**
      * Sets the height of the header text label shown above the barcode in AR mode.
      */
     setARHeaderHeight(options: {
@@ -511,9 +523,13 @@ export interface BarkoderPlugin extends Plugin {
      */
     isVibrateOnSuccessEnabled(): Promise<any>;
     /**
-     * Retrieves the version of the Barkoder library
+     * Retrieves the version of the Barkoder SDK
      */
     getVersion(): Promise<any>;
+    /**
+     * Retrieves the version of the Barkoder library
+     */
+    getLibVersion(): Promise<any>;
     /**
      * Retrieves the hexadecimal color code representing the line color used to indicate the location of detected barcodes
      */
@@ -530,6 +546,10 @@ export interface BarkoderPlugin extends Plugin {
      * Retrieves the maximum available zoom factor for the device's camera
      */
     getMaxZoomFactor(): Promise<any>;
+    /**
+     * Retrieves the current zoom factor for the device's camera
+     */
+    getCurrentZoomFactor(): Promise<any>;
     /**
      * Retrieves the current width setting for the lines indicating the location of detected barcodes on the camera feed
      */
@@ -695,6 +715,14 @@ export interface BarkoderPlugin extends Plugin {
      */
     isARDoubleTapToFreezeEnabled(): Promise<any>;
     /**
+     * Retrieves whether image result is enabled for AR mode.
+     */
+    isARImageResultEnabled(): Promise<any>;
+    /**
+     * Retrieves whether barcode thumbnail on result is enabled for AR mode.
+     */
+    isARBarcodeThumbnailOnResultEnabled(): Promise<any>;
+    /**
      * Retrieves the height of the header text shown above barcodes in AR mode.
      */
     getARHeaderHeight(): Promise<any>;
@@ -810,7 +838,8 @@ export declare enum BarcodeType {
     australianPost = 35,
     royalMail = 36,
     kix = 37,
-    japanesePost = 38
+    japanesePost = 38,
+    maxiCode = 39
 }
 export declare enum BarkoderARMode {
     off = 0,
@@ -895,6 +924,7 @@ export declare class DekoderConfig {
     royalMail?: BarcodeConfig;
     kix?: BarcodeConfig;
     japanesePost?: BarcodeConfig;
+    maxiCode?: BarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
 }
@@ -909,6 +939,8 @@ export declare class BarkoderARConfig {
     nonSelectedLocationLineWidth?: number;
     locationType?: BarkoderARLocationType;
     doubleTapToFreezeEnabled?: boolean;
+    imageResultEnabled?: boolean;
+    barcodeThumbnailOnResult?: boolean;
     headerHeight?: number;
     headerShowMode?: BarkoderARHeaderShowMode;
     headerMaxTextHeight?: number;

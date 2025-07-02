@@ -10,11 +10,11 @@
 		</data>
 		<key>Headers/iBarkoder.h</key>
 		<data>
-		SZhNgFi7RtRZqv2nkN1gkSWaMi0=
+		TvkdRX4OH7h6js7os0IJImihRoM=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		otCqrqsy3quxLVueROGZaLjiLOc=
+		SEufaPMhj97lzfvTwUJZegReZcE=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -22,27 +22,7 @@
 		</data>
 		<key>default.metallib</key>
 		<data>
-		06tfFnf1MRUFe5+MjBs/VNQcEn8=
-		</data>
-		<key>float16_384x256.mlmodelc/analytics/coremldata.bin</key>
-		<data>
-		RHY05pVVbbLwkQoJQWdB/gcx8Gc=
-		</data>
-		<key>float16_384x256.mlmodelc/coremldata.bin</key>
-		<data>
-		9Bv8yQbnj4Lbv7S63P3ISqwX9Uk=
-		</data>
-		<key>float16_384x256.mlmodelc/metadata.json</key>
-		<data>
-		pQxfZIpErO25AQJ3b0OjQfi8fVg=
-		</data>
-		<key>float16_384x256.mlmodelc/model.mil</key>
-		<data>
-		6Ckdeih7+rV3d26T7DaHxE5hyFI=
-		</data>
-		<key>float16_384x256.mlmodelc/weights/weight.bin</key>
-		<data>
-		m+FPY4Pqd/6xQZPXj2cfFOMP2L8=
+		1kVi10jUTLTwVVLPVu69SUzh3kc=
 		</data>
 		<key>float16_512x384.mlmodelc/analytics/coremldata.bin</key>
 		<data>
@@ -50,19 +30,51 @@
 		</data>
 		<key>float16_512x384.mlmodelc/coremldata.bin</key>
 		<data>
-		PpHz5TTc8QHl8SBy3+sE1KII3Mc=
+		OccxkIgBDUmh3UHLfHhZYi8BFSQ=
 		</data>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<data>
-		C36Hwk5NGVUo1zk14wg8NqUntAM=
+		YNLJi2S+xSXe89S6CHdWEAkYmnk=
 		</data>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<data>
-		Aege+CQOzfTneIZUrYzoj5FEkpA=
+		OEOsMWTFyLixwOlzQ6C82xPWeoA=
 		</data>
 		<key>float16_512x384.mlmodelc/weights/weight.bin</key>
 		<data>
 		neoblnL3W+LGlE3ys5ujeYlwb9E=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/analytics/coremldata.bin</key>
+		<data>
+		7piZVfaNpKxEZhDzdRTUaXXsQ8I=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/coremldata.bin</key>
+		<data>
+		nsHTr+ofyx5psOMprF9OMcXxsSg=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/metadata.json</key>
+		<data>
+		4dCmLCEEqfUuGBSSrBMhh9x0Iq4=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/model.espresso.net</key>
+		<data>
+		kpoTEHpblsrvkAFg8ftDtj63T0o=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/model.espresso.shape</key>
+		<data>
+		OcwFv4hcF6eLrbmxbxIM+dbeVkY=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/model.espresso.weights</key>
+		<data>
+		taLYUmNcIg8xgnLel+6Mlvrpw/w=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/model/coremldata.bin</key>
+		<data>
+		tGU7K8v0jbmLrWPOZkDsl7EBsZk=
+		</data>
+		<key>int8_384x256_small2.mlmodelc/neural_network_optionals/coremldata.bin</key>
+		<data>
+		tkgF5pxT7RlO+9uypQti9obolyA=
 		</data>
 		<key>mrz.traineddata</key>
 		<data>
@@ -86,7 +98,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			y6miqUcIdmuwFuj3r3k8dHXBYmyuhBrLViEyYWPtuPU=
+			QBkCB//Rvx7WOxbngySORAWhwjWZM9P6bOWTkqlkENk=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -100,42 +112,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			Qj/z+8FdHfP9cLtOYOlObxt2VaiDjowSZ+0y+PjkVW4=
-			</data>
-		</dict>
-		<key>float16_384x256.mlmodelc/analytics/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			qatiLrGU/dqTDW7yIokiE8NZ7Vrif/UdCycNkeRiemA=
-			</data>
-		</dict>
-		<key>float16_384x256.mlmodelc/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			QvgqHo4R9DXLZAaZEBnPkBHE/C0p0YQEYZj8TeFukDU=
-			</data>
-		</dict>
-		<key>float16_384x256.mlmodelc/metadata.json</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			TR74LsZ7M/RLOnoqqEfLMd+hXw5mk/ekzuzSMhIbaDQ=
-			</data>
-		</dict>
-		<key>float16_384x256.mlmodelc/model.mil</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			DH/EvVTBcigkEptFEgXKMXS6HhIr0lj/LkqDFf4hRlg=
-			</data>
-		</dict>
-		<key>float16_384x256.mlmodelc/weights/weight.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			tjg+X/u1+Wc5E/JscYC9+6IB1uTyLZm7Agk7y98k/H4=
+			vrm2byECR/2l/q6buzQp1ljYDpG/0uVE8wgD7aCl7A0=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/analytics/coremldata.bin</key>
@@ -149,21 +126,21 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ytxs9CfML0oDNZTtE4loTlHPKhli+oPL97vnLH8Nhmc=
+			giPgsKBaQSe3WX4pED5vxW31UBDp+B/B3cP81JlEZPM=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			KUY6i6p5lmjlwXT4nknCFaO1sgIkAI1As2j6v68gE7U=
+			4nygWe9rtm7Dl422MGI38u4PGd8fx4rz/SOo/E+D0fI=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/model.mil</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			AVEamImyGo8s6a9HV9at/87RiZRBDgpfrrfiPbDgMz8=
+			viqOKgJl561maLlEUdGZx83Phc8Xf60R2noufvkhq64=
 			</data>
 		</dict>
 		<key>float16_512x384.mlmodelc/weights/weight.bin</key>
@@ -171,6 +148,62 @@
 			<key>hash2</key>
 			<data>
 			F1Rxfa9na6oCDWfo2+tILD6ZPUX0dvi1iBdeM10fzRM=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/analytics/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			S1c++xvQjePu/DLCBXpM+hCYiuvS6JPgm6m3OBd58ZY=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			f3b2FfEpQGCxWmXP5ptb/0v1E44dnPxeA2+WZLjc+HU=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/metadata.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			hyOkS/OFXHuyd6qdoW6HSSDVS3oo/PNhpwa5lZ1r+YU=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/model.espresso.net</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Ts3llMeEgZL/ogVAVDy4zNHj+naO3LJ7YSiVlaKrmeU=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/model.espresso.shape</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			Bz9kx60E0gpoeaZ0kOyZNbr3zB4Gly5UFnB6oAQbWu8=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/model.espresso.weights</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			sr9DmEY64lvzNjHTHCDzQ9bN5YoPaXNTfxnPfUzwqeg=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/model/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			JsMfzXP3J1PCXEF2nqub8rHW9vXpXkr2ag9c2kxRcE8=
+			</data>
+		</dict>
+		<key>int8_384x256_small2.mlmodelc/neural_network_optionals/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WTG9U2xFUClKISxvyNPBvuddqBeYC6C2cchgPa+zYjg=
 			</data>
 		</dict>
 		<key>mrz.traineddata</key>

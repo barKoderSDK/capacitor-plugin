@@ -73,7 +73,8 @@ typedef enum {
     AustralianPost,
     RoyalMail,
     KIX,
-    JapanesePost
+    JapanesePost,
+    MaxiCode
     
 } DecoderType;
 
@@ -309,6 +310,13 @@ typedef enum  {
 @end
 
 //==========================================================================
+// MaxiCode Config
+//==========================================================================
+@interface MaxiCodeConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
 // Datamatrix Config
 //==========================================================================
 @interface DatamatrixConfig : SpecificConfig
@@ -519,6 +527,7 @@ typedef enum {
 @property (nonatomic, readonly, retain) RoyalMailConfig* _Nonnull royalMail;
 @property (nonatomic, readonly, retain) JapanesePostConfig* _Nonnull japanesePost;
 @property (nonatomic, readonly, retain) KIXConfig* _Nonnull kix;
+@property (nonatomic, readonly, retain) MaxiCodeConfig* _Nonnull maxiCode;
 
 @property (nonatomic, readonly, retain) IDDocumentConfig* _Nonnull idDocument;
 
@@ -592,7 +601,8 @@ typedef enum {
     BT_AustralianPost,
     BT_RoyalMail,
     BT_KIX,
-    BT_JapanesePost
+    BT_JapanesePost,
+    BT_MaxiCode
     
 } BarcodeType;
 

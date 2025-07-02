@@ -141,6 +141,9 @@
             "Japanese Post": {
              "enabled": false
             },
+            "MaxiCode": {
+             "enabled": true
+            },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 1,
@@ -466,6 +469,9 @@
             "Datamatrix": {
                 "enabled": true,
                 "dpmMode": 0
+            },
+            "MaxiCode": {
+             "enabled": true
             },
             "general": {
                 "maxThreads": 2,
@@ -872,13 +878,7 @@
         "beepOnSuccessEnabled": true,
         "vibrateOnSuccessEnabled": false,
         "arConfig": {
-            "arMode": 0,
-            "resultDisappearanceDelayMs": 800,
-            "locationTransitionSpeed": 0.3,
-            "overlayRefresh": 0,
-            "locationType": 1,
-            "doubleTapToFreezeEnabled": true,
-            "headerShowMode": 2
+            "arMode": 0
         }
     },
     "gallery_scan": {
@@ -1038,6 +1038,9 @@
             "enabled": true
            },
            "Japanese Post": {
+            "enabled": true
+           },
+           "MaxiCode": {
             "enabled": true
            },
            "general": {
@@ -1353,6 +1356,9 @@
              "enabled": false
             },
             "Japanese Post": {
+             "enabled": false
+            },
+            "MaxiCode": {
              "enabled": false
             },
             "general": {

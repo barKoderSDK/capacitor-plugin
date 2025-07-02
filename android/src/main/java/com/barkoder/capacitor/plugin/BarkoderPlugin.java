@@ -750,7 +750,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14",
                     "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode",
                     "idDocument", "databar14", "databarLimited", "databarExpanded",
-                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost",
+                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost", "maxiCode",
                     "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"
                 };
 
@@ -760,7 +760,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14",
                     "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode",
                     "ID Document", "Databar 14", "Databar Limited", "Databar Expanded",
-                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post",
+                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post", "MaxiCode",
                     "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"
                 };
 
@@ -1074,6 +1074,30 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void setARImageResultEnabled(PluginCall call) {
+        Boolean enabled = call.getBoolean("enabled");
+        if (enabled == null) return;
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.config.getArConfig().setImageResultEnabled(enabled);
+        });
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setARBarcodeThumbnailOnResultEnabled(PluginCall call) {
+        Boolean enabled = call.getBoolean("enabled");
+        if (enabled == null) return;
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.config.getArConfig().setBarcodeThumbnailOnResultEnabled(enabled);
+        });
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void setARHeaderHeight(PluginCall call) {
       Float value = call.getFloat("value");
       if (value == null) return;
@@ -1258,6 +1282,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void getLibVersion(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectString("libVersion", Barkoder.GetLibVersion()));
+        });
+    }
+
+    @PluginMethod
     public void getLocationLineColorHex(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             String hexColor = String.format("#%08X", barkoderView.config.getLocationLineColor());
@@ -1285,6 +1316,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     public void getMaxZoomFactor(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             barkoderView.getMaxZoomFactor(value -> call.resolve(toJSObjectFloat("maxZoomFactor", value)));
+        });
+    }
+
+    @PluginMethod
+    public void getCurrentZoomFactor(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectFloat("currentZoomFactor", barkoderView.getCurrentZoomFactor()));
         });
     }
 
@@ -1634,6 +1672,20 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
       getBridge().getActivity().runOnUiThread(() -> {
         call.resolve(toJSObjectBool("isARDoubleTapToFreezeEnabled", barkoderView.config.getArConfig().isDoubleTapToFreezeEnabled()));
       });
+    }
+
+    @PluginMethod
+    public void isARImageResultEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isARImageResultEnabled", barkoderView.config.getArConfig().isImageResultEnabled()));
+        });
+    }
+
+    @PluginMethod
+    public void isARBarcodeThumbnailOnResultEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isARBarcodeThumbnailOnResultEnabled", barkoderView.config.getArConfig().isBarcodeThumbnailOnResultEnabled()));
+        });
     }
 
     @PluginMethod

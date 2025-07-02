@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.0.3 effective-5.10 (swiftlang-6.0.3.1.10 clang-1600.0.30.1)
-// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name BarkoderSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name BarkoderSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
 import AVFoundation
 import AudioToolbox
 import Barkoder
@@ -69,7 +69,7 @@ import _SwiftConcurrencyShims
   @objc public var showDuplicatesLocations: Swift.Bool
   @objc open func setRegionOfInterest(_ value: CoreFoundation.CGRect) throws
   @objc open func getRegionOfInterest() -> CoreFoundation.CGRect
-  @objc convenience public init(licenseKey: Swift.String, licenseCheckHandler: @escaping ((Barkoder.LicenseCheckResult) -> Swift.Void))
+  @objc convenience public init(licenseKey: Swift.String, licenseCheckHandler: @escaping (Barkoder.LicenseCheckResult) -> Swift.Void)
   @objc open func setThreadsLimit(_ value: Swift.Int) throws
   @objc open func getThreadsLimit() -> Swift.Int
   @objc open func setMulticodeCachingEnabled(_ boolean: Swift.Bool)
@@ -122,6 +122,7 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func setCamera(_ position: BarkoderSDK.BarkoderView.BarkoderCameraPosition)
   @objc @_Concurrency.MainActor @preconcurrency public func setFlash(_ enabled: Swift.Bool)
   @objc @_Concurrency.MainActor @preconcurrency public func getMaxZoomFactor(_ completion: @escaping (_ maxZoomFactor: Swift.Float) -> Swift.Void)
+  @objc @_Concurrency.MainActor @preconcurrency public func getCurrentZoomFactor() -> Swift.Float
   @objc @_Concurrency.MainActor @preconcurrency public func isFlashAvailable(_ completion: @escaping (_ flashAvailable: Swift.Bool) -> Swift.Void)
   @objc @_Concurrency.MainActor @preconcurrency public func setDynamicExposure(_ intensity: Swift.Int)
   @objc @_Concurrency.MainActor @preconcurrency public func setCentricFocusAndExposure(_ enabled: Swift.Bool)
@@ -195,6 +196,8 @@ extension CoreFoundation.CGRect {
   @objc public var nonSelectedLocationLineWidth: Swift.Float
   @objc public var locationType: BarkoderSDK.BarkoderARLocationType
   @objc public var doubleTapToFreezeEnabled: Swift.Bool
+  @objc public var imageResultEnabled: Swift.Bool
+  @objc public var barcodeThumbnailOnResult: Swift.Bool
   @objc public var headerHeight: Swift.Float
   @objc public var headerShowMode: BarkoderSDK.BarkoderARHeaderShowMode
   @objc public var headerMaxTextHeight: Swift.Float

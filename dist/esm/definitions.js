@@ -86,6 +86,7 @@ export var BarcodeType;
     BarcodeType[BarcodeType["royalMail"] = 36] = "royalMail";
     BarcodeType[BarcodeType["kix"] = 37] = "kix";
     BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
+    BarcodeType[BarcodeType["maxiCode"] = 39] = "maxiCode";
 })(BarcodeType || (BarcodeType = {}));
 export var BarkoderARMode;
 (function (BarkoderARMode) {

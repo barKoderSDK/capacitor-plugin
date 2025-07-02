@@ -608,6 +608,8 @@ extension BarkoderPlugin {
                         decoderConfig.kix.enabled = enabled
                     case JapanesePost:
                         decoderConfig.japanesePost.enabled = enabled
+                    case MaxiCode:
+                        decoderConfig.maxiCode.enabled = enabled
                     default:
                         call.reject(
                             BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -815,7 +817,7 @@ extension BarkoderPlugin {
                     "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14",
                     "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode",
                     "idDocument", "databar14", "databarLimited", "databarExpanded",
-                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost",
+                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost", "maxiCode",
                     "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"
                 ],
                 [
@@ -824,7 +826,7 @@ extension BarkoderPlugin {
                     "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14",
                     "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode",
                     "ID Document", "Databar 14", "Databar Limited", "Databar Expanded",
-                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post",
+                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post", "MaxiCode",
                     "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"
                 ]
             ).forEach {
@@ -1129,6 +1131,30 @@ extension BarkoderPlugin {
 
         call.resolve()
     }
+    
+    @objc func setARImageResultEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.imageResultEnabled = enabled
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func setARBarcodeThumbnailOnResultEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.barcodeThumbnailOnResult = enabled
+        }
+        
+        call.resolve()
+    }
 
     @objc func setARHeaderHeight(_ call: CAPPluginCall) {
         guard let height = call.getFloat("value") else { return }
@@ -1273,6 +1299,10 @@ extension BarkoderPlugin {
         call.resolve(["version": iBarkoder.GetVersion() as Any])
     }
     
+    @objc func getLibVersion(_ call: CAPPluginCall) {
+        call.resolve(["libVersion": iBarkoder.getLibVersion() as Any])
+    }
+    
     @objc func getLocationLineColorHex(_ call: CAPPluginCall) {
         call.resolve(["locationLineColorHex": barkoderView.config?.locationLineColor.toHex() as Any])
     }
@@ -1291,6 +1321,10 @@ extension BarkoderPlugin {
                 call.resolve(["maxZoomFactor": maxZoomFactor])
             }
         }
+    }
+    
+    @objc func getCurrentZoomFactor(_ call: CAPPluginCall) {
+        call.resolve(["currentZoomFactor": barkoderView.getCurrentZoomFactor() as Any])
     }
     
     @objc func getLocationLineWidth(_ call: CAPPluginCall) {
@@ -1484,6 +1518,8 @@ extension BarkoderPlugin {
                 call.resolve([decoderConfig.kix.typeName(): decoderConfig.kix.enabled])
             case JapanesePost:
                 call.resolve([decoderConfig.japanesePost.typeName(): decoderConfig.japanesePost.enabled])
+            case MaxiCode:
+                call.resolve([decoderConfig.maxiCode.typeName(): decoderConfig.maxiCode.enabled])
             default:
                 call.reject(
                     BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -1599,6 +1635,14 @@ extension BarkoderPlugin {
 
     @objc func isARDoubleTapToFreezeEnabled(_ call: CAPPluginCall) {
         call.resolve(["isARDoubleTapToFreezeEnabled": barkoderView.config?.arConfig.doubleTapToFreezeEnabled as Any])
+    }
+    
+    @objc func isARImageResultEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isARImageResultEnabled": barkoderView.config?.arConfig.imageResultEnabled as Any])
+    }
+    
+    @objc func isARBarcodeThumbnailOnResultEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isARBarcodeThumbnailOnResultEnabled": barkoderView.config?.arConfig.barcodeThumbnailOnResult as Any])
     }
 
     @objc func getARHeaderHeight(_ call: CAPPluginCall) {

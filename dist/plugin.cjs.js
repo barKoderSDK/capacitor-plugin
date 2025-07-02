@@ -92,6 +92,7 @@ exports.BarcodeType = void 0;
     BarcodeType[BarcodeType["royalMail"] = 36] = "royalMail";
     BarcodeType[BarcodeType["kix"] = 37] = "kix";
     BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
+    BarcodeType[BarcodeType["maxiCode"] = 39] = "maxiCode";
 })(exports.BarcodeType || (exports.BarcodeType = {}));
 exports.BarkoderARMode = void 0;
 (function (BarkoderARMode) {

@@ -1142,6 +1142,38 @@
         "slug": "setardoubletaptofreezeenabled"
       },
       {
+        "name": "setARImageResultEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Enables or disables the capturing and processing of image data when a barcode is selected for AR mode.",
+        "complexTypes": [],
+        "slug": "setarimageresultenabled"
+      },
+      {
+        "name": "setARBarcodeThumbnailOnResultEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Enables or disables the barcode thumbnail on result for AR mode.",
+        "complexTypes": [],
+        "slug": "setarbarcodethumbnailonresultenabled"
+      },
+      {
         "name": "setARHeaderHeight",
         "signature": "(options: { value: number; }) => Promise<any>",
         "parameters": [
@@ -1383,9 +1415,19 @@
         "parameters": [],
         "returns": "Promise<any>",
         "tags": [],
-        "docs": "Retrieves the version of the Barkoder library",
+        "docs": "Retrieves the version of the Barkoder SDK",
         "complexTypes": [],
         "slug": "getversion"
+      },
+      {
+        "name": "getLibVersion",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the version of the Barkoder library",
+        "complexTypes": [],
+        "slug": "getlibversion"
       },
       {
         "name": "getLocationLineColorHex",
@@ -1426,6 +1468,16 @@
         "docs": "Retrieves the maximum available zoom factor for the device's camera",
         "complexTypes": [],
         "slug": "getmaxzoomfactor"
+      },
+      {
+        "name": "getCurrentZoomFactor",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the current zoom factor for the device's camera",
+        "complexTypes": [],
+        "slug": "getcurrentzoomfactor"
       },
       {
         "name": "getLocationLineWidth",
@@ -1840,6 +1892,26 @@
         "slug": "isardoubletaptofreezeenabled"
       },
       {
+        "name": "isARImageResultEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether image result is enabled for AR mode.",
+        "complexTypes": [],
+        "slug": "isarimageresultenabled"
+      },
+      {
+        "name": "isARBarcodeThumbnailOnResultEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether barcode thumbnail on result is enabled for AR mode.",
+        "complexTypes": [],
+        "slug": "isarbarcodethumbnailonresultenabled"
+      },
+      {
         "name": "getARHeaderHeight",
         "signature": "() => Promise<any>",
         "parameters": [],
@@ -2151,6 +2223,11 @@
         },
         {
           "name": "japanesePost",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "maxiCode",
           "tags": [],
           "docs": ""
         }

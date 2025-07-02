@@ -234,6 +234,8 @@ In your scss file set the desired barkoderView height:
 * [`setARNonSelectedLocationLineWidth(...)`](#setarnonselectedlocationlinewidth)
 * [`setARLocationType(...)`](#setarlocationtype)
 * [`setARDoubleTapToFreezeEnabled(...)`](#setardoubletaptofreezeenabled)
+* [`setARImageResultEnabled(...)`](#setarimageresultenabled)
+* [`setARBarcodeThumbnailOnResultEnabled(...)`](#setarbarcodethumbnailonresultenabled)
 * [`setARHeaderHeight(...)`](#setarheaderheight)
 * [`setARHeaderShowMode(...)`](#setarheadershowmode)
 * [`setARHeaderMaxTextHeight(...)`](#setarheadermaxtextheight)
@@ -253,10 +255,12 @@ In your scss file set the desired barkoderView height:
 * [`isBeepOnSuccessEnabled()`](#isbeeponsuccessenabled)
 * [`isVibrateOnSuccessEnabled()`](#isvibrateonsuccessenabled)
 * [`getVersion()`](#getversion)
+* [`getLibVersion()`](#getlibversion)
 * [`getLocationLineColorHex()`](#getlocationlinecolorhex)
 * [`getRoiLineColorHex()`](#getroilinecolorhex)
 * [`getRoiOverlayBackgroundColorHex()`](#getroioverlaybackgroundcolorhex)
 * [`getMaxZoomFactor()`](#getmaxzoomfactor)
+* [`getCurrentZoomFactor()`](#getcurrentzoomfactor)
 * [`getLocationLineWidth()`](#getlocationlinewidth)
 * [`getRoiLineWidth()`](#getroilinewidth)
 * [`getRegionOfInterest()`](#getregionofinterest)
@@ -297,6 +301,8 @@ In your scss file set the desired barkoderView height:
 * [`getARNonSelectedLocationLineWidth()`](#getarnonselectedlocationlinewidth)
 * [`getARLocationType()`](#getarlocationtype)
 * [`isARDoubleTapToFreezeEnabled()`](#isardoubletaptofreezeenabled)
+* [`isARImageResultEnabled()`](#isarimageresultenabled)
+* [`isARBarcodeThumbnailOnResultEnabled()`](#isarbarcodethumbnailonresultenabled)
 * [`getARHeaderHeight()`](#getarheaderheight)
 * [`getARHeaderShowMode()`](#getarheadershowmode)
 * [`getARHeaderMaxTextHeight()`](#getarheadermaxtextheight)
@@ -1507,6 +1513,40 @@ Enables or disables the ability to freeze/unfreeze scanning via a double-tap ges
 --------------------
 
 
+### setARImageResultEnabled(...)
+
+```typescript
+setARImageResultEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+Enables or disables the capturing and processing of image data when a barcode is selected for AR mode.
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setARBarcodeThumbnailOnResultEnabled(...)
+
+```typescript
+setARBarcodeThumbnailOnResultEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+Enables or disables the barcode thumbnail on result for AR mode.
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### setARHeaderHeight(...)
 
 ```typescript
@@ -1783,6 +1823,19 @@ Retrieves the value indicating whether vibration is enabled on successful barcod
 getVersion() => Promise<any>
 ```
 
+Retrieves the version of the Barkoder SDK
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getLibVersion()
+
+```typescript
+getLibVersion() => Promise<any>
+```
+
 Retrieves the version of the Barkoder library
 
 **Returns:** <code>Promise&lt;any&gt;</code>
@@ -1836,6 +1889,19 @@ getMaxZoomFactor() => Promise<any>
 ```
 
 Retrieves the maximum available zoom factor for the device's camera
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getCurrentZoomFactor()
+
+```typescript
+getCurrentZoomFactor() => Promise<any>
+```
+
+Retrieves the current zoom factor for the device's camera
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -2370,6 +2436,32 @@ Checks if the double-tap-to-freeze feature is enabled in AR mode.
 --------------------
 
 
+### isARImageResultEnabled()
+
+```typescript
+isARImageResultEnabled() => Promise<any>
+```
+
+Retrieves whether image result is enabled for AR mode.
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### isARBarcodeThumbnailOnResultEnabled()
+
+```typescript
+isARBarcodeThumbnailOnResultEnabled() => Promise<any>
+```
+
+Retrieves whether barcode thumbnail on result is enabled for AR mode.
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### getARHeaderHeight()
 
 ```typescript
@@ -2542,6 +2634,7 @@ Retrieves the format string used for rendering AR header text above barcodes.
 | **`royalMail`**       |
 | **`kix`**             |
 | **`japanesePost`**    |
+| **`maxiCode`**        |
 
 
 #### DecodingSpeed
