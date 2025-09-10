@@ -127,6 +127,7 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func setDynamicExposure(_ intensity: Swift.Int)
   @objc @_Concurrency.MainActor @preconcurrency public func setCentricFocusAndExposure(_ enabled: Swift.Bool)
   @objc @_Concurrency.MainActor @preconcurrency public func setVideoStabilization(_ enabled: Swift.Bool)
+  @objc @_Concurrency.MainActor @preconcurrency public func captureImage()
   @_Concurrency.MainActor @preconcurrency @objc public func cameraFrameReceived(sampleBuffer: CoreMedia.CMSampleBuffer)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
   @objc deinit
@@ -198,6 +199,9 @@ extension CoreFoundation.CGRect {
   @objc public var doubleTapToFreezeEnabled: Swift.Bool
   @objc public var imageResultEnabled: Swift.Bool
   @objc public var barcodeThumbnailOnResult: Swift.Bool
+  @objc public var resultLimit: Swift.Int
+  @objc public var continueScanningOnLimit: Swift.Bool
+  @objc public var emitResultsAtSessionEndOnly: Swift.Bool
   @objc public var headerHeight: Swift.Float
   @objc public var headerShowMode: BarkoderSDK.BarkoderARHeaderShowMode
   @objc public var headerMaxTextHeight: Swift.Float

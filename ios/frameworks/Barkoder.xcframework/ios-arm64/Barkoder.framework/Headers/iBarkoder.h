@@ -488,6 +488,7 @@ typedef enum {
 
 +(int) setGlobalOption: (GlobalOption) option value: (int) value;
 +(int) getGlobalOption: (GlobalOption) option;
++(void)setcustomOptionGlobal: (NSString *_Nonnull)option value:(int) value;
 
 @property (nonatomic, readonly, retain) AztecConfig* _Nonnull aztec;
 @property (nonatomic, readonly, retain) AztecCompactConfig* _Nonnull aztecCompact;

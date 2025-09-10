@@ -1,0 +1,77 @@
+[
+  {
+    "shortDescription" : "barKoder model for oriented object detection.",
+    "metadataOutputVersion" : "3.0",
+    "outputSchema" : [
+      {
+        "hasShapeFlexibility" : "0",
+        "isOptional" : "0",
+        "dataType" : "Float32",
+        "formattedType" : "MultiArray (Float32)",
+        "shortDescription" : "",
+        "shape" : "[]",
+        "name" : "var_1253",
+        "type" : "MultiArray"
+      }
+    ],
+    "version" : "2.0",
+    "modelParameters" : [
+
+    ],
+    "author" : "barKoder Exporter",
+    "specificationVersion" : 4,
+    "storagePrecision" : "Int8",
+    "computePrecision" : "Float16",
+    "stateSchema" : [
+
+    ],
+    "isUpdatable" : "0",
+    "availability" : {
+      "macOS" : "10.15",
+      "tvOS" : "13.0",
+      "visionOS" : "1.0",
+      "watchOS" : "6.0",
+      "iOS" : "13.0",
+      "macCatalyst" : "13.0"
+    },
+    "modelType" : {
+      "name" : "MLModelType_neuralNetwork"
+    },
+    "inputSchema" : [
+      {
+        "height" : "384",
+        "colorspace" : "RGB",
+        "isOptional" : "0",
+        "width" : "512",
+        "isColor" : "1",
+        "formattedType" : "Image (Color 512 × 384)",
+        "hasSizeFlexibility" : "0",
+        "type" : "Image",
+        "shortDescription" : "",
+        "name" : "image"
+      }
+    ],
+    "userDefinedMetadata" : {
+      "imgsz" : "[384, 512]",
+      "names" : "{0: 'id_mrz_image', 1: 'mrz_2', 2: 'mrz_3', 3: 'id_mrz', 4: 'id_image', 5: 'face', 6: 'vin', 7: 'signature'}",
+      "com.github.apple.coremltools.source" : "torch==1.13.1+cu117",
+      "com.github.apple.coremltools.version" : "8.3.0",
+      "com.github.apple.coremltools.source_dialect" : "TorchScript"
+    },
+    "generatedClassName" : "n2_512x384_int8",
+    "neuralNetworkLayerTypeHistogram" : {
+      "Concat" : 16,
+      "Transpose" : 1,
+      "Multiply" : 60,
+      "ReshapeStatic" : 3,
+      "Add" : 7,
+      "PoolingINVALID" : 3,
+      "SplitND" : 8,
+      "UpsampleINVALID" : 2,
+      "Convolution" : 72,
+      "ActivationSigmoid" : 66,
+      "ConcatND" : 1
+    },
+    "method" : "predict"
+  }
+]

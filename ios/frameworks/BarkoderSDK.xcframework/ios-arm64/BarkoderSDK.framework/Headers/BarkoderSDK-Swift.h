@@ -364,6 +364,22 @@ SWIFT_CLASS("_TtC11BarkoderSDK16BarkoderARConfig")
 /// note:
 /// Default value is false
 @property (nonatomic) BOOL barcodeThumbnailOnResult;
+/// Maximum number of results allowed in a single AR scanning session.
+/// Set to <code>0</code> for unlimited.
+/// note:
+/// Default value is <code>0</code>.
+@property (nonatomic) NSInteger resultLimit;
+/// Behavior when the result limit is reached.
+/// Continues scanning only if <code>true</code> and mode is <code>.interactiveDisabled</code>; otherwise ends.
+/// note:
+/// Default value is <code>false</code>.
+@property (nonatomic) BOOL continueScanningOnLimit;
+/// Controls when results are emitted to the delegate.
+/// If <code>true</code>, emit once at session end (or when the limit is reached);
+/// if <code>false</code>, emit continuously as results are selected.
+/// note:
+/// Default value is <code>false</code>.
+@property (nonatomic) BOOL emitResultsAtSessionEndOnly;
 /// Height of the header above the barcode.
 /// note:
 /// Default value is 19.0
@@ -697,6 +713,8 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 /// \param enabled [true, false]. Default value is false.
 ///
 - (void)setVideoStabilization:(BOOL)enabled;
+/// Captures the latest camera frame
+- (void)captureImage;
 - (void)cameraFrameReceivedWithSampleBuffer:(CMSampleBufferRef _Nonnull)sampleBuffer;
 - (void)layoutSubviews;
 @end

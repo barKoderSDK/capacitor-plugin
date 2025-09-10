@@ -14,6 +14,7 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(pauseScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(freezeScanning, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(unfreezeScanning, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(captureImage, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(scanImage, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setLocationLineColor, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setLocationLineWidth, CAPPluginReturnPromise);
@@ -79,6 +80,9 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setARDoubleTapToFreezeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARImageResultEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARBarcodeThumbnailOnResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARResultLimit, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setARContinueScanningOnLimit, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setAREmitResultsAtSessionEndOnly, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARHeaderHeight, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARHeaderShowMode, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARHeaderMaxTextHeight, CAPPluginReturnPromise);
@@ -148,6 +152,9 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(isARDoubleTapToFreezeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isARImageResultEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isARBarcodeThumbnailOnResultEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARResultLimit, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getARContinueScanningOnLimit, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getAREmitResultsAtSessionEndOnly, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getARHeaderHeight, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getARHeaderShowMode, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getARHeaderMaxTextHeight, CAPPluginReturnPromise);

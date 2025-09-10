@@ -130,6 +130,16 @@
         "slug": "unfreezescanning"
       },
       {
+        "name": "captureImage",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Captures the latest camera frame",
+        "complexTypes": [],
+        "slug": "captureimage"
+      },
+      {
         "name": "scanImage",
         "signature": "(options: { base64: string; }) => Promise<any>",
         "parameters": [
@@ -1174,6 +1184,54 @@
         "slug": "setarbarcodethumbnailonresultenabled"
       },
       {
+        "name": "setARResultLimit",
+        "signature": "(options: { value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets the maximum number of results allowed in a single AR scanning session.",
+        "complexTypes": [],
+        "slug": "setarresultlimit"
+      },
+      {
+        "name": "setARContinueScanningOnLimit",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether scanning continues when the result limit is reached (only in `.interactiveDisabled` mode).",
+        "complexTypes": [],
+        "slug": "setarcontinuescanningonlimit"
+      },
+      {
+        "name": "setAREmitResultsAtSessionEndOnly",
+        "signature": "(options: { value: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ value: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether results are emitted only at AR session end (or when the limit is reached).",
+        "complexTypes": [],
+        "slug": "setaremitresultsatsessionendonly"
+      },
+      {
         "name": "setARHeaderHeight",
         "signature": "(options: { value: number; }) => Promise<any>",
         "parameters": [
@@ -1910,6 +1968,36 @@
         "docs": "Retrieves whether barcode thumbnail on result is enabled for AR mode.",
         "complexTypes": [],
         "slug": "isarbarcodethumbnailonresultenabled"
+      },
+      {
+        "name": "getARResultLimit",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves the maximum number of results allowed in a single AR scanning session.",
+        "complexTypes": [],
+        "slug": "getarresultlimit"
+      },
+      {
+        "name": "getARContinueScanningOnLimit",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether scanning continues when the result limit is reached (only in `.interactiveDisabled` mode).",
+        "complexTypes": [],
+        "slug": "getarcontinuescanningonlimit"
+      },
+      {
+        "name": "getAREmitResultsAtSessionEndOnly",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether results are emitted only at AR session end (or when the limit is reached).",
+        "complexTypes": [],
+        "slug": "getaremitresultsatsessionendonly"
       },
       {
         "name": "getARHeaderHeight",

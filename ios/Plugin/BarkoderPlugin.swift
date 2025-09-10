@@ -148,6 +148,14 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func captureImage(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            self.barkoderView.captureImage()
+        }
+        
+        call.resolve()
+    }
+    
     @objc func scanImage(_ call: CAPPluginCall) {
         guard let base64Image = call.getString("base64") else {
             return
@@ -1155,6 +1163,30 @@ extension BarkoderPlugin {
         
         call.resolve()
     }
+    
+    @objc func setARResultLimit(_ call: CAPPluginCall) {
+        guard let value = call.getInt("value") else { return }
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.resultLimit = value
+        }
+        call.resolve()
+    }
+
+    @objc func setARContinueScanningOnLimit(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else { return }
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.continueScanningOnLimit = enabled
+        }
+        call.resolve()
+    }
+
+    @objc func setAREmitResultsAtSessionEndOnly(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("value") else { return }
+        DispatchQueue.main.async {
+            self.barkoderView.config?.arConfig.emitResultsAtSessionEndOnly = enabled
+        }
+        call.resolve()
+    }
 
     @objc func setARHeaderHeight(_ call: CAPPluginCall) {
         guard let height = call.getFloat("value") else { return }
@@ -1643,6 +1675,18 @@ extension BarkoderPlugin {
     
     @objc func isARBarcodeThumbnailOnResultEnabled(_ call: CAPPluginCall) {
         call.resolve(["isARBarcodeThumbnailOnResultEnabled": barkoderView.config?.arConfig.barcodeThumbnailOnResult as Any])
+    }
+    
+    @objc func getARResultLimit(_ call: CAPPluginCall) {
+        call.resolve(["arResultLimit": barkoderView.config?.arConfig.resultLimit as Any])
+    }
+
+    @objc func getARContinueScanningOnLimit(_ call: CAPPluginCall) {
+        call.resolve(["arContinueScanningOnLimit": barkoderView.config?.arConfig.continueScanningOnLimit as Any])
+    }
+
+    @objc func getAREmitResultsAtSessionEndOnly(_ call: CAPPluginCall) {
+        call.resolve(["arEmitResultsAtSessionEndOnly": barkoderView.config?.arConfig.emitResultsAtSessionEndOnly as Any])
     }
 
     @objc func getARHeaderHeight(_ call: CAPPluginCall) {

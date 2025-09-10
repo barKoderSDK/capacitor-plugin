@@ -10,11 +10,11 @@
 		</data>
 		<key>Headers/iBarkoder.h</key>
 		<data>
-		TvkdRX4OH7h6js7os0IJImihRoM=
+		zDPusR/tmMkflJ9D1enCFqAIWrw=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		SEufaPMhj97lzfvTwUJZegReZcE=
+		uPSy73NcTdbZrip0/EiRjP8DV4E=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -22,59 +22,7 @@
 		</data>
 		<key>default.metallib</key>
 		<data>
-		1kVi10jUTLTwVVLPVu69SUzh3kc=
-		</data>
-		<key>float16_512x384.mlmodelc/analytics/coremldata.bin</key>
-		<data>
-		Oq5qNbZ/t6sCDjw4+Ry0u+cv+sQ=
-		</data>
-		<key>float16_512x384.mlmodelc/coremldata.bin</key>
-		<data>
-		OccxkIgBDUmh3UHLfHhZYi8BFSQ=
-		</data>
-		<key>float16_512x384.mlmodelc/metadata.json</key>
-		<data>
-		YNLJi2S+xSXe89S6CHdWEAkYmnk=
-		</data>
-		<key>float16_512x384.mlmodelc/model.mil</key>
-		<data>
-		OEOsMWTFyLixwOlzQ6C82xPWeoA=
-		</data>
-		<key>float16_512x384.mlmodelc/weights/weight.bin</key>
-		<data>
-		neoblnL3W+LGlE3ys5ujeYlwb9E=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/analytics/coremldata.bin</key>
-		<data>
-		7piZVfaNpKxEZhDzdRTUaXXsQ8I=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/coremldata.bin</key>
-		<data>
-		nsHTr+ofyx5psOMprF9OMcXxsSg=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/metadata.json</key>
-		<data>
-		4dCmLCEEqfUuGBSSrBMhh9x0Iq4=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/model.espresso.net</key>
-		<data>
-		kpoTEHpblsrvkAFg8ftDtj63T0o=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/model.espresso.shape</key>
-		<data>
-		OcwFv4hcF6eLrbmxbxIM+dbeVkY=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/model.espresso.weights</key>
-		<data>
-		taLYUmNcIg8xgnLel+6Mlvrpw/w=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/model/coremldata.bin</key>
-		<data>
-		tGU7K8v0jbmLrWPOZkDsl7EBsZk=
-		</data>
-		<key>int8_384x256_small2.mlmodelc/neural_network_optionals/coremldata.bin</key>
-		<data>
-		tkgF5pxT7RlO+9uypQti9obolyA=
+		X4qTPqhy13Z4eIqBhoc/JR+M1Ys=
 		</data>
 		<key>mrz.traineddata</key>
 		<data>
@@ -83,6 +31,70 @@
 		<key>mrzfast.traineddata</key>
 		<data>
 		Tqv+KEU48QJIZYwt6e2zoMhFoWw=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/analytics/coremldata.bin</key>
+		<data>
+		K0ekHWwHVntSh8mx5w47kwF1dkA=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/coremldata.bin</key>
+		<data>
+		kq92NtZsFzPhsaIjQ/tCswPi/vU=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/metadata.json</key>
+		<data>
+		N4ghTMFxj1A69TxIWQMzw4vFfyI=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/model.espresso.net</key>
+		<data>
+		kcVyWLevdtaUsdwRMNl/3hIPZMU=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/model.espresso.shape</key>
+		<data>
+		YesdSRhvqOaJEiaHrLMuGbuidFg=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/model.espresso.weights</key>
+		<data>
+		7d5nHbY1MzepbigLLdfkpJdEylU=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/model/coremldata.bin</key>
+		<data>
+		tGU7K8v0jbmLrWPOZkDsl7EBsZk=
+		</data>
+		<key>n2_384x256_int8.mlmodelc/neural_network_optionals/coremldata.bin</key>
+		<data>
+		tkgF5pxT7RlO+9uypQti9obolyA=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/analytics/coremldata.bin</key>
+		<data>
+		lduSEjWhw1hYKZfeuBIuZGaPs/g=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/coremldata.bin</key>
+		<data>
+		pRy3e1gkbR2BNRAFdNazgUblptk=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/metadata.json</key>
+		<data>
+		vN4nOF6vcH8HxVeeSkrXCQfLQcs=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/model.espresso.net</key>
+		<data>
+		xMoGREC/nJPono4zK65JevpXfjQ=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/model.espresso.shape</key>
+		<data>
+		HMrUSp1GqaiC4PWqROM4uK3c+yM=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/model.espresso.weights</key>
+		<data>
+		7d5nHbY1MzepbigLLdfkpJdEylU=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/model/coremldata.bin</key>
+		<data>
+		tGU7K8v0jbmLrWPOZkDsl7EBsZk=
+		</data>
+		<key>n2_512x384_int8.mlmodelc/neural_network_optionals/coremldata.bin</key>
+		<data>
+		tkgF5pxT7RlO+9uypQti9obolyA=
 		</data>
 	</dict>
 	<key>files2</key>
@@ -98,7 +110,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			QBkCB//Rvx7WOxbngySORAWhwjWZM9P6bOWTkqlkENk=
+			QiNckUrAjEtbEVUPkZjkmjaobwbR8xAvoJlb2uas1bQ=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -112,98 +124,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			vrm2byECR/2l/q6buzQp1ljYDpG/0uVE8wgD7aCl7A0=
-			</data>
-		</dict>
-		<key>float16_512x384.mlmodelc/analytics/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			h29n3Eoics/TrOWunfvZpf8fZ7jOlE0H0Z8VzMEv9kQ=
-			</data>
-		</dict>
-		<key>float16_512x384.mlmodelc/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			giPgsKBaQSe3WX4pED5vxW31UBDp+B/B3cP81JlEZPM=
-			</data>
-		</dict>
-		<key>float16_512x384.mlmodelc/metadata.json</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			4nygWe9rtm7Dl422MGI38u4PGd8fx4rz/SOo/E+D0fI=
-			</data>
-		</dict>
-		<key>float16_512x384.mlmodelc/model.mil</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			viqOKgJl561maLlEUdGZx83Phc8Xf60R2noufvkhq64=
-			</data>
-		</dict>
-		<key>float16_512x384.mlmodelc/weights/weight.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			F1Rxfa9na6oCDWfo2+tILD6ZPUX0dvi1iBdeM10fzRM=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/analytics/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			S1c++xvQjePu/DLCBXpM+hCYiuvS6JPgm6m3OBd58ZY=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			f3b2FfEpQGCxWmXP5ptb/0v1E44dnPxeA2+WZLjc+HU=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/metadata.json</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			hyOkS/OFXHuyd6qdoW6HSSDVS3oo/PNhpwa5lZ1r+YU=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/model.espresso.net</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Ts3llMeEgZL/ogVAVDy4zNHj+naO3LJ7YSiVlaKrmeU=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/model.espresso.shape</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			Bz9kx60E0gpoeaZ0kOyZNbr3zB4Gly5UFnB6oAQbWu8=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/model.espresso.weights</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			sr9DmEY64lvzNjHTHCDzQ9bN5YoPaXNTfxnPfUzwqeg=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/model/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			JsMfzXP3J1PCXEF2nqub8rHW9vXpXkr2ag9c2kxRcE8=
-			</data>
-		</dict>
-		<key>int8_384x256_small2.mlmodelc/neural_network_optionals/coremldata.bin</key>
-		<dict>
-			<key>hash2</key>
-			<data>
-			WTG9U2xFUClKISxvyNPBvuddqBeYC6C2cchgPa+zYjg=
+			8ADKtFoCK6dn4QQ2cNaIvF/O4vqNQ9OsogmNQqeHW8M=
 			</data>
 		</dict>
 		<key>mrz.traineddata</key>
@@ -218,6 +139,118 @@
 			<key>hash2</key>
 			<data>
 			7OKlTxJac3kvnOx05vjmL25eAMfxkVO6hlr2ib5bXwE=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/analytics/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			fPEoQpohBvjhvbgEDHdq8Zwc9PzsQ+ANS5BOJOsUNus=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			dUreVCngceMSGTfYkXUkic0SVkUbp2hyJH7gZfKWQTo=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/metadata.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			eq5p1cX/NWprT0GE3ooO/3OgYTi4V20JV6QfwT0rfkM=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/model.espresso.net</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			HYUg4mQw05AVYfU4tTvprY2OZaPaZPg1pi9Rogjz8VA=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/model.espresso.shape</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			GnNo/duLPF8AO2QdgOi4JZk9x0RI6DvnPTQHJckcMn0=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/model.espresso.weights</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YeomzgiWLuV5IuuvYlyZ+Ovl9HSw6MwNhcIzu+2GmNg=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/model/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			JsMfzXP3J1PCXEF2nqub8rHW9vXpXkr2ag9c2kxRcE8=
+			</data>
+		</dict>
+		<key>n2_384x256_int8.mlmodelc/neural_network_optionals/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WTG9U2xFUClKISxvyNPBvuddqBeYC6C2cchgPa+zYjg=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/analytics/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			TH98apmWsP+5bn9lfPBXLRiY6fgmJzDSVxsGRqvpx6o=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			FuOVhipIFJGh1uXZVJ2k1r+NxlldEZuXUQx/zi2o3D0=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/metadata.json</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			ZNG3uSwLTw92yu+rEVNPtvhvKJG8ogAEILbJoZeLJoE=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/model.espresso.net</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			gOCZszPcUirPqzNU4dSi6IUaWafZr2Biio3R+YhsSfo=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/model.espresso.shape</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			0qOgbw0u1Q94ZbVIWGdsmU1h/rHxVhuTwP9zbMXFR2A=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/model.espresso.weights</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			YeomzgiWLuV5IuuvYlyZ+Ovl9HSw6MwNhcIzu+2GmNg=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/model/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			JsMfzXP3J1PCXEF2nqub8rHW9vXpXkr2ag9c2kxRcE8=
+			</data>
+		</dict>
+		<key>n2_512x384_int8.mlmodelc/neural_network_optionals/coremldata.bin</key>
+		<dict>
+			<key>hash2</key>
+			<data>
+			WTG9U2xFUClKISxvyNPBvuddqBeYC6C2cchgPa+zYjg=
 			</data>
 		</dict>
 	</dict>

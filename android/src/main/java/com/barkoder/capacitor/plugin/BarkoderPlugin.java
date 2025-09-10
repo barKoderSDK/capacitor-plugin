@@ -168,6 +168,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void captureImage(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.captureImage());
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void scanImage(PluginCall call) {
         String base64 = call.getString("base64");
         if (base64 == null) {
@@ -1098,6 +1105,42 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void setARResultLimit(PluginCall call) {
+      Integer value = call.getInt("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setResultLimit(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setARContinueScanningOnLimit(PluginCall call) {
+      Boolean value = call.getBoolean("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setContinueScanningOnLimit(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
+    public void setAREmitResultsAtSessionEndOnly(PluginCall call) {
+      Boolean value = call.getBoolean("value");
+      if (value == null) return;
+
+      getBridge().getActivity().runOnUiThread(() -> {
+        barkoderView.config.getArConfig().setEmitResultsAtSessionEndOnly(value);
+      });
+
+      call.resolve();
+    }
+
+    @PluginMethod
     public void setARHeaderHeight(PluginCall call) {
       Float value = call.getFloat("value");
       if (value == null) return;
@@ -1686,6 +1729,27 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         getBridge().getActivity().runOnUiThread(() -> {
             call.resolve(toJSObjectBool("isARBarcodeThumbnailOnResultEnabled", barkoderView.config.getArConfig().isBarcodeThumbnailOnResultEnabled()));
         });
+    }
+
+    @PluginMethod
+    public void getARResultLimit(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectInt("arResultLimit", barkoderView.config.getArConfig().getResultLimit()));
+      });
+    }
+
+    @PluginMethod
+    public void getARContinueScanningOnLimit(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectBool("arContinueScanningOnLimit", barkoderView.config.getArConfig().getContinueScanningOnLimit()));
+      });
+    }
+
+    @PluginMethod
+    public void getAREmitResultsAtSessionEndOnly(PluginCall call) {
+      getBridge().getActivity().runOnUiThread(() -> {
+        call.resolve(toJSObjectBool("arEmitResultsAtSessionEndOnly", barkoderView.config.getArConfig().getEmitResultsAtSessionEndOnly()));
+      });
     }
 
     @PluginMethod

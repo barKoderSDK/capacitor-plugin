@@ -172,6 +172,7 @@ In your scss file set the desired barkoderView height:
 * [`pauseScanning()`](#pausescanning)
 * [`freezeScanning()`](#freezescanning)
 * [`unfreezeScanning()`](#unfreezescanning)
+* [`captureImage()`](#captureimage)
 * [`scanImage(...)`](#scanimage)
 * [`setLocationLineColor(...)`](#setlocationlinecolor)
 * [`setLocationLineWidth(...)`](#setlocationlinewidth)
@@ -236,6 +237,9 @@ In your scss file set the desired barkoderView height:
 * [`setARDoubleTapToFreezeEnabled(...)`](#setardoubletaptofreezeenabled)
 * [`setARImageResultEnabled(...)`](#setarimageresultenabled)
 * [`setARBarcodeThumbnailOnResultEnabled(...)`](#setarbarcodethumbnailonresultenabled)
+* [`setARResultLimit(...)`](#setarresultlimit)
+* [`setARContinueScanningOnLimit(...)`](#setarcontinuescanningonlimit)
+* [`setAREmitResultsAtSessionEndOnly(...)`](#setaremitresultsatsessionendonly)
 * [`setARHeaderHeight(...)`](#setarheaderheight)
 * [`setARHeaderShowMode(...)`](#setarheadershowmode)
 * [`setARHeaderMaxTextHeight(...)`](#setarheadermaxtextheight)
@@ -303,6 +307,9 @@ In your scss file set the desired barkoderView height:
 * [`isARDoubleTapToFreezeEnabled()`](#isardoubletaptofreezeenabled)
 * [`isARImageResultEnabled()`](#isarimageresultenabled)
 * [`isARBarcodeThumbnailOnResultEnabled()`](#isarbarcodethumbnailonresultenabled)
+* [`getARResultLimit()`](#getarresultlimit)
+* [`getARContinueScanningOnLimit()`](#getarcontinuescanningonlimit)
+* [`getAREmitResultsAtSessionEndOnly()`](#getaremitresultsatsessionendonly)
 * [`getARHeaderHeight()`](#getarheaderheight)
 * [`getARHeaderShowMode()`](#getarheadershowmode)
 * [`getARHeaderMaxTextHeight()`](#getarheadermaxtextheight)
@@ -455,6 +462,19 @@ unfreezeScanning() => Promise<any>
 
 Unfreezes the AR scanning session by removing the still image and reactivating the camera and overlays.
 Use only when AR mode is enabled to restore the live AR view and continue scanning.
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### captureImage()
+
+```typescript
+captureImage() => Promise<any>
+```
+
+Captures the latest camera frame
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 
@@ -1547,6 +1567,57 @@ Enables or disables the barcode thumbnail on result for AR mode.
 --------------------
 
 
+### setARResultLimit(...)
+
+```typescript
+setARResultLimit(options: { value: number; }) => Promise<any>
+```
+
+Sets the maximum number of results allowed in a single AR scanning session.
+
+| Param         | Type                            |
+| ------------- | ------------------------------- |
+| **`options`** | <code>{ value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setARContinueScanningOnLimit(...)
+
+```typescript
+setARContinueScanningOnLimit(options: { value: boolean; }) => Promise<any>
+```
+
+Sets whether scanning continues when the result limit is reached (only in `.interactiveDisabled` mode).
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setAREmitResultsAtSessionEndOnly(...)
+
+```typescript
+setAREmitResultsAtSessionEndOnly(options: { value: boolean; }) => Promise<any>
+```
+
+Sets whether results are emitted only at AR session end (or when the limit is reached).
+
+| Param         | Type                             |
+| ------------- | -------------------------------- |
+| **`options`** | <code>{ value: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### setARHeaderHeight(...)
 
 ```typescript
@@ -2456,6 +2527,45 @@ isARBarcodeThumbnailOnResultEnabled() => Promise<any>
 ```
 
 Retrieves whether barcode thumbnail on result is enabled for AR mode.
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getARResultLimit()
+
+```typescript
+getARResultLimit() => Promise<any>
+```
+
+Retrieves the maximum number of results allowed in a single AR scanning session.
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getARContinueScanningOnLimit()
+
+```typescript
+getARContinueScanningOnLimit() => Promise<any>
+```
+
+Retrieves whether scanning continues when the result limit is reached (only in `.interactiveDisabled` mode).
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### getAREmitResultsAtSessionEndOnly()
+
+```typescript
+getAREmitResultsAtSessionEndOnly() => Promise<any>
+```
+
+Retrieves whether results are emitted only at AR session end (or when the limit is reached).
 
 **Returns:** <code>Promise&lt;any&gt;</code>
 

@@ -45,6 +45,10 @@ export interface BarkoderPlugin extends Plugin {
      */
     unfreezeScanning(): Promise<any>;
     /**
+     * Captures the latest camera frame
+     */
+    captureImage(): Promise<any>;
+    /**
    * Scan barcodes from base64 string image
    */
     scanImage(options: {
@@ -433,6 +437,24 @@ export interface BarkoderPlugin extends Plugin {
         enabled: boolean;
     }): Promise<any>;
     /**
+     * Sets the maximum number of results allowed in a single AR scanning session.
+     */
+    setARResultLimit(options: {
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets whether scanning continues when the result limit is reached (only in `.interactiveDisabled` mode).
+     */
+    setARContinueScanningOnLimit(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Sets whether results are emitted only at AR session end (or when the limit is reached).
+     */
+    setAREmitResultsAtSessionEndOnly(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
      * Sets the height of the header text label shown above the barcode in AR mode.
      */
     setARHeaderHeight(options: {
@@ -723,6 +745,18 @@ export interface BarkoderPlugin extends Plugin {
      */
     isARBarcodeThumbnailOnResultEnabled(): Promise<any>;
     /**
+     * Retrieves the maximum number of results allowed in a single AR scanning session.
+     */
+    getARResultLimit(): Promise<any>;
+    /**
+     * Retrieves whether scanning continues when the result limit is reached (only in `.interactiveDisabled` mode).
+     */
+    getARContinueScanningOnLimit(): Promise<any>;
+    /**
+     * Retrieves whether results are emitted only at AR session end (or when the limit is reached).
+     */
+    getAREmitResultsAtSessionEndOnly(): Promise<any>;
+    /**
      * Retrieves the height of the header text shown above barcodes in AR mode.
      */
     getARHeaderHeight(): Promise<any>;
@@ -941,6 +975,9 @@ export declare class BarkoderARConfig {
     doubleTapToFreezeEnabled?: boolean;
     imageResultEnabled?: boolean;
     barcodeThumbnailOnResult?: boolean;
+    resultLimit?: number;
+    continueScanningOnLimit?: boolean;
+    emitResultsAtSessionEndOnly?: boolean;
     headerHeight?: number;
     headerShowMode?: BarkoderARHeaderShowMode;
     headerMaxTextHeight?: number;
