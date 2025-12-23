@@ -52,10 +52,10 @@
       }
     ],
     "userDefinedMetadata" : {
-      "imgsz" : "[384, 512]",
-      "names" : "{0: 'id_mrz_image', 1: 'mrz_2', 2: 'mrz_3', 3: 'id_mrz', 4: 'id_image', 5: 'face', 6: 'vin', 7: 'signature'}",
-      "com.github.apple.coremltools.source" : "torch==1.13.1+cu117",
       "com.github.apple.coremltools.version" : "8.3.0",
+      "names" : "{0: 'id_mrz_image', 1: 'mrz_2', 2: 'mrz_3', 3: 'id_mrz', 4: 'id_image', 5: 'face', 6: 'vin', 7: 'signature'}",
+      "imgsz" : "[384, 512]",
+      "com.github.apple.coremltools.source" : "torch==1.13.1+cu117",
       "com.github.apple.coremltools.source_dialect" : "TorchScript"
     },
     "generatedClassName" : "n2_512x384_int8",

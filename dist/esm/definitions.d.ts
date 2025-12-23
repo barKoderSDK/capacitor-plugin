@@ -49,8 +49,8 @@ export interface BarkoderPlugin extends Plugin {
      */
     captureImage(): Promise<any>;
     /**
-   * Scan barcodes from base64 string image
-   */
+     * Scan barcodes from base64 string image
+     */
     scanImage(options: {
         base64: string;
     }): Promise<any>;
@@ -262,15 +262,21 @@ export interface BarkoderPlugin extends Plugin {
         enabled: boolean;
     }): Promise<any>;
     /**
-   * Sets whether the Direct Part Marking (DPM) mode for QR barcodes is enabled.
-   */
+     * Sets whether the Direct Part Marking (DPM) mode for QR barcodes is enabled.
+     */
     setQrDpmModeEnabled(options: {
         enabled: boolean;
     }): Promise<any>;
     /**
-   * Sets whether the Direct Part Marking (DPM) mode for QR Micro barcodes is enabled.
-   */
+     * Sets whether the Direct Part Marking (DPM) mode for QR Micro barcodes is enabled.
+     */
     setQrMicroDpmModeEnabled(options: {
+        enabled: boolean;
+    }): Promise<any>;
+    /**
+     * Sets whether the QR multi-part merge mode is enabled.
+     */
+    setQrMultiPartMergeEnabled(options: {
         enabled: boolean;
     }): Promise<any>;
     /**
@@ -280,14 +286,14 @@ export interface BarkoderPlugin extends Plugin {
         barkoderConfig: BarkoderConfig;
     }): Promise<any>;
     /**
-  *  Sets whether Master checksum should be requiered when scanning ID Documents
-  */
+     *  Sets whether Master checksum should be requiered when scanning ID Documents
+     */
     setIdDocumentMasterChecksumEnabled(options: {
         enabled: boolean;
     }): Promise<any>;
     /**
-   * Sets whether the UPC-E barcodes should be expanded to UPC-A format
-   */
+     * Sets whether the UPC-E barcodes should be expanded to UPC-A format
+     */
     setUPCEexpandToUPCA(options: {
         value: boolean;
     }): Promise<any>;
@@ -301,6 +307,13 @@ export interface BarkoderPlugin extends Plugin {
      * Sets a custom option with a string option and integer value
      */
     setCustomOption(options: {
+        option: string;
+        value: number;
+    }): Promise<any>;
+    /**
+     * Sets a custom global option with a string option and integer value
+     */
+    setCustomOptionGlobal(options: {
         option: string;
         value: number;
     }): Promise<any>;
@@ -329,38 +342,38 @@ export interface BarkoderPlugin extends Plugin {
         value: boolean;
     }): Promise<any>;
     /**
-   * Sets the camera's exposure dynamically based on the provided intensity, cycling through predefined compensation values
-   */
+     * Sets the camera's exposure dynamically based on the provided intensity, cycling through predefined compensation values
+     */
     setDynamicExposure(options: {
         value: number;
     }): Promise<any>;
     /**
- * Set the camera to use the center of the viewfinder for focus and exposure
- */
+     * Set the camera to use the center of the viewfinder for focus and exposure
+     */
     setCentricFocusAndExposure(options: {
         value: boolean;
     }): Promise<any>;
     /**
-   * Sets wheter Composite Mode should be enabled when scanning
-   */
+     * Sets wheter Composite Mode should be enabled when scanning
+     */
     setEnableComposite(options: {
         value: number;
     }): Promise<any>;
     /**
-   * Enable or disable video stabilization for smoother video capture
-   */
+     * Enable or disable video stabilization for smoother video capture
+     */
     setVideoStabilization(options: {
         value: boolean;
     }): Promise<any>;
     /**
-   * Sets the camera to be used for scanning (back/front)
-   */
+     * Sets the camera to be used for scanning (back/front)
+     */
     setCamera(options: {
         value: BarkoderCameraPosition;
     }): Promise<any>;
     /**
-    * Enables or disables showing duplicate barcode locations on the preview overlay.
-    */
+     * Enables or disables showing duplicate barcode locations on the preview overlay.
+     */
     setShowDuplicatesLocations(options: {
         value: boolean;
     }): Promise<any>;
@@ -431,7 +444,7 @@ export interface BarkoderPlugin extends Plugin {
         enabled: boolean;
     }): Promise<any>;
     /**
-      * Enables or disables the barcode thumbnail on result for AR mode.
+     * Enables or disables the barcode thumbnail on result for AR mode.
      */
     setARBarcodeThumbnailOnResultEnabled(options: {
         enabled: boolean;
@@ -508,6 +521,93 @@ export interface BarkoderPlugin extends Plugin {
     setARHeaderTextFormat(options: {
         value: string;
     }): Promise<any>;
+    /**
+     * Configures the close button displayed during scanning.
+     * visible - Show the button while scanning.
+     * positionX - X position in points.
+     * positionY - Y position in points.
+     * iconSize - Glyph point size.
+     * tintColor - Icon tint. Hex string (e.g., "#3472c9"); leave "" to use the default.
+     * backgroundColor - Button background. Hex string; default is clear. Leave "" to use the default.
+     * cornerRadius - Corner radius.
+     * padding - Inner padding around the glyph.
+     * useCustomIcon - Set true to use a provided custom icon.
+     * customIcon - Custom icon as a Base64-encoded image string.
+     */
+    configureCloseButton(options: {
+        visible: boolean;
+        positionX: number;
+        positionY: number;
+        iconSize: number;
+        tintColor: string;
+        backgroundColor: string;
+        cornerRadius: number;
+        padding: number;
+        useCustomIcon: boolean;
+        customIcon: string;
+    }): Promise<any>;
+    /**
+     * Configures the flash (torch) button displayed during scanning; auto-hides if the device torch is unavailable.
+     * visible - Show the button while scanning.
+     * positionX - X position in points.
+     * positionY - Y position in points.
+     * iconSize - Glyph point size.
+     * tintColor - Icon tint. Hex string (e.g., "#3472c9"); leave "" to use the default.
+     * backgroundColor - Button background. Hex string; default is clear. Leave "" to use the default.
+     * cornerRadius - Corner radius.
+     * padding - Inner padding around the glyph.
+     * useCustomIcon - Set true to use provided custom icons.
+     * customIconFlashOn - Custom ON-state icon as a Base64-encoded image string.
+     * customIconFlashOff - Custom OFF-state icon as a Base64-encoded image string.
+     */
+    configureFlashButton(options: {
+        visible: boolean;
+        positionX: number;
+        positionY: number;
+        iconSize: number;
+        tintColor: string;
+        backgroundColor: string;
+        cornerRadius: number;
+        padding: number;
+        useCustomIcon: boolean;
+        customIconFlashOn: string;
+        customIconFlashOff: string;
+    }): Promise<any>;
+    /**
+     * Configures the zoom button displayed during scanning.
+     * visible - Show the button while scanning.
+     * positionX - X position in points.
+     * positionY - Y position in points.
+     * iconSize - Glyph point size.
+     * tintColor - Icon tint. Hex string (e.g., "#3472c9"); leave "" to use the default.
+     * backgroundColor - Button background. Hex string; default is clear. Leave "" to use the default.
+     * cornerRadius - Corner radius.
+     * padding - Inner padding around the glyph.
+     * useCustomIcon - Set true to use provided custom icons.
+     * customIconZoomedIn - Custom icon for the zoomed-in state as a Base64-encoded image string.
+     * customIconZoomedOut - Custom icon for the zoomed-out state as a Base64-encoded image string.
+     * zoomedInFactor - Zoom factor when toggled in.
+     * zoomedOutFactor - Zoom factor when toggled out.
+     */
+    configureZoomButton(options: {
+        visible: boolean;
+        positionX: number;
+        positionY: number;
+        iconSize: number;
+        tintColor: string;
+        backgroundColor: string;
+        cornerRadius: number;
+        padding: number;
+        useCustomIcon: boolean;
+        customIconZoomedIn: string;
+        customIconZoomedOut: string;
+        zoomedInFactor: number;
+        zoomedOutFactor: number;
+    }): Promise<any>;
+    /**
+     * Selects all barcodes that are currently visible in AR mode.
+     */
+    selectVisibleBarcodes(): Promise<any>;
     /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
      */
@@ -661,36 +761,40 @@ export interface BarkoderPlugin extends Plugin {
      */
     getBarkoderResolution(): Promise<any>;
     /**
-   * Retrieves whether Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled
-   */
+     * Retrieves whether Direct Part Marking (DPM) mode for Datamatrix barcodes is enabled
+     */
     isDatamatrixDpmModeEnabled(): Promise<any>;
     /**
-  * Retrieves whether Direct Part Marking (DPM) mode for QR barcodes is enabled
-  */
+     * Retrieves whether Direct Part Marking (DPM) mode for QR barcodes is enabled
+     */
     isQrDpmModeEnabled(): Promise<any>;
     /**
-  * Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enabled
-  */
+     * Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enabled
+     */
     isQrMicroDpmModeEnabled(): Promise<any>;
     /**
-  * Retrieves whether Master checksum is enabled when scanning ID Documents
-  */
+     * Retrieves whether the QR multi-part merge mode is enabled
+     */
+    isQrMultiPartMergeEnabled(): Promise<any>;
+    /**
+     * Retrieves whether Master checksum is enabled when scanning ID Documents
+     */
     isIdDocumentMasterChecksumEnabled(): Promise<any>;
     /**
-   * Retrieves the hexadecimal color code representing the line color of the scanning indicator on the camera preview
-   */
+     * Retrieves the hexadecimal color code representing the line color of the scanning indicator on the camera preview
+     */
     getScanningIndicatorColorHex(): Promise<any>;
     /**
-   * Retrieves the current width setting for the scanning indicator on the camera preview
-   */
+     * Retrieves the current width setting for the scanning indicator on the camera preview
+     */
     getScanningIndicatorWidth(): Promise<any>;
     /**
-   * Retrieves the current animation setting for the scanning indicator on the camera preview
-   */
+     * Retrieves the current animation setting for the scanning indicator on the camera preview
+     */
     getScanningIndicatorAnimation(): Promise<any>;
     /**
-   * Retrieves if the scanning indicator is set to be always visible on the camera preview
-   */
+     * Retrieves if the scanning indicator is set to be always visible on the camera preview
+     */
     isScanningIndicatorAlwaysVisible(): Promise<any>;
     /**
      * Retrieves whether showing duplicate barcode locations is enabled.
@@ -873,7 +977,8 @@ export declare enum BarcodeType {
     royalMail = 36,
     kix = 37,
     japanesePost = 38,
-    maxiCode = 39
+    maxiCode = 39,
+    ocrText = 40
 }
 export declare enum BarkoderARMode {
     off = 0,
@@ -921,7 +1026,7 @@ export declare class BarkoderConfig {
 export declare class DekoderConfig {
     aztec?: BarcodeConfig;
     aztecCompact?: BarcodeConfig;
-    qr?: BarcodeConfigWithDpmMode;
+    qr?: QRBarcodeConfig;
     qrMicro?: BarcodeConfigWithDpmMode;
     code128?: BarcodeConfigWithLength;
     code93?: BarcodeConfigWithLength;
@@ -959,6 +1064,7 @@ export declare class DekoderConfig {
     kix?: BarcodeConfig;
     japanesePost?: BarcodeConfig;
     maxiCode?: BarcodeConfig;
+    ocrText?: BarcodeConfig;
     general?: GeneralSettings;
     constructor(config: Partial<DekoderConfig>);
 }
@@ -1032,6 +1138,15 @@ export declare class BarcodeConfigWithDpmMode {
     constructor(config: Partial<BarcodeConfigWithDpmMode>);
     setLengthRange(minLength: number, maxLength: number): void;
 }
+export declare class QRBarcodeConfig {
+    enabled?: boolean;
+    dpmMode?: number;
+    multiPartMerge?: boolean;
+    minLength?: number;
+    maxLength?: number;
+    constructor(config: Partial<QRBarcodeConfig>);
+    setLengthRange(minLength: number, maxLength: number): void;
+}
 export declare enum IdDocumentMasterChecksumType {
     disabled = 0,
     enabled = 1
@@ -1076,5 +1191,11 @@ export declare class DecoderResult {
         name: string;
         base64: string;
     }[];
+    locationPoints?: {
+        x: number;
+        y: number;
+    }[];
+    sadlImageAsBase64?: string | null;
     constructor(resultMap: Record<string, any>);
+    private convertToBase64;
 }

@@ -53,11 +53,13 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setDatamatrixDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setQrDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setQrMicroDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setQrMultiPartMergeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(configureBarkoder, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setIdDocumentMasterChecksumEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setUPCEexpandToUPCA, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setUPCE1expandToUPCA, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setCustomOption, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setCustomOptionGlobal, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setScanningIndicatorColor, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setScanningIndicatorWidth, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setScanningIndicatorAnimation, CAPPluginReturnPromise);
@@ -92,6 +94,10 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(setARHeaderHorizontalTextMargin, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARHeaderVerticalTextMargin, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(setARHeaderTextFormat, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(configureCloseButton, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(configureFlashButton, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(configureZoomButton, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(selectVisibleBarcodes, CAPPluginReturnPromise);
 
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
@@ -134,6 +140,7 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(isDatamatrixDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isQrDpmModeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isQrMicroDpmModeEnabled, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(isQrMultiPartMergeEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(isIdDocumentMasterChecksumEnabled, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getScanningIndicatorColorHex, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getScanningIndicatorWidth, CAPPluginReturnPromise);

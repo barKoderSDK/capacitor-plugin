@@ -87,6 +87,7 @@ export var BarcodeType;
     BarcodeType[BarcodeType["kix"] = 37] = "kix";
     BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
     BarcodeType[BarcodeType["maxiCode"] = 39] = "maxiCode";
+    BarcodeType[BarcodeType["ocrText"] = 40] = "ocrText";
 })(BarcodeType || (BarcodeType = {}));
 export var BarkoderARMode;
 (function (BarkoderARMode) {
@@ -177,6 +178,15 @@ export class BarcodeConfigWithDpmMode {
         this.maxLength = maxLength;
     }
 }
+export class QRBarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
 export var IdDocumentMasterChecksumType;
 (function (IdDocumentMasterChecksumType) {
     IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["disabled"] = 0] = "disabled";
@@ -231,6 +241,13 @@ export class DecoderResult {
                 base64: `data:image/jpeg;base64,${image.base64}`,
             }))
             : [];
+        this.locationPoints = Array.isArray(resultMap['locationPoints'])
+            ? resultMap['locationPoints']
+            : undefined;
+        this.sadlImageAsBase64 = this.convertToBase64(resultMap['sadlImageAsBase64']);
+    }
+    convertToBase64(data) {
+        return data ? `data:image/jpeg;base64,${data}` : null;
     }
 }
 //# sourceMappingURL=definitions.js.map

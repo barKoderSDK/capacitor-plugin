@@ -41,7 +41,7 @@ public class BarkoderPlugin: CAPPlugin {
         // In order to perform scanning, config property need to be set before
         // If license key is not valid you will receive results with asterisks inside
         barkoderView.config = BarkoderConfig(licenseKey: licenseKey) { licenseResult in
-            print("Licensing SDK: \(licenseResult)")
+                print("License Info: \(Config.getLicenseInfo())")
         }
     }
     
@@ -618,6 +618,8 @@ extension BarkoderPlugin {
                         decoderConfig.japanesePost.enabled = enabled
                     case MaxiCode:
                         decoderConfig.maxiCode.enabled = enabled
+                    case OCRText:
+                        decoderConfig.ocrText.enabled = enabled
                     default:
                         call.reject(
                             BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -762,6 +764,18 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func setQrMultiPartMergeEnabled(_ call: CAPPluginCall) {
+        guard let enabled = call.getBool("enabled") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.barkoderView.config?.decoderConfig?.qr.multiPartMerge = enabled
+        }
+        
+        call.resolve()
+    }
+    
     @objc func setIdDocumentMasterChecksumEnabled(_ call: CAPPluginCall) {
         guard let enabled = call.getBool("enabled") else {
             return
@@ -825,7 +839,7 @@ extension BarkoderPlugin {
                     "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14",
                     "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode",
                     "idDocument", "databar14", "databarLimited", "databarExpanded",
-                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost", "maxiCode",
+                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost", "maxiCode", "ocrText",
                     "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"
                 ],
                 [
@@ -834,7 +848,7 @@ extension BarkoderPlugin {
                     "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14",
                     "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode",
                     "ID Document", "Databar 14", "Databar Limited", "Databar Expanded",
-                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post", "MaxiCode",
+                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post", "MaxiCode", "OCR Text",
                     "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"
                 ]
             ).forEach {
@@ -903,6 +917,19 @@ extension BarkoderPlugin {
             self.barkoderView.config?.decoderConfig?.setcustomOption(option, value: Int32(value))
         }
         
+        call.resolve()
+    }
+    
+    @objc func setCustomOptionGlobal(_ call: CAPPluginCall) {
+        guard let option = call.getString("option"),
+              let value = call.getInt("value") else {
+            return
+        }
+        
+        DispatchQueue.main.async {
+            Config.setcustomOptionGlobal(option, value: Int32(value))
+        }
+
         call.resolve()
     }
 
@@ -1281,6 +1308,166 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func configureCloseButton(_ call: CAPPluginCall) {
+        guard let arguments = call.options as? [String: Any],
+              let visible = arguments["visible"] as? Bool,
+              let positionX = arguments["positionX"] as? CGFloat,
+              let positionY = arguments["positionY"] as? CGFloat,
+              let iconSize = arguments["iconSize"] as? CGFloat,
+              let tintColorHex = arguments["tintColor"] as? String,
+              let backgroundColorHex = arguments["backgroundColor"] as? String,
+              let cornerRadius = arguments["cornerRadius"] as? CGFloat,
+              let padding = arguments["padding"] as? CGFloat,
+              let useCustomIcon = arguments["useCustomIcon"] as? Bool,
+              let base64customIcon = arguments["customIcon"] as? String
+        else {
+            return
+        }
+        
+        let position         = NSValue(cgPoint: CGPoint(x: positionX, y: positionY))
+        let iconSizeNum      = NSNumber(value: Double(iconSize))
+        let cornerRadiusNum  = NSNumber(value: Double(cornerRadius))
+        let paddingNum       = NSNumber(value: Double(padding))
+        let useCustomIconNum = NSNumber(value: useCustomIcon)
+        
+        let tintColor        = UIColor.fromHexOrNil(tintColorHex)
+        let backgroundColor  = UIColor.fromHexOrNil(backgroundColorHex)
+
+        let customImage = BarkoderUtil.image(fromBase64: base64customIcon)
+
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
+            let onClose: (() -> Void) = { [weak self] in
+                guard let self = self else { return }
+                self.notifyListeners("barkoderCloseButtonTappedEvent", data: [:])
+            }
+            
+            self.barkoderView.configureCloseButton(
+                visible: visible,
+                position: position,
+                iconSize: iconSizeNum,
+                tintColor: tintColor,
+                backgroundColor: backgroundColor,
+                cornerRadius: cornerRadiusNum,
+                padding: paddingNum,
+                useCustomIcon: useCustomIconNum,
+                customIcon: customImage,
+                onClose: onClose)
+            
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func configureFlashButton(_ call: CAPPluginCall) {
+        guard let arguments = call.options as? [String: Any],
+              let visible = arguments["visible"] as? Bool,
+              let positionX = arguments["positionX"] as? CGFloat,
+              let positionY = arguments["positionY"] as? CGFloat,
+              let iconSize = arguments["iconSize"] as? CGFloat,
+              let tintColorHex = arguments["tintColor"] as? String,
+              let backgroundColorHex = arguments["backgroundColor"] as? String,
+              let cornerRadius = arguments["cornerRadius"] as? CGFloat,
+              let padding = arguments["padding"] as? CGFloat,
+              let useCustomIcon = arguments["useCustomIcon"] as? Bool,
+              let base64customIconFlashOn = arguments["customIconFlashOn"] as? String,
+              let base64customIconFlashOff = arguments["customIconFlashOff"] as? String
+        else {
+            return
+        }
+        
+        let position         = NSValue(cgPoint: CGPoint(x: positionX, y: positionY))
+        let iconSizeNum      = NSNumber(value: Double(iconSize))
+        let cornerRadiusNum  = NSNumber(value: Double(cornerRadius))
+        let paddingNum       = NSNumber(value: Double(padding))
+        let useCustomIconNum = NSNumber(value: useCustomIcon)
+
+        let tintColor        = UIColor.fromHexOrNil(tintColorHex)
+        let backgroundColor  = UIColor.fromHexOrNil(backgroundColorHex)
+        
+        let customIconFlashOn = BarkoderUtil.image(fromBase64: base64customIconFlashOn)
+        let customIconFlashOff = BarkoderUtil.image(fromBase64: base64customIconFlashOff)
+
+        DispatchQueue.main.async {
+            self.barkoderView.configureFlashButton(
+                visible: visible,
+                position: position,
+                iconSize: iconSizeNum,
+                tintColor: tintColor,
+                backgroundColor: backgroundColor,
+                cornerRadius: cornerRadiusNum,
+                padding: paddingNum,
+                useCustomIcon: useCustomIconNum,
+                customIconFlashOn: customIconFlashOn,
+                customIconFlashOff: customIconFlashOff
+            )
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func configureZoomButton(_ call: CAPPluginCall) {
+        guard let arguments = call.options as? [String: Any],
+              let visible = arguments["visible"] as? Bool,
+              let positionX = arguments["positionX"] as? CGFloat,
+              let positionY = arguments["positionY"] as? CGFloat,
+              let iconSize = arguments["iconSize"] as? CGFloat,
+              let tintColorHex = arguments["tintColor"] as? String,
+              let backgroundColorHex = arguments["backgroundColor"] as? String,
+              let cornerRadius = arguments["cornerRadius"] as? CGFloat,
+              let padding = arguments["padding"] as? CGFloat,
+              let useCustomIcon = arguments["useCustomIcon"] as? Bool,
+              let base64customIconZoomedIn = arguments["customIconZoomedIn"] as? String,
+              let base64customIconZoomedOut = arguments["customIconZoomedOut"] as? String,
+              let zoomedInFactor = arguments["zoomedInFactor"] as? CGFloat,
+              let zoomedOutFactor = arguments["zoomedOutFactor"] as? CGFloat
+        else {
+            return
+        }
+        
+        let position         = NSValue(cgPoint: CGPoint(x: positionX, y: positionY))
+        let iconSizeNum      = NSNumber(value: Double(iconSize))
+        let cornerRadiusNum  = NSNumber(value: Double(cornerRadius))
+        let paddingNum       = NSNumber(value: Double(padding))
+        let zoomedInFactorNum      = NSNumber(value: Double(zoomedInFactor))
+        let zoomedOutFactorNum       = NSNumber(value: Double(zoomedOutFactor))
+        let useCustomIconNum = NSNumber(value: useCustomIcon)
+        
+        let tintColor        = UIColor.fromHexOrNil(tintColorHex)
+        let backgroundColor  = UIColor.fromHexOrNil(backgroundColorHex)
+        
+        let customIconZoomedIn = BarkoderUtil.image(fromBase64: base64customIconZoomedIn)
+        let customIconZoomedOut = BarkoderUtil.image(fromBase64: base64customIconZoomedOut)
+
+        DispatchQueue.main.async {
+            self.barkoderView.configureZoomButton(
+                visible: visible,
+                position: position,
+                iconSize: iconSizeNum,
+                tintColor: tintColor,
+                backgroundColor: backgroundColor,
+                cornerRadius: cornerRadiusNum,
+                padding: paddingNum,
+                useCustomIcon: useCustomIconNum,
+                customIconZoomedIn: customIconZoomedIn,
+                customIconZoomedOut: customIconZoomedOut,
+                zoomedInFactor: zoomedInFactorNum,
+                zoomedOutFactor: zoomedOutFactorNum
+            )
+        }
+        
+        call.resolve()
+    }
+    
+    @objc func selectVisibleBarcodes(_ call: CAPPluginCall) {
+        DispatchQueue.main.async {
+            self.barkoderView.selectVisibleBarcodes()
+        }
+        
+        call.resolve()
+    }
+    
 }
 
 // MARK: - Getters
@@ -1552,6 +1739,8 @@ extension BarkoderPlugin {
                 call.resolve([decoderConfig.japanesePost.typeName(): decoderConfig.japanesePost.enabled])
             case MaxiCode:
                 call.resolve([decoderConfig.maxiCode.typeName(): decoderConfig.maxiCode.enabled])
+            case OCRText:
+                call.resolve([decoderConfig.ocrText.typeName(): decoderConfig.ocrText.enabled])
             default:
                 call.reject(
                     BarkoderPluginErrors.BARCODE_TYPE_NOT_FOUNDED.errorMessage,
@@ -1603,6 +1792,10 @@ extension BarkoderPlugin {
     
     @objc func isQrMicroDpmModeEnabled(_ call: CAPPluginCall) {
         call.resolve(["isQrMicroDpmModeEnabled": barkoderView.config?.decoderConfig?.qrMicro.dpmMode == 1 ? true : false as Any])
+    }
+    
+    @objc func isQrMultiPartMergeEnabled(_ call: CAPPluginCall) {
+        call.resolve(["isQrMultiPartMergeEnabled": barkoderView.config?.decoderConfig?.qr.multiPartMerge as Any])
     }
     
     @objc func isIdDocumentMasterChecksumEnabled(_ call: CAPPluginCall) {

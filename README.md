@@ -210,11 +210,13 @@ In your scss file set the desired barkoderView height:
 * [`setDatamatrixDpmModeEnabled(...)`](#setdatamatrixdpmmodeenabled)
 * [`setQrDpmModeEnabled(...)`](#setqrdpmmodeenabled)
 * [`setQrMicroDpmModeEnabled(...)`](#setqrmicrodpmmodeenabled)
+* [`setQrMultiPartMergeEnabled(...)`](#setqrmultipartmergeenabled)
 * [`configureBarkoder(...)`](#configurebarkoder)
 * [`setIdDocumentMasterChecksumEnabled(...)`](#setiddocumentmasterchecksumenabled)
 * [`setUPCEexpandToUPCA(...)`](#setupceexpandtoupca)
 * [`setUPCE1expandToUPCA(...)`](#setupce1expandtoupca)
 * [`setCustomOption(...)`](#setcustomoption)
+* [`setCustomOptionGlobal(...)`](#setcustomoptionglobal)
 * [`setScanningIndicatorColor(...)`](#setscanningindicatorcolor)
 * [`setScanningIndicatorWidth(...)`](#setscanningindicatorwidth)
 * [`setScanningIndicatorAnimation(...)`](#setscanningindicatoranimation)
@@ -249,6 +251,10 @@ In your scss file set the desired barkoderView height:
 * [`setARHeaderHorizontalTextMargin(...)`](#setarheaderhorizontaltextmargin)
 * [`setARHeaderVerticalTextMargin(...)`](#setarheaderverticaltextmargin)
 * [`setARHeaderTextFormat(...)`](#setarheadertextformat)
+* [`configureCloseButton(...)`](#configureclosebutton)
+* [`configureFlashButton(...)`](#configureflashbutton)
+* [`configureZoomButton(...)`](#configurezoombutton)
+* [`selectVisibleBarcodes()`](#selectvisiblebarcodes)
 * [`isFlashAvailable()`](#isflashavailable)
 * [`isCloseSessionOnResultEnabled()`](#isclosesessiononresultenabled)
 * [`isImageResultEnabled()`](#isimageresultenabled)
@@ -289,6 +295,7 @@ In your scss file set the desired barkoderView height:
 * [`isDatamatrixDpmModeEnabled()`](#isdatamatrixdpmmodeenabled)
 * [`isQrDpmModeEnabled()`](#isqrdpmmodeenabled)
 * [`isQrMicroDpmModeEnabled()`](#isqrmicrodpmmodeenabled)
+* [`isQrMultiPartMergeEnabled()`](#isqrmultipartmergeenabled)
 * [`isIdDocumentMasterChecksumEnabled()`](#isiddocumentmasterchecksumenabled)
 * [`getScanningIndicatorColorHex()`](#getscanningindicatorcolorhex)
 * [`getScanningIndicatorWidth()`](#getscanningindicatorwidth)
@@ -1108,6 +1115,23 @@ Sets whether the Direct Part Marking (DPM) mode for QR Micro barcodes is enabled
 --------------------
 
 
+### setQrMultiPartMergeEnabled(...)
+
+```typescript
+setQrMultiPartMergeEnabled(options: { enabled: boolean; }) => Promise<any>
+```
+
+Sets whether the QR multi-part merge mode is enabled.
+
+| Param         | Type                               |
+| ------------- | ---------------------------------- |
+| **`options`** | <code>{ enabled: boolean; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### configureBarkoder(...)
 
 ```typescript
@@ -1183,6 +1207,23 @@ setCustomOption(options: { option: string; value: number; }) => Promise<any>
 ```
 
 Sets a custom option with a string option and integer value
+
+| Param         | Type                                            |
+| ------------- | ----------------------------------------------- |
+| **`options`** | <code>{ option: string; value: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### setCustomOptionGlobal(...)
+
+```typescript
+setCustomOptionGlobal(options: { option: string; value: number; }) => Promise<any>
+```
+
+Sets a custom global option with a string option and integer value
 
 | Param         | Type                                            |
 | ------------- | ----------------------------------------------- |
@@ -1771,6 +1812,104 @@ Sets the format string for the AR header text above each barcode, using placehol
 --------------------
 
 
+### configureCloseButton(...)
+
+```typescript
+configureCloseButton(options: { visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIcon: string; }) => Promise<any>
+```
+
+Configures the close button displayed during scanning.
+visible - Show the button while scanning.
+positionX - X position in points.
+positionY - Y position in points.
+iconSize - Glyph point size.
+tintColor - Icon tint. Hex string (e.g., "#3472c9"); leave "" to use the default.
+backgroundColor - Button background. Hex string; default is clear. Leave "" to use the default.
+cornerRadius - Corner radius.
+padding - Inner padding around the glyph.
+useCustomIcon - Set true to use a provided custom icon.
+customIcon - Custom icon as a Base64-encoded image string.
+
+| Param         | Type                                                                                                                                                                                                                      |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIcon: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### configureFlashButton(...)
+
+```typescript
+configureFlashButton(options: { visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconFlashOn: string; customIconFlashOff: string; }) => Promise<any>
+```
+
+Configures the flash (torch) button displayed during scanning; auto-hides if the device torch is unavailable.
+visible - Show the button while scanning.
+positionX - X position in points.
+positionY - Y position in points.
+iconSize - Glyph point size.
+tintColor - Icon tint. Hex string (e.g., "#3472c9"); leave "" to use the default.
+backgroundColor - Button background. Hex string; default is clear. Leave "" to use the default.
+cornerRadius - Corner radius.
+padding - Inner padding around the glyph.
+useCustomIcon - Set true to use provided custom icons.
+customIconFlashOn - Custom ON-state icon as a Base64-encoded image string.
+customIconFlashOff - Custom OFF-state icon as a Base64-encoded image string.
+
+| Param         | Type                                                                                                                                                                                                                                                         |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`options`** | <code>{ visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconFlashOn: string; customIconFlashOff: string; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### configureZoomButton(...)
+
+```typescript
+configureZoomButton(options: { visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconZoomedIn: string; customIconZoomedOut: string; zoomedInFactor: number; zoomedOutFactor: number; }) => Promise<any>
+```
+
+Configures the zoom button displayed during scanning.
+visible - Show the button while scanning.
+positionX - X position in points.
+positionY - Y position in points.
+iconSize - Glyph point size.
+tintColor - Icon tint. Hex string (e.g., "#3472c9"); leave "" to use the default.
+backgroundColor - Button background. Hex string; default is clear. Leave "" to use the default.
+cornerRadius - Corner radius.
+padding - Inner padding around the glyph.
+useCustomIcon - Set true to use provided custom icons.
+customIconZoomedIn - Custom icon for the zoomed-in state as a Base64-encoded image string.
+customIconZoomedOut - Custom icon for the zoomed-out state as a Base64-encoded image string.
+zoomedInFactor - Zoom factor when toggled in.
+zoomedOutFactor - Zoom factor when toggled out.
+
+| Param         | Type                                                                                                                                                                                                                                                                                                            |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`options`** | <code>{ visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconZoomedIn: string; customIconZoomedOut: string; zoomedInFactor: number; zoomedOutFactor: number; }</code> |
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
+### selectVisibleBarcodes()
+
+```typescript
+selectVisibleBarcodes() => Promise<any>
+```
+
+Selects all barcodes that are currently visible in AR mode.
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### isFlashAvailable()
 
 ```typescript
@@ -2299,6 +2438,19 @@ Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enable
 --------------------
 
 
+### isQrMultiPartMergeEnabled()
+
+```typescript
+isQrMultiPartMergeEnabled() => Promise<any>
+```
+
+Retrieves whether the QR multi-part merge mode is enabled
+
+**Returns:** <code>Promise&lt;any&gt;</code>
+
+--------------------
+
+
 ### isIdDocumentMasterChecksumEnabled()
 
 ```typescript
@@ -2745,6 +2897,7 @@ Retrieves the format string used for rendering AR header text above barcodes.
 | **`kix`**             |
 | **`japanesePost`**    |
 | **`maxiCode`**        |
+| **`ocrText`**         |
 
 
 #### DecodingSpeed

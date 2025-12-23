@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.1.2 effective-5.10 (swiftlang-6.1.2.1.2 clang-1700.0.13.5)
+// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
 // swift-module-flags: -target x86_64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name BarkoderSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -interface-compiler-version 6.1.2
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
 import AVFoundation
 import AudioToolbox
 import Barkoder
@@ -14,7 +14,9 @@ import _Concurrency
 import _StringProcessing
 import _SwiftConcurrencyShims
 @objc public protocol BarkoderResultDelegate {
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc func scanningFinished(_ decoderResults: [Barkoder.DecoderResult], thumbnails: [UIKit.UIImage]?, image: UIKit.UIImage?)
+  #endif
 }
 @_inheritsConvenienceInitializers @objc public class BarkoderConfig : ObjectiveC.NSObject {
   @objc public var roiLineColor: UIKit.UIColor {
@@ -90,7 +92,9 @@ extension UIKit.UIImage {
     case HD
     case FHD
     case UHD
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.Int)
+    #endif
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
       get
@@ -99,7 +103,9 @@ extension UIKit.UIImage {
   @objc public enum BarkoderCameraPosition : Swift.Int {
     case BACK
     case FRONT
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.Int)
+    #endif
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
       get
@@ -111,8 +117,12 @@ extension UIKit.UIImage {
   }
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
   @objc @_Concurrency.MainActor @preconcurrency public func startCamera()
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc @_Concurrency.MainActor @preconcurrency public func setPreviewFramesDelegate(_ delegate: (any BarkoderSDK.BarkoderPreviewFramesDelegate)?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc @_Concurrency.MainActor @preconcurrency public func setBarkoderPerformanceDelegate(_ delegate: (any BarkoderSDK.BarkoderPerformanceDelegate)?)
+  #endif
   @objc @_Concurrency.MainActor @preconcurrency public func startScanning(_ resultDelegate: any BarkoderSDK.BarkoderResultDelegate) throws
   @objc @_Concurrency.MainActor @preconcurrency public func stopScanning()
   @objc @_Concurrency.MainActor @preconcurrency public func pauseScanning()
@@ -128,6 +138,16 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func setCentricFocusAndExposure(_ enabled: Swift.Bool)
   @objc @_Concurrency.MainActor @preconcurrency public func setVideoStabilization(_ enabled: Swift.Bool)
   @objc @_Concurrency.MainActor @preconcurrency public func captureImage()
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency public func configureCloseButton(visible: Swift.Bool, position: Foundation.NSValue? = nil, iconSize: Foundation.NSNumber? = nil, tintColor: UIKit.UIColor? = nil, backgroundColor: UIKit.UIColor? = nil, cornerRadius: Foundation.NSNumber? = nil, padding: Foundation.NSNumber? = nil, useCustomIcon: Foundation.NSNumber? = nil, customIcon: UIKit.UIImage? = nil, onClose: (@convention(block) () -> Swift.Void)? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency public func configureFlashButton(visible: Swift.Bool, position: Foundation.NSValue? = nil, iconSize: Foundation.NSNumber? = nil, tintColor: UIKit.UIColor? = nil, backgroundColor: UIKit.UIColor? = nil, cornerRadius: Foundation.NSNumber? = nil, padding: Foundation.NSNumber? = nil, useCustomIcon: Foundation.NSNumber? = nil, customIconFlashOn: UIKit.UIImage? = nil, customIconFlashOff: UIKit.UIImage? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc @_Concurrency.MainActor @preconcurrency public func configureZoomButton(visible: Swift.Bool, position: Foundation.NSValue? = nil, iconSize: Foundation.NSNumber? = nil, tintColor: UIKit.UIColor? = nil, backgroundColor: UIKit.UIColor? = nil, cornerRadius: Foundation.NSNumber? = nil, padding: Foundation.NSNumber? = nil, useCustomIcon: Foundation.NSNumber? = nil, customIconZoomedIn: UIKit.UIImage? = nil, customIconZoomedOut: UIKit.UIImage? = nil, zoomedInFactor: Foundation.NSNumber? = nil, zoomedOutFactor: Foundation.NSNumber? = nil)
+  #endif
+  @objc @_Concurrency.MainActor @preconcurrency public func selectVisibleBarcodes()
   @_Concurrency.MainActor @preconcurrency @objc public func cameraFrameReceived(sampleBuffer: CoreMedia.CMSampleBuffer)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
   @objc deinit
@@ -145,7 +165,9 @@ extension CoreFoundation.CGRect {
   case interactiveDisabled
   case interactiveEnabled
   case nonInteractive
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -154,7 +176,9 @@ extension CoreFoundation.CGRect {
 @objc public enum BarkoderAROverlayRefresh : Swift.Int {
   case smooth
   case normal
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -164,7 +188,9 @@ extension CoreFoundation.CGRect {
   case none
   case tight
   case boundingBox
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -174,7 +200,9 @@ extension CoreFoundation.CGRect {
   case never
   case always
   case onSelected
+  #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
+  #endif
   public typealias RawValue = Swift.Int
   public var rawValue: Swift.Int {
     get
@@ -239,19 +267,34 @@ extension CoreFoundation.CGRect {
     case composite
     case postal_codes
     case ar
+    #if compiler(>=5.3) && $NonescapableTypes
     public init?(rawValue: Swift.Int)
+    #endif
     public typealias RawValue = Swift.Int
     public var rawValue: Swift.Int {
       get
     }
   }
   @objc public static func applyConfigSettingsFromTemplate(_ config: BarkoderSDK.BarkoderConfig, template: BarkoderSDK.BarkoderHelper.BarkoderConfigTemplate, finished: @escaping (BarkoderSDK.BarkoderConfig) -> Swift.Void)
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static func applyConfigSettingsFromURL(_ config: BarkoderSDK.BarkoderConfig, url: Foundation.URL, finished: @escaping (BarkoderSDK.BarkoderConfig?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static func applyConfigSettingsFromFile(_ config: BarkoderSDK.BarkoderConfig, url: Swift.String, finished: @escaping (BarkoderSDK.BarkoderConfig?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static func applyConfigSettingsFromJson(_ config: BarkoderSDK.BarkoderConfig, jsonData: Foundation.Data, finished: @escaping (BarkoderSDK.BarkoderConfig?, (any Swift.Error)?) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
   @objc public static func configToJSON(_ barkoderConfig: BarkoderSDK.BarkoderConfig) -> Swift.String?
+  #endif
   @objc override dynamic public init()
   @objc deinit
+}
+extension BarkoderSDK.BarkoderHelper {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @objc public static func sadlImage(fromExtra extra: [Swift.AnyHashable : Any]?) -> UIKit.UIImage?
+  #endif
 }
 extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.Equatable {}
 extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.Hashable {}

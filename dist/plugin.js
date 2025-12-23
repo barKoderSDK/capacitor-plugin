@@ -90,6 +90,7 @@ var capacitorBarkoder = (function (exports, core) {
         BarcodeType[BarcodeType["kix"] = 37] = "kix";
         BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
         BarcodeType[BarcodeType["maxiCode"] = 39] = "maxiCode";
+        BarcodeType[BarcodeType["ocrText"] = 40] = "ocrText";
     })(exports.BarcodeType || (exports.BarcodeType = {}));
     exports.BarkoderARMode = void 0;
     (function (BarkoderARMode) {
@@ -180,6 +181,15 @@ var capacitorBarkoder = (function (exports, core) {
             this.maxLength = maxLength;
         }
     }
+    class QRBarcodeConfig {
+        constructor(config) {
+            Object.assign(this, config);
+        }
+        setLengthRange(minLength, maxLength) {
+            this.minLength = minLength;
+            this.maxLength = maxLength;
+        }
+    }
     exports.IdDocumentMasterChecksumType = void 0;
     (function (IdDocumentMasterChecksumType) {
         IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["disabled"] = 0] = "disabled";
@@ -234,6 +244,13 @@ var capacitorBarkoder = (function (exports, core) {
                     base64: `data:image/jpeg;base64,${image.base64}`,
                 }))
                 : [];
+            this.locationPoints = Array.isArray(resultMap['locationPoints'])
+                ? resultMap['locationPoints']
+                : undefined;
+            this.sadlImageAsBase64 = this.convertToBase64(resultMap['sadlImageAsBase64']);
+        }
+        convertToBase64(data) {
+            return data ? `data:image/jpeg;base64,${data}` : null;
         }
     }
 
@@ -263,6 +280,7 @@ var capacitorBarkoder = (function (exports, core) {
     exports.GeneralSettings = GeneralSettings;
     exports.IdDocumentBarcodeConfig = IdDocumentBarcodeConfig;
     exports.MSIBarcodeConfig = MSIBarcodeConfig;
+    exports.QRBarcodeConfig = QRBarcodeConfig;
 
     Object.defineProperty(exports, '__esModule', { value: true });
 

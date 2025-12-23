@@ -74,7 +74,8 @@ typedef enum {
     RoyalMail,
     KIX,
     JapanesePost,
-    MaxiCode
+    MaxiCode,
+    OCRText
     
 } DecoderType;
 
@@ -450,6 +451,13 @@ typedef enum  {
 @end
 
 //==========================================================================
+// OCR Text Config
+//==========================================================================
+@interface OCRTextConfig : SpecificConfig
+- (id)initWithDecoderType:(DecoderType)decoderType;
+@end
+
+//==========================================================================
 // Config
 //==========================================================================
 @class Config;
@@ -483,12 +491,14 @@ typedef enum {
 //==========================================================================
 // Config
 //==========================================================================
-@interface Config : NSObject
+//@interface Config : NSObject
+@interface Config : NSObject <NSCopying>
 +(ConfigResponse*)configWithLicenseKey:(NSString*)key licenseCheckHandler:(void (^_Nullable)(LicenseCheckResult * _Nonnull result))callback;
 
 +(int) setGlobalOption: (GlobalOption) option value: (int) value;
 +(int) getGlobalOption: (GlobalOption) option;
 +(void)setcustomOptionGlobal: (NSString *_Nonnull)option value:(int) value;
++(NSDictionary<NSString*, NSString*>* _Nonnull)getLicenseInfo;
 
 @property (nonatomic, readonly, retain) AztecConfig* _Nonnull aztec;
 @property (nonatomic, readonly, retain) AztecCompactConfig* _Nonnull aztecCompact;
@@ -531,6 +541,7 @@ typedef enum {
 @property (nonatomic, readonly, retain) MaxiCodeConfig* _Nonnull maxiCode;
 
 @property (nonatomic, readonly, retain) IDDocumentConfig* _Nonnull idDocument;
+@property (nonatomic, readonly, retain) OCRTextConfig* _Nonnull ocrText;
 
 @property (nonatomic, readwrite) DecodingSpeed decodingSpeed;
 @property (nonatomic, readwrite) NSString * _Nonnull encodingCharacterSet;
@@ -693,7 +704,17 @@ UIImage
 + (UIImage *)UIImageFromLocation:(UIImage *)source points:(CGPoint[4])points marginPercent:(float)marginPercent;
 #endif
 
-
+#if TARGET_OS_OSX
++ (NSImage *)WarpUIImageFromLocation:(NSImage *)source
+#else
++ (UIImage *)WarpUIImageFromLocation:(UIImage *)source
+#endif
+                              points:(CGPoint[4])points   // TL, TR, BR, BL (top-left origin)
+                                size:(CGSize)size           // if any dim is 0 → auto-size
+                         aspectRatio:(CGFloat)aspectRatio   // if >0 used for auto/derived dimension(s)
+                       rotationShift:(NSInteger)rotationShift
+                              margin:(CGFloat)margin
+                      forceLandscape:(BOOL)forceLandscape;
 
 
 @end

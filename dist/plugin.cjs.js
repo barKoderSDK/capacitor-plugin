@@ -93,6 +93,7 @@ exports.BarcodeType = void 0;
     BarcodeType[BarcodeType["kix"] = 37] = "kix";
     BarcodeType[BarcodeType["japanesePost"] = 38] = "japanesePost";
     BarcodeType[BarcodeType["maxiCode"] = 39] = "maxiCode";
+    BarcodeType[BarcodeType["ocrText"] = 40] = "ocrText";
 })(exports.BarcodeType || (exports.BarcodeType = {}));
 exports.BarkoderARMode = void 0;
 (function (BarkoderARMode) {
@@ -183,6 +184,15 @@ class BarcodeConfigWithDpmMode {
         this.maxLength = maxLength;
     }
 }
+class QRBarcodeConfig {
+    constructor(config) {
+        Object.assign(this, config);
+    }
+    setLengthRange(minLength, maxLength) {
+        this.minLength = minLength;
+        this.maxLength = maxLength;
+    }
+}
 exports.IdDocumentMasterChecksumType = void 0;
 (function (IdDocumentMasterChecksumType) {
     IdDocumentMasterChecksumType[IdDocumentMasterChecksumType["disabled"] = 0] = "disabled";
@@ -237,6 +247,13 @@ class DecoderResult {
                 base64: `data:image/jpeg;base64,${image.base64}`,
             }))
             : [];
+        this.locationPoints = Array.isArray(resultMap['locationPoints'])
+            ? resultMap['locationPoints']
+            : undefined;
+        this.sadlImageAsBase64 = this.convertToBase64(resultMap['sadlImageAsBase64']);
+    }
+    convertToBase64(data) {
+        return data ? `data:image/jpeg;base64,${data}` : null;
     }
 }
 
@@ -266,4 +283,5 @@ exports.DekoderConfig = DekoderConfig;
 exports.GeneralSettings = GeneralSettings;
 exports.IdDocumentBarcodeConfig = IdDocumentBarcodeConfig;
 exports.MSIBarcodeConfig = MSIBarcodeConfig;
+exports.QRBarcodeConfig = QRBarcodeConfig;
 //# sourceMappingURL=plugin.cjs.js.map

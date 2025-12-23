@@ -1,6 +1,6 @@
 {
   "name": "barkoder-capacitor",
-  "version": "1.6.6",
+  "version": "1.6.7",
   "description": "Capacitor plugin that connects to barkoderSDK which helps users scan barcodes with mobile devices",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",

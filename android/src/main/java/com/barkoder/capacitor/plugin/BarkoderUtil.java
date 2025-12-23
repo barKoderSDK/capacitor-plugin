@@ -4,8 +4,10 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.util.Base64;
+import androidx.annotation.Nullable;
 
 import com.barkoder.Barkoder;
+import com.barkoder.BarkoderHelper;
 import com.barkoder.BarkoderLog;
 import com.getcapacitor.JSArray;
 import com.getcapacitor.JSObject;
@@ -43,6 +45,24 @@ public class BarkoderUtil {
                     extraJson.put(item.key, item.value);
                 }
                 resultJS.put("extra", extraJson.toString());
+            }
+
+            if (decoderResult.location != null && decoderResult.location.points != null) {
+                JSArray locationPointsArray = new JSArray();
+                for (Barkoder.BKPoint point : decoderResult.location.points) {
+                    JSObject pointJson = new JSObject();
+                    pointJson.put("x", point.x);
+                    pointJson.put("y", point.y);
+                    locationPointsArray.put(pointJson);
+                }
+                resultJS.put("locationPoints", locationPointsArray);
+            }
+
+            if (decoderResult.extra != null && decoderResult.extra.length > 0) {
+            Bitmap sadlImage = BarkoderHelper.sadlImage(decoderResult.extra);
+            if (sadlImage != null) {
+                resultJS.put("sadlImageAsBase64", bitmapImageToBase64(sadlImage));
+                }
             }
 
             // Add mrzImagesAsBase64
@@ -168,7 +188,7 @@ public class BarkoderUtil {
             case Telepen:
                 return decoderConfig.Telepen;
             case Dotcode:
-                return  decoderConfig.Dotcode;
+                return decoderConfig.Dotcode;
             case IDDocument:
                 return decoderConfig.IDDocument;
             case Databar14:
@@ -193,6 +213,8 @@ public class BarkoderUtil {
                 return decoderConfig.JapanesePost;
             case MaxiCode:
                 return decoderConfig.MaxiCode;
+            case OCRText:
+                return decoderConfig.OCRText;
         }
         return null;
     }
@@ -206,5 +228,45 @@ public class BarkoderUtil {
             color = Color.parseColor("#" + hexColor);
 
         return color;
+    }
+
+    /** Parses "#RGB", "#ARGB", "#RRGGBB", or "#AARRGGBB" (alpha first when present).
+     *  Returns null for empty or invalid input. */
+    @Nullable
+    public static Integer hexColorToIntColorOrNull(@Nullable String raw) {
+        if (raw == null) return null;
+
+        String s = raw.trim();
+        if (s.isEmpty()) return null;
+
+        if (s.startsWith("#")) {
+            s = s.substring(1);
+        } else if (s.startsWith("0x") || s.startsWith("0X")) {
+            s = s.substring(2);
+        }
+
+        int len = s.length();
+        if (!(len == 3 || len == 4 || len == 6 || len == 8)) return null;
+
+        // must be all hex digits
+        if (!s.matches("^[0-9A-Fa-f]+$")) return null;
+
+        try {
+            // Color.parseColor needs a leading '#'
+            return Color.parseColor("#" + s);
+        } catch (IllegalArgumentException e) {
+            return null;
+        }
+    }
+
+    @Nullable
+    public static Bitmap decodeBase64BitmapOrNull(@Nullable String base64) {
+        if (base64 == null || base64.isEmpty()) return null;
+        try {
+            byte[] bytes = android.util.Base64.decode(base64, android.util.Base64.DEFAULT);
+            return android.graphics.BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        } catch (Throwable ignore) {
+            return null;
+        }
     }
 }

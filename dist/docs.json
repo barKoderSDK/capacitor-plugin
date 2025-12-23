@@ -742,6 +742,22 @@
         "slug": "setqrmicrodpmmodeenabled"
       },
       {
+        "name": "setQrMultiPartMergeEnabled",
+        "signature": "(options: { enabled: boolean; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ enabled: boolean; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets whether the QR multi-part merge mode is enabled.",
+        "complexTypes": [],
+        "slug": "setqrmultipartmergeenabled"
+      },
+      {
         "name": "configureBarkoder",
         "signature": "(options: { barkoderConfig: BarkoderConfig; }) => Promise<any>",
         "parameters": [
@@ -822,6 +838,22 @@
         "docs": "Sets a custom option with a string option and integer value",
         "complexTypes": [],
         "slug": "setcustomoption"
+      },
+      {
+        "name": "setCustomOptionGlobal",
+        "signature": "(options: { option: string; value: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ option: string; value: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Sets a custom global option with a string option and integer value",
+        "complexTypes": [],
+        "slug": "setcustomoptionglobal"
       },
       {
         "name": "setScanningIndicatorColor",
@@ -1378,6 +1410,64 @@
         "slug": "setarheadertextformat"
       },
       {
+        "name": "configureCloseButton",
+        "signature": "(options: { visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIcon: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIcon: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Configures the close button displayed during scanning.\nvisible - Show the button while scanning.\npositionX - X position in points.\npositionY - Y position in points.\niconSize - Glyph point size.\ntintColor - Icon tint. Hex string (e.g., \"#3472c9\"); leave \"\" to use the default.\nbackgroundColor - Button background. Hex string; default is clear. Leave \"\" to use the default.\ncornerRadius - Corner radius.\npadding - Inner padding around the glyph.\nuseCustomIcon - Set true to use a provided custom icon.\ncustomIcon - Custom icon as a Base64-encoded image string.",
+        "complexTypes": [],
+        "slug": "configureclosebutton"
+      },
+      {
+        "name": "configureFlashButton",
+        "signature": "(options: { visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconFlashOn: string; customIconFlashOff: string; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconFlashOn: string; customIconFlashOff: string; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Configures the flash (torch) button displayed during scanning; auto-hides if the device torch is unavailable.\nvisible - Show the button while scanning.\npositionX - X position in points.\npositionY - Y position in points.\niconSize - Glyph point size.\ntintColor - Icon tint. Hex string (e.g., \"#3472c9\"); leave \"\" to use the default.\nbackgroundColor - Button background. Hex string; default is clear. Leave \"\" to use the default.\ncornerRadius - Corner radius.\npadding - Inner padding around the glyph.\nuseCustomIcon - Set true to use provided custom icons.\ncustomIconFlashOn - Custom ON-state icon as a Base64-encoded image string.\ncustomIconFlashOff - Custom OFF-state icon as a Base64-encoded image string.",
+        "complexTypes": [],
+        "slug": "configureflashbutton"
+      },
+      {
+        "name": "configureZoomButton",
+        "signature": "(options: { visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconZoomedIn: string; customIconZoomedOut: string; zoomedInFactor: number; zoomedOutFactor: number; }) => Promise<any>",
+        "parameters": [
+          {
+            "name": "options",
+            "docs": "",
+            "type": "{ visible: boolean; positionX: number; positionY: number; iconSize: number; tintColor: string; backgroundColor: string; cornerRadius: number; padding: number; useCustomIcon: boolean; customIconZoomedIn: string; customIconZoomedOut: string; zoomedInFactor: number; zoomedOutFactor: number; }"
+          }
+        ],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Configures the zoom button displayed during scanning.\nvisible - Show the button while scanning.\npositionX - X position in points.\npositionY - Y position in points.\niconSize - Glyph point size.\ntintColor - Icon tint. Hex string (e.g., \"#3472c9\"); leave \"\" to use the default.\nbackgroundColor - Button background. Hex string; default is clear. Leave \"\" to use the default.\ncornerRadius - Corner radius.\npadding - Inner padding around the glyph.\nuseCustomIcon - Set true to use provided custom icons.\ncustomIconZoomedIn - Custom icon for the zoomed-in state as a Base64-encoded image string.\ncustomIconZoomedOut - Custom icon for the zoomed-out state as a Base64-encoded image string.\nzoomedInFactor - Zoom factor when toggled in.\nzoomedOutFactor - Zoom factor when toggled out.",
+        "complexTypes": [],
+        "slug": "configurezoombutton"
+      },
+      {
+        "name": "selectVisibleBarcodes",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Selects all barcodes that are currently visible in AR mode.",
+        "complexTypes": [],
+        "slug": "selectvisiblebarcodes"
+      },
+      {
         "name": "isFlashAvailable",
         "signature": "() => Promise<any>",
         "parameters": [],
@@ -1788,6 +1878,16 @@
         "docs": "Retrieves whether Direct Part Marking (DPM) mode for QR Micro barcodes is enabled",
         "complexTypes": [],
         "slug": "isqrmicrodpmmodeenabled"
+      },
+      {
+        "name": "isQrMultiPartMergeEnabled",
+        "signature": "() => Promise<any>",
+        "parameters": [],
+        "returns": "Promise<any>",
+        "tags": [],
+        "docs": "Retrieves whether the QR multi-part merge mode is enabled",
+        "complexTypes": [],
+        "slug": "isqrmultipartmergeenabled"
       },
       {
         "name": "isIdDocumentMasterChecksumEnabled",
@@ -2316,6 +2416,11 @@
         },
         {
           "name": "maxiCode",
+          "tags": [],
+          "docs": ""
+        },
+        {
+          "name": "ocrText",
           "tags": [],
           "docs": ""
         }

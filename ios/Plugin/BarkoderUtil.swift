@@ -32,6 +32,20 @@ class BarkoderUtil {
                 resultJson["extra"] = jsonString
             }
             
+            if let pointsPtr = decoderResult.getLocationPoints() {
+                let points = Array(UnsafeBufferPointer(start: pointsPtr, count: 4))
+                let pointsJson: [[String: CGFloat]] = points.map { point in
+                    ["x": point.x, "y": point.y]
+                }
+                resultJson["locationPoints"] = pointsJson
+            }
+            
+            if let extra = decoderResult.extra,
+               let sadlImage = BarkoderHelper.sadlImage(fromExtra: extra),
+               let sadlImageData = sadlImage.pngData() {
+                resultJson["sadlImageAsBase64"] = sadlImageData.base64EncodedString()
+            }
+            
             if decoderResult.barcodeTypeName == "MRZ" {
                 if let images = decoderResult.images {
                     var mrzImagesArray = [[String: Any]]()
@@ -103,6 +117,28 @@ class BarkoderUtil {
         return Int("FF" + hex, radix: 16)
     }
     
+    // Decode base64 image
+    static func image(fromBase64 input: String?) -> UIImage? {
+        guard var s = input?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !s.isEmpty
+        else { return nil }
+        
+        // Strip data URL prefix if present
+        if s.hasPrefix("data:") {
+            guard let i = s.firstIndex(of: ",") else { return nil }
+            s = String(s[s.index(after: i)...])
+        }
+        
+        // Normalize URL-safe Base64 and fix padding
+        s = s.replacingOccurrences(of: "-", with: "+")
+            .replacingOccurrences(of: "_", with: "/")
+        let pad = 4 - (s.count % 4)
+        if pad < 4 { s.append(String(repeating: "=", count: pad)) }
+        
+        guard let data = Data(base64Encoded: s, options: .ignoreUnknownCharacters) else { return nil }
+        return UIImage(data: data)
+    }
+    
 }
 
 // MARK: - Helping extensions
@@ -150,6 +186,54 @@ extension UIColor {
         )
         
         return hexString
+    }
+    
+    /// Parses "#RGB", "#ARGB", "#RRGGBB", or "#AARRGGBB" (alpha first when present).
+    /// Returns nil for empty or invalid input.
+    static func fromHexOrNil(_ raw: String?) -> UIColor? {
+        guard var s = raw?.trimmingCharacters(in: .whitespacesAndNewlines),
+              !s.isEmpty else { return nil }
+
+        if s.hasPrefix("#") { s.removeFirst() }
+        if s.lowercased().hasPrefix("0x") { s.removeFirst(2) }
+
+        let len = s.count
+        guard len == 3 || len == 4 || len == 6 || len == 8 else { return nil }
+
+        var value: UInt64 = 0
+        let scanner = Scanner(string: s)
+        guard scanner.scanHexInt64(&value),
+              scanner.isAtEnd || scanner.currentIndex == s.endIndex else { return nil }
+
+        let a, r, g, b: UInt64
+        switch len {
+        case 3: // #RGB
+            (a, r, g, b) = (255, (value >> 8) * 17,
+                                  (value >> 4 & 0xF) * 17,
+                                  (value & 0xF) * 17)
+        case 4: // #ARGB
+            (a, r, g, b) = ((value >> 12) * 17,
+                            (value >> 8  & 0xF) * 17,
+                            (value >> 4  & 0xF) * 17,
+                            (value        & 0xF) * 17)
+        case 6: // #RRGGBB
+            (a, r, g, b) = (255,
+                            value >> 16,
+                            value >> 8 & 0xFF,
+                            value & 0xFF)
+        case 8: // #AARRGGBB
+            (a, r, g, b) = (value >> 24,
+                            value >> 16 & 0xFF,
+                            value >> 8  & 0xFF,
+                            value & 0xFF)
+        default:
+            return nil
+        }
+
+        return UIColor(red: CGFloat(r) / 255,
+                       green: CGFloat(g) / 255,
+                       blue: CGFloat(b) / 255,
+                       alpha: CGFloat(a) / 255)
     }
     
 }

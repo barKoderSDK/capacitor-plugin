@@ -585,6 +585,9 @@
             "QR": {
                 "enabled": true
             },
+            "OCR Text": {
+                "enabled": true
+            },
             "general": {
                 "maxThreads": 2,
                 "decodingSpeed": 2,

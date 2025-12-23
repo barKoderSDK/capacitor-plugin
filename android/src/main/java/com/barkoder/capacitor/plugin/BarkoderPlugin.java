@@ -82,7 +82,9 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         // In order to perform scanning, config property need to be set before
         // If license key is not valid you will receive results with asterisks inside
         barkoderView.config = new BarkoderConfig(context, licenseKey,
-                licenseCheckResult -> BarkoderLog.i(TAG, "LICENSE RESULT: " + licenseCheckResult.message));
+                licenseCheckResult -> {
+                    BarkoderLog.i(TAG, "License Info: " + Barkoder.GetLicenseInfo());
+                });
     }
 
     @PluginMethod
@@ -689,6 +691,17 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void setQrMultiPartMergeEnabled(PluginCall call) {
+        Boolean enabled = call.getBoolean("enabled");
+        if (enabled == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.config.getDecoderConfig().QR.multiPartMerge = enabled);
+        
+        call.resolve();
+    }
+
+    @PluginMethod
     public void setQrMicroDpmModeEnabled(PluginCall call) {
         Boolean enabled = call.getBoolean("enabled");
         if (enabled == null) {
@@ -757,7 +770,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     "pdf417", "pdf417Micro", "datamatrix", "code25", "interleaved25", "itf14",
                     "iata25", "matrix25", "datalogic25", "coop25", "code32", "telepen", "dotcode",
                     "idDocument", "databar14", "databarLimited", "databarExpanded",
-                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost", "maxiCode",
+                    "postalIMB", "postnet", "planet", "australianPost", "royalMail", "kix", "japanesePost", "maxiCode", "ocrText",
                     "minLength", "maxLength", "threadsLimit", "roiX", "roiY", "roiWidth", "roiHeight"
                 };
 
@@ -767,7 +780,7 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                     "PDF 417", "PDF 417 Micro", "Datamatrix", "Code 25", "Interleaved 2 of 5", "ITF 14",
                     "IATA 25", "Matrix 25", "Datalogic 25", "COOP 25", "Code 32", "Telepen", "Dotcode",
                     "ID Document", "Databar 14", "Databar Limited", "Databar Expanded",
-                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post", "MaxiCode",
+                    "Postal IMB", "Postnet", "Planet", "Australian Post", "Royal Mail", "KIX", "Japanese Post", "MaxiCode", "OCR Text",
                     "minimumLength", "maximumLength", "maxThreads", "roi_x", "roi_y", "roi_w", "roi_h"
                 };
 
@@ -836,6 +849,17 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
 
         getBridge().getActivity().runOnUiThread(() -> {
             Barkoder.SetCustomOption(barkoderView.config.getDecoderConfig(), option, value);
+        });
+    }
+
+    @PluginMethod
+    public void setCustomOptionGlobal(PluginCall call) throws JSONException {
+        JSONObject arguments = call.getData();
+        String option = arguments.getString("option");
+        Integer value = arguments.getInt("value");
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            Barkoder.SetCustomOptionGlobal(option, value);
         });
     }
 
@@ -1249,6 +1273,175 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
       call.resolve();
     }
 
+    @PluginMethod
+    public void configureCloseButton(PluginCall call) throws JSONException {
+        final JSONObject data = call.getData();
+
+        final boolean visible = data.getBoolean("visible");
+        final float positionX = (float) data.getDouble("positionX");
+        final float positionY = (float) data.getDouble("positionY");
+        final Float iconSize = (!data.isNull("iconSize") && data.has("iconSize"))
+                ? (float) data.getDouble("iconSize") : null;
+
+        final String tintHex = (!data.isNull("tintColor") && data.has("tintColor")) ? data.getString("tintColor") : null;
+        final String bgHex   = (!data.isNull("backgroundColor") && data.has("backgroundColor")) ? data.getString("backgroundColor") : null;
+
+        final Integer tintColor = BarkoderUtil.hexColorToIntColorOrNull(tintHex);
+        final Integer backgroundColor = BarkoderUtil.hexColorToIntColorOrNull(bgHex);
+
+        final Float cornerRadius = (!data.isNull("cornerRadius") && data.has("cornerRadius"))
+                ? (float) data.getDouble("cornerRadius") : null;
+
+        final Float padding = (!data.isNull("padding") && data.has("padding"))
+                ? (float) data.getDouble("padding") : null;
+
+        final Boolean useCustomIcon = (!data.isNull("useCustomIcon") && data.has("useCustomIcon"))
+                ? data.getBoolean("useCustomIcon") : null;
+
+        final String base64CustomIcon = (!data.isNull("customIcon") && data.has("customIcon"))
+                ? data.getString("customIcon") : null;
+
+        final Bitmap customIcon = BarkoderUtil.decodeBase64BitmapOrNull(base64CustomIcon);
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.configureCloseButton(
+                    visible,
+                    new float[]{ positionX, positionY },
+                    iconSize,
+                    tintColor,
+                    backgroundColor,
+                    cornerRadius,
+                    padding,
+                    useCustomIcon,
+                    customIcon,
+                    () -> {
+                        notifyListeners("barkoderCloseButtonTappedEvent", new JSObject());
+                    }
+            );
+            call.resolve();
+        });
+
+    }
+
+    @PluginMethod
+    public void configureFlashButton(PluginCall call) throws JSONException {
+        final JSONObject data = call.getData();
+
+        final boolean visible = data.getBoolean("visible");
+        final float positionX = (float) data.getDouble("positionX");
+        final float positionY = (float) data.getDouble("positionY");
+
+        final Float iconSize = (!data.isNull("iconSize") && data.has("iconSize"))
+                ? (float) data.getDouble("iconSize") : null;
+
+        final String tintHex = (!data.isNull("tintColor") && data.has("tintColor")) ? data.getString("tintColor") : null;
+        final String bgHex   = (!data.isNull("backgroundColor") && data.has("backgroundColor")) ? data.getString("backgroundColor") : null;
+
+        final Integer tintColor = BarkoderUtil.hexColorToIntColorOrNull(tintHex);
+        final Integer backgroundColor = BarkoderUtil.hexColorToIntColorOrNull(bgHex);
+
+        final Float cornerRadius = (!data.isNull("cornerRadius") && data.has("cornerRadius"))
+                ? (float) data.getDouble("cornerRadius") : null;
+
+        final Float padding = (!data.isNull("padding") && data.has("padding"))
+                ? (float) data.getDouble("padding") : null;
+
+        final Boolean useCustomIcon = (!data.isNull("useCustomIcon") && data.has("useCustomIcon"))
+                ? data.getBoolean("useCustomIcon") : null;
+
+        final String base64CustomIconFlashOn = (!data.isNull("customIconFlashOn") && data.has("customIconFlashOn"))
+                ? data.getString("customIconFlashOn") : null;
+
+        final String base64CustomIconFlashOff = (!data.isNull("customIconFlashOff") && data.has("customIconFlashOff"))
+                ? data.getString("customIconFlashOff") : null;
+
+        final Bitmap customIconFlashOn = BarkoderUtil.decodeBase64BitmapOrNull(base64CustomIconFlashOn);
+        final Bitmap customIconFlashOff = BarkoderUtil.decodeBase64BitmapOrNull(base64CustomIconFlashOff);
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.configureFlashButton(
+                    visible,
+                    new float[]{ positionX, positionY },
+                    iconSize,
+                    tintColor,
+                    backgroundColor,
+                    cornerRadius,
+                    padding,
+                    useCustomIcon,
+                    customIconFlashOn,
+                    customIconFlashOff
+            );
+            call.resolve();
+        });
+    }
+
+    @PluginMethod
+    public void configureZoomButton(PluginCall call) throws JSONException {
+        final JSONObject data = call.getData();
+
+        final boolean visible = data.getBoolean("visible");
+
+        final float positionX = (float) data.getDouble("positionX");
+        final float positionY = (float) data.getDouble("positionY");
+
+        final Float iconSize = (!data.isNull("iconSize") && data.has("iconSize"))
+                ? (float) data.getDouble("iconSize") : null;
+
+        final String tintHex = (!data.isNull("tintColor") && data.has("tintColor")) ? data.getString("tintColor") : null;
+        final String bgHex   = (!data.isNull("backgroundColor") && data.has("backgroundColor")) ? data.getString("backgroundColor") : null;
+
+        final Integer tintColor = BarkoderUtil.hexColorToIntColorOrNull(tintHex);
+        final Integer backgroundColor = BarkoderUtil.hexColorToIntColorOrNull(bgHex);
+
+        final Float cornerRadius = (!data.isNull("cornerRadius") && data.has("cornerRadius"))
+                ? (float) data.getDouble("cornerRadius") : null;
+
+        final Float padding = (!data.isNull("padding") && data.has("padding"))
+                ? (float) data.getDouble("padding") : null;
+
+        final Boolean useCustomIcon = (!data.isNull("useCustomIcon") && data.has("useCustomIcon"))
+                ? data.getBoolean("useCustomIcon") : null;
+
+        final String base64CustomIconZoomedIn = (!data.isNull("customIconZoomedIn") && data.has("customIconZoomedIn"))
+                ? data.getString("customIconZoomedIn") : null;
+
+        final String base64CustomIconZoomedOut = (!data.isNull("customIconZoomedOut") && data.has("customIconZoomedOut"))
+                ? data.getString("customIconZoomedOut") : null;
+
+        final Float zoomedInFactor = (!data.isNull("zoomedInFactor") && data.has("zoomedInFactor"))
+                ? (float) data.getDouble("zoomedInFactor") : null;
+        final Float zoomedOutFactor = (!data.isNull("zoomedOutFactor") && data.has("zoomedOutFactor"))
+                ? (float) data.getDouble("zoomedOutFactor") : null;
+
+        final Bitmap customIconZoomedIn = BarkoderUtil.decodeBase64BitmapOrNull(base64CustomIconZoomedIn);
+        final Bitmap customIconZoomedOut = BarkoderUtil.decodeBase64BitmapOrNull(base64CustomIconZoomedOut);
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.configureZoomButton(
+                    visible,
+                    new float[]{ positionX, positionY },
+                    iconSize,
+                    tintColor,
+                    backgroundColor,
+                    cornerRadius,
+                    padding,
+                    useCustomIcon,
+                    customIconZoomedIn,
+                    customIconZoomedOut,
+                    zoomedInFactor,
+                    zoomedOutFactor
+            );
+            call.resolve();
+        });
+    }
+
+    @PluginMethod
+    public void selectVisibleBarcodes(PluginCall call) {
+        barkoderView.selectVisibleBarcodes();
+
+        call.resolve();
+    }
+
     // Getters
 
     @PluginMethod
@@ -1588,6 +1781,14 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         getBridge().getActivity().runOnUiThread(() -> {
             call.resolve(toJSObjectBool("isQrDpmModeEnabled",
                     barkoderView.config.getDecoderConfig().QR.dpmMode));
+        });
+    }
+
+    @PluginMethod
+    public void isQrMultiPartMergeEnabled(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isQrMultiPartMergeEnabled",
+                    barkoderView.config.getDecoderConfig().QR.multiPartMerge));
         });
     }
 
