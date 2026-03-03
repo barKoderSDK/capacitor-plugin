@@ -1468,6 +1468,16 @@ extension BarkoderPlugin {
         call.resolve()
     }
     
+    @objc func setPowerSavingMode(_ call: CAPPluginCall) {
+        guard let value = call.getInt("value") else { return }
+
+        DispatchQueue.main.async {
+            self.barkoderView.config?.powerSavingMode = value
+        }
+
+        call.resolve()
+    }
+    
 }
 
 // MARK: - Getters
@@ -1916,6 +1926,10 @@ extension BarkoderPlugin {
 
     @objc func getARHeaderTextFormat(_ call: CAPPluginCall) {
         call.resolve(["arHeaderTextFormat": barkoderView.config?.arConfig.headerTextFormat as Any])
+    }
+    
+    @objc func getPowerSavingMode(_ call: CAPPluginCall) {
+        call.resolve(["powerSavingMode": barkoderView.config?.powerSavingMode as Any])
     }
     
 }

@@ -609,6 +609,12 @@ export interface BarkoderPlugin extends Plugin {
      */
     selectVisibleBarcodes(): Promise<any>;
     /**
+     * Power saving mode level. Higher values reduce CPU/battery usage by limiting frame processing. 0 = disabled (no constraints).
+     */
+    setPowerSavingMode(options: {
+        value: number;
+    }): Promise<any>;
+    /**
      * Checks whether the device has a built-in flash (torch) that can be used for illumination during barcode scanning
      */
     isFlashAvailable(): Promise<any>;
@@ -896,6 +902,10 @@ export interface BarkoderPlugin extends Plugin {
      * Retrieves the format string used for rendering AR header text above barcodes.
      */
     getARHeaderTextFormat(): Promise<any>;
+    /**
+     * Retrieves the power saving mode level.
+     */
+    getPowerSavingMode(): Promise<any>;
 }
 export declare enum DecodingSpeed {
     fast = 0,
@@ -1017,6 +1027,7 @@ export declare class BarkoderConfig {
     pinchToZoomEnabled?: boolean;
     regionOfInterestVisible?: boolean;
     barkoderResolution?: BarkoderResolution;
+    powerSavingMode?: number;
     beepOnSuccessEnabled?: boolean;
     vibrateOnSuccessEnabled?: boolean;
     decoder?: DekoderConfig;

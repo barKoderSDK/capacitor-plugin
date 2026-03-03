@@ -1442,6 +1442,18 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         call.resolve();
     }
 
+    @PluginMethod
+    public void setPowerSavingMode(PluginCall call) {
+        Integer value = call.getInt("value");
+        if (value == null) return;
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.config.setPowerSavingMode(value);
+        });
+
+        call.resolve();
+    }
+
     // Getters
 
     @PluginMethod
@@ -2016,6 +2028,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
       getBridge().getActivity().runOnUiThread(() -> {
         call.resolve(toJSObjectString("arHeaderTextFormat", barkoderView.config.getArConfig().getHeaderTextFormat()));
       });
+    }
+
+    @PluginMethod
+    public void getPowerSavingMode(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectInt("powerSavingMode", barkoderView.config.getPowerSavingMode()));
+        });
     }
 
     // Helpers

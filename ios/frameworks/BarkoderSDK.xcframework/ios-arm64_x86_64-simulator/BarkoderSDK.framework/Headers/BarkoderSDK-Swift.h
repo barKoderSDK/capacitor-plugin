@@ -527,7 +527,7 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @property (nonatomic, strong) BarkoderARConfig * _Nonnull arConfig;
 /// Retrieve/Sets the resolution for barcode scanning
 /// note:
-/// Default value is BarkoderView.BarkoderResolution.HD
+/// Default value is BarkoderView.BarkoderResolution.FHD
 @property (nonatomic) enum BarkoderResolution barkoderResolution;
 /// Retrieve/Sets whether to enable barcode thumbnail on result
 /// note:
@@ -565,6 +565,11 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 - (void)setMulticodeCachingDuration:(NSInteger)value;
 /// Retrieves the caching duration (in milliseconds) for multi-code results
 - (NSInteger)getMulticodeCachingDuration SWIFT_WARN_UNUSED_RESULT;
+/// Power saving mode level (0–4).
+/// Increasing the level reduces CPU and battery usage by limiting frame processing.
+/// note:
+/// Default is 0 (disabled, no constraints).
+@property (nonatomic) NSInteger powerSavingMode;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 
@@ -1371,7 +1376,7 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 @property (nonatomic, strong) BarkoderARConfig * _Nonnull arConfig;
 /// Retrieve/Sets the resolution for barcode scanning
 /// note:
-/// Default value is BarkoderView.BarkoderResolution.HD
+/// Default value is BarkoderView.BarkoderResolution.FHD
 @property (nonatomic) enum BarkoderResolution barkoderResolution;
 /// Retrieve/Sets whether to enable barcode thumbnail on result
 /// note:
@@ -1409,6 +1414,11 @@ SWIFT_CLASS("_TtC11BarkoderSDK14BarkoderConfig")
 - (void)setMulticodeCachingDuration:(NSInteger)value;
 /// Retrieves the caching duration (in milliseconds) for multi-code results
 - (NSInteger)getMulticodeCachingDuration SWIFT_WARN_UNUSED_RESULT;
+/// Power saving mode level (0–4).
+/// Increasing the level reduces CPU and battery usage by limiting frame processing.
+/// note:
+/// Default is 0 (disabled, no constraints).
+@property (nonatomic) NSInteger powerSavingMode;
 - (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 @end
 

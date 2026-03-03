@@ -98,6 +98,7 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(configureFlashButton, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(configureZoomButton, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(selectVisibleBarcodes, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(setPowerSavingMode, CAPPluginReturnPromise);
 
 
            CAP_PLUGIN_METHOD(isFlashAvailable, CAPPluginReturnPromise);
@@ -171,4 +172,5 @@ CAP_PLUGIN(BarkoderPlugin, "Barkoder",
            CAP_PLUGIN_METHOD(getARHeaderHorizontalTextMargin, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getARHeaderVerticalTextMargin, CAPPluginReturnPromise);
            CAP_PLUGIN_METHOD(getARHeaderTextFormat, CAPPluginReturnPromise);
+           CAP_PLUGIN_METHOD(getPowerSavingMode, CAPPluginReturnPromise);
 )

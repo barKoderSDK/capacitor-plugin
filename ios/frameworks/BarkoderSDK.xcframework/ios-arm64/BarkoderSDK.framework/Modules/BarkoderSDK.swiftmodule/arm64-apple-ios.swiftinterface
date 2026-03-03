@@ -78,6 +78,10 @@ import _SwiftConcurrencyShims
   @objc open func getMulticodeCachingEnabled() -> Swift.Bool
   @objc open func setMulticodeCachingDuration(_ value: Swift.Int)
   @objc open func getMulticodeCachingDuration() -> Swift.Int
+  @objc public var powerSavingMode: Swift.Int {
+    @objc get
+    @objc set
+  }
   @objc override dynamic public init()
   @objc deinit
 }

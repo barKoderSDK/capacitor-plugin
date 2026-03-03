@@ -1,6 +1,6 @@
 {
   "name": "barkoder-capacitor",
-  "version": "1.6.7",
+  "version": "1.6.8",
   "description": "Capacitor plugin that connects to barkoderSDK which helps users scan barcodes with mobile devices",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
@@ -47,7 +47,7 @@
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\"",
     "swiftlint": "node-swiftlint",
     "docgen": "docgen --api BarkoderPlugin --output-readme README.md --output-json dist/docs.json",
-    "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.js",
+    "build": "npm run clean && tsc && rollup -c rollup.config.js",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
     "prepublishOnly": "npm run build"

@@ -42,7 +42,7 @@ class BarkoderUtil {
             
             if let extra = decoderResult.extra,
                let sadlImage = BarkoderHelper.sadlImage(fromExtra: extra),
-               let sadlImageData = sadlImage.pngData() {
+               let sadlImageData = sadlImage.jpegData(compressionQuality: 0.6) {
                 resultJson["sadlImageAsBase64"] = sadlImageData.base64EncodedString()
             }
             
@@ -51,7 +51,7 @@ class BarkoderUtil {
                     var mrzImagesArray = [[String: Any]]()
                     
                     for image in images {
-                        if let imageName = image.name, let imageData = image.image.pngData() {
+                        if let imageName = image.name, let imageData = image.image.jpegData(compressionQuality: 0.6) {
                             switch imageName {
                             case "main", "document", "signature", "picture":
                                 let imageInfo: [String: Any] = [
@@ -75,14 +75,14 @@ class BarkoderUtil {
         var barkoderResult: [String: Any] = ["decoderResults": resultsJsonArray]
         
         // Process main image as base64 if available, outside the loop
-        if let image = image, let imageData = image.pngData() {
+        if let image = image, let imageData = image.jpegData(compressionQuality: 0.6) {
             barkoderResult["resultImageAsBase64"] = imageData.base64EncodedString()
         }
         
         // Process thumbnails as an array of base64 strings if available, outside the loop
         if let thumbnails = thumbnails {
             let thumbnailsBase64Array = thumbnails.compactMap { thumbnail in
-                thumbnail.pngData()?.base64EncodedString()
+                thumbnail.jpegData(compressionQuality: 0.6)?.base64EncodedString()
             }
             barkoderResult["resultThumbnailsAsBase64"] = thumbnailsBase64Array
         }
