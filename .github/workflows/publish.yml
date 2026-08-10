@@ -24,11 +24,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
           package-manager-cache: false
 
-      - name: Install dependencies
-        run: npm install
-
       - name: Verify package
-        run: npm publish --dry-run
+        run: npm publish --dry-run --ignore-scripts
 
       - name: Publish to npm
-        run: npm publish
+        run: npm publish --ignore-scripts
