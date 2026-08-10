@@ -10,11 +10,11 @@
 		</data>
 		<key>Headers/iBarkoder.h</key>
 		<data>
-		qT9kdEgf8aIT9BnuTecHQduXFno=
+		orZuCQeXVpWRdl/eOdLsegkVXGI=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		L8bf5oTl8XJ8cxow6aRJGOrprYw=
+		V6drRvI1Uu1firDFuSyED/Pl78s=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -22,7 +22,7 @@
 		</data>
 		<key>default.metallib</key>
 		<data>
-		p9CWrRI5RoRfCuIDK3s20+KRR9o=
+		CMeyaIoGJ+dPfl57NiMwgpQwjD8=
 		</data>
 		<key>mrz.traineddata</key>
 		<data>
@@ -38,11 +38,11 @@
 		</data>
 		<key>n2_384x256_int8.mlmodelc/coremldata.bin</key>
 		<data>
-		Sw6VM4eCyFyCyFRo7xPF+RjvDco=
+		b4TVwglQSnvqyqFhTNqTuPJ3o4w=
 		</data>
 		<key>n2_384x256_int8.mlmodelc/metadata.json</key>
 		<data>
-		ejWqR5q+WuiGaCEWTeyU+xDO7eQ=
+		N4ghTMFxj1A69TxIWQMzw4vFfyI=
 		</data>
 		<key>n2_384x256_int8.mlmodelc/model.espresso.net</key>
 		<data>
@@ -70,11 +70,11 @@
 		</data>
 		<key>n2_512x384_int8.mlmodelc/coremldata.bin</key>
 		<data>
-		DE71Gs4KQcD3ReoSx6V/FaJ9Oq8=
+		A+ZZ9TuLGG7/DUhZBaMsKjqcADQ=
 		</data>
 		<key>n2_512x384_int8.mlmodelc/metadata.json</key>
 		<data>
-		ax29B+ZYj1U5q7oRL9d9rsHczDM=
+		imNFUqraUEbhrB3A0FZ9c+wkWQ0=
 		</data>
 		<key>n2_512x384_int8.mlmodelc/model.espresso.net</key>
 		<data>
@@ -110,7 +110,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			oYx5jxuF5WMVeiQUdH7E0j0m/p61n/gscMaNRepexjw=
+			fEBzMJzj59qfnFHtjxKIu51hBwjxt9b4IpDFKxpY11k=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -124,7 +124,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			JAPEWHnMuQZdMgVA+JLefofc+4vz2FmuWS3M/dLCdpA=
+			9RZDvL8p6lKbRmMb1p/TAyNkUaVkJnMb7WVbKT3xIAA=
 			</data>
 		</dict>
 		<key>mrz.traineddata</key>
@@ -152,14 +152,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			toi6YWdMASTeBJztGD4weqqQhdx30lvh0FbQKD1LfBM=
+			2osgOsnwUFYLq0RHL8JvRlBt7pezr9BSCK5mw77LGiE=
 			</data>
 		</dict>
 		<key>n2_384x256_int8.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			CHHg1bxnY0ItNmilT2nm2vHynw1q8ySXQscXZCL9euM=
+			eq5p1cX/NWprT0GE3ooO/3OgYTi4V20JV6QfwT0rfkM=
 			</data>
 		</dict>
 		<key>n2_384x256_int8.mlmodelc/model.espresso.net</key>
@@ -208,14 +208,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gM2T88qv8w2inZXkmGmqAi8i1vP1LIM4kIm4zr++oM8=
+			CV4hivrX/0GYtkXHkH10O1LqCJgni3HOFU9mPPq43yo=
 			</data>
 		</dict>
 		<key>n2_512x384_int8.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HdzHl5BISCzbl4K475xES9gNzUDSSKIILAkzu85Vgd4=
+			BKm6qLsPcz0ktItEDS3/f0uvMIzBxzFcVpaN1xBBSRU=
 			</data>
 		</dict>
 		<key>n2_512x384_int8.mlmodelc/model.espresso.net</key>
