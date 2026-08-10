@@ -7,6 +7,7 @@ import com.barkoder.enums.BarkoderARHeaderShowMode;
 import com.barkoder.enums.BarkoderARLocationType;
 import com.barkoder.enums.BarkoderARMode;
 import com.barkoder.enums.BarkoderCameraPosition;
+import com.barkoder.enums.BarkoderRoiCenterMark;
 import com.barkoder.enums.BarkoderResolution;
 import com.barkoder.interfaces.BarkoderResultCallback;
 import com.barkoder.overlaymanager.BarkoderAROverlayRefresh;
@@ -257,6 +258,21 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
                 () -> barkoderView.config.setRoiOverlayBackgroundColor(BarkoderUtil.hexColorToIntColor(hexColor)));
 
         call.resolve();
+    }
+
+    @PluginMethod
+    public void setRoiCenterMark(PluginCall call) {
+        Integer index = call.getInt("value");
+        if (index == null) {
+            return;
+        }
+
+        getBridge().getActivity().runOnUiThread(() -> {
+                BarkoderRoiCenterMark roiCenterMark = BarkoderRoiCenterMark.values()[index];
+                barkoderView.config.setRoiCenterMark(roiCenterMark);
+
+                call.resolve();
+        });
     }
 
     @PluginMethod
@@ -864,6 +880,30 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void setMatchFilter(PluginCall call) {
+        String value = call.getString("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().matchFilter = value);
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setReturnOnlyMatchedResults(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity()
+                .runOnUiThread(() -> barkoderView.config.getDecoderConfig().returnOnlyMatchedResults = value);
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void setScanningIndicatorColor(PluginCall call) {
         String hexColor = call.getString("value");
         if (hexColor == null) {
@@ -1274,6 +1314,30 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void setARReturnOnlyMatchedResults(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) return;
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.config.getArConfig().setReturnOnlyMatchedResults(value);
+        });
+
+        call.resolve();
+    }
+
+    @PluginMethod
+    public void setARDisplayOnlyMatchedResults(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) return;
+
+        getBridge().getActivity().runOnUiThread(() -> {
+            barkoderView.config.getArConfig().setDisplayOnlyMatchedResults(value);
+        });
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void configureCloseButton(PluginCall call) throws JSONException {
         final JSONObject data = call.getData();
 
@@ -1443,6 +1507,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void resetARCache(PluginCall call) {
+        barkoderView.resetArCache();
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void setPowerSavingMode(PluginCall call) {
         Integer value = call.getInt("value");
         if (value == null) return;
@@ -1557,6 +1628,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
         getBridge().getActivity().runOnUiThread(() -> {
             String hexColor = String.format("#%08X", barkoderView.config.getRoiOverlayBackgroundColor());
             call.resolve(toJSObjectString("roiOverlayBackgroundColorHex", hexColor));
+        });
+    }
+
+    @PluginMethod
+    public void getRoiCenterMark(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectInt("roiCenterMark", barkoderView.config.getRoiCenterMark().ordinal()));
         });
     }
 
@@ -1821,6 +1899,20 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void getMatchFilter(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectString("matchFilter", barkoderView.config.getDecoderConfig().matchFilter));
+        });
+    }
+
+    @PluginMethod
+    public void getReturnOnlyMatchedResults(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("returnOnlyMatchedResults", barkoderView.config.getDecoderConfig().returnOnlyMatchedResults));
+        });
+    }
+
+    @PluginMethod
     public void getScanningIndicatorColorHex(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             String hexColor = String.format("#%08X", barkoderView.config.getScanningIndicatorColor());
@@ -2031,9 +2123,30 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void getARReturnOnlyMatchedResults(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("arReturnOnlyMatchedResults", barkoderView.config.getArConfig().getReturnOnlyMatchedResults()));
+        });
+    }
+
+    @PluginMethod
+    public void getARDisplayOnlyMatchedResults(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("arDisplayOnlyMatchedResults", barkoderView.config.getArConfig().getDisplayOnlyMatchedResults()));
+        });
+    }
+
+    @PluginMethod
     public void getPowerSavingMode(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             call.resolve(toJSObjectInt("powerSavingMode", barkoderView.config.getPowerSavingMode()));
+        });
+    }
+
+    @PluginMethod
+    public void getDeviceId(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectString("deviceId", Barkoder.GetDeviceId()));
         });
     }
 

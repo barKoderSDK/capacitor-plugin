@@ -1,7 +1,7 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 6.2.1 effective-5.10 (swiftlang-6.2.1.4.8 clang-1700.4.4.1)
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
 // swift-module-flags: -target arm64-apple-ios12.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name BarkoderSDK
-// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.1
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
 import AVFoundation
 import AudioToolbox
 import Barkoder
@@ -82,6 +82,10 @@ import _SwiftConcurrencyShims
     @objc get
     @objc set
   }
+  @objc public var roiCenterMark: BarkoderSDK.BarkoderView.BarkoderRoiCenterMark {
+    @objc get
+    @objc set
+  }
   @objc override dynamic public init()
   @objc deinit
 }
@@ -115,6 +119,18 @@ extension UIKit.UIImage {
       get
     }
   }
+  @objc public enum BarkoderRoiCenterMark : Swift.Int {
+    case none
+    case crosshair
+    case point
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.Int)
+    #endif
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
   @objc @_Concurrency.MainActor @preconcurrency public var config: BarkoderSDK.BarkoderConfig? {
     @objc get
     @objc set
@@ -133,10 +149,17 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func freezeScanning()
   @objc @_Concurrency.MainActor @preconcurrency public func unfreezeScanning()
   @objc @_Concurrency.MainActor @preconcurrency public func setZoomFactor(_ zoomFactor: Swift.Float)
+  @available(macCatalyst, unavailable, message: "Back/front camera selection is not supported on Mac Catalyst")
   @objc @_Concurrency.MainActor @preconcurrency public func setCamera(_ position: BarkoderSDK.BarkoderView.BarkoderCameraPosition)
+  @available(iOS, unavailable, message: "Use setCamera(back/front) on iOS")
+  @objc @_Concurrency.MainActor @preconcurrency public func getAvailableCameras() -> [[Swift.String : Any]]
+  @available(iOS, unavailable, message: "Use setCamera(back/front) on iOS")
+  @objc @_Concurrency.MainActor @preconcurrency public func setCameraById(_ cameraId: Swift.String)
+  @available(macCatalyst, unavailable, message: "Flash is not supported on Mac Catalyst")
   @objc @_Concurrency.MainActor @preconcurrency public func setFlash(_ enabled: Swift.Bool)
   @objc @_Concurrency.MainActor @preconcurrency public func getMaxZoomFactor(_ completion: @escaping (_ maxZoomFactor: Swift.Float) -> Swift.Void)
   @objc @_Concurrency.MainActor @preconcurrency public func getCurrentZoomFactor() -> Swift.Float
+  @available(macCatalyst, unavailable, message: "Flash is not supported on Mac Catalyst")
   @objc @_Concurrency.MainActor @preconcurrency public func isFlashAvailable(_ completion: @escaping (_ flashAvailable: Swift.Bool) -> Swift.Void)
   @objc @_Concurrency.MainActor @preconcurrency public func setDynamicExposure(_ intensity: Swift.Int)
   @objc @_Concurrency.MainActor @preconcurrency public func setCentricFocusAndExposure(_ enabled: Swift.Bool)
@@ -146,12 +169,14 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func configureCloseButton(visible: Swift.Bool, position: Foundation.NSValue? = nil, iconSize: Foundation.NSNumber? = nil, tintColor: UIKit.UIColor? = nil, backgroundColor: UIKit.UIColor? = nil, cornerRadius: Foundation.NSNumber? = nil, padding: Foundation.NSNumber? = nil, useCustomIcon: Foundation.NSNumber? = nil, customIcon: UIKit.UIImage? = nil, onClose: (@convention(block) () -> Swift.Void)? = nil)
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
+  @available(macCatalyst, unavailable, message: "Flash controls are not supported on Mac Catalyst")
   @objc @_Concurrency.MainActor @preconcurrency public func configureFlashButton(visible: Swift.Bool, position: Foundation.NSValue? = nil, iconSize: Foundation.NSNumber? = nil, tintColor: UIKit.UIColor? = nil, backgroundColor: UIKit.UIColor? = nil, cornerRadius: Foundation.NSNumber? = nil, padding: Foundation.NSNumber? = nil, useCustomIcon: Foundation.NSNumber? = nil, customIconFlashOn: UIKit.UIImage? = nil, customIconFlashOff: UIKit.UIImage? = nil)
   #endif
   #if compiler(>=5.3) && $NonescapableTypes
   @objc @_Concurrency.MainActor @preconcurrency public func configureZoomButton(visible: Swift.Bool, position: Foundation.NSValue? = nil, iconSize: Foundation.NSNumber? = nil, tintColor: UIKit.UIColor? = nil, backgroundColor: UIKit.UIColor? = nil, cornerRadius: Foundation.NSNumber? = nil, padding: Foundation.NSNumber? = nil, useCustomIcon: Foundation.NSNumber? = nil, customIconZoomedIn: UIKit.UIImage? = nil, customIconZoomedOut: UIKit.UIImage? = nil, zoomedInFactor: Foundation.NSNumber? = nil, zoomedOutFactor: Foundation.NSNumber? = nil)
   #endif
   @objc @_Concurrency.MainActor @preconcurrency public func selectVisibleBarcodes()
+  @objc @_Concurrency.MainActor @preconcurrency public func resetARCache()
   @_Concurrency.MainActor @preconcurrency @objc public func cameraFrameReceived(sampleBuffer: CoreMedia.CMSampleBuffer)
   @_Concurrency.MainActor @preconcurrency @objc override dynamic public func layoutSubviews()
   @objc deinit
@@ -169,6 +194,7 @@ extension CoreFoundation.CGRect {
   case interactiveDisabled
   case interactiveEnabled
   case nonInteractive
+  case matchFilter
   #if compiler(>=5.3) && $NonescapableTypes
   public init?(rawValue: Swift.Int)
   #endif
@@ -234,6 +260,8 @@ extension CoreFoundation.CGRect {
   @objc public var resultLimit: Swift.Int
   @objc public var continueScanningOnLimit: Swift.Bool
   @objc public var emitResultsAtSessionEndOnly: Swift.Bool
+  @objc public var returnOnlyMatchedResults: Swift.Bool
+  @objc public var displayOnlyMatchedResults: Swift.Bool
   @objc public var headerHeight: Swift.Float
   @objc public var headerShowMode: BarkoderSDK.BarkoderARHeaderShowMode
   @objc public var headerMaxTextHeight: Swift.Float
@@ -306,6 +334,9 @@ extension BarkoderSDK.BarkoderView.BarkoderResolution : Swift.RawRepresentable {
 extension BarkoderSDK.BarkoderView.BarkoderCameraPosition : Swift.Equatable {}
 extension BarkoderSDK.BarkoderView.BarkoderCameraPosition : Swift.Hashable {}
 extension BarkoderSDK.BarkoderView.BarkoderCameraPosition : Swift.RawRepresentable {}
+extension BarkoderSDK.BarkoderView.BarkoderRoiCenterMark : Swift.Equatable {}
+extension BarkoderSDK.BarkoderView.BarkoderRoiCenterMark : Swift.Hashable {}
+extension BarkoderSDK.BarkoderView.BarkoderRoiCenterMark : Swift.RawRepresentable {}
 extension BarkoderSDK.BarkoderARMode : Swift.Equatable {}
 extension BarkoderSDK.BarkoderARMode : Swift.Hashable {}
 extension BarkoderSDK.BarkoderARMode : Swift.RawRepresentable {}

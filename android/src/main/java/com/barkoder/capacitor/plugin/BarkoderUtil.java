@@ -33,6 +33,7 @@ public class BarkoderUtil {
             resultJS.put("barcodeTypeName", decoderResult.barcodeTypeName);
             resultJS.put("binaryDataAsBase64", Base64.encodeToString(decoderResult.binaryData, Base64.NO_WRAP));
             resultJS.put("textualData", decoderResult.textualData);
+            resultJS.put("isMatched", decoderResult.isMatched);
 
             if (!TextUtils.isEmpty(decoderResult.characterSet)) {
                 resultJS.put("characterSet", decoderResult.characterSet);

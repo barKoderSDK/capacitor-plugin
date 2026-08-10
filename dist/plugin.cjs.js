@@ -1,7 +1,5 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', { value: true });
-
 var core = require('@capacitor/core');
 
 exports.DecodingSpeed = void 0;
@@ -18,6 +16,7 @@ exports.FormattingType = void 0;
     FormattingType[FormattingType["gs1"] = 2] = "gs1";
     FormattingType[FormattingType["aamva"] = 3] = "aamva";
     FormattingType[FormattingType["sadl"] = 4] = "sadl";
+    FormattingType[FormattingType["bcbp"] = 5] = "bcbp";
 })(exports.FormattingType || (exports.FormattingType = {}));
 exports.MsiChecksumType = void 0;
 (function (MsiChecksumType) {
@@ -51,6 +50,12 @@ exports.BarkoderResolution = void 0;
     BarkoderResolution[BarkoderResolution["FHD"] = 1] = "FHD";
     BarkoderResolution[BarkoderResolution["UHD"] = 2] = "UHD";
 })(exports.BarkoderResolution || (exports.BarkoderResolution = {}));
+exports.BarkoderRoiCenterMark = void 0;
+(function (BarkoderRoiCenterMark) {
+    BarkoderRoiCenterMark[BarkoderRoiCenterMark["none"] = 0] = "none";
+    BarkoderRoiCenterMark[BarkoderRoiCenterMark["crosshair"] = 1] = "crosshair";
+    BarkoderRoiCenterMark[BarkoderRoiCenterMark["point"] = 2] = "point";
+})(exports.BarkoderRoiCenterMark || (exports.BarkoderRoiCenterMark = {}));
 exports.BarcodeType = void 0;
 (function (BarcodeType) {
     BarcodeType[BarcodeType["aztec"] = 0] = "aztec";
@@ -101,6 +106,7 @@ exports.BarkoderARMode = void 0;
     BarkoderARMode[BarkoderARMode["interactiveDisabled"] = 1] = "interactiveDisabled";
     BarkoderARMode[BarkoderARMode["interactiveEnabled"] = 2] = "interactiveEnabled";
     BarkoderARMode[BarkoderARMode["nonInteractive"] = 3] = "nonInteractive";
+    BarkoderARMode[BarkoderARMode["matchFilter"] = 4] = "matchFilter";
 })(exports.BarkoderARMode || (exports.BarkoderARMode = {}));
 exports.BarkoderAROverlayRefresh = void 0;
 (function (BarkoderAROverlayRefresh) {
@@ -251,6 +257,7 @@ class DecoderResult {
             ? resultMap['locationPoints']
             : undefined;
         this.sadlImageAsBase64 = this.convertToBase64(resultMap['sadlImageAsBase64']);
+        this.isMatched = resultMap['isMatched'];
     }
     convertToBase64(data) {
         return data ? `data:image/jpeg;base64,${data}` : null;

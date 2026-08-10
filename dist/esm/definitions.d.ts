@@ -85,6 +85,12 @@ export interface BarkoderPlugin extends Plugin {
         value: string;
     }): Promise<any>;
     /**
+     * Sets the style of the visual marker drawn at the center of the Region of Interest (ROI).
+     */
+    setRoiCenterMark(options: {
+        value: BarkoderRoiCenterMark;
+    }): Promise<any>;
+    /**
      * Enables or disables the automatic closing of the scanning session upon detecting a barcode result
      */
     setCloseSessionOnResultEnabled(options: {
@@ -609,6 +615,34 @@ export interface BarkoderPlugin extends Plugin {
      */
     selectVisibleBarcodes(): Promise<any>;
     /**
+     * Clears the current AR result cache and removes all rendered AR barcode overlays without stopping the camera, ending the scanning session, or emitting results.
+     */
+    resetARCache(): Promise<any>;
+    /**
+     * When AR mode is `matchFilter`, controls whether only matched results are returned.
+     * If `false`, all detected results are returned, while unmatched results remain marked through `isMatched`.
+     * This option only applies when `arMode == matchFilter` and a match filter is active.
+     */
+    setARReturnOnlyMatchedResults(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Retrieves whether only matched results are returned in AR match filter mode.
+     */
+    getARReturnOnlyMatchedResults(): Promise<any>;
+    /**
+     * When AR mode is `matchFilter`, controls whether only matched results are displayed.
+     * If `false`, all decoded results are displayed, including unmatched results.
+     * This option only applies when `arMode == matchFilter` and a match filter is active.
+     */
+    setARDisplayOnlyMatchedResults(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Retrieves whether only matched results are displayed in AR match filter mode.
+     */
+    getARDisplayOnlyMatchedResults(): Promise<any>;
+    /**
      * Power saving mode level. Higher values reduce CPU/battery usage by limiting frame processing. 0 = disabled (no constraints).
      */
     setPowerSavingMode(options: {
@@ -670,6 +704,10 @@ export interface BarkoderPlugin extends Plugin {
      * Retrieves the hexadecimal color code representing the background color of the overlay within the Region of Interest (ROI) on the camera preview
      */
     getRoiOverlayBackgroundColorHex(): Promise<any>;
+    /**
+     * Retrieves the style of the visual marker drawn at the center of the Region of Interest (ROI).
+     */
+    getRoiCenterMark(): Promise<any>;
     /**
      * Retrieves the maximum available zoom factor for the device's camera
      */
@@ -906,6 +944,33 @@ export interface BarkoderPlugin extends Plugin {
      * Retrieves the power saving mode level.
      */
     getPowerSavingMode(): Promise<any>;
+    /**
+     * Retrieves the Device ID.
+     */
+    getDeviceId(): Promise<any>;
+    /**
+     * Defines the string match filter applied to decoded results.
+     * Results expose their match status through `isMatched`.
+     */
+    setMatchFilter(options: {
+        value: string;
+    }): Promise<any>;
+    /**
+     * Retrieves the string match filter applied to decoded results.
+     */
+    getMatchFilter(): Promise<any>;
+    /**
+     * Controls whether only results matching `matchFilter` are returned.
+     * If `false`, all decoded results are returned, including unmatched results.
+     * This option only applies when a match filter is active.
+     */
+    setReturnOnlyMatchedResults(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
+     * Retrieves whether only results matching `matchFilter` are returned.
+     */
+    getReturnOnlyMatchedResults(): Promise<any>;
 }
 export declare enum DecodingSpeed {
     fast = 0,
@@ -918,7 +983,8 @@ export declare enum FormattingType {
     automatic = 1,
     gs1 = 2,
     aamva = 3,
-    sadl = 4
+    sadl = 4,
+    bcbp = 5
 }
 export declare enum MsiChecksumType {
     disabled = 0,
@@ -946,6 +1012,11 @@ export declare enum BarkoderResolution {
     HD = 0,
     FHD = 1,
     UHD = 2
+}
+export declare enum BarkoderRoiCenterMark {
+    none = 0,
+    crosshair = 1,
+    point = 2
 }
 export declare enum BarcodeType {
     aztec = 0,
@@ -994,7 +1065,8 @@ export declare enum BarkoderARMode {
     off = 0,
     interactiveDisabled = 1,
     interactiveEnabled = 2,
-    nonInteractive = 3
+    nonInteractive = 3,
+    matchFilter = 4
 }
 export declare enum BarkoderAROverlayRefresh {
     smooth = 0,
@@ -1016,12 +1088,14 @@ export declare class BarkoderConfig {
     roiLineColor?: string;
     roiLineWidth?: number;
     roiOverlayBackgroundColor?: string;
+    roiCenterMark?: BarkoderRoiCenterMark;
     scanningIndicatorColor?: string;
     scanningIndicatorWidth?: number;
     scanningIndicatorAnimation?: number;
     scanningIndicatorAlwaysVisible?: boolean;
     closeSessionOnResultEnabled?: boolean;
     imageResultEnabled?: boolean;
+    barcodeThumbnailOnResult?: boolean;
     locationInImageResultEnabled?: boolean;
     locationInPreviewEnabled?: boolean;
     pinchToZoomEnabled?: boolean;
@@ -1104,6 +1178,8 @@ export declare class BarkoderARConfig {
     headerHorizontalTextMargin?: number;
     headerVerticalTextMargin?: number;
     headerTextFormat?: string;
+    returnOnlyMatchedResults?: boolean;
+    displayOnlyMatchedResults?: boolean;
     constructor(config: Partial<BarkoderARConfig>);
 }
 export declare class BarcodeConfig {
@@ -1181,6 +1257,8 @@ export declare class GeneralSettings {
     multicodeCachingEnabled?: boolean;
     upcEanDeblur?: number;
     enableMisshaped1D?: number;
+    matchFilter?: string;
+    returnOnlyMatchedResults?: boolean;
     constructor(config: Partial<GeneralSettings>);
     setROI(x: number, y: number, width: number, height: number): void;
 }
@@ -1207,6 +1285,7 @@ export declare class DecoderResult {
         y: number;
     }[];
     sadlImageAsBase64?: string | null;
+    isMatched: boolean;
     constructor(resultMap: Record<string, any>);
     private convertToBase64;
 }

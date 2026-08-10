@@ -85,7 +85,8 @@ typedef enum {
     Automatic,
     GS1,
     AAMVA,
-    SADL
+    SADL,
+    BCBP
 } Formatting;
 
 //==========================================================================
@@ -548,6 +549,8 @@ typedef enum {
 @property (nonatomic, readwrite) Formatting formatting;
 @property (nonatomic, readwrite) int maximumResultsCount;
 @property (nonatomic, readwrite) int duplicatesDelayMs;
+@property (nonatomic, readwrite, copy) NSString * _Nonnull matchFilter;
+@property (nonatomic, readwrite) bool returnOnlyMatchedResults;
 @property (nonatomic, readwrite) bool upcEanDeblur;
 @property (nonatomic, readwrite) bool enableMisshaped1D;
 @property (nonatomic, readwrite) bool enableVINRestrictions;
@@ -661,6 +664,7 @@ UIImage
 @property (nonatomic, readwrite, retain) NSDictionary* extra;
 @property (nonatomic, readwrite, retain) NSArray<BKLocation*>* extraLocations;
 @property (nonatomic, readwrite, retain) NSArray<BKImageDescriptor*>* images;
+@property (nonatomic, readwrite) bool isMatched;
 
 -(int)polygonPointCount;
 -(CGPoint)polygonPointAt:(int)index;

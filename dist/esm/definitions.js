@@ -12,6 +12,7 @@ export var FormattingType;
     FormattingType[FormattingType["gs1"] = 2] = "gs1";
     FormattingType[FormattingType["aamva"] = 3] = "aamva";
     FormattingType[FormattingType["sadl"] = 4] = "sadl";
+    FormattingType[FormattingType["bcbp"] = 5] = "bcbp";
 })(FormattingType || (FormattingType = {}));
 export var MsiChecksumType;
 (function (MsiChecksumType) {
@@ -45,6 +46,12 @@ export var BarkoderResolution;
     BarkoderResolution[BarkoderResolution["FHD"] = 1] = "FHD";
     BarkoderResolution[BarkoderResolution["UHD"] = 2] = "UHD";
 })(BarkoderResolution || (BarkoderResolution = {}));
+export var BarkoderRoiCenterMark;
+(function (BarkoderRoiCenterMark) {
+    BarkoderRoiCenterMark[BarkoderRoiCenterMark["none"] = 0] = "none";
+    BarkoderRoiCenterMark[BarkoderRoiCenterMark["crosshair"] = 1] = "crosshair";
+    BarkoderRoiCenterMark[BarkoderRoiCenterMark["point"] = 2] = "point";
+})(BarkoderRoiCenterMark || (BarkoderRoiCenterMark = {}));
 export var BarcodeType;
 (function (BarcodeType) {
     BarcodeType[BarcodeType["aztec"] = 0] = "aztec";
@@ -95,6 +102,7 @@ export var BarkoderARMode;
     BarkoderARMode[BarkoderARMode["interactiveDisabled"] = 1] = "interactiveDisabled";
     BarkoderARMode[BarkoderARMode["interactiveEnabled"] = 2] = "interactiveEnabled";
     BarkoderARMode[BarkoderARMode["nonInteractive"] = 3] = "nonInteractive";
+    BarkoderARMode[BarkoderARMode["matchFilter"] = 4] = "matchFilter";
 })(BarkoderARMode || (BarkoderARMode = {}));
 export var BarkoderAROverlayRefresh;
 (function (BarkoderAROverlayRefresh) {
@@ -245,6 +253,7 @@ export class DecoderResult {
             ? resultMap['locationPoints']
             : undefined;
         this.sadlImageAsBase64 = this.convertToBase64(resultMap['sadlImageAsBase64']);
+        this.isMatched = resultMap['isMatched'];
     }
     convertToBase64(data) {
         return data ? `data:image/jpeg;base64,${data}` : null;
