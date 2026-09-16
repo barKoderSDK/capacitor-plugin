@@ -1,6 +1,6 @@
 // swift-interface-format-version: 1.0
 // swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
-// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name BarkoderSDK
+// swift-module-flags: -target arm64-apple-ios15.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -enable-bare-slash-regex -module-name BarkoderSDK
 // swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
 import AVFoundation
 import AudioToolbox
@@ -155,6 +155,10 @@ extension UIKit.UIImage {
   @objc @_Concurrency.MainActor @preconcurrency public func getAvailableCameras() -> [[Swift.String : Any]]
   @available(iOS, unavailable, message: "Use setCamera(back/front) on iOS")
   @objc @_Concurrency.MainActor @preconcurrency public func setCameraById(_ cameraId: Swift.String)
+  @objc @_Concurrency.MainActor @preconcurrency public var previewMirrored: Swift.Bool {
+    @objc get
+    @objc set
+  }
   @available(macCatalyst, unavailable, message: "Flash is not supported on Mac Catalyst")
   @objc @_Concurrency.MainActor @preconcurrency public func setFlash(_ enabled: Swift.Bool)
   @objc @_Concurrency.MainActor @preconcurrency public func getMaxZoomFactor(_ completion: @escaping (_ maxZoomFactor: Swift.Float) -> Swift.Void)

@@ -735,6 +735,11 @@ SWIFT_CLASS("_TtC11BarkoderSDK12BarkoderView")
 - (NSArray<NSDictionary<NSString *, id> *> * _Nonnull)getAvailableCameras SWIFT_WARN_UNUSED_RESULT SWIFT_AVAILABILITY(ios,unavailable,message="Use setCamera(back/front) on iOS");
 /// Selects camera by unique device ID on Mac Catalyst.
 - (void)setCameraById:(NSString * _Nonnull)cameraId SWIFT_AVAILABILITY(ios,unavailable,message="Use setCamera(back/front) on iOS");
+/// Controls whether the camera preview is horizontally mirrored.
+/// On iOS, this setting affects only the front camera.
+/// The back camera is never mirrored.
+/// The default value is <code>true</code>.
+@property (nonatomic) BOOL previewMirrored;
 /// Enables or disables the device’s flash (torch) for illumination during barcode scanning
 /// \param enabled [true, false]. Default value is false
 ///

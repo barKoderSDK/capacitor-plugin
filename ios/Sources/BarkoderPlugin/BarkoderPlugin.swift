@@ -79,6 +79,7 @@ public class BarkoderPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "setEnableComposite", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setVideoStabilization", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setCamera", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "setPreviewMirrored", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setShowDuplicatesLocations", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setARMode", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "setARResultDisappearanceDelayMs", returnType: CAPPluginReturnPromise),
@@ -116,6 +117,7 @@ public class BarkoderPlugin: CAPPlugin, CAPBridgedPlugin {
         CAPPluginMethod(name: "isLocationInImageResultEnabled", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isLocationInPreviewEnabled", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isPinchToZoomEnabled", returnType: CAPPluginReturnPromise),
+        CAPPluginMethod(name: "isPreviewMirrored", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isRegionOfInterestVisible", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isBeepOnSuccessEnabled", returnType: CAPPluginReturnPromise),
         CAPPluginMethod(name: "isVibrateOnSuccessEnabled", returnType: CAPPluginReturnPromise),
@@ -1261,6 +1263,18 @@ extension BarkoderPlugin {
         
         call.resolve()
     }
+
+    @objc func setPreviewMirrored(_ call: CAPPluginCall) {
+        guard let value = call.getBool("value") else {
+            return
+        }
+
+        DispatchQueue.main.async {
+            self.barkoderView.previewMirrored = value
+        }
+
+        call.resolve()
+    }
     
     @objc func setShowDuplicatesLocations(_ call: CAPPluginCall) {
         guard let enabled = call.getBool("value") else {
@@ -1750,6 +1764,10 @@ extension BarkoderPlugin {
     
     @objc func isPinchToZoomEnabled(_ call: CAPPluginCall) {
         call.resolve(["isPinchToZoomEnabled": barkoderView.config?.pinchToZoomEnabled as Any])
+    }
+
+    @objc func isPreviewMirrored(_ call: CAPPluginCall) {
+        call.resolve(["isPreviewMirrored": barkoderView.previewMirrored])
     }
     
     @objc func isRegionOfInterestVisible(_ call: CAPPluginCall) {

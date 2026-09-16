@@ -1010,6 +1010,17 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     }
 
     @PluginMethod
+    public void setPreviewMirrored(PluginCall call) {
+        Boolean value = call.getBoolean("value");
+        if (value == null) {
+            return;
+        }
+        getBridge().getActivity().runOnUiThread(() -> barkoderView.setPreviewMirrored(value));
+
+        call.resolve();
+    }
+
+    @PluginMethod
     public void setShowDuplicatesLocations(PluginCall call) {
         Boolean value = call.getBoolean("value");
         if (value == null) return;
@@ -1569,6 +1580,13 @@ public class BarkoderPlugin extends Plugin implements BarkoderResultCallback {
     public void isPinchToZoomEnabled(PluginCall call) {
         getBridge().getActivity().runOnUiThread(() -> {
             call.resolve(toJSObjectBool("isPinchToZoomEnabled", barkoderView.config.isPinchToZoomEnabled()));
+        });
+    }
+
+    @PluginMethod
+    public void isPreviewMirrored(PluginCall call) {
+        getBridge().getActivity().runOnUiThread(() -> {
+            call.resolve(toJSObjectBool("isPreviewMirrored", barkoderView.isPreviewMirrored()));
         });
     }
 

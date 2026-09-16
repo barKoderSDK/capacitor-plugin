@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		NWfdEbOkVRivcfKo1rV0nntU8w0=
+		dfMLCplahXwimwkB+e0LeEWY0zM=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -38,11 +38,11 @@
 		</data>
 		<key>n2_384x256_int8.mlmodelc/coremldata.bin</key>
 		<data>
-		OSNxIT0qJgWmHkb6/QNf6gbJC8w=
+		9ruOFbYZLLT13p0NRy8eBb8v730=
 		</data>
 		<key>n2_384x256_int8.mlmodelc/metadata.json</key>
 		<data>
-		uIIABXMMaUwIUWHhtrVTPosHF5U=
+		JHSwn60SQLrV7ZlSjgxSvocWWS4=
 		</data>
 		<key>n2_384x256_int8.mlmodelc/model.espresso.net</key>
 		<data>
@@ -70,11 +70,11 @@
 		</data>
 		<key>n2_512x384_int8.mlmodelc/coremldata.bin</key>
 		<data>
-		M7TP9AajI8km8Krd5WVysnSAicg=
+		9WagYNikmMZFJKH0r3a6dvk7HN8=
 		</data>
 		<key>n2_512x384_int8.mlmodelc/metadata.json</key>
 		<data>
-		ax29B+ZYj1U5q7oRL9d9rsHczDM=
+		vN4nOF6vcH8HxVeeSkrXCQfLQcs=
 		</data>
 		<key>n2_512x384_int8.mlmodelc/model.espresso.net</key>
 		<data>
@@ -152,14 +152,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ouC/z84wpMWcrumYhtvnWfhmnTLCaj+N+3wQg4ejLz0=
+			XveWoCCGtOZ5sERtHxsj7INGmLBLrxMZgzsBEFpz1eU=
 			</data>
 		</dict>
 		<key>n2_384x256_int8.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			OIF0SvVI54VHhnXo0HhrHCSxX00zDR3yOEHiTFkJ3Fs=
+			5aGvTOXsWyYuyGyS7XPZMRIMq3/pUyiNYVGCVk59ZpE=
 			</data>
 		</dict>
 		<key>n2_384x256_int8.mlmodelc/model.espresso.net</key>
@@ -208,14 +208,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			R7914bYcVWG0faOHriz1xGW8JW3o3Hwbkv6hWMjvlL4=
+			3DP65R5PGNW4v63y+DLk24dSJDTNSxfPTJnxHXXewao=
 			</data>
 		</dict>
 		<key>n2_512x384_int8.mlmodelc/metadata.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			HdzHl5BISCzbl4K475xES9gNzUDSSKIILAkzu85Vgd4=
+			ZNG3uSwLTw92yu+rEVNPtvhvKJG8ogAEILbJoZeLJoE=
 			</data>
 		</dict>
 		<key>n2_512x384_int8.mlmodelc/model.espresso.net</key>

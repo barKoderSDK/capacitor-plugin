@@ -378,6 +378,12 @@ export interface BarkoderPlugin extends Plugin {
         value: BarkoderCameraPosition;
     }): Promise<any>;
     /**
+      * Controls whether the front camera preview is horizontally mirrored.
+     */
+    setPreviewMirrored(options: {
+        value: boolean;
+    }): Promise<any>;
+    /**
      * Enables or disables showing duplicate barcode locations on the preview overlay.
      */
     setShowDuplicatesLocations(options: {
@@ -672,6 +678,10 @@ export interface BarkoderPlugin extends Plugin {
      * Checks if pinch to zoom is enabled
      */
     isPinchToZoomEnabled(): Promise<any>;
+    /**
+      * Retrieves whether the front camera preview is horizontally mirrored.
+     */
+    isPreviewMirrored(): Promise<any>;
     /**
      * Checks if the region of interest (ROI) is visible
      */
@@ -1255,8 +1265,8 @@ export declare class GeneralSettings {
     maximumResultsCount?: number;
     multicodeCachingDuration?: number;
     multicodeCachingEnabled?: boolean;
-    upcEanDeblur?: number;
-    enableMisshaped1D?: number;
+    upcEanDeblur?: boolean;
+    enableMisshaped1D?: boolean;
     matchFilter?: string;
     returnOnlyMatchedResults?: boolean;
     constructor(config: Partial<GeneralSettings>);
